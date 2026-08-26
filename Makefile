@@ -1,8 +1,8 @@
-.PHONY: verify install format-check lint test typecheck audit
+.PHONY: verify install format-check lint test typecheck audit catalog curriculum
 
 ORDER_API_DIR := courses/agentic-coding-with-cursor/order-api
 
-verify: install format-check lint typecheck test audit
+verify: format-check lint catalog curriculum
 
 install:
 	cd $(ORDER_API_DIR) && npm ci
@@ -23,3 +23,13 @@ typecheck:
 
 audit:
 	cd $(ORDER_API_DIR) && npm audit --audit-level=high
+
+catalog:
+	python3 tools/validate_catalog.py
+
+curriculum:
+	@set -e; \
+	python3 tools/validate_catalog.py --course-makefiles | while IFS= read -r course; do \
+		echo "=== curriculum gate: $$course ==="; \
+		$(MAKE) -C "$$course" verify; \
+	done

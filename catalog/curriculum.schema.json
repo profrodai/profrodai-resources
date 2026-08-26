@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "profrodai-resources curriculum catalog",
+  "type": "object",
+  "required": ["schemaVersion", "courses", "articles"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "courses": {"type": "array", "minItems": 11},
+    "articles": {"type": "array", "minItems": 13}
+  }
+}
