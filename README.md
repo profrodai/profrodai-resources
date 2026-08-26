@@ -24,7 +24,8 @@ out of scope: they are neither represented as articles nor given code in this ph
 ```bash
 git clone https://github.com/profrodai/profrodai-resources.git
 cd profrodai-resources
-make verify
+git clone https://github.com/profrodai/profrod-site.git ../profrod-site
+PROFROD_SITE_REPO=../profrod-site make verify
 ```
 
 To explore one course, read its `README.md`, then run its local gate:
@@ -37,6 +38,11 @@ make -C courses/why-agents-fail run
 Each new standard-library lab pins its observed runtime in `runtime.txt`, declares an empty
 third-party dependency lock in `requirements.lock`, and has no network or credential requirement.
 The existing Cursor `order-api` retains its own locked Node dependencies and gate.
+
+`make verify` deliberately fails closed without `PROFROD_SITE_REPO`: the catalog is proven against
+the exact Git object named in `catalog/profrod-site-source-index.json`, not against a copied title
+or a mutable checkout. The supplied repository must contain that commit; fetch it if its clone is
+shallow or has moved past the pin.
 
 ## Taxonomy and status
 

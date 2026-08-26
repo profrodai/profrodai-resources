@@ -1,4 +1,4 @@
-# Nebius Token Factory in Production
+# Nebius Token Factory in Production: Running Open Models Honestly
 
 **Status:** scaffolded
 

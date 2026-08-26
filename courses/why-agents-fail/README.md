@@ -1,4 +1,4 @@
-# Why Agents Fail
+# Why Agents Fail: Harness Engineering for AI Projects
 
 **Status:** scaffolded
 

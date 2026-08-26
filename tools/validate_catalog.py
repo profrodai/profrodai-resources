@@ -5,7 +5,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
+import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,7 +36,41 @@ def require_text(path: Path, fragments: tuple[str, ...], description: str) -> No
         fail(f"{description} lacks required contract text: {', '.join(missing)}")
 
 
-def source_titles() -> dict[str, str]:
+def git_output(source_repo: Path, *args: str) -> str:
+    result = subprocess.run(
+        ["git", "-C", str(source_repo), *args],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode:
+        detail = result.stderr.strip() or result.stdout.strip() or "unknown git error"
+        fail(f"pinned profrod-site source material unavailable: {detail}")
+    return result.stdout
+
+
+def frontmatter_title(contents: str, source_path: str) -> str:
+    lines = contents.splitlines()
+    if not lines or lines[0] != "---":
+        fail(f"pinned source has no frontmatter: {source_path}")
+    for line in lines[1:]:
+        if line == "---":
+            break
+        if line.startswith("title: "):
+            raw_title = line.removeprefix("title: ")
+            if raw_title.startswith('"'):
+                try:
+                    title = json.loads(raw_title)
+                except json.JSONDecodeError as error:
+                    fail(f"pinned source title is not a supported JSON string in {source_path}: {error}")
+                if not isinstance(title, str):
+                    fail(f"pinned source title is not a string: {source_path}")
+                return title
+            return raw_title
+    fail(f"pinned source frontmatter has no title: {source_path}")
+
+
+def source_titles(source_repo: Path) -> dict[str, str]:
     require_file(SOURCE_INDEX_PATH, "pinned profrod-site source index")
     snapshot = json.loads(SOURCE_INDEX_PATH.read_text())
     if snapshot.get("repository") != "profrodai/profrod-site":
@@ -53,7 +89,15 @@ def source_titles() -> dict[str, str]:
         if not isinstance(path, str) or not isinstance(title, str) or not path or not title or path in index:
             fail("source index has an invalid or duplicate entry")
         index[path] = title
-    return index
+    git_output(source_repo, "cat-file", "-e", f"{commit}^{{commit}}")
+    source_titles_from_git: dict[str, str] = {}
+    for path, expected_title in index.items():
+        contents = git_output(source_repo, "show", f"{commit}:{path}")
+        actual_title = frontmatter_title(contents, path)
+        if actual_title != expected_title:
+            fail(f"source index title differs from pinned git object for {path}: expected {actual_title!r}, found {expected_title!r}")
+        source_titles_from_git[path] = actual_title
+    return source_titles_from_git
 
 
 def validate_source(entry: dict[str, object], index: dict[str, str], kind: str) -> None:
@@ -70,6 +114,7 @@ def validate_source(entry: dict[str, object], index: dict[str, str], kind: str) 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--course-makefiles", action="store_true")
+    parser.add_argument("--source-repo", default=os.environ.get("PROFROD_SITE_REPO"), help="path to a checkout containing the pinned profrod-site git object")
     args = parser.parse_args()
     require_file(CATALOG_PATH, "catalog")
     require_file(SCHEMA_PATH, "catalog schema")
@@ -81,7 +126,12 @@ def main() -> None:
         fail("schemaVersion must be 1")
     if data.get("sourceSnapshot") != "catalog/profrod-site-source-index.json":
         fail("catalog must name the pinned profrod-site source index")
-    pinned_titles = source_titles()
+    if not args.source_repo:
+        fail("set PROFROD_SITE_REPO or pass --source-repo to a profrod-site checkout containing the pinned commit")
+    source_repo = Path(args.source_repo).expanduser().resolve()
+    if not (source_repo / ".git").exists():
+        fail(f"source repository is unavailable: {source_repo}")
+    pinned_titles = source_titles(source_repo)
     courses = data.get("courses")
     articles = data.get("articles")
     if not isinstance(courses, list) or len(courses) != EXPECTED_COURSES:

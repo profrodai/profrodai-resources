@@ -20,4 +20,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.14'
-      - run: make verify
+      - name: Fetch the pinned profrod-site source object
+        run: |
+          git clone --no-checkout https://github.com/profrodai/profrod-site.git _source/profrod-site
+          git -C _source/profrod-site fetch --depth=1 origin db4dc3afb65aa402069d04533d4ce9766d7444e4
+          git -C _source/profrod-site checkout --detach db4dc3afb65aa402069d04533d4ce9766d7444e4
+      - run: PROFROD_SITE_REPO="$PWD/_source/profrod-site" make verify

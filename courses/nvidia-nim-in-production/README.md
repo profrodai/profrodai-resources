@@ -1,4 +1,4 @@
-# NVIDIA NIM in Production
+# NVIDIA NIM in Production: From Hosted API to Self-Hosted Inference
 
 **Status:** scaffolded
 

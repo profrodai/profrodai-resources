@@ -1,4 +1,4 @@
-# Two Architectures
+# Two Architectures: The 2x2 for Agent Design
 
 **Status:** scaffolded
 

@@ -28,11 +28,12 @@ audit:
 	cd $(ORDER_API_DIR) && npm audit --audit-level=high
 
 catalog:
-	python3 tools/validate_catalog.py
+	@test -n "$(PROFROD_SITE_REPO)" || { echo "set PROFROD_SITE_REPO to a profrod-site checkout containing the pinned source commit"; exit 1; }
+	python3 tools/validate_catalog.py --source-repo "$(PROFROD_SITE_REPO)"
 
 curriculum:
 	@set -e; \
-	python3 tools/validate_catalog.py --course-makefiles | while IFS= read -r course; do \
+	python3 tools/validate_catalog.py --source-repo "$(PROFROD_SITE_REPO)" --course-makefiles | while IFS= read -r course; do \
 		echo "=== curriculum gate: $$course ==="; \
 		$(MAKE) -C "$$course" verify; \
 	done
