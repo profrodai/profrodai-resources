@@ -6,7 +6,7 @@ starter labs, and verification gates; it is not a copy of the teaching site.
 
 ## What this phase is
 
-This is a top-down curriculum map and scaffold. Every catalogued course has one small,
+This is a top-down curriculum map and scaffold. Every site-backed runnable course has one small,
 credential-free vertical slice that accepts an input, emits an observable result, and proves it
 with a test. Those slices establish the run/verify/reset contract for later labs; they are not
 completed course material, nor a substitute for the lessons.
@@ -64,6 +64,22 @@ Course directories are `courses/<site-course-slug>/`; article mappings are
 than duplicate or migrate it. Article code needs a separate source/licensing and demonstration
 decision before it is added.
 
+## Consolidating approved public companions
+
+The resources repository is the planned maintained home for approved public ProfRod teaching
+material. The source-to-target registry is
+[`catalog/consolidation-sources.json`](catalog/consolidation-sources.json); the readable policy,
+status table, and gates are in [`docs/consolidation.md`](docs/consolidation.md). A mapping records
+only reviewed provenance and intended destination. It never copies source bodies, rewrites an
+upstream history, or silently changes a licence.
+
+Two course curricula have been adopted as `mapped` documentation only:
+
+- [Agent Engineering Foundations](courses/agent-engineering-foundations/)
+- [LLM Engineering Essentials](courses/llm-engineering-essentials/)
+
+They have no runnable labs until an offline, credential-free vertical slice and course gate land.
+
 ## Contributing a next lab
 
 1. Add or amend a catalog entry and keep its source pointer truthful.
@@ -108,12 +124,12 @@ dependency audit.
 Each course directory is self-contained: its own `package.json`, its own dependencies, runnable
 on its own without anything else in this repo.
 
-## What's not here
+## Current companion boundary
 
-This repo does not host `transformation-tracker-with-claude-code`'s companion code. That course
-already has its own public repo,
-[`profrodai/transformation-tracker-course`](https://github.com/profrodai/transformation-tracker-course),
-live and linked from shipped lessons. It stays where it is; nothing here replaces it.
+The Transformation Tracker public companion remains live while its canonical import is only
+mapped. The existing `labs/01-baseline-delta` is explicitly its successor scaffold, not its
+replacement. The consolidation policy forbids archiving a legacy repository before a reviewed
+replacement and clear learner redirect exist.
 
 ## License
 

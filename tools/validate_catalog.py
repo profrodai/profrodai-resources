@@ -14,9 +14,15 @@ ROOT = Path(__file__).resolve().parents[1]
 CATALOG_PATH = ROOT / "catalog" / "curriculum.json"
 SCHEMA_PATH = ROOT / "catalog" / "curriculum.schema.json"
 SOURCE_INDEX_PATH = ROOT / "catalog" / "profrod-site-source-index.json"
+CONSOLIDATION_SOURCES_PATH = ROOT / "catalog" / "consolidation-sources.json"
 EXPECTED_COURSES = 11
 EXPECTED_ARTICLES = 13
+EXPECTED_ADOPTED_COURSES = 2
+EXPECTED_CONSOLIDATION_SOURCES = 7
 REQUIRED_COURSE_KEYS = {"slug", "title", "genre", "status", "source", "coursePath", "stubPath"}
+REQUIRED_ADOPTED_COURSE_KEYS = {"slug", "title", "status", "consolidationSource", "coursePath"}
+SOURCE_LICENSE_STATUSES = {"verified-mit", "operator-authorized-mit-grant-pending-record", "gpl-source-no-copy-or-relicense"}
+IMPORT_MODES = {"canonical-import", "legacy-modernize", "template-import", "clean-room-rebuild", "curriculum-adoption"}
 
 
 def fail(message: str) -> None:
@@ -113,6 +119,76 @@ def validate_source(entry: dict[str, object], index: dict[str, str], kind: str) 
         fail(f"{kind} {entry.get('slug')} title does not exactly match pinned source title")
 
 
+def is_commit(value: object) -> bool:
+    return isinstance(value, str) and len(value) == 40 and all(character in "0123456789abcdef" for character in value)
+
+
+def validate_consolidation_sources(adopted_courses: list[object]) -> None:
+    """Require every approved upstream to have a truthful, documented target.
+
+    This is intentionally static: PR CI must not fetch an upstream repository or need a
+    credential. Pins and local documentation are checked here; byte comparison is a later,
+    explicitly trusted source-audit act.
+    """
+    require_file(CONSOLIDATION_SOURCES_PATH, "consolidation source registry")
+    data = json.loads(CONSOLIDATION_SOURCES_PATH.read_text())
+    if data.get("schemaVersion") != 1 or not isinstance(data.get("policy"), str):
+        fail("consolidation source registry must carry schemaVersion 1 and a policy")
+    sources = data.get("sources")
+    if not isinstance(sources, list) or len(sources) != EXPECTED_CONSOLIDATION_SOURCES:
+        fail(f"expected exactly {EXPECTED_CONSOLIDATION_SOURCES} consolidation sources")
+    source_ids: set[str] = set()
+    for source in sources:
+        if not isinstance(source, dict):
+            fail("consolidation source entry must be an object")
+        required = {"id", "upstreamUrl", "pinnedCommit", "originalLicense", "licenseStatus", "importMode", "migrationStatus", "target"}
+        if set(source) != required:
+            fail("consolidation source entry has an incomplete or unexpected contract")
+        source_id = source["id"]
+        if not isinstance(source_id, str) or not source_id or source_id in source_ids:
+            fail("consolidation source id must be unique and nonempty")
+        source_ids.add(source_id)
+        if not isinstance(source["upstreamUrl"], str) or not source["upstreamUrl"].startswith("https://github.com/"):
+            fail(f"consolidation source {source_id} must name a canonical GitHub URL")
+        if not is_commit(source["pinnedCommit"]):
+            fail(f"consolidation source {source_id} must carry a lowercase 40-character commit pin")
+        if not isinstance(source["originalLicense"], str) or not source["originalLicense"]:
+            fail(f"consolidation source {source_id} must state its original license condition")
+        if source["licenseStatus"] not in SOURCE_LICENSE_STATUSES:
+            fail(f"consolidation source {source_id} has an invalid license status")
+        if source["importMode"] not in IMPORT_MODES or source["migrationStatus"] != "mapped":
+            fail(f"consolidation source {source_id} has an invalid import mode or status")
+        target = source["target"]
+        if not isinstance(target, dict) or set(target) != {"path", "documentation"}:
+            fail(f"consolidation source {source_id} must have a target path and documentation list")
+        target_path, documentation = target["path"], target["documentation"]
+        if not isinstance(target_path, str) or not target_path.startswith("courses/"):
+            fail(f"consolidation source {source_id} target must be course-scoped")
+        if not isinstance(documentation, list) or not documentation or not all(isinstance(item, str) for item in documentation):
+            fail(f"consolidation source {source_id} must name target documentation")
+        for document in documentation:
+            path = ROOT / target_path / document
+            require_file(path, f"consolidation document for {source_id}")
+            require_text(path, (f"Pinned source: {source['upstreamUrl']}@{source['pinnedCommit']}", f"Import mode: `{source['importMode']}`"), f"consolidation document {path.relative_to(ROOT)}")
+
+    adopted_ids: set[str] = set()
+    for course in adopted_courses:
+        if not isinstance(course, dict) or set(course) != REQUIRED_ADOPTED_COURSE_KEYS:
+            fail("an adopted course entry has an incomplete or unexpected contract")
+        slug, title, source_id, course_path = course["slug"], course["title"], course["consolidationSource"], course["coursePath"]
+        if not all(isinstance(value, str) and value for value in (slug, title, source_id, course_path)):
+            fail("adopted course identity fields must be nonempty strings")
+        if course["status"] != "mapped" or source_id not in source_ids or source_id in adopted_ids:
+            fail(f"adopted course {slug} must be uniquely mapped to a registered consolidation source")
+        adopted_ids.add(source_id)
+        require_file(ROOT / course_path / "README.md", f"adopted course README for {slug}")
+        require_file(ROOT / course_path / "SOURCE.md", f"adopted course SOURCE for {slug}")
+        require_file(ROOT / course_path / "MIGRATION.md", f"adopted course migration plan for {slug}")
+        require_text(ROOT / course_path / "README.md", (f"# {title}", "Status: mapped", "Curriculum outline", "Credential and live-API boundary", "Next gate"), f"adopted course README for {slug}")
+    if len(adopted_ids) != EXPECTED_ADOPTED_COURSES:
+        fail(f"expected exactly {EXPECTED_ADOPTED_COURSES} adopted courses")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--course-makefiles", action="store_true")
@@ -140,10 +216,13 @@ def main() -> None:
         pinned_titles = source_titles(source_repo)
     courses = data.get("courses")
     articles = data.get("articles")
+    adopted_courses = data.get("adoptedCourses")
     if not isinstance(courses, list) or len(courses) != EXPECTED_COURSES:
         fail(f"expected exactly {EXPECTED_COURSES} courses")
     if not isinstance(articles, list) or len(articles) != EXPECTED_ARTICLES:
         fail(f"expected exactly {EXPECTED_ARTICLES} articles")
+    if not isinstance(adopted_courses, list) or len(adopted_courses) != EXPECTED_ADOPTED_COURSES:
+        fail(f"expected exactly {EXPECTED_ADOPTED_COURSES} adopted courses")
     course_slugs = set()
     course_paths = []
     for course in courses:
@@ -187,6 +266,7 @@ def main() -> None:
         require_file(readme, f"article README for {slug}")
         require_text(readme, ("status: mapped", "Argument-to-demonstration contract", "Provenance", "Run, verify, reset", "Next decision"), f"article README for {slug}")
         require_text(readme, (f"# {article['title']}",), f"article README title for {slug}")
+    validate_consolidation_sources(adopted_courses)
     if args.course_makefiles:
         print("\n".join(course_paths))
     else:

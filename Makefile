@@ -1,10 +1,10 @@
-.PHONY: verify verify-pr install format-check lint test typecheck audit catalog catalog-structure curriculum curriculum-pr ci-trust-check
+.PHONY: verify verify-pr install format-check lint test typecheck audit catalog catalog-structure consolidation curriculum curriculum-pr ci-trust-check
 
 ORDER_API_DIR := courses/agentic-coding-with-cursor/order-api
 
-verify: ci-trust-check format-check lint catalog curriculum
+verify: ci-trust-check format-check lint catalog consolidation curriculum
 
-verify-pr: ci-trust-check format-check lint catalog-structure curriculum-pr
+verify-pr: ci-trust-check format-check lint catalog-structure consolidation curriculum-pr
 
 install:
 	cd $(ORDER_API_DIR) && npm ci
@@ -34,6 +34,9 @@ catalog:
 	python3 tools/validate_catalog.py --source-repo "$(PROFROD_SITE_REPO)"
 
 catalog-structure:
+	python3 tools/validate_catalog.py --structure-only
+
+consolidation:
 	python3 tools/validate_catalog.py --structure-only
 
 curriculum:

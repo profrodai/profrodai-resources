@@ -12,6 +12,10 @@ Source: [`profrod-site/content/courses/transformation-tracker-with-claude-code/_
 The existing public `profrodai/transformation-tracker-course` remains its live companion; this
 small adapter-style lab does not replace, copy, or migrate that repository.
 
+The approved companion is now mapped as this lab's canonical-import successor in
+[`SOURCE.md`](SOURCE.md) and [`MIGRATION.md`](MIGRATION.md). It remains current for learners until
+a reviewed replacement lands here.
+
 ## Module-to-lab roadmap
 
 | Course module | Lab | Expected output |

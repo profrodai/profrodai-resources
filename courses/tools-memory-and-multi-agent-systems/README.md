@@ -25,3 +25,7 @@ Python 3.14.6 standard library only. It is offline, in-memory, and credential-fr
 ## Run, verify, reset
 
 Use `make run` for the sample trace, `make verify` for tests, and `git restore .` to reset.
+
+The legacy QuackTool source is GPL-3.0, while any future target here must be MIT. Its mapping is
+therefore clean-room only: [SOURCE.md](legacy/quacktool/SOURCE.md) and
+[MIGRATION.md](legacy/quacktool/MIGRATION.md) prohibit copying or relicensing source bytes.
