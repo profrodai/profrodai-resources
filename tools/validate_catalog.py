@@ -21,8 +21,11 @@ EXPECTED_ADOPTED_COURSES = 2
 EXPECTED_CONSOLIDATION_SOURCES = 7
 REQUIRED_COURSE_KEYS = {"slug", "title", "genre", "status", "source", "coursePath", "stubPath"}
 REQUIRED_ADOPTED_COURSE_KEYS = {"slug", "title", "status", "consolidationSource", "coursePath"}
-SOURCE_LICENSE_STATUSES = {"verified-mit", "operator-authorized-mit-grant-pending-record", "gpl-source-no-copy-or-relicense"}
-IMPORT_MODES = {"canonical-import", "legacy-modernize", "template-import", "clean-room-rebuild", "curriculum-adoption"}
+SOURCE_LICENSE_STATUSES = {"verified-mit", "operator-authorized-mit-grant-pending-record", "awaiting-merged-mit-pin"}
+IMPORT_MODES = {"canonical-import", "legacy-modernize", "template-import", "curriculum-adoption", "awaiting-mit-import"}
+MIGRATION_STATUSES = {"mapped", "awaiting-merged-mit-pin"}
+LEGACY_QUACKTOOL_URL = "https://github.com/profrodai/quacktool"
+ZEOTOOL_URL = "https://github.com/profrodai/zeotool"
 
 
 def fail(message: str) -> None:
@@ -123,6 +126,42 @@ def is_commit(value: object) -> bool:
     return isinstance(value, str) and len(value) == 40 and all(character in "0123456789abcdef" for character in value)
 
 
+def validate_historical_quacktool_source(source: dict[str, object]) -> tuple[str, ...]:
+    """Validate the rename boundary without treating historical bytes as current source."""
+    required = {
+        "id", "upstreamUrl", "pinnedCommit", "originalLicense", "licenseStatus", "importMode",
+        "migrationStatus", "historicalSource", "target",
+    }
+    if set(source) != required:
+        fail("ZeoTool source entry has an incomplete or unexpected contract")
+    historical = source["historicalSource"]
+    if (
+        source["id"] != "zeotool"
+        or source["upstreamUrl"] != ZEOTOOL_URL
+        or source["pinnedCommit"] is not None
+        or source["originalLicense"] != "MIT pending merged ZeoTool source pin"
+        or source["licenseStatus"] != "awaiting-merged-mit-pin"
+        or source["importMode"] != "awaiting-mit-import"
+        or source["migrationStatus"] != "awaiting-merged-mit-pin"
+    ):
+        fail("ZeoTool must name its canonical URL and await a merged MIT commit pin")
+    if not isinstance(historical, dict) or set(historical) != {"name", "upstreamUrl", "pinnedCommit", "license"}:
+        fail("ZeoTool historical source must be an explicit, complete provenance record")
+    if (
+        historical["name"] != "QuackTool"
+        or historical["upstreamUrl"] != LEGACY_QUACKTOOL_URL
+        or not is_commit(historical["pinnedCommit"])
+        or historical["license"] != "GPL-3.0"
+    ):
+        fail("ZeoTool historical source must label the former QuackTool GPL-3.0 pin")
+    return (
+        f"Canonical upstream: {ZEOTOOL_URL}",
+        "Import mode: `awaiting-mit-import`",
+        "Import status: awaiting a merged MIT ZeoTool commit pin.",
+        f"Historical source: {LEGACY_QUACKTOOL_URL}@{historical['pinnedCommit']}",
+    )
+
+
 def validate_consolidation_sources(adopted_courses: list[object]) -> None:
     """Require every approved upstream to have a truthful, documented target.
 
@@ -141,22 +180,28 @@ def validate_consolidation_sources(adopted_courses: list[object]) -> None:
     for source in sources:
         if not isinstance(source, dict):
             fail("consolidation source entry must be an object")
-        required = {"id", "upstreamUrl", "pinnedCommit", "originalLicense", "licenseStatus", "importMode", "migrationStatus", "target"}
-        if set(source) != required:
-            fail("consolidation source entry has an incomplete or unexpected contract")
+        if source.get("id") == "zeotool":
+            documentation_contract = validate_historical_quacktool_source(source)
+        else:
+            required = {"id", "upstreamUrl", "pinnedCommit", "originalLicense", "licenseStatus", "importMode", "migrationStatus", "target"}
+            if set(source) != required:
+                fail("consolidation source entry has an incomplete or unexpected contract")
+            documentation_contract = (f"Pinned source: {source['upstreamUrl']}@{source['pinnedCommit']}", f"Import mode: `{source['importMode']}`")
         source_id = source["id"]
         if not isinstance(source_id, str) or not source_id or source_id in source_ids:
             fail("consolidation source id must be unique and nonempty")
         source_ids.add(source_id)
         if not isinstance(source["upstreamUrl"], str) or not source["upstreamUrl"].startswith("https://github.com/"):
             fail(f"consolidation source {source_id} must name a canonical GitHub URL")
-        if not is_commit(source["pinnedCommit"]):
+        if source["upstreamUrl"] == LEGACY_QUACKTOOL_URL:
+            fail("former QuackTool URL is historical provenance only, never an unlabelled canonical upstream")
+        if source_id != "zeotool" and not is_commit(source["pinnedCommit"]):
             fail(f"consolidation source {source_id} must carry a lowercase 40-character commit pin")
         if not isinstance(source["originalLicense"], str) or not source["originalLicense"]:
             fail(f"consolidation source {source_id} must state its original license condition")
         if source["licenseStatus"] not in SOURCE_LICENSE_STATUSES:
             fail(f"consolidation source {source_id} has an invalid license status")
-        if source["importMode"] not in IMPORT_MODES or source["migrationStatus"] != "mapped":
+        if source["importMode"] not in IMPORT_MODES or source["migrationStatus"] not in MIGRATION_STATUSES:
             fail(f"consolidation source {source_id} has an invalid import mode or status")
         target = source["target"]
         if not isinstance(target, dict) or set(target) != {"path", "documentation"}:
@@ -169,7 +214,7 @@ def validate_consolidation_sources(adopted_courses: list[object]) -> None:
         for document in documentation:
             path = ROOT / target_path / document
             require_file(path, f"consolidation document for {source_id}")
-            require_text(path, (f"Pinned source: {source['upstreamUrl']}@{source['pinnedCommit']}", f"Import mode: `{source['importMode']}`"), f"consolidation document {path.relative_to(ROOT)}")
+            require_text(path, documentation_contract, f"consolidation document {path.relative_to(ROOT)}")
 
     adopted_ids: set[str] = set()
     for course in adopted_courses:

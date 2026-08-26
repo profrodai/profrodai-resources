@@ -38,6 +38,7 @@ catalog-structure:
 
 consolidation:
 	python3 tools/validate_catalog.py --structure-only
+	python3 tools/test_validate_catalog.py
 
 curriculum:
 	@set -e; \

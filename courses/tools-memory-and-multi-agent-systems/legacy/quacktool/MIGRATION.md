@@ -1,10 +1,14 @@
-# QuackTool clean-room modernization plan
+# ZeoTool import readiness plan
 
-Pinned source: https://github.com/profrodai/quacktool@2a69d2ee6f79b24416e1a6a14104a927addb4deb
+Canonical upstream: https://github.com/profrodai/zeotool
 
-Import mode: `clean-room-rebuild`
+Import mode: `awaiting-mit-import`
 
-Next gate: perform a copyright and licence audit, write an independently authored learner
-problem statement and API contract, and have the clean-room boundary reviewed before any MIT
-implementation begins. The existing GPL source remains linked and archived separately; this
-mapping does not change its licence.
+Import status: awaiting a merged MIT ZeoTool commit pin.
+
+Historical source: https://github.com/profrodai/quacktool@2a69d2ee6f79b24416e1a6a14104a927addb4deb
+
+Next gate: after the ZeoTool replacement merges, pin its MIT commit, review its copyright and
+licence evidence, select the learner-facing files, and then authorize an import in a separate PR.
+The historical QuackTool GPL source remains linked only for provenance; this mapping neither
+copies nor relicenses it.

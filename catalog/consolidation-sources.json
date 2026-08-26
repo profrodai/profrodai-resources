@@ -43,13 +43,19 @@
       "target": {"path": "courses/claude-code-for-business/template/xolo-consulting", "documentation": ["SOURCE.md", "MIGRATION.md"]}
     },
     {
-      "id": "quacktool",
-      "upstreamUrl": "https://github.com/profrodai/quacktool",
-      "pinnedCommit": "2a69d2ee6f79b24416e1a6a14104a927addb4deb",
-      "originalLicense": "GPL-3.0",
-      "licenseStatus": "gpl-source-no-copy-or-relicense",
-      "importMode": "clean-room-rebuild",
-      "migrationStatus": "mapped",
+      "id": "zeotool",
+      "upstreamUrl": "https://github.com/profrodai/zeotool",
+      "pinnedCommit": null,
+      "originalLicense": "MIT pending merged ZeoTool source pin",
+      "licenseStatus": "awaiting-merged-mit-pin",
+      "importMode": "awaiting-mit-import",
+      "migrationStatus": "awaiting-merged-mit-pin",
+      "historicalSource": {
+        "name": "QuackTool",
+        "upstreamUrl": "https://github.com/profrodai/quacktool",
+        "pinnedCommit": "2a69d2ee6f79b24416e1a6a14104a927addb4deb",
+        "license": "GPL-3.0"
+      },
       "target": {"path": "courses/tools-memory-and-multi-agent-systems/legacy/quacktool", "documentation": ["SOURCE.md", "MIGRATION.md"]}
     },
     {

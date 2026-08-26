@@ -25,11 +25,20 @@ machine-checked migration map; this document is its human-readable operating pol
 | Claude Code 101 | `d3b2a6b` | legacy modernization | `courses/claude-code-for-business` | mapped |
 | LangGraph Nebius | `78eeb32` | legacy modernization | `courses/langgraph-agent-orchestration` | mapped; deprecated patterns warning |
 | Xolo Consulting | `bc4d20e` | template import | `courses/claude-code-for-business/template/xolo-consulting` | mapped; fictional-data and licence record required |
-| QuackTool | `2a69d2e` | clean-room rebuild | `courses/tools-memory-and-multi-agent-systems/legacy/quacktool` | mapped; GPL source is not copied |
+| ZeoTool | pending merged MIT SHA | future MIT import | `courses/tools-memory-and-multi-agent-systems/legacy/quacktool` | canonical public repository is `profrodai/zeotool`; import awaits a merged MIT pin |
 | Agent Engineering Foundations | `ec7bb27` | curriculum adoption | `courses/agent-engineering-foundations` | mapped |
 | LLM Engineering Essentials | `01f05c3` | curriculum adoption | `courses/llm-engineering-essentials` | mapped |
 
 No source code, notebooks, slides, data, or Git history is imported by this mapping commit.
+
+### ZeoTool rename record
+
+The public canonical repository is [ZeoTool](https://github.com/profrodai/zeotool). Its
+replacement implementation is still awaiting merge, so this registry deliberately records no
+successor source SHA and authorizes no import. The former QuackTool repository and its
+`2a69d2e` GPL-3.0 pin remain only as an explicitly labelled historical provenance record in the
+ZeoTool registry row and course-scoped legacy documentation; they are not a current upstream or
+an import source.
 
 ## Gates before content lands
 

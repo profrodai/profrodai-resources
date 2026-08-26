@@ -26,6 +26,8 @@ Python 3.14.6 standard library only. It is offline, in-memory, and credential-fr
 
 Use `make run` for the sample trace, `make verify` for tests, and `git restore .` to reset.
 
-The legacy QuackTool source is GPL-3.0, while any future target here must be MIT. Its mapping is
-therefore clean-room only: [SOURCE.md](legacy/quacktool/SOURCE.md) and
-[MIGRATION.md](legacy/quacktool/MIGRATION.md) prohibit copying or relicensing source bytes.
+[ZeoTool](https://github.com/profrodai/zeotool) is the canonical public repository. Resources
+will not import it until a merged MIT ZeoTool commit is pinned and reviewed. The
+[legacy QuackTool record](legacy/quacktool/SOURCE.md) preserves the prior GPL-3.0 source only as
+historical provenance; [its migration record](legacy/quacktool/MIGRATION.md) prohibits copying
+or relicensing those historical source bytes.
