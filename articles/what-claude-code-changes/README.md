@@ -1,4 +1,4 @@
-# What Claude Code Actually Changes and What It Doesn't
+# What Claude Code Actually Changes — and What It Doesn't
 
 **status: mapped**
 

@@ -12,8 +12,11 @@ with a test. Those slices establish the run/verify/reset contract for later labs
 completed course material, nor a substitute for the lessons.
 
 The catalog is the machine-readable inventory in
-[`catalog/curriculum.json`](catalog/curriculum.json). It contains the 11 confirmed courses and
-13 confirmed long-form articles currently tracked in the site source. Short Notes are deliberately
+[`catalog/curriculum.json`](catalog/curriculum.json), with an evidence table of exact source paths
+and titles pinned to `profrodai/profrod-site@db4dc3afb65aa402069d04533d4ce9766d7444e4` in
+[`catalog/profrod-site-source-index.json`](catalog/profrod-site-source-index.json). It contains
+the 11 confirmed courses and 13 confirmed long-form articles currently tracked in that snapshot.
+Short Notes are deliberately
 out of scope: they are neither represented as articles nor given code in this phase.
 
 ## Start here

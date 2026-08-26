@@ -8,7 +8,10 @@ install:
 	cd $(ORDER_API_DIR) && npm ci
 
 format-check:
-	@git diff --check HEAD
+	@matches="$$(git grep -nI '[[:blank:]]$$' HEAD -- . || true)"; \
+	if [ -n "$$matches" ]; then echo "trailing whitespace in committed tree:"; echo "$$matches"; exit 1; fi; \
+	git diff --check HEAD -- . || exit $$?; \
+	echo "committed-tree whitespace check: clean"
 
 lint:
 	@tracked="$$(git ls-files | grep -E '(^|/)(\.claude|\.cursor|\.agent|\.agents|\.codex|\.continue|\.windsurf|\.aider|CLAUDE\.md|AGENTS\.md|\.mcp\.json|\.env)' || true)"; \

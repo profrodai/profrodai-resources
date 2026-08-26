@@ -1,4 +1,4 @@
-# The Content Kit: Every Block, and When to Use It
+# The Content Kit
 
 **status: mapped**
 

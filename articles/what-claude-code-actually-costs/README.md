@@ -1,4 +1,4 @@
-# What Claude Code Actually Costs and Which Dials Move It
+# What Claude Code Actually Costs — and Which Dials Move It
 
 **status: mapped**
 

@@ -1,4 +1,4 @@
-# ZEO ITAM Autumn 2026
+# ZEO ITAM · Autumn 2026
 
 **Status:** scaffolded
 
