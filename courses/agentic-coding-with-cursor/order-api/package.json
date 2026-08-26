@@ -1,0 +1,22 @@
+{
+  "name": "order-api",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Tiny order-lookup service used as the running example in the Agentic Coding with Cursor course.",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "ts-node src/server.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^24.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2",
+    "vitest": "^4.1.11"
+  }
+}

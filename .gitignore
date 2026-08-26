@@ -1,0 +1,26 @@
+# Agent-exhaust exclusion, per profrodai/org RULING-215 section 6a.
+# This repo is public and authored by agentic tools. None of the
+# directories or files below are student material, and several
+# (.env*, .mcp.json) are credential-shaped. The published initial
+# commit predated this file; it is the first content-PR diff, reviewed
+# before any resource code reaches main. See RULING-216 Amendment A2.
+.claude/
+.cursor/
+.agent/
+.agents/
+.codex/
+.continue/
+.windsurf/
+.aider*
+.github/copilot-*
+CLAUDE.md
+AGENTS.md
+.mcp.json
+.env
+.env.*
+.DS_Store
+
+# Dependency and build output, standard across every course directory.
+node_modules/
+dist/
+*.tsbuildinfo
