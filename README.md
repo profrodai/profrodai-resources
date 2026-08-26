@@ -13,7 +13,7 @@ completed course material, nor a substitute for the lessons.
 
 The catalog is the machine-readable inventory in
 [`catalog/curriculum.json`](catalog/curriculum.json), with an evidence table of exact source paths
-and titles pinned to `profrodai/profrod-site@db4dc3afb65aa402069d04533d4ce9766d7444e4` in
+and titles pinned to `rodriveracom/profrod-site@db4dc3afb65aa402069d04533d4ce9766d7444e4` in
 [`catalog/profrod-site-source-index.json`](catalog/profrod-site-source-index.json). It contains
 the 11 confirmed courses and 13 confirmed long-form articles currently tracked in that snapshot.
 Short Notes are deliberately
@@ -24,7 +24,7 @@ out of scope: they are neither represented as articles nor given code in this ph
 ```bash
 git clone https://github.com/profrodai/profrodai-resources.git
 cd profrodai-resources
-git clone https://github.com/profrodai/profrod-site.git ../profrod-site
+git clone https://github.com/rodriveracom/profrod-site.git ../profrod-site
 PROFROD_SITE_REPO=../profrod-site make verify
 ```
 

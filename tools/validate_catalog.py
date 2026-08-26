@@ -73,8 +73,8 @@ def frontmatter_title(contents: str, source_path: str) -> str:
 def source_titles(source_repo: Path) -> dict[str, str]:
     require_file(SOURCE_INDEX_PATH, "pinned profrod-site source index")
     snapshot = json.loads(SOURCE_INDEX_PATH.read_text())
-    if snapshot.get("repository") != "profrodai/profrod-site":
-        fail("source index must identify profrodai/profrod-site")
+    if snapshot.get("repository") != "rodriveracom/profrod-site":
+        fail("source index must identify rodriveracom/profrod-site")
     commit = snapshot.get("commit")
     if not isinstance(commit, str) or len(commit) != 40 or any(char not in "0123456789abcdef" for char in commit):
         fail("source index must carry a 40-character lowercase commit")
