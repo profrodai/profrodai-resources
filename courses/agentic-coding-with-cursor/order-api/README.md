@@ -1,5 +1,7 @@
 # order-api
 
+**Status:** starter vertical slice
+
 The companion repo for [Agentic Coding with
 Cursor](https://profrod.ai/courses/agentic-coding-with-cursor), a course at
 [profrod.ai](https://profrod.ai). This is the small service every lesson from lesson 4 onward

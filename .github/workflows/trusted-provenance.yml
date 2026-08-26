@@ -1,0 +1,38 @@
+name: verify-trusted-provenance
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  provenance:
+    runs-on: ubuntu-latest
+    steps:
+      # Explicit main checkout keeps manual dispatch from running a caller-selected ref.
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: courses/agentic-coding-with-cursor/order-api/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Fetch pinned private profrod-site source object
+        env:
+          PROFROD_SITE_READ_TOKEN: ${{ secrets.PROFROD_SITE_READ_TOKEN }}
+        run: |
+          test -n "$PROFROD_SITE_READ_TOKEN" || { echo "required source-read token is unavailable"; exit 1; }
+          source_url="https://x-access-token:${PROFROD_SITE_READ_TOKEN}@github.com/rodriveracom/profrod-site.git"
+          git -c credential.helper= clone --no-checkout "$source_url" _source/profrod-site
+          git -C _source/profrod-site fetch --depth=1 "$source_url" db4dc3afb65aa402069d04533d4ce9766d7444e4
+          git -C _source/profrod-site remote set-url origin https://github.com/rodriveracom/profrod-site.git
+          unset PROFROD_SITE_READ_TOKEN source_url
+          git -C _source/profrod-site checkout --detach db4dc3afb65aa402069d04533d4ce9766d7444e4
+      - run: PROFROD_SITE_REPO="$PWD/_source/profrod-site" make verify

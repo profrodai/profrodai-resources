@@ -1,0 +1,31 @@
+{
+  "repository": "rodriveracom/profrod-site",
+  "commit": "db4dc3afb65aa402069d04533d4ce9766d7444e4",
+  "capturedFrom": "origin/main",
+  "entries": [
+    {"path":"content/courses/agentic-coding-with-cursor/_course.md","title":"Agentic Coding with Cursor"},
+    {"path":"content/courses/claude-code-for-business/_course.md","title":"Claude Code for Business"},
+    {"path":"content/courses/langgraph-agent-orchestration/_course.md","title":"LangGraph Agent Orchestration"},
+    {"path":"content/courses/nebius-token-factory-in-production/_course.md","title":"Nebius Token Factory in Production: Running Open Models Honestly"},
+    {"path":"content/courses/nvidia-nim-in-production/_course.md","title":"NVIDIA NIM in Production: From Hosted API to Self-Hosted Inference"},
+    {"path":"content/courses/tools-memory-and-multi-agent-systems/_course.md","title":"Tools, Memory, and Multi-Agent Systems"},
+    {"path":"content/courses/transformation-tracker-with-claude-code/_course.md","title":"The 12-Week Transformation Tracker, Run on Claude Code"},
+    {"path":"content/courses/two-architectures/_course.md","title":"Two Architectures: The 2x2 for Agent Design"},
+    {"path":"content/courses/voice-agents-not-chatbots/_course.md","title":"Voice Agents, Not Chatbots"},
+    {"path":"content/courses/why-agents-fail/_course.md","title":"Why Agents Fail: Harness Engineering for AI Projects"},
+    {"path":"content/courses/zeo-itam-autumn-2026/_course.md","title":"ZEO ITAM · Autumn 2026"},
+    {"path":"content/articles/build-a-working-agent-with-sovereign-agent.md","title":"Build a Working Agent with sovereign-agent"},
+    {"path":"content/articles/build-your-first-zeocore-tool.md","title":"Build Your First ZeoCore Tool, Then Watch It Fail Twice"},
+    {"path":"content/articles/claude-code-permissions-are-your-org-chart.md","title":"Your Claude Code Permissions Are Your Org Chart"},
+    {"path":"content/articles/clean-a-messy-customer-list-with-claude-code.md","title":"Clean a Messy Customer List With Claude Code — and Prove Nothing Was Lost"},
+    {"path":"content/articles/govern-a-multi-agent-project-with-zero-employee.md","title":"Govern a Multi-Agent Project With Zero-Employee"},
+    {"path":"content/articles/the-content-kit.md","title":"The Content Kit: Every Block, and When to Use It"},
+    {"path":"content/articles/unverified-output-has-a-negative-margin.md","title":"Unverified Output Has a Negative Margin"},
+    {"path":"content/articles/what-claude-code-actually-costs.md","title":"What Claude Code Actually Costs — and Which Dials Move It"},
+    {"path":"content/articles/what-claude-code-changes.md","title":"What Claude Code Actually Changes — and What It Doesn't"},
+    {"path":"content/articles/what-is-a-zero-employee-organization.md","title":"What Is a Zero-Employee Organization?"},
+    {"path":"content/articles/when-to-let-an-agent-run-unsupervised.md","title":"When Can You Actually Walk Away?"},
+    {"path":"content/articles/why-ai-agents-dont-dissolve-the-firm.md","title":"Why AI Agents Don't Dissolve the Firm"},
+    {"path":"content/articles/your-chat-history-is-not-a-system-of-record.md","title":"Your Chat History Is Not a System of Record"}
+  ]
+}
