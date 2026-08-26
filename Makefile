@@ -1,8 +1,10 @@
-.PHONY: verify install format-check lint test typecheck audit catalog curriculum
+.PHONY: verify verify-pr install format-check lint test typecheck audit catalog catalog-structure curriculum curriculum-pr ci-trust-check
 
 ORDER_API_DIR := courses/agentic-coding-with-cursor/order-api
 
-verify: format-check lint catalog curriculum
+verify: ci-trust-check format-check lint catalog curriculum
+
+verify-pr: ci-trust-check format-check lint catalog-structure curriculum-pr
 
 install:
 	cd $(ORDER_API_DIR) && npm ci
@@ -31,9 +33,22 @@ catalog:
 	@test -n "$(PROFROD_SITE_REPO)" || { echo "set PROFROD_SITE_REPO to a profrod-site checkout containing the pinned source commit"; exit 1; }
 	python3 tools/validate_catalog.py --source-repo "$(PROFROD_SITE_REPO)"
 
+catalog-structure:
+	python3 tools/validate_catalog.py --structure-only
+
 curriculum:
 	@set -e; \
 	python3 tools/validate_catalog.py --source-repo "$(PROFROD_SITE_REPO)" --course-makefiles | while IFS= read -r course; do \
 		echo "=== curriculum gate: $$course ==="; \
 		$(MAKE) -C "$$course" verify; \
 	done
+
+curriculum-pr:
+	@set -e; \
+	python3 tools/validate_catalog.py --structure-only --course-makefiles | while IFS= read -r course; do \
+		echo "=== PR-safe curriculum gate: $$course ==="; \
+		$(MAKE) -C "$$course" verify; \
+	done
+
+ci-trust-check:
+	python3 tools/check_ci_trust.py

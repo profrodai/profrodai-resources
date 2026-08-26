@@ -70,7 +70,7 @@ def frontmatter_title(contents: str, source_path: str) -> str:
     fail(f"pinned source frontmatter has no title: {source_path}")
 
 
-def source_titles(source_repo: Path) -> dict[str, str]:
+def source_titles(source_repo: Path | None) -> dict[str, str]:
     require_file(SOURCE_INDEX_PATH, "pinned profrod-site source index")
     snapshot = json.loads(SOURCE_INDEX_PATH.read_text())
     if snapshot.get("repository") != "rodriveracom/profrod-site":
@@ -89,6 +89,8 @@ def source_titles(source_repo: Path) -> dict[str, str]:
         if not isinstance(path, str) or not isinstance(title, str) or not path or not title or path in index:
             fail("source index has an invalid or duplicate entry")
         index[path] = title
+    if source_repo is None:
+        return index
     git_output(source_repo, "cat-file", "-e", f"{commit}^{{commit}}")
     source_titles_from_git: dict[str, str] = {}
     for path, expected_title in index.items():
@@ -114,6 +116,7 @@ def validate_source(entry: dict[str, object], index: dict[str, str], kind: str) 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--course-makefiles", action="store_true")
+    parser.add_argument("--structure-only", action="store_true", help="validate local catalog structure without claiming pinned-source provenance")
     parser.add_argument("--source-repo", default=os.environ.get("PROFROD_SITE_REPO"), help="path to a checkout containing the pinned profrod-site git object")
     args = parser.parse_args()
     require_file(CATALOG_PATH, "catalog")
@@ -126,12 +129,15 @@ def main() -> None:
         fail("schemaVersion must be 1")
     if data.get("sourceSnapshot") != "catalog/profrod-site-source-index.json":
         fail("catalog must name the pinned profrod-site source index")
-    if not args.source_repo:
+    if not args.structure_only and not args.source_repo:
         fail("set PROFROD_SITE_REPO or pass --source-repo to a profrod-site checkout containing the pinned commit")
-    source_repo = Path(args.source_repo).expanduser().resolve()
-    if not (source_repo / ".git").exists():
-        fail(f"source repository is unavailable: {source_repo}")
-    pinned_titles = source_titles(source_repo)
+    if args.structure_only:
+        pinned_titles = source_titles(None)
+    else:
+        source_repo = Path(args.source_repo).expanduser().resolve()
+        if not (source_repo / ".git").exists():
+            fail(f"source repository is unavailable: {source_repo}")
+        pinned_titles = source_titles(source_repo)
     courses = data.get("courses")
     articles = data.get("articles")
     if not isinstance(courses, list) or len(courses) != EXPECTED_COURSES:
@@ -184,7 +190,8 @@ def main() -> None:
     if args.course_makefiles:
         print("\n".join(course_paths))
     else:
-        print(f"catalog valid: {len(courses)} courses, {len(articles)} articles")
+        mode = "structure valid; pinned-source provenance not checked" if args.structure_only else "valid"
+        print(f"catalog {mode}: {len(courses)} courses, {len(articles)} articles")
 
 
 if __name__ == "__main__":

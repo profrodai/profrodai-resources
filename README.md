@@ -44,6 +44,14 @@ the exact Git object named in `catalog/profrod-site-source-index.json`, not agai
 or a mutable checkout. The supplied repository must contain that commit; fetch it if its clone is
 shallow or has moved past the pin.
 
+## CI trust boundary
+
+Pull requests run `make verify-pr`: all 11 course gates and local catalog structure checks, with
+no source-read secret and no claim of private-source provenance. Pinned-source verification runs
+only in the trusted `main`/manual workflow from an explicit `main` checkout. See
+[`docs/ci-trust-boundary.md`](docs/ci-trust-boundary.md) for the bootstrap limitation and review
+rule.
+
 ## Taxonomy and status
 
 - `starter`: runnable teaching code already supports a lesson path.
