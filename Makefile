@@ -1,10 +1,10 @@
-.PHONY: verify verify-pr install format-check lint test typecheck audit catalog catalog-structure curriculum curriculum-pr ci-trust-check
+.PHONY: verify verify-pr install format-check lint test typecheck audit catalog catalog-structure curriculum curriculum-pr curriculum-contract ci-trust-check
 
 ORDER_API_DIR := courses/agentic-coding-with-cursor/order-api
 
-verify: ci-trust-check format-check lint catalog curriculum
+verify: ci-trust-check format-check lint catalog curriculum curriculum-contract
 
-verify-pr: ci-trust-check format-check lint catalog-structure curriculum-pr
+verify-pr: ci-trust-check format-check lint catalog-structure curriculum-pr curriculum-contract
 
 install:
 	cd $(ORDER_API_DIR) && npm ci
@@ -49,6 +49,10 @@ curriculum-pr:
 		echo "=== PR-safe curriculum gate: $$course ==="; \
 		$(MAKE) -C "$$course" verify; \
 	done
+
+curriculum-contract:
+	python3 tools/validate_curriculum_manifest.py
+	python3 -m unittest discover -s tests -p 'test_*.py'
 
 ci-trust-check:
 	python3 tools/check_ci_trust.py
