@@ -31,8 +31,9 @@ def assess_claim(claim: dict[str, object]) -> dict[str, object]:
     claim_id = claim.get("claim_id")
     required = claim.get("required")
     supplied = claim.get("supplied")
-    if not isinstance(claim_id, str) or not claim_id:
+    if not isinstance(claim_id, str) or not claim_id.strip():
         raise ValueError("claim_id must be a non-empty string")
+    canonical_claim_id = claim_id.strip()
     if not all(isinstance(value, list) and all(isinstance(item, str) and item.strip() for item in value) for value in (required, supplied)):
         raise ValueError("required and supplied must be lists of non-empty evidence IDs")
     canonical_required = {item.strip() for item in required}
@@ -41,7 +42,7 @@ def assess_claim(claim: dict[str, object]) -> dict[str, object]:
         raise ValueError("required and supplied evidence IDs must be unique after trimming whitespace")
     result = verify(canonical_required, canonical_supplied)
     return {
-        "claim_id": claim_id,
+        "claim_id": canonical_claim_id,
         "evidence_supplied": len(canonical_supplied),
         "missing": result["missing"],
         "verdict": result["verdict"],
