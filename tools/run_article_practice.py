@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path, PurePosixPath
 import sys
 from typing import Any, Callable
@@ -114,10 +115,60 @@ def role_routing(data: dict[str, Any]) -> dict[str, Any]:
     return {"route": routes.get(decision, "operator"), "known_type": decision in routes}
 
 
-def autonomy_readiness(data: dict[str, Any]) -> dict[str, Any]:
-    required = ("bounded_scope", "rollback", "verification", "no_live_pii", "escalation")
-    missing = [field for field in required if not data.get(field, False)]
+AUTONOMY_CONTROLS = ("bounded_scope", "rollback", "verification", "no_live_pii", "escalation")
+AUTONOMY_SCORE_MINIMUM = 0
+AUTONOMY_SCORE_MAXIMUM = 100
+
+
+def validated_autonomy_controls(data: Any) -> dict[str, bool]:
+    """Accept only the complete, typed hard-control checklist."""
+    if not isinstance(data, dict):
+        raise ValueError("autonomy controls must be a JSON object")
+    if set(data) != set(AUTONOMY_CONTROLS):
+        raise ValueError("autonomy controls must contain exactly the five hard controls")
+    if any(type(data[field]) is not bool for field in AUTONOMY_CONTROLS):
+        raise ValueError("autonomy control values must be Boolean")
+    return data
+
+
+def autonomy_readiness(data: Any) -> dict[str, Any]:
+    controls = validated_autonomy_controls(data)
+    missing = [field for field in AUTONOMY_CONTROLS if not controls[field]]
     return {"ready": not missing, "missing": missing}
+
+
+def assess_autonomy_proposals(data: dict[str, Any]) -> list[dict[str, Any]]:
+    """Assess synthetic automation proposals with hard controls before weighted signals."""
+    proposals = data.get("proposals")
+    if not isinstance(proposals, list) or len(proposals) != 3:
+        raise ValueError("autonomy proposals must contain exactly three proposals")
+    results: list[dict[str, Any]] = []
+    proposal_ids: set[str] = set()
+    for proposal in proposals:
+        if not isinstance(proposal, dict) or set(proposal) != {"id", "controls", "readiness_score"}:
+            raise ValueError("each autonomy proposal must contain only id, controls, and readiness_score")
+        proposal_id = proposal["id"]
+        score = proposal["readiness_score"]
+        if not isinstance(proposal_id, str) or not proposal_id.strip():
+            raise ValueError("proposal id must be a non-empty string")
+        if proposal_id in proposal_ids:
+            raise ValueError("proposal ids must be unique")
+        if isinstance(score, bool) or not isinstance(score, (int, float)) or not math.isfinite(score):
+            raise ValueError("readiness_score must be a finite number from 0 through 100")
+        if not AUTONOMY_SCORE_MINIMUM <= score <= AUTONOMY_SCORE_MAXIMUM:
+            raise ValueError("readiness_score must be from 0 through 100")
+        proposal_ids.add(proposal_id)
+        readiness = autonomy_readiness(proposal["controls"])
+        results.append(
+            {
+                "id": proposal_id,
+                "hard_gates_pass": readiness["ready"],
+                "missing_hard_controls": readiness["missing"],
+                "readiness_score": score,
+                "decision": "ready" if readiness["ready"] else "must-review",
+            }
+        )
+    return results
 
 
 def transaction_cost(data: dict[str, Any]) -> dict[str, Any]:

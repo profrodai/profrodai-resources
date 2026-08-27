@@ -20,7 +20,7 @@ The lab's records are invented fixtures for decision practice, not Nebius catalo
 
 ## Prerequisites, runtime, safety, and cost
 
-Python 3.14.6 standard library only; no API call, key, or billed inference.
+Python 3.10 or newer, standard library only; no API call, key, or billed inference.
 
 ## Run, verify, reset
 

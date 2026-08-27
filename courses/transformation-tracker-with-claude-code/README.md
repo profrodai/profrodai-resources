@@ -20,7 +20,7 @@ small adapter-style lab does not replace, copy, or migrate that repository.
 
 ## Prerequisites, runtime, safety, and cost
 
-Python 3.14.6 standard library only; no Claude Code, credential, or provider spend is required.
+Python 3.10 or newer, standard library only; no Claude Code, credential, or provider spend is required.
 
 ## Run, verify, reset
 

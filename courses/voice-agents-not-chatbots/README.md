@@ -20,7 +20,7 @@ text-only state-machine slice, not a telephony integration or voice-quality clai
 
 ## Prerequisites, runtime, safety, and cost
 
-Python 3.14.6 standard library only. No microphone, phone number, network, or credentials.
+Python 3.10 or newer, standard library only. No microphone, phone number, network, or credentials.
 
 ## Run, verify, reset
 
