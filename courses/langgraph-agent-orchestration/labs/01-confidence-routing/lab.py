@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import sys
 
 THRESHOLD = 0.8
 
@@ -51,4 +52,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Route synthetic confidence signals safely.")
     parser.add_argument("fixture", nargs="?", type=Path, default=Path("fixtures/routing-cases.json"))
     args = parser.parse_args()
-    print(json.dumps(assess_cases(load_cases(args.fixture)), indent=2, sort_keys=True))
+    try:
+        result = assess_cases(load_cases(args.fixture))
+    except ValueError as error:
+        print(f"error: {error}", file=sys.stderr)
+        raise SystemExit(1) from error
+    print(json.dumps(result, indent=2, sort_keys=True))

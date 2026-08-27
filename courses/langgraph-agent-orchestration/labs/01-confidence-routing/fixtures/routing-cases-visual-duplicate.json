@@ -1,0 +1,6 @@
+{
+  "cases": [
+    {"id": "case", "confidence": 0.9},
+    {"id": " case ", "confidence": 0.8}
+  ]
+}
