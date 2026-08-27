@@ -19,6 +19,13 @@ the 11 confirmed courses and 13 confirmed long-form articles currently tracked i
 Short Notes are deliberately
 out of scope: they are neither represented as articles nor given code in this phase.
 
+The Phase 1 [curriculum contract](catalog/curriculum-manifest.json) is separate
+from that identity catalog: it has one title-free record for each of the same
+24 source paths. Cursor and the ZeoCore article have explicit learner
+contracts; Cursor's existing `order-api` is its one nested lab contract. The
+other 22 records remain planned. See the
+[authoring guide](docs/curriculum-contract-authoring.md) for the boundary.
+
 ## Start here
 
 ```bash

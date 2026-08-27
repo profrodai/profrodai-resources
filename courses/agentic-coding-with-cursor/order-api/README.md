@@ -30,6 +30,17 @@ npm test
 
 Four tests, all passing, no network calls, no database.
 
+## Objective
+
+Inspect, run, and safely change a deterministic order API.
+
+## Commands
+
+```bash
+npm test
+npm run dev
+```
+
 ## Running the server
 
 ```bash
@@ -42,6 +53,32 @@ Starts on port 3000 by default, or `PORT` from the environment. Three routes:
 - `GET /customers/:id/orders` — list a customer's orders
 - `POST /orders` — accepts a body, returns `{ received: true }` (a stub; it doesn't persist
   anything, on purpose — the course's lessons touch `client.ts` and `server.ts`, not a database)
+
+## Expected result
+
+The tests pass and the service exposes deterministic order routes. The POST
+route returns an acknowledgement only; it does not persist data.
+
+## Verification
+
+Run `npm test` before and after a bounded change. The course-level `make
+verify` runs the locked install, typecheck, tests, and audit.
+
+## Rubric
+
+The change is small, explained, and verified rather than accepted on agent
+output alone. A learner can identify the affected behavior and the test that
+establishes it.
+
+## Failure modes
+
+- Dependencies are not installed from the lockfile.
+- A route or client behavior changes without an updated test.
+
+## Extensions
+
+- Add a test for a response edge case.
+- Review an agent-proposed diff before applying it.
 
 ## Where this fits in the course
 
