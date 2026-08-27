@@ -114,9 +114,23 @@ def role_routing(data: dict[str, Any]) -> dict[str, Any]:
     return {"route": routes.get(decision, "operator"), "known_type": decision in routes}
 
 
-def autonomy_readiness(data: dict[str, Any]) -> dict[str, Any]:
-    required = ("bounded_scope", "rollback", "verification", "no_live_pii", "escalation")
-    missing = [field for field in required if not data.get(field, False)]
+AUTONOMY_CONTROLS = ("bounded_scope", "rollback", "verification", "no_live_pii", "escalation")
+
+
+def validated_autonomy_controls(data: Any) -> dict[str, bool]:
+    """Accept only the complete, typed hard-control checklist."""
+    if not isinstance(data, dict):
+        raise ValueError("autonomy controls must be a JSON object")
+    if set(data) != set(AUTONOMY_CONTROLS):
+        raise ValueError("autonomy controls must contain exactly the five hard controls")
+    if any(type(data[field]) is not bool for field in AUTONOMY_CONTROLS):
+        raise ValueError("autonomy control values must be Boolean")
+    return data
+
+
+def autonomy_readiness(data: Any) -> dict[str, Any]:
+    controls = validated_autonomy_controls(data)
+    missing = [field for field in AUTONOMY_CONTROLS if not controls[field]]
     return {"ready": not missing, "missing": missing}
 
 

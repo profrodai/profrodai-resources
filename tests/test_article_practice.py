@@ -87,6 +87,35 @@ class ArticlePracticeTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "exactly three"):
             PRACTICE.assess_autonomy_proposals({"proposals": []})
 
+    def test_autonomy_proposals_reject_truthy_control_strings(self) -> None:
+        proposals = json.loads(
+            (ROOT / "articles" / "when-to-let-an-agent-run-unsupervised" / "proposals.json").read_text()
+        )
+        proposals["proposals"][0]["controls"]["rollback"] = "true"
+        with self.assertRaisesRegex(ValueError, "values must be Boolean"):
+            PRACTICE.assess_autonomy_proposals(proposals)
+
+    def test_autonomy_proposals_reject_missing_or_extra_controls(self) -> None:
+        source = ROOT / "articles" / "when-to-let-an-agent-run-unsupervised" / "proposals.json"
+        for mutation in ("missing", "extra"):
+            with self.subTest(mutation=mutation):
+                proposals = json.loads(source.read_text())
+                controls = proposals["proposals"][0]["controls"]
+                if mutation == "missing":
+                    del controls["escalation"]
+                else:
+                    controls["optimism"] = True
+                with self.assertRaisesRegex(ValueError, "exactly the five hard controls"):
+                    PRACTICE.assess_autonomy_proposals(proposals)
+
+    def test_autonomy_proposals_reject_non_mapping_controls(self) -> None:
+        proposals = json.loads(
+            (ROOT / "articles" / "when-to-let-an-agent-run-unsupervised" / "proposals.json").read_text()
+        )
+        proposals["proposals"][0]["controls"] = ["bounded_scope"]
+        with self.assertRaisesRegex(ValueError, "controls must be a JSON object"):
+            PRACTICE.assess_autonomy_proposals(proposals)
+
 
 if __name__ == "__main__":
     unittest.main()
