@@ -1,0 +1,8 @@
+{
+  "cases": [
+    {"id": "high-confidence", "confidence": 0.92},
+    {"id": "threshold", "confidence": 0.8},
+    {"id": "below-threshold", "confidence": 0.79},
+    {"id": "out-of-range", "confidence": 1.1}
+  ]
+}

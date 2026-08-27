@@ -120,6 +120,30 @@ def autonomy_readiness(data: dict[str, Any]) -> dict[str, Any]:
     return {"ready": not missing, "missing": missing}
 
 
+def assess_autonomy_proposals(data: dict[str, Any]) -> list[dict[str, Any]]:
+    """Assess synthetic automation proposals with hard controls before weighted signals."""
+    proposals = data.get("proposals")
+    if not isinstance(proposals, list) or len(proposals) != 3:
+        raise ValueError("autonomy proposals must contain exactly three proposals")
+    results: list[dict[str, Any]] = []
+    for proposal in proposals:
+        if not isinstance(proposal, dict) or set(proposal) != {"id", "controls", "readiness_score"}:
+            raise ValueError("each autonomy proposal must contain only id, controls, and readiness_score")
+        if not isinstance(proposal["id"], str) or isinstance(proposal["readiness_score"], bool) or not isinstance(proposal["readiness_score"], (int, float)):
+            raise ValueError("proposal id and readiness_score are invalid")
+        readiness = autonomy_readiness(proposal["controls"])
+        results.append(
+            {
+                "id": proposal["id"],
+                "hard_gates_pass": readiness["ready"],
+                "missing_hard_controls": readiness["missing"],
+                "readiness_score": proposal["readiness_score"],
+                "decision": "ready" if readiness["ready"] else "must-review",
+            }
+        )
+    return results
+
+
 def transaction_cost(data: dict[str, Any]) -> dict[str, Any]:
     firm = sum(data["firm_costs"].values())
     market = sum(data["market_costs"].values())

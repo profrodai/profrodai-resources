@@ -1,0 +1,5 @@
+{
+  "claim_id": "release-summary",
+  "required": ["brief-v1", "test-log-v1", "approval-v1"],
+  "supplied": ["brief-v1", "test-log-v1", "approval-v1"]
+}

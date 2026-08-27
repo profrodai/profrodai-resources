@@ -1,0 +1,19 @@
+{
+  "proposals": [
+    {
+      "id": "ready-batch",
+      "controls": {"bounded_scope": true, "rollback": true, "verification": true, "no_live_pii": true, "escalation": true},
+      "readiness_score": 72
+    },
+    {
+      "id": "missing-rollback",
+      "controls": {"bounded_scope": true, "rollback": false, "verification": true, "no_live_pii": true, "escalation": true},
+      "readiness_score": 96
+    },
+    {
+      "id": "missing-multiple-controls",
+      "controls": {"bounded_scope": true, "rollback": true, "verification": false, "no_live_pii": false, "escalation": false},
+      "readiness_score": 91
+    }
+  ]
+}

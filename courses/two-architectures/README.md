@@ -20,7 +20,7 @@ classification exercise, not an implementation of either named architecture from
 
 ## Prerequisites, runtime, safety, and cost
 
-Python 3.14.6 standard library only; offline and credential-free.
+Python 3.10 or newer, standard library only; offline and credential-free.
 
 ## Run, verify, reset
 

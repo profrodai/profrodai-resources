@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import hashlib
 from pathlib import Path
 import tempfile
 import unittest
@@ -68,6 +69,23 @@ class ArticlePracticeTests(unittest.TestCase):
                     ]
                 }
             )
+
+    def test_autonomy_proposals_require_hard_controls_even_with_a_high_score(self) -> None:
+        path = ROOT / "articles" / "when-to-let-an-agent-run-unsupervised" / "proposals.json"
+        self.assertEqual("b0d264545dd89359f5ee7f8750a4dc52ad1e3b8829d944121920a94950ecb925", hashlib.sha256(path.read_bytes()).hexdigest())
+        proposals = json.loads(path.read_text())
+        self.assertEqual(
+            [
+                {"id": "ready-batch", "hard_gates_pass": True, "missing_hard_controls": [], "readiness_score": 72, "decision": "ready"},
+                {"id": "missing-rollback", "hard_gates_pass": False, "missing_hard_controls": ["rollback"], "readiness_score": 96, "decision": "must-review"},
+                {"id": "missing-multiple-controls", "hard_gates_pass": False, "missing_hard_controls": ["verification", "no_live_pii", "escalation"], "readiness_score": 91, "decision": "must-review"},
+            ],
+            PRACTICE.assess_autonomy_proposals(proposals),
+        )
+
+    def test_autonomy_proposals_reject_wrong_shape(self) -> None:
+        with self.assertRaisesRegex(ValueError, "exactly three"):
+            PRACTICE.assess_autonomy_proposals({"proposals": []})
 
 
 if __name__ == "__main__":

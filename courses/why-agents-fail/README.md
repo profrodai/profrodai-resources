@@ -20,7 +20,7 @@ exercise, not a claim to evaluate a real model.
 
 ## Prerequisites, runtime, safety, and cost
 
-Python 3.14.6 standard library only; no live model, credential, network, or spend.
+Python 3.10 or newer, standard library only; no live model, credential, network, or spend.
 
 ## Run, verify, reset
 

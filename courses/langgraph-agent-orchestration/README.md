@@ -20,7 +20,7 @@ credential-free slice models a decision only; it does not bundle LangGraph or co
 
 ## Prerequisites, runtime, safety, and cost
 
-Python 3.14.6 standard library only; deterministic and offline. A later live graph needs its own
+Python 3.10 or newer, standard library only; deterministic and offline. A later live graph needs its own
 LangGraph version, provider, and credential decision.
 
 ## Run, verify, reset

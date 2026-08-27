@@ -20,7 +20,7 @@ lab is a tiny local analogue, not a copy of a production memory implementation.
 
 ## Prerequisites, runtime, safety, and cost
 
-Python 3.14.6 standard library only. It is offline, in-memory, and credential-free.
+Python 3.10 or newer, standard library only. It is offline, in-memory, and credential-free.
 
 ## Run, verify, reset
 

@@ -20,7 +20,7 @@ small deterministic teaching slice, not copied course content or a live Claude C
 
 ## Prerequisites, runtime, safety, and cost
 
-Python 3.14.6 standard library only; no network, credentials, or provider cost.
+Python 3.10 or newer, standard library only; no network, credentials, or provider cost.
 
 ## Run, verify, reset
 

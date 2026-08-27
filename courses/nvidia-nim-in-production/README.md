@@ -20,7 +20,7 @@ fixture-based planning exercise, not an NVIDIA service client or hardware sizing
 
 ## Prerequisites, runtime, safety, and cost
 
-Python 3.14.6 standard library only; no container, GPU, network, credential, or cost.
+Python 3.10 or newer, standard library only; no container, GPU, network, credential, or cost.
 
 ## Run, verify, reset
 
