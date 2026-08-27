@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "exercise_type": "handoff-state",
+  "cases": {
+    "positive": {"input": {"tasks": [{"id": "t1", "owner": "stream", "status": "held", "evidence": "gate-17"}]}, "expected": {"valid": true, "missing": []}},
+    "failure": {"input": {"tasks": [{"id": "t2", "owner": "master", "status": "review", "evidence": ""}]}, "expected": {"valid": false, "missing": ["t2:evidence"]}}
+  }
+}

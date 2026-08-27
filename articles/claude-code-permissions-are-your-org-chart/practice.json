@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "exercise_type": "permission-boundary",
+  "cases": {
+    "positive": {"input": {"grants": ["read", "write"], "requested": ["read"]}, "expected": {"allowed": true, "missing": []}},
+    "failure": {"input": {"grants": ["read", "write"], "requested": ["read", "delete"]}, "expected": {"allowed": false, "missing": ["delete"]}}
+  }
+}

@@ -8,7 +8,7 @@ Measure a before-and-after minutes baseline and surface the delta without rewrit
 
 ## Source boundary and provenance
 
-Source: [`profrod-site/content/courses/transformation-tracker-with-claude-code/_course.md`](https://github.com/profrodai/profrod-site/tree/main/content/courses/transformation-tracker-with-claude-code).
+Source: [`profrod-site/content/courses/transformation-tracker-with-claude-code/_course.md`](https://github.com/rodriveracom/profrod-site/tree/main/content/courses/transformation-tracker-with-claude-code).
 The existing public `profrodai/transformation-tracker-course` remains its live companion; this
 small adapter-style lab does not replace, copy, or migrate that repository.
 
@@ -25,3 +25,7 @@ Python 3.14.6 standard library only; no Claude Code, credential, or provider spe
 ## Run, verify, reset
 
 Run `make run`, test via `make verify`, and reset changes with `git restore .`.
+
+## Practice companion
+
+The [`baseline-delta` guided practice](labs/01-baseline-delta/PRACTICE.md) preserves improvements and regressions, with explicit evidence, rubric, accessibility, and privacy limits.

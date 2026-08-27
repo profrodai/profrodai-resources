@@ -4,12 +4,13 @@ Runnable companions for the courses and long-form articles at
 [profrod.ai](https://profrod.ai), organised by source slug. One clone contains the index,
 starter labs, and verification gates; it is not a copy of the teaching site.
 
-## What this phase is
+## What this repository is
 
-This is a top-down curriculum map and scaffold. Every catalogued course has one small,
-credential-free vertical slice that accepts an input, emits an observable result, and proves it
-with a test. Those slices establish the run/verify/reset contract for later labs; they are not
-completed course material, nor a substitute for the lessons.
+This is the practice and supplementary-content layer for the profrod.ai curriculum. Every
+catalogued course and long-form article has an offline, credential-free companion exercise with
+an observable result, verification evidence, a rubric, and an accessibility route. These
+companions reinforce concepts through practice and bytes; they are not lesson prose, article
+bodies, completed course material, or substitutes for the teaching site.
 
 The catalog is the machine-readable inventory in
 [`catalog/curriculum.json`](catalog/curriculum.json), with an evidence table of exact source paths
@@ -19,12 +20,14 @@ the 11 confirmed courses and 13 confirmed long-form articles currently tracked i
 Short Notes are deliberately
 out of scope: they are neither represented as articles nor given code in this phase.
 
-The Phase 1 [curriculum contract](catalog/curriculum-manifest.json) is separate
-from that identity catalog: it has one title-free record for each of the same
-24 source paths. Cursor and the ZeoCore article have explicit learner
-contracts; Cursor's existing `order-api` is its one nested lab contract. The
-other 22 records remain planned. See the
-[authoring guide](docs/curriculum-contract-authoring.md) for the boundary.
+The [practice-companion manifest](catalog/curriculum-manifest.json) is separate from that identity
+catalog: it has one title-free record for each of the same 24 source paths. All 24 companion
+contracts are complete. Cursor's existing `order-api` remains its one nested lab contract; labs
+are not separate manifest records. Teaching maturity stays truthful at 11 `scaffold` courses and
+13 `mapped` articles, with zero resources claimed as `developed`. Human pedagogical and
+accessibility review is recorded separately from mechanical completion. See the
+[authoring guide](docs/curriculum-contract-authoring.md) for the boundary and the
+[maintenance schedule](catalog/curriculum-maintenance.json) for refresh ownership.
 
 ## Start here
 
@@ -53,33 +56,40 @@ shallow or has moved past the pin.
 
 ## CI trust boundary
 
-Pull requests run `make verify-pr`: all 11 course gates and local catalog structure checks, with
-no source-read secret and no claim of private-source provenance. Pinned-source verification runs
-only in the trusted `main`/manual workflow from an explicit `main` checkout. See
+Pull requests run `make verify-pr`: all 11 course gates, all 13 article exercise cases, manifest
+validation, maintenance checks, and local catalog structure checks, with no source-read secret or
+claim of private-source provenance. Pinned-source verification runs only in the trusted
+`main`/manual workflow from an explicit `main` checkout. See
 [`docs/ci-trust-boundary.md`](docs/ci-trust-boundary.md) for the bootstrap limitation and review
 rule.
 
 ## Taxonomy and status
 
 - `starter`: runnable teaching code already supports a lesson path.
-- `scaffolded`: one functional vertical slice is present; additional labs are intentionally not
-  authored yet.
-- `mapped`: source and documentation are catalogued, but no runnable companion is claimed.
+- `scaffold`: a runnable supplementary vertical slice exists, but the source course is not
+  claimed as developed.
+- `mapped`: source identity is catalogued and a supplementary article exercise exists, but the
+  source article is not copied or claimed as developed here.
+
+`contract_status` describes whether the Resources companion contract is mechanically complete.
+`maturity` describes teaching maturity. `review_status` records independent human pedagogical and
+accessibility review. These states must not be inferred from one another.
 
 Course directories are `courses/<site-course-slug>/`; article mappings are
 `articles/<site-article-slug>/`. A course may link an external, already-public companion rather
-than duplicate or migrate it. Article code needs a separate source/licensing and demonstration
-decision before it is added.
+than duplicate or migrate it. Article exercises use original synthetic fixtures and must never
+copy the source article body.
 
-## Contributing a next lab
+## Contributing practice material
 
 1. Add or amend a catalog entry and keep its source pointer truthful.
-2. Create a course-local README and a self-contained lab with `make run`, `make test`, and
-   `make verify`.
+2. Create a course-local practice guide and self-contained lab, or an article-local synthetic
+   exercise with an exact verification command.
 3. Keep the first run deterministic, offline, and credential-free. Put any live-provider setup
    behind a later, clearly labelled opt-in decision.
-4. Run `make verify` from the repository root. The catalog validator fails closed if an entry,
-   README, runtime contract, or course gate is missing.
+4. Run `make verify-pr`, then run source-backed `make verify` from the repository root. The gates
+   fail closed on missing contracts, exercise cases, local links, cadence ownership, source
+   boundaries, or course gates.
 
 ## Bootstrap record
 
@@ -88,14 +98,14 @@ repository-birth contract in RULING-216 Amendment A2. This PR introduces `.gitig
 content diff, before any course resource reaches `main`; the public history is not rewritten to
 claim otherwise. Future resource repositories start with their required safety `.gitignore`.
 
-## Current runnable course
+## Example runnable course companion
 
 | Course | Directory | What's there |
 |---|---|---|
 | [Agentic Coding with Cursor](https://profrod.ai/courses/agentic-coding-with-cursor) | [`courses/agentic-coding-with-cursor/order-api/`](courses/agentic-coding-with-cursor/order-api/) | `order-api`, the small Node/Express/TypeScript order-lookup service the course runs against starting in lesson 4. |
 
-The complete map names all remaining source courses. Each gets its own directory under
-`courses/<course-slug>/`; nothing is shared across courses unless a later README says otherwise.
+The complete map names every tracked source course. Each has its own directory under
+`courses/<course-slug>/`; nothing is shared across courses unless its README says otherwise.
 
 ## Using a course's code
 

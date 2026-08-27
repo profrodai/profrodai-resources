@@ -1,20 +1,30 @@
-# Govern a Multi-Agent Project With Zero-Employee
+# Govern a Multi-Agent Project With Zero-Employee — practice companion
 
-**status: mapped**
+**Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
-## Argument-to-demonstration contract
+## Practice objective
+Validate that every fictional handoff names an owner, state, and evidence pointer.
 
-The article makes a governance argument. A runnable companion must use a deliberately fictional
-project record and tests for auditability, not expose real operating doctrine.
+## Prerequisites
+Python 3 and the idea of a task handoff. No Zeo installation is required.
 
-## Provenance and boundary
+## Exercise
+Inspect `practice.json`. Repair the failure case by adding evidence, then create a task missing an owner and predict the denial list.
 
-Source: `profrod-site/content/articles/govern-a-multi-agent-project-with-zero-employee.md`.
+## Run and verification
+Run `python3 tools/run_article_practice.py articles/govern-a-multi-agent-project-with-zero-employee/practice.json`.
 
-## Run, verify, reset
+## Completion evidence
+The complete handoff passes and every absent field is reported as `task:field`.
 
-No local code is claimed in this phase.
+## Rubric
+Pass when the record is resumable by someone absent from the conversation. Revise if owner or evidence can be implicit.
 
-## Next decision
+## Accessibility
+The fixture and result are plain text and may be reviewed without running code.
 
-Choose a synthetic project lifecycle and the observable governance assertions.
+## Safety and cost boundary
+The project record is fictional and contains no internal doctrine, personal data, credentials, or external effects.
+
+## Provenance boundary
+Identity source: `profrod-site/content/articles/govern-a-multi-agent-project-with-zero-employee.md`. No article body or real operating record is reproduced.

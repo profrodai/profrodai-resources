@@ -9,7 +9,7 @@ measurement visible.
 
 ## Source boundary and provenance
 
-Source: [`profrod-site/content/courses/zeo-itam-autumn-2026/_course.md`](https://github.com/profrodai/profrod-site/tree/main/content/courses/zeo-itam-autumn-2026). The site calls this a live
+Source: [`profrod-site/content/courses/zeo-itam-autumn-2026/_course.md`](https://github.com/rodriveracom/profrod-site/tree/main/content/courses/zeo-itam-autumn-2026). The site calls this a live
 serial; this local slice is a stable scaffold, not a replacement for scheduled classes.
 
 ## Module-to-lab roadmap
@@ -25,3 +25,7 @@ Python 3.14.6 standard library only; offline and credential-free.
 ## Run, verify, reset
 
 Run `make run`, check it with `make verify`, and restore experimentation using `git restore .`.
+
+## Practice companion
+
+The [`minutes-baseline` guided practice](labs/01-minutes-baseline/PRACTICE.md) preserves regression evidence, adds invalid-input work, and supplies a text-only review path.

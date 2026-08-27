@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "exercise_type": "usage-cost",
+  "cases": {
+    "positive": {"input": {"input_tokens": 500000, "output_tokens": 100000, "input_rate_per_million": 3, "output_rate_per_million": 15}, "expected": {"input_cost": 1.5, "output_cost": 1.5, "total_cost": 3.0}},
+    "failure": {"input": {"input_tokens": 0, "output_tokens": 0, "input_rate_per_million": 3, "output_rate_per_million": 15}, "expected": {"input_cost": 0.0, "output_cost": 0.0, "total_cost": 0.0}}
+  }
+}

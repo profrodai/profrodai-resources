@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "exercise_type": "autonomy-readiness",
+  "cases": {
+    "positive": {"input": {"bounded_scope": true, "rollback": true, "verification": true, "no_live_pii": true, "escalation": true}, "expected": {"ready": true, "missing": []}},
+    "failure": {"input": {"bounded_scope": true, "rollback": false, "verification": true, "no_live_pii": true, "escalation": false}, "expected": {"ready": false, "missing": ["rollback", "escalation"]}}
+  }
+}

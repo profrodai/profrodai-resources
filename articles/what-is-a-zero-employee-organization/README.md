@@ -1,20 +1,30 @@
-# What Is a Zero-Employee Organization?
+# What Is a Zero-Employee Organization? — practice companion
 
-**status: mapped**
+**Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
-## Argument-to-demonstration contract
+## Practice objective
+Route a fictional decision to operator, strategy, structure, or implementation authority.
 
-The article introduces an organizational concept. A runnable companion needs a public taxonomy
-and a synthetic case; neither should be inferred from internal records.
+## Prerequisites
+Python 3 and the distinction between scope, structure, strategy review, and execution.
 
-## Provenance and boundary
+## Exercise
+Inspect `practice.json`. Add each known decision type and explain why an undefined type escalates to the operator.
 
-Source: `profrod-site/content/articles/what-is-a-zero-employee-organization.md`.
+## Run and verification
+Run `python3 tools/run_article_practice.py articles/what-is-a-zero-employee-organization/practice.json`.
 
-## Run, verify, reset
+## Completion evidence
+Known decisions route deterministically and unknown authority never falls silently to an implementation worker.
 
-No local code is claimed in this phase.
+## Rubric
+Pass when the route preserves human authority and separation of duties. Revise if an undefined decision is self-authorized.
 
-## Next decision
+## Accessibility
+Complete the routing exercise as a text table; no visual hierarchy is required.
 
-Approve the case-study facts and classification criteria for a future simulator.
+## Safety and cost boundary
+The organization and decisions are synthetic. No internal record, account, credential, or live action is used.
+
+## Provenance boundary
+Identity source: `profrod-site/content/articles/what-is-a-zero-employee-organization.md`. No article prose or internal governance corpus is copied.

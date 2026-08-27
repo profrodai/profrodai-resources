@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "exercise_type": "event-replay",
+  "cases": {
+    "positive": {"input": {"events": [{"sequence": 1, "field": "status", "value": "open"}, {"sequence": 2, "field": "status", "value": "closed"}]}, "expected": {"state": {"status": "closed"}, "sequence_gaps": [], "replayable": true}},
+    "failure": {"input": {"events": [{"sequence": 1, "field": "status", "value": "open"}, {"sequence": 3, "field": "owner", "value": "master"}]}, "expected": {"state": {"status": "open", "owner": "master"}, "sequence_gaps": [2], "replayable": false}}
+  }
+}

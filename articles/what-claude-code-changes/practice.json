@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "exercise_type": "diff-impact",
+  "cases": {
+    "positive": {"input": {"files": ["README.md"], "actions": ["edit"]}, "expected": {"risk": "low", "review_required": false, "risk_actions": []}},
+    "failure": {"input": {"files": ["data.db"], "actions": ["delete"]}, "expected": {"risk": "high", "review_required": true, "risk_actions": ["delete"]}}
+  }
+}

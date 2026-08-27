@@ -9,7 +9,7 @@ a plausible but unsupported result through.
 
 ## Source boundary and provenance
 
-Source: [`profrod-site/content/courses/why-agents-fail/_course.md`](https://github.com/profrodai/profrod-site/tree/main/content/courses/why-agents-fail). This is a local evidence-gate
+Source: [`profrod-site/content/courses/why-agents-fail/_course.md`](https://github.com/rodriveracom/profrod-site/tree/main/content/courses/why-agents-fail). This is a local evidence-gate
 exercise, not a claim to evaluate a real model.
 
 ## Module-to-lab roadmap
@@ -25,3 +25,7 @@ Python 3.14.6 standard library only; no live model, credential, network, or spen
 ## Run, verify, reset
 
 Use `make run`, then `make verify`; discard local experiments with `git restore .`.
+
+## Practice companion
+
+The [`evidence-gate` guided practice](labs/01-evidence-gate/PRACTICE.md) exercises missing and duplicate evidence while keeping claims and sources synthetic.

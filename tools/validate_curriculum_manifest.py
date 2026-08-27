@@ -1,59 +1,64 @@
 #!/usr/bin/env python3
-"""Fail-closed validation for the bounded Phase 1 curriculum contract."""
+"""Fail-closed validation for the 24-resource companion-practice contract."""
 
 from __future__ import annotations
 
 import argparse
+from datetime import date
+import importlib.util
 import json
 from pathlib import Path
 import re
+import subprocess
 import sys
+from typing import Any
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INDEX = ROOT / "catalog" / "profrod-site-source-index.json"
 DEFAULT_MANIFEST = ROOT / "catalog" / "curriculum-manifest.json"
-EXPECTED_SNAPSHOT = "7a4f77d705a2f51cc403c5889ef92e6359bfb82f"
-CURSOR_PATH = "content/courses/agentic-coding-with-cursor/_course.md"
-ZEOTOOL_PATH = "content/articles/build-your-first-zeocore-tool.md"
-ORDER_API_PATH = "courses/agentic-coding-with-cursor/order-api"
-STRUCTURAL_KEYS = {"catalog_path", "kind", "maturity", "contract_status"}
-COURSE_CONTRACT_KEYS = {
-    "audience",
-    "outcomes",
-    "prerequisites",
-    "module_sequence",
-    "lab_project_map",
-    "assessment",
-    "safety_cost_boundary",
-    "completion_evidence",
-}
-ARTICLE_CONTRACT_KEYS = {
-    "thesis",
-    "prerequisites",
-    "demonstration_exercise_route",
-    "fixtures",
+EXPECTED_SNAPSHOT = "fa07dee7feb55df59022c21ffb6b46352ae601b6"
+RECORD_KEYS = {
+    "catalog_path",
+    "kind",
+    "maturity",
+    "contract_status",
+    "review_status",
+    "exercise_path",
+    "practice_guide",
     "verification",
-    "next_learning_step",
+    "last_verified",
 }
-LAB_KEYS = {
-    "parent_catalog_path",
-    "resource_path",
-    "objective",
-    "setup",
-    "commands",
-    "expected_result",
-    "verification",
-    "rubric",
-    "failure_modes",
-    "extensions",
+COURSE_GUIDE_HEADINGS = {
+    "Objective",
+    "Guided exercise",
+    "Project",
+    "Evidence",
+    "Rubric",
+    "Accessibility",
+    "Safety and cost",
+    "Verify",
 }
+ARTICLE_GUIDE_HEADINGS = {
+    "Practice objective",
+    "Prerequisites",
+    "Exercise",
+    "Run and verification",
+    "Completion evidence",
+    "Rubric",
+    "Accessibility",
+    "Safety and cost boundary",
+    "Provenance boundary",
+}
+H2_PATTERN = re.compile(r"^##[ \t]+(.+?)[ \t]*$")
+FENCE_PATTERN = re.compile(r"^[ \t]*(`{3,}|~{3,})")
 
 
 def fail(message: str) -> None:
     raise ValueError(message)
 
 
-def read_json(path: Path, label: str) -> object:
+def read_json(path: Path, label: str) -> Any:
     try:
         return json.loads(path.read_text())
     except FileNotFoundError:
@@ -62,66 +67,13 @@ def read_json(path: Path, label: str) -> object:
         fail(f"invalid {label} JSON: {error}")
 
 
-def require_string(value: object, label: str) -> str:
+def require_string(value: Any, label: str) -> str:
     if not isinstance(value, str) or not value.strip():
         fail(f"{label} must be a non-empty string")
     return value
 
 
-def require_string_list(value: object, label: str) -> None:
-    if not isinstance(value, list) or not value:
-        fail(f"{label} must be a non-empty list")
-    for item in value:
-        require_string(item, label)
-
-
-def validate_contract(contract: object, required: set[str], label: str) -> None:
-    if not isinstance(contract, dict) or set(contract) != required:
-        fail(f"{label} must contain exactly: {', '.join(sorted(required))}")
-    for key, value in contract.items():
-        if key in {"outcomes", "prerequisites", "module_sequence", "lab_project_map"}:
-            require_string_list(value, f"{label}.{key}")
-        else:
-            require_string(value, f"{label}.{key}")
-
-
-H2_PATTERN = re.compile(r"^##[ \t]+(.+?)[ \t]*$")
-FENCE_PATTERN = re.compile(r"^[ \t]*(`{3,}|~{3,})")
-
-
-def markdown_h2_headings(text: str) -> set[str]:
-    """Return literal H2 text, excluding fenced-code lookalikes."""
-    headings: set[str] = set()
-    fence: str | None = None
-    for line in text.splitlines():
-        fence_match = FENCE_PATTERN.match(line)
-        if fence_match:
-            marker = fence_match.group(1)
-            if fence is None:
-                fence = marker[0]
-            elif marker[0] == fence:
-                fence = None
-            continue
-        if fence is not None:
-            continue
-        heading_match = H2_PATTERN.match(line)
-        if heading_match:
-            headings.add(heading_match.group(1))
-    return headings
-
-
-def require_readme_headings(path: Path, headings: tuple[str, ...]) -> None:
-    try:
-        text = path.read_text()
-    except FileNotFoundError:
-        fail(f"missing contract README: {path.relative_to(ROOT)}")
-    parsed_headings = markdown_h2_headings(text)
-    missing = [heading for heading in headings if heading not in parsed_headings]
-    if missing:
-        fail(f"contract README lacks required headings: {', '.join(missing)}")
-
-
-def catalog_kinds(index: object) -> dict[str, str]:
+def catalog_kinds(index: Any) -> dict[str, str]:
     if not isinstance(index, dict) or set(index) != {"repository", "commit", "capturedFrom", "entries"}:
         fail("source index has an unexpected shape")
     entries = index["entries"]
@@ -141,107 +93,173 @@ def catalog_kinds(index: object) -> dict[str, str]:
             kinds[path] = "article"
         else:
             fail(f"source index path has unknown kind: {path}")
-    if sum(kind == "course" for kind in kinds.values()) != 11 or sum(kind == "article" for kind in kinds.values()) != 13:
+    if list(kinds.values()).count("course") != 11 or list(kinds.values()).count("article") != 13:
         fail("source index must contain 11 courses and 13 articles")
     return kinds
 
 
-def validate_lab_contract(lab: object) -> None:
-    if not isinstance(lab, dict) or set(lab) != LAB_KEYS:
-        fail("Cursor lab contract has an unexpected shape")
-    if lab["parent_catalog_path"] != CURSOR_PATH:
-        fail("Cursor lab parent_catalog_path must equal the Cursor record")
-    if lab["resource_path"] != ORDER_API_PATH:
-        fail("Cursor lab resource_path must equal the existing order-api directory")
-    resolved = (ROOT / lab["resource_path"]).resolve()
+def markdown_h2_headings(text: str) -> set[str]:
+    headings: set[str] = set()
+    fence: str | None = None
+    for line in text.splitlines():
+        fence_match = FENCE_PATTERN.match(line)
+        if fence_match:
+            marker = fence_match.group(1)[0]
+            fence = None if fence == marker else marker if fence is None else fence
+            continue
+        if fence is None:
+            heading_match = H2_PATTERN.match(line)
+            if heading_match:
+                headings.add(heading_match.group(1))
+    return headings
+
+
+def require_headings(path: Path, required: set[str]) -> None:
+    try:
+        display_path = str(path.relative_to(ROOT))
+    except ValueError:
+        display_path = str(path)
+    try:
+        headings = markdown_h2_headings(path.read_text())
+    except FileNotFoundError:
+        fail(f"missing practice guide: {display_path}")
+    missing = sorted(required - headings)
+    if missing:
+        fail(f"practice guide lacks required headings: {display_path} missing={missing}")
+
+
+def repo_path(relative: str, label: str, *, directory: bool = False) -> Path:
+    path = Path(require_string(relative, label))
+    if path.is_absolute() or ".." in path.parts:
+        fail(f"{label} must be a contained repository-relative path")
+    resolved = (ROOT / path).resolve()
     try:
         resolved.relative_to(ROOT.resolve())
     except ValueError:
-        fail("Cursor lab resource path escapes the repository")
-    if not resolved.is_dir():
-        fail("Cursor lab resource path must be an existing directory")
-    for key, value in lab.items():
-        if key in {"setup", "commands", "failure_modes", "extensions"}:
-            require_string_list(value, f"Cursor lab.{key}")
-        else:
-            require_string(value, f"Cursor lab.{key}")
+        fail(f"{label} escapes the repository")
+    if directory and not resolved.is_dir():
+        fail(f"{label} must resolve to an existing directory: {relative}")
+    if not directory and not resolved.is_file():
+        fail(f"{label} must resolve to an existing file: {relative}")
+    return resolved
 
 
-def validate(index_path: Path = DEFAULT_INDEX, manifest_path: Path = DEFAULT_MANIFEST) -> None:
+def slug_for(catalog_path: str) -> str:
+    parts = catalog_path.split("/")
+    return parts[2] if catalog_path.startswith("content/courses/") else Path(catalog_path).stem
+
+
+def load_article_runner() -> Any:
+    module_path = ROOT / "tools" / "run_article_practice.py"
+    spec = importlib.util.spec_from_file_location("article_practice", module_path)
+    if not spec or not spec.loader:
+        fail("cannot load article practice runner")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def authored_paths() -> list[Path]:
+    if (ROOT / ".git").exists() or subprocess.run(
+        ["git", "rev-parse", "--is-inside-work-tree"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    ).returncode == 0:
+        result = subprocess.run(
+            ["git", "ls-files", "--cached", "--others", "--exclude-standard"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        return [Path(path) for path in result.stdout.splitlines()]
+    return [path.relative_to(ROOT) for path in ROOT.rglob("*")]
+
+
+def reject_source_bodies() -> None:
+    for path in authored_paths():
+        if not path.parts or path.parts[0] not in {"courses", "articles"}:
+            continue
+        if "lessons" in path.parts:
+            fail(f"source lesson directory is forbidden in Resources: {path}")
+        if path.name.lower() in {"article.md", "article-body.md", "lesson.md"}:
+            fail(f"source body filename is forbidden in Resources: {path}")
+
+
+def validate(index_path: Path = DEFAULT_INDEX, manifest_path: Path = DEFAULT_MANIFEST) -> dict[str, int]:
     catalog = catalog_kinds(read_json(index_path, "source index"))
     manifest = read_json(manifest_path, "curriculum manifest")
     if not isinstance(manifest, dict) or set(manifest) != {"schema_version", "catalog_snapshot", "records"}:
         fail("manifest must contain only schema_version, catalog_snapshot, and records")
-    if manifest["schema_version"] != 1:
-        fail("manifest schema_version must be 1")
+    if manifest["schema_version"] != 2:
+        fail("manifest schema_version must be 2")
     if manifest["catalog_snapshot"] != EXPECTED_SNAPSHOT:
-        fail("manifest catalog_snapshot must equal the measured Resources main SHA")
+        fail("manifest catalog_snapshot must equal merged Phase 1 main")
     records = manifest["records"]
     if not isinstance(records, list) or len(records) != 24:
-        fail("manifest must contain exactly 24 top-level records")
+        fail("manifest must contain exactly 24 records")
 
     seen: set[str] = set()
-    complete: set[str] = set()
+    counts = {"course": 0, "article": 0, "complete": 0, "developed": 0, "reviewed": 0}
+    article_runner = load_article_runner()
     for record in records:
-        if not isinstance(record, dict):
-            fail("manifest record must be an object")
-        path = require_string(record.get("catalog_path"), "record catalog_path")
-        if path in seen:
-            fail(f"manifest duplicates catalog_path: {path}")
-        seen.add(path)
-        if path not in catalog:
-            fail(f"manifest path is absent from source index: {path}")
-        kind = record.get("kind")
-        if kind != catalog[path]:
-            fail(f"record kind must match source index path: {path}")
+        if not isinstance(record, dict) or set(record) != RECORD_KEYS:
+            fail("every manifest record must contain exactly the companion-contract fields")
+        catalog_path = require_string(record["catalog_path"], "catalog_path")
+        if catalog_path in seen:
+            fail(f"manifest duplicates catalog_path: {catalog_path}")
+        seen.add(catalog_path)
+        if catalog_path not in catalog:
+            fail(f"manifest path is absent from source index: {catalog_path}")
+        kind = record["kind"]
+        if kind != catalog[catalog_path]:
+            fail(f"kind does not match source identity: {catalog_path}")
         expected_maturity = "scaffold" if kind == "course" else "mapped"
-        if record.get("maturity") != expected_maturity:
-            fail(f"record maturity must be {expected_maturity}: {path}")
-        status = record.get("contract_status")
-        if status not in {"planned", "complete"}:
-            fail(f"record contract_status must be planned or complete: {path}")
-        if "title" in record:
-            fail("manifest must not duplicate source-index titles")
+        if record["maturity"] != expected_maturity:
+            fail(f"maturity must remain {expected_maturity}: {catalog_path}")
+        if record["contract_status"] != "complete":
+            fail(f"all companion contracts must be complete: {catalog_path}")
+        if record["review_status"] not in {"unreviewed", "operator-reviewed"}:
+            fail(f"invalid review_status: {catalog_path}")
+        try:
+            verified_on = date.fromisoformat(require_string(record["last_verified"], "last_verified"))
+        except ValueError:
+            fail(f"last_verified must be an ISO date: {catalog_path}")
+        if verified_on > date.today():
+            fail(f"last_verified must not be in the future: {catalog_path}")
 
-        if status == "planned":
-            if set(record) != STRUCTURAL_KEYS:
-                fail(f"planned record must contain only structural fields: {path}")
-            continue
-
-        complete.add(path)
-        if path == CURSOR_PATH:
-            if set(record) != STRUCTURAL_KEYS | {"readme_contract", "lab_contracts"}:
-                fail("completed Cursor record has an unexpected shape")
-            validate_contract(record["readme_contract"], COURSE_CONTRACT_KEYS, "Cursor readme_contract")
-            labs = record["lab_contracts"]
-            if not isinstance(labs, list) or len(labs) != 1:
-                fail("Cursor record must contain exactly one nested lab contract")
-            validate_lab_contract(labs[0])
-            require_readme_headings(
-                ROOT / "courses/agentic-coding-with-cursor/README.md",
-                ("Audience", "Outcomes", "Prerequisites", "Module sequence", "Assessment", "Safety and cost boundary", "Completion evidence"),
-            )
-            require_readme_headings(
-                ROOT / "courses/agentic-coding-with-cursor/order-api/README.md",
-                ("Objective", "Setup", "Commands", "Expected result", "Verification", "Rubric", "Failure modes", "Extensions"),
-            )
-        elif path == ZEOTOOL_PATH:
-            if set(record) != STRUCTURAL_KEYS | {"readme_contract"}:
-                fail("completed ZeoCore article record has an unexpected shape")
-            validate_contract(record["readme_contract"], ARTICLE_CONTRACT_KEYS, "ZeoCore article readme_contract")
-            require_readme_headings(
-                ROOT / "articles/build-your-first-zeocore-tool/README.md",
-                ("Thesis", "Prerequisites", "Demonstration and exercise route", "Fixtures", "Verification", "Next learning step"),
-            )
+        exercise_path = repo_path(record["exercise_path"], "exercise_path", directory=True)
+        guide_path = repo_path(record["practice_guide"], "practice_guide")
+        slug = slug_for(catalog_path)
+        if kind == "course":
+            if record["verification"] != f"make -C courses/{slug} verify":
+                fail(f"course verification must invoke its course gate: {catalog_path}")
+            if exercise_path not in guide_path.parents:
+                fail(f"course practice guide must live inside its exercise path: {catalog_path}")
+            require_headings(guide_path, COURSE_GUIDE_HEADINGS)
         else:
-            fail(f"only the approved records may be complete: {path}")
+            expected_dir = (ROOT / "articles" / slug).resolve()
+            if exercise_path != expected_dir or guide_path != expected_dir / "README.md":
+                fail(f"article paths must use their catalog slug: {catalog_path}")
+            spec_path = expected_dir / "practice.json"
+            if record["verification"] != f"python3 tools/run_article_practice.py articles/{slug}/practice.json":
+                fail(f"article verification must invoke its exact practice spec: {catalog_path}")
+            require_headings(guide_path, ARTICLE_GUIDE_HEADINGS)
+            article_runner.verify_spec(spec_path)
+
+        counts[kind] += 1
+        counts["complete"] += 1
+        counts["developed"] += record["maturity"] == "developed"
+        counts["reviewed"] += record["review_status"] == "operator-reviewed"
 
     if seen != set(catalog):
-        missing = sorted(set(catalog) - seen)
-        foreign = sorted(seen - set(catalog))
-        fail(f"manifest/source-index paths differ; missing={missing}, foreign={foreign}")
-    if complete != {CURSOR_PATH, ZEOTOOL_PATH}:
-        fail("completed record set must equal the approved Cursor course and ZeoCore article")
+        fail("manifest/source-index path sets differ")
+    fixed_counts = {key: counts[key] for key in ("course", "article", "complete", "developed")}
+    if fixed_counts != {"course": 11, "article": 13, "complete": 24, "developed": 0}:
+        fail(f"unexpected curriculum coverage: {counts}")
+    reject_source_bodies()
+    return counts
 
 
 def main() -> None:
@@ -250,11 +268,16 @@ def main() -> None:
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
     args = parser.parse_args()
     try:
-        validate(args.index, args.manifest)
+        counts = validate(args.index, args.manifest)
     except ValueError as error:
         print(f"curriculum manifest validation failed: {error}", file=sys.stderr)
         raise SystemExit(1) from error
-    print("curriculum manifest valid: 24 records, 2 complete, 22 planned")
+    print(
+        "curriculum companion coverage valid: "
+        f"{counts['complete']} complete, {counts['course']} courses, "
+        f"{counts['article']} articles, {counts['developed']} developed, "
+        f"{counts['reviewed']} operator-reviewed"
+    )
 
 
 if __name__ == "__main__":

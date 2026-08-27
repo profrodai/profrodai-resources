@@ -1,20 +1,30 @@
-# Why AI Agents Don't Dissolve the Firm
+# Why AI Agents Don't Dissolve the Firm — practice companion
 
-**status: mapped**
+**Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
-## Argument-to-demonstration contract
+## Practice objective
+Compare explicit firm and market transaction-cost assumptions without claiming empirical authority.
 
-The article is analytical. A runnable model would require named economic assumptions and should
-make sensitivity limits visible rather than manufacture empirical authority.
+## Prerequisites
+Python 3 and addition of small integer cost fixtures.
 
-## Provenance and boundary
+## Exercise
+Inspect `practice.json`. Change one coordination or contracting cost and identify the threshold where the recommendation changes.
 
-Source: `profrod-site/content/articles/why-ai-agents-dont-dissolve-the-firm.md`.
+## Run and verification
+Run `python3 tools/run_article_practice.py articles/why-ai-agents-dont-dissolve-the-firm/practice.json`.
 
-## Run, verify, reset
+## Completion evidence
+Both totals and the recommendation are reproducible, including an equal-cost case.
 
-No local code is claimed in this phase.
+## Rubric
+Pass when the result is conditional on named assumptions. Revise if the synthetic model is presented as a forecast.
 
-## Next decision
+## Accessibility
+Use a text table or simple arithmetic; no graph is required.
 
-Decide whether an assumption-driven sensitivity model adds teaching value over the essay.
+## Safety and cost boundary
+All values are invented and provide no economic, investment, or organizational advice.
+
+## Provenance boundary
+Identity source: `profrod-site/content/articles/why-ai-agents-dont-dissolve-the-firm.md`. No article prose or external dataset is copied.

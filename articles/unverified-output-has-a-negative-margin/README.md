@@ -1,20 +1,30 @@
-# Unverified Output Has a Negative Margin
+# Unverified Output Has a Negative Margin — practice companion
 
-**status: mapped**
+**Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
-## Argument-to-demonstration contract
+## Practice objective
+Compare expected failure loss with verification cost using explicit assumptions.
 
-The article argues that unverified output is a liability. A companion needs a small, agreed
-fixture with a failing claim and a verification instrument that exposes it.
+## Prerequisites
+Python 3 and basic multiplication. The numbers are teaching fixtures, not business forecasts.
 
-## Provenance and boundary
+## Exercise
+Inspect `practice.json`. Find the break-even failure probability, then create a case where verification neither improves nor reduces margin.
 
-Source: `profrod-site/content/articles/unverified-output-has-a-negative-margin.md`.
+## Run and verification
+Run `python3 tools/run_article_practice.py articles/unverified-output-has-a-negative-margin/practice.json`.
 
-## Run, verify, reset
+## Completion evidence
+Both margin calculations are visible and the fixture states whether verification improves expected margin.
 
-No local code is claimed in this phase.
+## Rubric
+Pass when every assumption is visible and arithmetic is reproducible. Revise if the result is presented as empirical evidence.
 
-## Next decision
+## Accessibility
+Use a text expression or calculator; no chart is required.
 
-Define one pedagogically safe false claim and the behavioral proof that catches it.
+## Safety and cost boundary
+All monetary values and probabilities are invented. This is not financial advice and uses no real loss data.
+
+## Provenance boundary
+Identity source: `profrod-site/content/articles/unverified-output-has-a-negative-margin.md`. No article prose is included.

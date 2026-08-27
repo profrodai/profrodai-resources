@@ -21,7 +21,7 @@ an agent-assisted change.
 
 ## Source boundary and provenance
 
-Source: [`profrod-site/content/courses/agentic-coding-with-cursor/_course.md`](https://github.com/profrodai/profrod-site/tree/main/content/courses/agentic-coding-with-cursor).
+Source: [`profrod-site/content/courses/agentic-coding-with-cursor/_course.md`](https://github.com/rodriveracom/profrod-site/tree/main/content/courses/agentic-coding-with-cursor).
 This directory preserves the runnable `order-api` companion. It does not duplicate lesson prose
 or pre-apply the edits students are expected to make.
 
@@ -63,3 +63,7 @@ repository or its fixtures.
 `make run` starts the local service; `make verify` installs locked dependencies, typechecks,
 tests, and audits it. Expect deterministic order lookup responses and four passing tests. Reset
 your own exploration with `git restore .` and remove ignored dependencies with `npm ci`.
+
+## Practice companion
+
+Use the [`order-api` guided practice](order-api/PRACTICE.md) for the bounded project, evidence requirements, rubric, accessibility alternative, and safety boundary. It reinforces the course through runnable bytes and does not reproduce lesson prose.

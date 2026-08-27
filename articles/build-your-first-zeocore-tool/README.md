@@ -1,53 +1,30 @@
-# Build Your First ZeoCore Tool, Then Watch It Fail Twice
+# Build Your First ZeoCore Tool, Then Watch It Fail Twice — practice companion
 
-**status: mapped**
+**Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
-## Argument-to-demonstration contract
-
-The article's argument is about building and falsifying a tool. A local companion needs an
-approved source/revision and an explicit failure fixture before runnable code is truthful.
-
-## Thesis
-
-A useful tool claim needs an observable failure path, not only a successful
-run.
+## Practice objective
+Design a tool boundary that proves a valid write and visibly denies traversal or overwrite attempts.
 
 ## Prerequisites
+Python 3 and basic familiarity with repository-relative paths. ZeoTool is not required.
 
-Ability to read a small Python or TypeScript example is sufficient for the
-future demonstration route.
+## Exercise
+Inspect `practice.json`. Add an overwrite-denial case on paper, then explain which check must run before any filesystem effect.
 
-## Demonstration and exercise route
+## Run and verification
+Run `python3 tools/run_article_practice.py articles/build-your-first-zeocore-tool/practice.json`.
 
-Trace the proposed tool behavior, then design a licence-cleared public fixture
-before adding runnable code. The current repository supplies no tool
-implementation for this article.
+## Completion evidence
+Both cases pass and the learner states the must-NOT: a denied operation has no outside or overwrite effect.
 
-## Fixtures
+## Rubric
+Pass when containment is decided before action and failure has a named reason. Revise if an outside path can be allowed.
 
-No runnable fixture is included in Phase 1. A future fixture needs an approved
-public source and licence decision before it can be committed.
+## Accessibility
+Trace path components in a written table; no timed or visual-only interaction is required.
 
-## Verification
+## Safety and cost boundary
+No filesystem mutation, credential, network, internal tool byte, or provider cost occurs; the runner evaluates strings only.
 
-Verify that this map claims no local code and does not present the article body
-as present. The curriculum-manifest validator enforces that this article remains
-`mapped`.
-
-## Next learning step
-
-Choose a public, licence-cleared fixture and define the exact failure behavior
-before implementation.
-
-## Provenance and boundary
-
-Source: `profrod-site/content/articles/build-your-first-zeocore-tool.md`. This map carries no
-article body, internal tool bytes, or credentials.
-
-## Run, verify, reset
-
-No local code is claimed in this phase.
-
-## Next decision
-
-Choose a public, licence-cleared fixture and the exact failure behavior a student should observe.
+## Provenance boundary
+Identity source: `profrod-site/content/articles/build-your-first-zeocore-tool.md`. No article body or internal ZeoCore implementation is present.

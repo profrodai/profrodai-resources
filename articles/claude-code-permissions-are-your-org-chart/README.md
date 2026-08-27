@@ -1,21 +1,30 @@
-# Your Claude Code Permissions Are Your Org Chart
+# Your Claude Code Permissions Are Your Org Chart — practice companion
 
-**status: mapped**
+**Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
-## Argument-to-demonstration contract
+## Practice objective
+Compare requested actions with explicit grants and route missing authority to review.
 
-The article explains permission boundaries. A runnable companion must model permissions without
-shipping a real agent configuration or teaching bypass behavior.
+## Prerequisites
+Python 3 and familiarity with read, write, and delete as abstract permissions.
 
-## Provenance and boundary
+## Exercise
+Inspect `practice.json`. Add a synthetic `network` request without granting it and predict the missing-permission result.
 
-Source: `profrod-site/content/articles/claude-code-permissions-are-your-org-chart.md`. No config
-from any working repository is copied here.
+## Run and verification
+Run `python3 tools/run_article_practice.py articles/claude-code-permissions-are-your-org-chart/practice.json`.
 
-## Run, verify, reset
+## Completion evidence
+The permitted case succeeds and the over-broad request fails with the exact missing grant.
 
-No local code is claimed in this phase.
+## Rubric
+Pass when decisions derive only from explicit grants. Revise if an unknown or dangerous action is implicitly allowed.
 
-## Next decision
+## Accessibility
+Complete the set comparison as a written two-column list; no pointer interaction is required.
 
-Approve a synthetic policy fixture and its safe expected decisions.
+## Safety and cost boundary
+The synthetic policy never changes Claude Code, repository, or host permissions. No credentials or network are used.
+
+## Provenance boundary
+Identity source: `profrod-site/content/articles/claude-code-permissions-are-your-org-chart.md`. No working agent configuration is copied.

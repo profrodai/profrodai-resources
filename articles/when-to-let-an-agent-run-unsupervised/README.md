@@ -1,20 +1,30 @@
-# When Can You Actually Walk Away?
+# When Can You Actually Walk Away? — practice companion
 
-**status: mapped**
+**Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
-## Argument-to-demonstration contract
+## Practice objective
+Require bounded scope, rollback, verification, no live PII, and escalation before an unattended run.
 
-The article concerns supervision decisions. A safe runnable example must use a synthetic risk
-matrix and must never recommend bypassing a real system's controls.
+## Prerequisites
+Python 3 and basic risk-review vocabulary.
 
-## Provenance and boundary
+## Exercise
+Inspect `practice.json`. Toggle one readiness condition at a time and explain why a score cannot compensate for a missing hard gate.
 
-Source: `profrod-site/content/articles/when-to-let-an-agent-run-unsupervised.md`.
+## Run and verification
+Run `python3 tools/run_article_practice.py articles/when-to-let-an-agent-run-unsupervised/practice.json`.
 
-## Run, verify, reset
+## Completion evidence
+Readiness is true only when every hard condition is true; missing controls are named.
 
-No local code is claimed in this phase.
+## Rubric
+Pass when absence of any hard gate blocks autonomy. Revise if controls are averaged into confidence.
 
-## Next decision
+## Accessibility
+The Boolean fixture is readable as a checklist and requires no timed or visual-only interaction.
 
-Approve synthetic risk inputs and an explicit human-override rule.
+## Safety and cost boundary
+This synthetic exercise is not permission to run a real agent unattended or bypass system controls.
+
+## Provenance boundary
+Identity source: `profrod-site/content/articles/when-to-let-an-agent-run-unsupervised.md`. No article body or real risk record is copied.

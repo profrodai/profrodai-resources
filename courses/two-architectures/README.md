@@ -9,7 +9,7 @@ deterministic or stochastic workflow boundary.
 
 ## Source boundary and provenance
 
-Source: [`profrod-site/content/courses/two-architectures/_course.md`](https://github.com/profrodai/profrod-site/tree/main/content/courses/two-architectures). The lab is a deterministic
+Source: [`profrod-site/content/courses/two-architectures/_course.md`](https://github.com/rodriveracom/profrod-site/tree/main/content/courses/two-architectures). The lab is a deterministic
 classification exercise, not an implementation of either named architecture from the course.
 
 ## Module-to-lab roadmap
@@ -25,3 +25,7 @@ Python 3.14.6 standard library only; offline and credential-free.
 ## Run, verify, reset
 
 `make run` prints the two input cases; `make verify` runs their tests; `git restore .` resets.
+
+## Practice companion
+
+The [`boundary-classifier` guided practice](labs/01-boundary-classifier/PRACTICE.md) turns the 2x2 into a text table and makes high-side-effect review a hard gate.
