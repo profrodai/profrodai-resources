@@ -1,137 +1,343 @@
 # profrodai-resources
 
-Runnable companions for the courses and long-form articles at
-[profrod.ai](https://profrod.ai), organised by source slug. One clone contains the index,
-starter labs, and verification gates; it is not a copy of the teaching site.
+Small, runnable exercises that help you practise ideas taught at
+[profrod.ai](https://profrod.ai).
 
-## What this repository is
+You do not need an API key, a paid account, private data, or access to a live AI
+service. The beginner exercises run locally with invented data, so it is safe to
+experiment and make mistakes.
 
-This is the practice and supplementary-content layer for the profrod.ai curriculum. Every
-catalogued course and long-form article has an offline, credential-free companion exercise with
-an observable result, verification evidence, a rubric, and an accessibility route. These
-companions reinforce concepts through practice and bytes; they are not lesson prose, article
-bodies, completed course material, or substitutes for the teaching site.
+> This repository contains practice material, not the courses or articles
+> themselves. Read the teaching material on profrod.ai, then use these exercises
+> to learn by changing real files and running real checks.
 
-The catalog is the machine-readable inventory in
-[`catalog/curriculum.json`](catalog/curriculum.json), with an evidence table of exact source paths
-and titles pinned to `rodriveracom/profrod-site@db4dc3afb65aa402069d04533d4ce9766d7444e4` in
-[`catalog/profrod-site-source-index.json`](catalog/profrod-site-source-index.json). It contains
-the 11 confirmed courses and 13 confirmed long-form articles currently tracked in that snapshot.
-Short Notes are deliberately
-out of scope: they are neither represented as articles nor given code in this phase.
+## Start here: your first exercise in five minutes
 
-The [practice-companion manifest](catalog/curriculum-manifest.json) is separate from that identity
-catalog: it has one title-free record for each of the same 24 source paths. All 24 companion
-contracts are complete. Cursor's existing `order-api` remains its one nested lab contract; labs
-are not separate manifest records. Teaching maturity stays truthful at 11 `scaffold` courses and
-13 `mapped` articles, with zero resources claimed as `developed`. Human pedagogical and
-accessibility review is recorded separately from mechanical completion. See the
-[authoring guide](docs/curriculum-contract-authoring.md) for the boundary and the
-[maintenance schedule](catalog/curriculum-maintenance.json) for refresh ownership.
+### What you need
 
-## Start here
+- A computer with a terminal.
+- [Git](https://git-scm.com/downloads).
+- Python 3.10 or newer. Check with `python3 --version`.
+
+On Windows, these instructions are easiest in
+[Windows Subsystem for Linux](https://learn.microsoft.com/windows/wsl/install).
+If your computer uses `python` instead of `python3`, substitute `python` in the
+commands below.
+
+You do **not** need Node.js for the first exercise. Node.js is only required for
+the Cursor `order-api` exercise.
+
+### 1. Download the exercises
+
+Copy and paste these commands into your terminal one line at a time:
 
 ```bash
 git clone https://github.com/profrodai/profrodai-resources.git
 cd profrodai-resources
+```
+
+You should now be inside a folder named `profrodai-resources`.
+
+### 2. Run a ready-made example
+
+```bash
+python3 tools/run_article_practice.py articles/build-a-working-agent-with-sovereign-agent/practice.json
+```
+
+You should see this result:
+
+```json
+{
+  "failure": {
+    "missing": [
+      "check"
+    ],
+    "ready": false
+  },
+  "positive": {
+    "missing": [],
+    "ready": true
+  }
+}
+```
+
+That output proves two things:
+
+- the complete example is allowed to continue; and
+- the incomplete example stops and names the missing check.
+
+If you see that output, congratulations: you have run your first verified
+practice exercise.
+
+### 3. Make a small change
+
+Open these two files in any text editor:
+
+- [the instructions](articles/build-a-working-agent-with-sovereign-agent/README.md)
+- [the example data](articles/build-a-working-agent-with-sovereign-agent/practice.json)
+
+Follow the README exercise. Run the same command again after every change. A
+failure is useful: it means the checker found a difference between the result
+you produced and the result the fixture says is correct.
+
+## What should I practise next?
+
+There are two kinds of companion:
+
+- **Course practices** are small projects built around a runnable lab. Choose
+  one when you want to edit code, add a test, and produce evidence.
+- **Article practices** are short JSON exercises. Choose one when you want to
+  explore a single idea in roughly 10–20 minutes.
+
+You do not need to complete them in order.
+
+### Course practices
+
+Every course practice has a `PRACTICE.md` file with an objective, guided task,
+project, evidence checklist, rubric, accessibility option, safety boundary, and
+verification command.
+
+| If you want to practise… | Open this guide | Runtime |
+|---|---|---|
+| Changing and testing a small order API | [Agentic Coding with Cursor](courses/agentic-coding-with-cursor/order-api/PRACTICE.md) | Node.js |
+| Checking whether a business brief has enough evidence | [Claude Code for Business](courses/claude-code-for-business/labs/01-brief-readiness/PRACTICE.md) | Python |
+| Routing uncertain work to human review | [LangGraph Agent Orchestration](courses/langgraph-agent-orchestration/labs/01-confidence-routing/PRACTICE.md) | Python |
+| Choosing an eligible model without hiding cost or latency | [Nebius Token Factory in Production](courses/nebius-token-factory-in-production/labs/01-model-selection/PRACTICE.md) | Python |
+| Turning retrieval inputs into a bounded deployment plan | [NVIDIA NIM in Production](courses/nvidia-nim-in-production/labs/01-retrieval-plan/PRACTICE.md) | Python |
+| Storing evidence without accepting duplicates | [Tools, Memory, and Multi-Agent Systems](courses/tools-memory-and-multi-agent-systems/labs/01-evidence-store/PRACTICE.md) | Python |
+| Measuring a before-and-after time saving honestly | [Transformation Tracker with Claude Code](courses/transformation-tracker-with-claude-code/labs/01-baseline-delta/PRACTICE.md) | Python |
+| Separating deterministic code from uncertain agent work | [Two Architectures](courses/two-architectures/labs/01-boundary-classifier/PRACTICE.md) | Python |
+| Preventing a voice agent from speaking after a call ends | [Voice Agents, Not Chatbots](courses/voice-agents-not-chatbots/labs/01-turn-guard/PRACTICE.md) | Python |
+| Rejecting an answer that lacks required evidence | [Why Agents Fail](courses/why-agents-fail/labs/01-evidence-gate/PRACTICE.md) | Python |
+| Measuring operator minutes saved without hiding regressions | [ZEO ITAM Autumn 2026](courses/zeo-itam-autumn-2026/labs/01-minutes-baseline/PRACTICE.md) | Python |
+
+The **Why Agents Fail** exercise is a good first course practice. Run it from
+the repository root:
+
+```bash
+make -C courses/why-agents-fail run
+make -C courses/why-agents-fail verify
+```
+
+The first command prints a result. The second runs the tests. Success ends with
+`OK`.
+
+### Article practices
+
+Each article folder contains:
+
+- `README.md` — what to practise and how to know you succeeded;
+- `practice.json` — one successful case and one failure case; and
+- an exact command that checks both cases.
+
+| If you want to practise… | Open this exercise |
+|---|---|
+| Proving an agent result has evidence and an owner | [Build a Working Agent with sovereign-agent](articles/build-a-working-agent-with-sovereign-agent/README.md) |
+| Denying unsafe file targets and overwrites | [Build Your First ZeoCore Tool](articles/build-your-first-zeocore-tool/README.md) |
+| Comparing requested permissions with granted permissions | [Claude Code Permissions Are Your Org Chart](articles/claude-code-permissions-are-your-org-chart/README.md) |
+| Deduplicating customer data without losing records silently | [Clean a Messy Customer List](articles/clean-a-messy-customer-list-with-claude-code/README.md) |
+| Checking whether every task handoff has an owner and evidence | [Govern a Multi-Agent Project](articles/govern-a-multi-agent-project-with-zero-employee/README.md) |
+| Choosing a content block for a communication goal | [The Content Kit](articles/the-content-kit/README.md) |
+| Comparing verification cost with expected failure loss | [Unverified Output Has a Negative Margin](articles/unverified-output-has-a-negative-margin/README.md) |
+| Calculating a synthetic token-usage cost | [What Claude Code Actually Costs](articles/what-claude-code-actually-costs/README.md) |
+| Deciding whether a proposed change needs review | [What Claude Code Actually Changes](articles/what-claude-code-changes/README.md) |
+| Routing decisions to operator, Master, stream, or Sparring | [What Is a Zero-Employee Organization?](articles/what-is-a-zero-employee-organization/README.md) |
+| Checking whether a task is safe to run unsupervised | [When Can You Actually Walk Away?](articles/when-to-let-an-agent-run-unsupervised/README.md) |
+| Comparing the transaction cost of a firm and a market | [Why AI Agents Don't Dissolve the Firm](articles/why-ai-agents-dont-dissolve-the-firm/README.md) |
+| Rebuilding state from an ordered event record | [Your Chat History Is Not a System of Record](articles/your-chat-history-is-not-a-system-of-record/README.md) |
+
+## A simple way to work through any exercise
+
+Use the same loop every time:
+
+1. **Read** the exercise README or `PRACTICE.md` from top to bottom.
+2. **Run** the unchanged example once. This proves your setup works.
+3. **Predict** what a small change will do before editing the file.
+4. **Change one thing.** Small edits make failures easier to understand.
+5. **Run the verification command again.**
+6. **Explain the result** in your own words.
+7. **Save evidence:** the command, its output, and the change you made.
+
+Do not aim only for a green check. The useful part is being able to explain why
+the successful case passed and why the failure case was denied.
+
+## Folder map
+
+```text
+profrodai-resources/
+├── courses/       runnable course labs and guided practice files
+├── articles/      short article exercises with synthetic JSON data
+├── catalog/       the machine-readable list of tracked companions
+├── docs/          contributor and CI documentation
+├── tests/         tests for the repository-wide checks
+└── tools/         local exercise runners and validators
+```
+
+The teaching material stays on profrod.ai. This repository deliberately does
+not contain copied lesson prose or article bodies.
+
+## Common problems
+
+### `git: command not found`
+
+Install [Git](https://git-scm.com/downloads), close and reopen your terminal,
+then try the clone command again.
+
+### `python3: command not found`
+
+Try:
+
+```bash
+python --version
+```
+
+If that prints Python 3.10 or newer, replace `python3` with `python` in the
+exercise command. Otherwise install Python 3 before continuing.
+
+### `destination path 'profrodai-resources' already exists`
+
+You already have a folder with that name. Do not overwrite it. Either enter the
+existing clone with `cd profrodai-resources`, or choose a different name for a
+fresh copy:
+
+```bash
+git clone https://github.com/profrodai/profrodai-resources.git profrodai-resources-fresh
+cd profrodai-resources-fresh
+```
+
+### `make: command not found`
+
+The article exercises do not require `make`; run their `python3
+tools/run_article_practice.py ...` command directly. For course practices,
+install Make or use WSL on Windows.
+
+### `No such file or directory`
+
+You are probably in the wrong folder. Run:
+
+```bash
+pwd
+ls
+```
+
+The `ls` output should include `articles`, `courses`, `catalog`, `tools`, and
+`Makefile`. If it does not, return to the cloned repository with:
+
+```bash
+cd profrodai-resources
+```
+
+### `mismatch: expected=... observed=...`
+
+The runner is working: your edited fixture no longer describes the result the
+code produced. Compare `expected` with `observed`, decide which one should
+change, and rerun the command.
+
+### `cannot read practice spec` or `invalid ... JSON`
+
+JSON punctuation is strict. Check for a missing quote, comma, brace, or square
+bracket. A common mistake is leaving a comma after the final item. Your text
+editor may highlight the exact line containing the error.
+
+### `set PROFROD_SITE_REPO ...`
+
+You ran the maintainer-only full repository gate. Beginners do not need that
+gate. Use the verification command in the exercise README, or run the
+repository's public checks with:
+
+```bash
+make verify-pr
+```
+
+### I changed too much and want to start again
+
+First run `git diff` so you can see and learn from the changes. The simplest
+safe reset is to make a new clone in a different folder; your original work
+will remain available for comparison.
+
+## Safety and cost
+
+The baseline exercises are designed to be:
+
+- offline;
+- credential-free;
+- deterministic;
+- based on synthetic data;
+- safe to rerun; and
+- free of paid-provider calls.
+
+Never paste real customer data, credentials, API keys, or private company
+records into an exercise. If you later connect an exercise to a live service,
+that is a separate project with its own cost, privacy, and permission review.
+
+## For contributors and maintainers
+
+Beginners can stop here. The rest explains how the repository proves that its
+practice map remains honest.
+
+### Public pull-request gate
+
+```bash
+make verify-pr
+```
+
+This runs all 11 course gates, all 13 article exercise specifications, the
+repository tests, manifest checks, maintenance checks, and local-link checks.
+It does not need access to the teaching-site repository.
+
+The whole-repository gate requires Git, Make, Python, Node.js, and npm because
+it also tests the Cursor `order-api`. A learner running one Python exercise does
+not need that full toolchain.
+
+### Source-backed maintainer gate
+
+```bash
 git clone https://github.com/rodriveracom/profrod-site.git ../profrod-site
 PROFROD_SITE_REPO=../profrod-site make verify
 ```
 
-To explore one course, read its `README.md`, then run its local gate:
+This additionally proves the catalog against the pinned profrod-site Git
+object. It deliberately fails when `PROFROD_SITE_REPO` is missing. Pinned-source
+verification runs only from trusted `main` or manual CI contexts; pull requests
+never receive the private-source credential. See the
+[CI trust-boundary documentation](docs/ci-trust-boundary.md).
 
-```bash
-make -C courses/why-agents-fail verify
-make -C courses/why-agents-fail run
-```
+### Catalog and status language
 
-Each new standard-library lab pins its observed runtime in `runtime.txt`, declares an empty
-third-party dependency lock in `requirements.lock`, and has no network or credential requirement.
-The existing Cursor `order-api` retains its own locked Node dependencies and gate.
+- [`catalog/curriculum.json`](catalog/curriculum.json) lists the 11 courses and
+  13 long-form articles.
+- [`catalog/profrod-site-source-index.json`](catalog/profrod-site-source-index.json)
+  pins their exact source paths and titles.
+- [`catalog/curriculum-manifest.json`](catalog/curriculum-manifest.json) connects
+  each source item to its local practice guide and verification command.
+- [`catalog/curriculum-maintenance.json`](catalog/curriculum-maintenance.json)
+  records review ownership and due dates.
 
-`make verify` deliberately fails closed without `PROFROD_SITE_REPO`: the catalog is proven against
-the exact Git object named in `catalog/profrod-site-source-index.json`, not against a copied title
-or a mutable checkout. The supplied repository must contain that commit; fetch it if its clone is
-shallow or has moved past the pin.
+`contract_status: complete` means the companion package and its mechanical
+checks exist. It does not mean the source course or article is reproduced or
+finished here. `maturity` describes teaching maturity, while `review_status`
+records independent human pedagogical and accessibility review. The current
+manifest truthfully claims 11 scaffold courses, 13 mapped articles, zero
+developed resources, and zero operator-reviewed resources.
 
-## CI trust boundary
+### Contributing practice material
 
-Pull requests run `make verify-pr`: all 11 course gates, all 13 article exercise cases, manifest
-validation, maintenance checks, and local catalog structure checks, with no source-read secret or
-claim of private-source provenance. Pinned-source verification runs only in the trusted
-`main`/manual workflow from an explicit `main` checkout. See
-[`docs/ci-trust-boundary.md`](docs/ci-trust-boundary.md) for the bootstrap limitation and review
-rule.
+1. Keep source identity and provenance truthful.
+2. Add a course-local guided practice and runnable lab, or an article-local
+   exercise with synthetic positive and failure cases.
+3. Keep the baseline deterministic, offline, credential-free, and safe to
+   rerun.
+4. Include an objective, evidence, rubric, accessibility route, safety/cost
+   boundary, and exact verification command.
+5. Run `make verify-pr`, then the source-backed `make verify` before requesting
+   review.
 
-## Taxonomy and status
-
-- `starter`: runnable teaching code already supports a lesson path.
-- `scaffold`: a runnable supplementary vertical slice exists, but the source course is not
-  claimed as developed.
-- `mapped`: source identity is catalogued and a supplementary article exercise exists, but the
-  source article is not copied or claimed as developed here.
-
-`contract_status` describes whether the Resources companion contract is mechanically complete.
-`maturity` describes teaching maturity. `review_status` records independent human pedagogical and
-accessibility review. These states must not be inferred from one another.
-
-Course directories are `courses/<site-course-slug>/`; article mappings are
-`articles/<site-article-slug>/`. A course may link an external, already-public companion rather
-than duplicate or migrate it. Article exercises use original synthetic fixtures and must never
-copy the source article body.
-
-## Contributing practice material
-
-1. Add or amend a catalog entry and keep its source pointer truthful.
-2. Create a course-local practice guide and self-contained lab, or an article-local synthetic
-   exercise with an exact verification command.
-3. Keep the first run deterministic, offline, and credential-free. Put any live-provider setup
-   behind a later, clearly labelled opt-in decision.
-4. Run `make verify-pr`, then run source-backed `make verify` from the repository root. The gates
-   fail closed on missing contracts, exercise cases, local links, cadence ownership, source
-   boundaries, or course gates.
-
-## Bootstrap record
-
-The published initial commit contains `README.md` and `LICENSE` only. It predates the clarified
-repository-birth contract in RULING-216 Amendment A2. This PR introduces `.gitignore` as its first
-content diff, before any course resource reaches `main`; the public history is not rewritten to
-claim otherwise. Future resource repositories start with their required safety `.gitignore`.
-
-## Example runnable course companion
-
-| Course | Directory | What's there |
-|---|---|---|
-| [Agentic Coding with Cursor](https://profrod.ai/courses/agentic-coding-with-cursor) | [`courses/agentic-coding-with-cursor/order-api/`](courses/agentic-coding-with-cursor/order-api/) | `order-api`, the small Node/Express/TypeScript order-lookup service the course runs against starting in lesson 4. |
-
-The complete map names every tracked source course. Each has its own directory under
-`courses/<course-slug>/`; nothing is shared across courses unless its README says otherwise.
-
-## Using a course's code
-
-Clone the whole repo, or just the one course you need:
-
-```bash
-git clone https://github.com/profrodai/profrodai-resources.git
-cd profrodai-resources/courses/agentic-coding-with-cursor/order-api
-npm install
-npm test
-```
-
-From the repository root, run the project gate with `make verify`. It performs the locked install,
-format check, tracked agent-exhaust boundary lint, test suite, TypeScript check, and high-severity
-dependency audit.
-
-Each course directory is self-contained: its own `package.json`, its own dependencies, runnable
-on its own without anything else in this repo.
-
-## What's not here
-
-This repo does not host `transformation-tracker-with-claude-code`'s companion code. That course
-already has its own public repo,
-[`profrodai/transformation-tracker-course`](https://github.com/profrodai/transformation-tracker-course),
-live and linked from shipped lessons. It stays where it is; nothing here replaces it.
+Detailed contract rules live in the
+[practice-companion authoring guide](docs/curriculum-contract-authoring.md).
+The Transformation Tracker course also has a separate public companion at
+[`profrodai/transformation-tracker-course`](https://github.com/profrodai/transformation-tracker-course);
+the small local lab here does not replace it.
 
 ## License
 
-MIT.
+The repository is licensed under the [MIT License](LICENSE).
