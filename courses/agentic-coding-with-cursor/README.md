@@ -21,7 +21,7 @@ an agent-assisted change.
 
 ## Source boundary and provenance
 
-Source: [`profrod-site/content/courses/agentic-coding-with-cursor/_course.md`](https://github.com/profrodai/profrod-site/tree/main/content/courses/agentic-coding-with-cursor).
+Source: [`profrod-site/content/courses/agentic-coding-with-cursor/_course.md`](https://github.com/rodriveracom/profrod-site/tree/main/content/courses/agentic-coding-with-cursor).
 This directory preserves the runnable `order-api` companion. It does not duplicate lesson prose
 or pre-apply the edits students are expected to make.
 

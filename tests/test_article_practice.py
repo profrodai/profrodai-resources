@@ -46,6 +46,29 @@ class ArticlePracticeTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "input and expected must be objects"):
             PRACTICE.run_case(spec, "positive")
 
+    def test_event_replay_reports_every_missing_sequence(self) -> None:
+        result = PRACTICE.event_replay(
+            {
+                "events": [
+                    {"sequence": 1, "field": "status", "value": "open"},
+                    {"sequence": 4, "field": "owner", "value": "student"},
+                ]
+            }
+        )
+        self.assertEqual([2, 3], result["sequence_gaps"])
+        self.assertFalse(result["replayable"])
+
+    def test_event_replay_rejects_non_monotonic_sequences(self) -> None:
+        with self.assertRaisesRegex(ValueError, "strictly increasing"):
+            PRACTICE.event_replay(
+                {
+                    "events": [
+                        {"sequence": 2, "field": "status", "value": "open"},
+                        {"sequence": 1, "field": "owner", "value": "student"},
+                    ]
+                }
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

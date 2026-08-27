@@ -9,7 +9,7 @@ current.
 
 ## Source boundary and provenance
 
-Source: [`profrod-site/content/courses/nebius-token-factory-in-production/_course.md`](https://github.com/profrodai/profrod-site/tree/main/content/courses/nebius-token-factory-in-production).
+Source: [`profrod-site/content/courses/nebius-token-factory-in-production/_course.md`](https://github.com/rodriveracom/profrod-site/tree/main/content/courses/nebius-token-factory-in-production).
 The lab's records are invented fixtures for decision practice, not Nebius catalog data.
 
 ## Module-to-lab roadmap

@@ -129,14 +129,17 @@ def transaction_cost(data: dict[str, Any]) -> dict[str, Any]:
 
 def event_replay(data: dict[str, Any]) -> dict[str, Any]:
     state: dict[str, Any] = {}
-    expected_sequence = 1
     gaps: list[int] = []
+    previous_sequence = 0
     for event in data["events"]:
-        if event["sequence"] != expected_sequence:
-            gaps.append(expected_sequence)
-            expected_sequence = event["sequence"]
+        sequence = event["sequence"]
+        if not isinstance(sequence, int) or isinstance(sequence, bool) or sequence <= 0:
+            raise ValueError("event sequence must be a positive integer")
+        if sequence <= previous_sequence:
+            raise ValueError("event sequences must be strictly increasing")
+        gaps.extend(range(previous_sequence + 1, sequence))
         state[event["field"]] = event["value"]
-        expected_sequence += 1
+        previous_sequence = sequence
     return {"state": state, "sequence_gaps": gaps, "replayable": not gaps}
 
 

@@ -9,7 +9,7 @@ Replay an append-only event record and expose a missing sequence instead of gues
 Python 3 and familiarity with ordered events.
 
 ## Exercise
-Inspect `practice.json`. Add an owner event, replay state, then remove a sequence and predict the reported gap.
+Inspect `practice.json`. Add an owner event, replay state, then remove one or more sequence numbers and predict every reported gap. Sequence numbers must be positive and strictly increasing; a duplicate or out-of-order event is denied rather than silently replayed.
 
 ## Run and verification
 Run `python3 tools/run_article_practice.py articles/your-chat-history-is-not-a-system-of-record/practice.json`.

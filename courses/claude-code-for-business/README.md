@@ -9,7 +9,7 @@ than treating a confident draft as a completed business task.
 
 ## Source boundary and provenance
 
-Source: [`profrod-site/content/courses/claude-code-for-business/_course.md`](https://github.com/profrodai/profrod-site/tree/main/content/courses/claude-code-for-business). This is a
+Source: [`profrod-site/content/courses/claude-code-for-business/_course.md`](https://github.com/rodriveracom/profrod-site/tree/main/content/courses/claude-code-for-business). This is a
 small deterministic teaching slice, not copied course content or a live Claude Code integration.
 
 ## Module-to-lab roadmap

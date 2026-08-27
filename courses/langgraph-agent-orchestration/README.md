@@ -9,7 +9,7 @@ decision the course teaches before a graph invokes a tool.
 
 ## Source boundary and provenance
 
-Source: [`profrod-site/content/courses/langgraph-agent-orchestration/_course.md`](https://github.com/profrodai/profrod-site/tree/main/content/courses/langgraph-agent-orchestration). This
+Source: [`profrod-site/content/courses/langgraph-agent-orchestration/_course.md`](https://github.com/rodriveracom/profrod-site/tree/main/content/courses/langgraph-agent-orchestration). This
 credential-free slice models a decision only; it does not bundle LangGraph or copy the course.
 
 ## Module-to-lab roadmap

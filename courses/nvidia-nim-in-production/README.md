@@ -9,7 +9,7 @@ capacity from a model name.
 
 ## Source boundary and provenance
 
-Source: [`profrod-site/content/courses/nvidia-nim-in-production/_course.md`](https://github.com/profrodai/profrod-site/tree/main/content/courses/nvidia-nim-in-production). The lab is a
+Source: [`profrod-site/content/courses/nvidia-nim-in-production/_course.md`](https://github.com/rodriveracom/profrod-site/tree/main/content/courses/nvidia-nim-in-production). The lab is a
 fixture-based planning exercise, not an NVIDIA service client or hardware sizing claim.
 
 ## Module-to-lab roadmap

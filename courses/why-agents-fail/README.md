@@ -9,7 +9,7 @@ a plausible but unsupported result through.
 
 ## Source boundary and provenance
 
-Source: [`profrod-site/content/courses/why-agents-fail/_course.md`](https://github.com/profrodai/profrod-site/tree/main/content/courses/why-agents-fail). This is a local evidence-gate
+Source: [`profrod-site/content/courses/why-agents-fail/_course.md`](https://github.com/rodriveracom/profrod-site/tree/main/content/courses/why-agents-fail). This is a local evidence-gate
 exercise, not a claim to evaluate a real model.
 
 ## Module-to-lab roadmap
