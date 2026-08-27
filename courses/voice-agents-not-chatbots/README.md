@@ -25,3 +25,7 @@ Python 3.14.6 standard library only. No microphone, phone number, network, or cr
 ## Run, verify, reset
 
 Run `make run`, prove the guard with `make verify`, reset with `git restore .`.
+
+## Practice companion
+
+The [`turn-guard` guided practice](labs/01-turn-guard/PRACTICE.md) adds a transferred-state project, evidence, rubric, and non-audio accessibility path.

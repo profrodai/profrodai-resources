@@ -25,3 +25,7 @@ Python 3.14.6 standard library only; no API call, key, or billed inference.
 ## Run, verify, reset
 
 Run `make run`, verify with `make verify`, and reset with `git restore .`.
+
+## Practice companion
+
+The [`model-selection` guided practice](labs/01-model-selection/PRACTICE.md) adds constraints, a no-match project, evidence, rubric, and accessibility using invented fixtures only.

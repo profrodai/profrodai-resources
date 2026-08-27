@@ -1,8 +1,7 @@
-"""Positive and negative fixtures for the bounded curriculum manifest."""
+"""Adversarial coverage for the full companion-practice manifest."""
 
 from __future__ import annotations
 
-import copy
 import importlib.util
 import json
 from pathlib import Path
@@ -21,175 +20,133 @@ INDEX_PATH = ROOT / "catalog" / "profrod-site-source-index.json"
 
 
 class CurriculumManifestTests(unittest.TestCase):
-    def manifest(self) -> dict[str, object]:
+    def manifest(self) -> dict:
         return json.loads(MANIFEST_PATH.read_text())
 
-    def assert_invalid(self, fixture: dict[str, object], message: str) -> None:
-        with tempfile.TemporaryDirectory() as directory:
-            path = Path(directory) / "invalid-manifest.json"
-            path.write_text(json.dumps(fixture))
-            with self.assertRaisesRegex(ValueError, message):
-                VALIDATOR.validate(manifest_path=path)
-
-    def assert_invalid_index(self, fixture: dict[str, object], message: str) -> None:
-        with tempfile.TemporaryDirectory() as directory:
-            path = Path(directory) / "invalid-index.json"
-            path.write_text(json.dumps(fixture))
-            with self.assertRaisesRegex(ValueError, message):
-                VALIDATOR.validate(index_path=path)
-
-    def index(self) -> dict[str, object]:
+    def index(self) -> dict:
         return json.loads(INDEX_PATH.read_text())
 
-    def cursor_record(self, fixture: dict[str, object]) -> dict[str, object]:
-        return next(record for record in fixture["records"] if record["catalog_path"] == VALIDATOR.CURSOR_PATH)
+    def assert_invalid(self, fixture: dict, message: str, *, index: dict | None = None) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            manifest_path = Path(directory) / "manifest.json"
+            index_path = Path(directory) / "index.json"
+            manifest_path.write_text(json.dumps(fixture))
+            index_path.write_text(json.dumps(index if index is not None else self.index()))
+            with self.assertRaisesRegex(ValueError, message):
+                VALIDATOR.validate(index_path=index_path, manifest_path=manifest_path)
 
-    def test_positive_fixture_is_valid(self) -> None:
-        VALIDATOR.validate()
+    def test_full_24_resource_companion_contract_is_valid(self) -> None:
+        self.assertEqual(
+            {"course": 11, "article": 13, "complete": 24, "developed": 0, "reviewed": 0},
+            VALIDATOR.validate(),
+        )
 
-    def test_rejects_wrong_snapshot(self) -> None:
+    def test_rejects_wrong_schema_and_snapshot(self) -> None:
+        fixture = self.manifest()
+        fixture["schema_version"] = 1
+        self.assert_invalid(fixture, "schema_version")
         fixture = self.manifest()
         fixture["catalog_snapshot"] = "0" * 40
         self.assert_invalid(fixture, "catalog_snapshot")
 
-    def test_rejects_unknown_manifest_field(self) -> None:
-        fixture = self.manifest()
-        fixture["unapproved"] = True
-        self.assert_invalid(fixture, "only schema_version")
-
-    def test_rejects_wrong_schema_version(self) -> None:
-        fixture = self.manifest()
-        fixture["schema_version"] = 2
-        self.assert_invalid(fixture, "schema_version")
-
-    def test_rejects_missing_manifest_record(self) -> None:
+    def test_rejects_missing_duplicate_and_foreign_records(self) -> None:
         fixture = self.manifest()
         fixture["records"].pop()
         self.assert_invalid(fixture, "exactly 24")
-
-    def test_rejects_duplicate_catalog_path(self) -> None:
         fixture = self.manifest()
         fixture["records"][1]["catalog_path"] = fixture["records"][0]["catalog_path"]
-        self.assert_invalid(fixture, "duplicates catalog_path")
-
-    def test_rejects_foreign_manifest_record(self) -> None:
+        self.assert_invalid(fixture, "duplicates")
         fixture = self.manifest()
-        fixture["records"][-1]["catalog_path"] = "content/articles/not-in-the-source-index.md"
+        fixture["records"][-1]["catalog_path"] = "content/articles/foreign.md"
         self.assert_invalid(fixture, "absent from source index")
 
-    def test_rejects_kind_drift(self) -> None:
+    def test_rejects_record_shape_identity_and_maturity_drift(self) -> None:
+        fixture = self.manifest()
+        fixture["records"][0]["title"] = "forbidden duplicate identity"
+        self.assert_invalid(fixture, "exactly the companion-contract fields")
         fixture = self.manifest()
         fixture["records"][0]["kind"] = "article"
-        self.assert_invalid(fixture, "kind must match")
-
-    def test_rejects_source_index_root_shape_drift(self) -> None:
-        fixture = self.index()
-        fixture["unapproved"] = True
-        self.assert_invalid_index(fixture, "unexpected shape")
-
-    def test_rejects_source_index_entry_shape_drift(self) -> None:
-        fixture = self.index()
-        fixture["entries"][0]["unexpected"] = "field"
-        self.assert_invalid_index(fixture, "entry has an unexpected shape")
-
-    def test_rejects_source_index_path_set_drift(self) -> None:
-        fixture = self.index()
-        fixture["entries"][0]["path"] = "content/courses/different/_course.md"
-        self.assert_invalid_index(fixture, "absent from source index")
-
-    def test_rejects_title_duplication(self) -> None:
-        fixture = self.manifest()
-        fixture["records"][0]["title"] = "not allowed"
-        self.assert_invalid(fixture, "must not duplicate")
-
-    def test_rejects_maturity_drift(self) -> None:
+        self.assert_invalid(fixture, "kind does not match")
         fixture = self.manifest()
         fixture["records"][0]["maturity"] = "developed"
-        self.assert_invalid(fixture, "maturity must be scaffold")
+        self.assert_invalid(fixture, "maturity must remain scaffold")
 
-    def test_rejects_invalid_contract_status(self) -> None:
+    def test_rejects_incomplete_or_invalid_review_state(self) -> None:
         fixture = self.manifest()
-        fixture["records"][1]["contract_status"] = "developed"
-        self.assert_invalid(fixture, "contract_status")
+        fixture["records"][0]["contract_status"] = "planned"
+        self.assert_invalid(fixture, "must be complete")
+        fixture = self.manifest()
+        fixture["records"][0]["review_status"] = "self-reviewed"
+        self.assert_invalid(fixture, "invalid review_status")
 
-    def test_rejects_planned_content_fields(self) -> None:
+    def test_operator_review_state_is_allowed_but_not_inferred(self) -> None:
         fixture = self.manifest()
-        fixture["records"][1]["readme_contract"] = {}
-        self.assert_invalid(fixture, "planned record")
+        fixture["records"][0]["review_status"] = "operator-reviewed"
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "manifest.json"
+            path.write_text(json.dumps(fixture))
+            counts = VALIDATOR.validate(manifest_path=path)
+        self.assertEqual(1, counts["reviewed"])
 
-    def test_rejects_completed_set_losing_cursor(self) -> None:
+    def test_rejects_invalid_date_and_verification_command(self) -> None:
         fixture = self.manifest()
-        record = self.cursor_record(fixture)
-        record.clear()
-        record.update({
-            "catalog_path": VALIDATOR.CURSOR_PATH,
-            "kind": "course",
-            "maturity": "scaffold",
-            "contract_status": "planned",
-        })
-        self.assert_invalid(fixture, "completed record set")
+        fixture["records"][0]["last_verified"] = "tomorrow"
+        self.assert_invalid(fixture, "ISO date")
+        fixture = self.manifest()
+        fixture["records"][0]["verification"] = "echo pass"
+        self.assert_invalid(fixture, "course verification")
+        fixture = self.manifest()
+        fixture["records"][0]["verification"] += " && echo pass"
+        self.assert_invalid(fixture, "course verification")
+        fixture = self.manifest()
+        fixture["records"][-1]["verification"] = "echo pass"
+        self.assert_invalid(fixture, "article verification")
+        fixture = self.manifest()
+        fixture["records"][0]["last_verified"] = "2999-01-01"
+        self.assert_invalid(fixture, "must not be in the future")
 
-    def test_rejects_unknown_completed_cursor_field(self) -> None:
-        fixture = self.manifest()
-        self.cursor_record(fixture)["unapproved"] = True
-        self.assert_invalid(fixture, "completed Cursor record")
+    def test_rejects_missing_or_forged_guide_heading(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "PRACTICE.md"
+            path.write_text("Rubric in prose\n## Rubric detail\n```markdown\n## Rubric\n```\n")
+            with self.assertRaisesRegex(ValueError, "lacks required headings"):
+                VALIDATOR.require_headings(path, {"Rubric"})
 
-    def test_rejects_unapproved_complete_record(self) -> None:
-        fixture = self.manifest()
-        record = fixture["records"][1]
-        record["contract_status"] = "complete"
-        record["readme_contract"] = copy.deepcopy(fixture["records"][0]["readme_contract"])
-        record["lab_contracts"] = copy.deepcopy(fixture["records"][0]["lab_contracts"])
-        self.assert_invalid(fixture, "only the approved")
-
-    def test_rejects_lab_escape(self) -> None:
-        fixture = self.manifest()
-        lab = copy.deepcopy(self.cursor_record(fixture)["lab_contracts"][0])
+    def test_rejects_contained_path_symlink_escape(self) -> None:
         with tempfile.TemporaryDirectory() as directory, tempfile.TemporaryDirectory() as outside:
             temporary_root = Path(directory)
-            lab_path = temporary_root / VALIDATOR.ORDER_API_PATH
-            lab_path.parent.mkdir(parents=True)
-            lab_path.symlink_to(Path(outside), target_is_directory=True)
+            link = temporary_root / "courses" / "demo"
+            link.parent.mkdir(parents=True)
+            link.symlink_to(Path(outside), target_is_directory=True)
             original_root = VALIDATOR.ROOT
             try:
                 VALIDATOR.ROOT = temporary_root
-                with self.assertRaisesRegex(ValueError, "escapes the repository"):
-                    VALIDATOR.validate_lab_contract(lab)
+                with self.assertRaisesRegex(ValueError, "escapes"):
+                    VALIDATOR.repo_path("courses/demo", "exercise_path", directory=True)
             finally:
                 VALIDATOR.ROOT = original_root
 
-    def test_rejects_lab_parent_mismatch(self) -> None:
-        fixture = self.manifest()
-        self.cursor_record(fixture)["lab_contracts"][0]["parent_catalog_path"] = "content/courses/other/_course.md"
-        self.assert_invalid(fixture, "parent_catalog_path")
-
-    def test_rejects_missing_exact_lab_directory(self) -> None:
-        fixture = self.manifest()
-        lab = copy.deepcopy(self.cursor_record(fixture)["lab_contracts"][0])
+    def test_rejects_source_lesson_directory(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
+            temporary_root = Path(directory)
+            (temporary_root / "courses" / "demo" / "lessons").mkdir(parents=True)
+            (temporary_root / "articles").mkdir()
             original_root = VALIDATOR.ROOT
             try:
-                VALIDATOR.ROOT = Path(directory)
-                with self.assertRaisesRegex(ValueError, "existing directory"):
-                    VALIDATOR.validate_lab_contract(lab)
+                VALIDATOR.ROOT = temporary_root
+                with self.assertRaisesRegex(ValueError, "source lesson directory is forbidden"):
+                    VALIDATOR.reject_source_bodies()
             finally:
                 VALIDATOR.ROOT = original_root
 
-    def test_rejects_second_lab(self) -> None:
+    def test_rejects_source_index_shape_and_set_drift(self) -> None:
         fixture = self.manifest()
-        fixture["records"][0]["lab_contracts"].append(copy.deepcopy(fixture["records"][0]["lab_contracts"][0]))
-        self.assert_invalid(fixture, "exactly one nested lab")
-
-    def test_rejects_missing_or_forged_readme_heading(self) -> None:
-        with tempfile.TemporaryDirectory() as directory:
-            path = Path(directory) / "README.md"
-            path.write_text(
-                "Verification appears in prose.\n"
-                "## Verification details\n"
-                "```markdown\n## Verification\n```\n"
-            )
-            with self.assertRaisesRegex(ValueError, "lacks required headings: Verification"):
-                VALIDATOR.require_readme_headings(path, ("Verification",))
+        index = self.index()
+        index["unapproved"] = True
+        self.assert_invalid(fixture, "source index has an unexpected shape", index=index)
+        index = self.index()
+        index["entries"][0]["path"] = "content/courses/replaced/_course.md"
+        self.assert_invalid(fixture, "absent from source index", index=index)
 
 
 if __name__ == "__main__":

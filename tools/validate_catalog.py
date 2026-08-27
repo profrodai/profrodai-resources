@@ -185,7 +185,25 @@ def main() -> None:
         validate_source(article, pinned_titles, "article")
         readme = ROOT / "articles" / slug / "README.md"
         require_file(readme, f"article README for {slug}")
-        require_text(readme, ("status: mapped", "Argument-to-demonstration contract", "Provenance", "Run, verify, reset", "Next decision"), f"article README for {slug}")
+        require_text(
+            readme,
+            (
+                "Teaching maturity:",
+                "mapped",
+                "Companion contract:",
+                "complete",
+                "Practice objective",
+                "Prerequisites",
+                "Exercise",
+                "Run and verification",
+                "Completion evidence",
+                "Rubric",
+                "Accessibility",
+                "Safety and cost boundary",
+                "Provenance boundary",
+            ),
+            f"article README for {slug}",
+        )
         require_text(readme, (f"# {article['title']}",), f"article README title for {slug}")
     if args.course_makefiles:
         print("\n".join(course_paths))

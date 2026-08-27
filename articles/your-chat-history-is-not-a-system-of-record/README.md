@@ -1,21 +1,30 @@
-# Your Chat History Is Not a System of Record
+# Your Chat History Is Not a System of Record — practice companion
 
-**status: mapped**
+**Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
-## Argument-to-demonstration contract
+## Practice objective
+Replay an append-only event record and expose a missing sequence instead of guessing state from conversation.
 
-The article contrasts volatile chat with durable records. A companion needs an intentionally
-small synthetic transcript and an explicit durable-record schema.
+## Prerequisites
+Python 3 and familiarity with ordered events.
 
-## Provenance and boundary
+## Exercise
+Inspect `practice.json`. Add an owner event, replay state, then remove a sequence and predict the reported gap.
 
-Source: `profrod-site/content/articles/your-chat-history-is-not-a-system-of-record.md`. No real
-conversation or instruction file is copied here.
+## Run and verification
+Run `python3 tools/run_article_practice.py articles/your-chat-history-is-not-a-system-of-record/practice.json`.
 
-## Run, verify, reset
+## Completion evidence
+Final state derives from ordered events and any sequence gap makes `replayable` false.
 
-No local code is claimed in this phase.
+## Rubric
+Pass when every change has a durable ordered event. Revise if a missing event is filled from context or memory.
 
-## Next decision
+## Accessibility
+Replay the plain-text sequence manually in a written field/value table.
 
-Approve a fictional transcript and the record fields students should preserve.
+## Safety and cost boundary
+The events are fictional and contain no real chat, instructions, personal data, credentials, or external effects.
+
+## Provenance boundary
+Identity source: `profrod-site/content/articles/your-chat-history-is-not-a-system-of-record.md`. No article body or conversation is copied.

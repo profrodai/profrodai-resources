@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "exercise_type": "deduplicate-customers",
+  "cases": {
+    "positive": {"input": {"records": [{"id": "c1", "email": "a@example.test"}, {"id": "c2", "email": "b@example.test"}, {"id": "c3", "email": "c@example.test"}]}, "expected": {"input_count": 3, "unique_count": 3, "duplicate_ids": [], "accounted_count": 3}},
+    "failure": {"input": {"records": [{"id": "c1", "email": "a@example.test"}, {"id": "c2", "email": " A@example.test "}, {"id": "c3", "email": "c@example.test"}]}, "expected": {"input_count": 3, "unique_count": 2, "duplicate_ids": ["c2"], "accounted_count": 3}}
+  }
+}

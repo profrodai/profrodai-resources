@@ -25,3 +25,7 @@ Python 3.14.6 standard library only; offline and credential-free.
 ## Run, verify, reset
 
 Run `make run`, check it with `make verify`, and restore experimentation using `git restore .`.
+
+## Practice companion
+
+The [`minutes-baseline` guided practice](labs/01-minutes-baseline/PRACTICE.md) preserves regression evidence, adds invalid-input work, and supplies a text-only review path.

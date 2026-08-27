@@ -26,3 +26,7 @@ Python 3.14.6 standard library only; no network, credentials, or provider cost.
 
 Run `make run`, prove it with `make verify`, and reset edits with `git restore .`. The lab tests
 both a ready brief and a blocked brief.
+
+## Practice companion
+
+The [`brief-readiness` guided practice](labs/01-brief-readiness/PRACTICE.md) adds a bounded project, evidence, rubric, accessibility alternative, and safety boundary without copying course lessons.

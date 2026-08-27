@@ -1,10 +1,10 @@
-.PHONY: verify verify-pr install format-check lint test typecheck audit catalog catalog-structure curriculum curriculum-pr curriculum-contract ci-trust-check
+.PHONY: verify verify-pr install format-check lint test typecheck audit catalog catalog-structure curriculum curriculum-pr curriculum-contract curriculum-maintenance ci-trust-check
 
 ORDER_API_DIR := courses/agentic-coding-with-cursor/order-api
 
-verify: ci-trust-check format-check lint catalog curriculum curriculum-contract
+verify: ci-trust-check format-check lint catalog curriculum curriculum-contract curriculum-maintenance
 
-verify-pr: ci-trust-check format-check lint catalog-structure curriculum-pr curriculum-contract
+verify-pr: ci-trust-check format-check lint catalog-structure curriculum-pr curriculum-contract curriculum-maintenance
 
 install:
 	cd $(ORDER_API_DIR) && npm ci
@@ -53,6 +53,10 @@ curriculum-pr:
 curriculum-contract:
 	python3 tools/validate_curriculum_manifest.py
 	python3 -m unittest discover -s tests -p 'test_*.py'
+
+curriculum-maintenance:
+	python3 tools/validate_curriculum_maintenance.py
+	python3 tools/check_local_links.py
 
 ci-trust-check:
 	python3 tools/check_ci_trust.py

@@ -1,21 +1,30 @@
-# What Claude Code Actually Costs — and Which Dials Move It
+# What Claude Code Actually Costs — and Which Dials Move It — practice companion
 
-**status: mapped**
+**Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
-## Argument-to-demonstration contract
+## Practice objective
+Calculate scenario cost from explicit token volumes and fixture rates without presenting them as current pricing.
 
-The article concerns cost drivers. A runnable calculator needs approved, dated assumptions; it
-must not present fixture prices as current provider pricing.
+## Prerequisites
+Python 3 and understanding that one million tokens is the rate denominator.
 
-## Provenance and boundary
+## Exercise
+Inspect `practice.json`. Double output tokens, predict the total, and name the assumption that must be refreshed for a real provider.
 
-Source: `profrod-site/content/articles/what-claude-code-actually-costs.md`. No price feed,
-credential, or live provider request is included.
+## Run and verification
+Run `python3 tools/run_article_practice.py articles/what-claude-code-actually-costs/practice.json`.
 
-## Run, verify, reset
+## Completion evidence
+Input and output costs sum to the total and a zero-usage case remains zero.
 
-No local code is claimed in this phase.
+## Rubric
+Pass when rates, units, and arithmetic are explicit. Revise if fixture rates are described as current provider prices.
 
-## Next decision
+## Accessibility
+The exercise is plain-text arithmetic and requires no chart or timed interaction.
 
-Approve a dated fixture table, update policy, and disclosure wording for a calculator.
+## Safety and cost boundary
+Rates are synthetic examples, not live pricing or financial advice. No provider API, account, or spend is involved.
+
+## Provenance boundary
+Identity source: `profrod-site/content/articles/what-claude-code-actually-costs.md`. No article body or price feed is copied.

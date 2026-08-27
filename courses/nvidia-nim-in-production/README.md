@@ -25,3 +25,7 @@ Python 3.14.6 standard library only; no container, GPU, network, credential, or 
 ## Run, verify, reset
 
 Use `make run`, `make verify`, then `git restore .` to discard exploration.
+
+## Practice companion
+
+The [`retrieval-plan` guided practice](labs/01-retrieval-plan/PRACTICE.md) covers rounding, zero input, concurrency constraints, evidence, and review without making hardware claims.

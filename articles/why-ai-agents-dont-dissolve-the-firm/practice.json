@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "exercise_type": "transaction-cost",
+  "cases": {
+    "positive": {"input": {"firm_costs": {"coordination": 10, "control": 20}, "market_costs": {"search": 50, "contracting": 10}}, "expected": {"firm_total": 30, "market_total": 60, "recommendation": "firm"}},
+    "failure": {"input": {"firm_costs": {"coordination": 10, "control": 10}, "market_costs": {"search": 10, "contracting": 10}}, "expected": {"firm_total": 20, "market_total": 20, "recommendation": "equal"}}
+  }
+}

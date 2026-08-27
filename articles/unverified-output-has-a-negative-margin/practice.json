@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "exercise_type": "verification-margin",
+  "cases": {
+    "positive": {"input": {"revenue": 1000, "failure_probability": 0.1, "failure_cost": 500, "verification_cost": 20}, "expected": {"without_verification": 950.0, "with_verification": 980, "verification_improves_margin": true}},
+    "failure": {"input": {"revenue": 1000, "failure_probability": 0.01, "failure_cost": 100, "verification_cost": 20}, "expected": {"without_verification": 999.0, "with_verification": 980, "verification_improves_margin": false}}
+  }
+}

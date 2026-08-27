@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "exercise_type": "evidence-chain",
+  "cases": {
+    "positive": {"input": {"required": ["source", "check", "owner"], "observed": ["owner", "source", "check"]}, "expected": {"ready": true, "missing": []}},
+    "failure": {"input": {"required": ["source", "check", "owner"], "observed": ["owner", "source"]}, "expected": {"ready": false, "missing": ["check"]}}
+  }
+}

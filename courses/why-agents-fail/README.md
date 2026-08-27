@@ -25,3 +25,7 @@ Python 3.14.6 standard library only; no live model, credential, network, or spen
 ## Run, verify, reset
 
 Use `make run`, then `make verify`; discard local experiments with `git restore .`.
+
+## Practice companion
+
+The [`evidence-gate` guided practice](labs/01-evidence-gate/PRACTICE.md) exercises missing and duplicate evidence while keeping claims and sources synthetic.

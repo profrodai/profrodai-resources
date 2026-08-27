@@ -27,3 +27,7 @@ LangGraph version, provider, and credential decision.
 
 `make run` prints two routing outcomes; `make verify` runs unit tests. Reset local changes with
 `git restore .`.
+
+## Practice companion
+
+The [`confidence-routing` guided practice](labs/01-confidence-routing/PRACTICE.md) exercises threshold and invalid-input decisions without importing LangGraph or course prose.

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "exercise_type": "failure-boundary",
+  "cases": {
+    "positive": {"input": {"allowed_root": "workspace", "target": "workspace/output.txt", "overwrite": false}, "expected": {"allowed": true, "reason": "allowed"}},
+    "failure": {"input": {"allowed_root": "workspace", "target": "../secrets.txt", "overwrite": false}, "expected": {"allowed": false, "reason": "outside-root"}}
+  }
+}

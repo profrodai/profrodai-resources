@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "areas": [
+    {"id": "catalog-provenance", "owner": "operator", "cadence_days": 31, "last_reviewed": "2026-08-27", "next_due": "2026-09-27"},
+    {"id": "locked-dependencies", "owner": "maintainer", "cadence_days": 7, "last_reviewed": "2026-08-27", "next_due": "2026-09-03"},
+    {"id": "companion-accuracy", "owner": "operator", "cadence_days": 92, "last_reviewed": "2026-08-27", "next_due": "2026-11-27"},
+    {"id": "readme-links", "owner": "maintainer", "cadence_days": 92, "last_reviewed": "2026-08-27", "next_due": "2026-11-27"},
+    {"id": "safety-cost-accessibility", "owner": "operator", "cadence_days": 92, "last_reviewed": "2026-08-27", "next_due": "2026-11-27"}
+  ]
+}

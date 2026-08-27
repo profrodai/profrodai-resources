@@ -1,20 +1,30 @@
-# The Content Kit: Every Block, and When to Use It
+# The Content Kit: Every Block, and When to Use It — practice companion
 
-**status: mapped**
+**Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
-## Argument-to-demonstration contract
+## Practice objective
+Choose a content structure from communicative intent rather than decoration.
 
-The article describes content-building blocks. Its useful companion is a schema validator only
-after the public block grammar is chosen and separated from internal authoring machinery.
+## Prerequisites
+Python 3 and familiarity with comparisons, sequences, decisions, and warnings.
 
-## Provenance and boundary
+## Exercise
+Inspect `practice.json`. Add a `sequence` case and explain why an unknown decorative intent falls back to a paragraph.
 
-Source: `profrod-site/content/articles/the-content-kit.md`. No site source is copied here.
+## Run and verification
+Run `python3 tools/run_article_practice.py articles/the-content-kit/practice.json`.
 
-## Run, verify, reset
+## Completion evidence
+Known intent maps deterministically; unknown intent is surfaced with `known_intent: false`.
 
-No local code is claimed in this phase.
+## Rubric
+Pass when the selected block aids the relationship being communicated. Revise if style alone determines structure.
 
-## Next decision
+## Accessibility
+All choices are text labels and can be completed as a written mapping table.
 
-Decide whether a public, stable block schema exists to validate.
+## Safety and cost boundary
+The grammar is a synthetic public exercise, not internal site machinery. It is offline and credential-free.
+
+## Provenance boundary
+Identity source: `profrod-site/content/articles/the-content-kit.md`. No article body or site block implementation is copied.

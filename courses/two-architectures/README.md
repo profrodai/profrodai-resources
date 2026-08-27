@@ -25,3 +25,7 @@ Python 3.14.6 standard library only; offline and credential-free.
 ## Run, verify, reset
 
 `make run` prints the two input cases; `make verify` runs their tests; `git restore .` resets.
+
+## Practice companion
+
+The [`boundary-classifier` guided practice](labs/01-boundary-classifier/PRACTICE.md) turns the 2x2 into a text table and makes high-side-effect review a hard gate.

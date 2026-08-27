@@ -25,3 +25,7 @@ Python 3.14.6 standard library only; no Claude Code, credential, or provider spe
 ## Run, verify, reset
 
 Run `make run`, test via `make verify`, and reset changes with `git restore .`.
+
+## Practice companion
+
+The [`baseline-delta` guided practice](labs/01-baseline-delta/PRACTICE.md) preserves improvements and regressions, with explicit evidence, rubric, accessibility, and privacy limits.

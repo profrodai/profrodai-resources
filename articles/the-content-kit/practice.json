@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "exercise_type": "content-block",
+  "cases": {
+    "positive": {"input": {"intent": "compare"}, "expected": {"block": "comparison-table", "known_intent": true}},
+    "failure": {"input": {"intent": "decorate"}, "expected": {"block": "paragraph", "known_intent": false}}
+  }
+}

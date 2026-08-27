@@ -1,21 +1,30 @@
-# Clean a Messy Customer List With Claude Code — and Prove Nothing Was Lost
+# Clean a Messy Customer List With Claude Code — and Prove Nothing Was Lost — practice companion
 
-**status: mapped**
+**Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
-## Argument-to-demonstration contract
+## Practice objective
+Deduplicate a synthetic customer list while proving every input row is accounted for.
 
-The article requires a before/after data proof. A runnable companion needs a synthetic,
-licence-cleared customer dataset and preservation invariants.
+## Prerequisites
+Python 3 and basic JSON. No customer system or model access is needed.
 
-## Provenance and boundary
+## Exercise
+Inspect `practice.json`. Explain why whitespace and case make `c2` a duplicate, then add a distinct record and update the accounting invariant.
 
-Source: `profrod-site/content/articles/clean-a-messy-customer-list-with-claude-code.md`. No
-customer data, prompts, or live Claude Code action is included.
+## Run and verification
+Run `python3 tools/run_article_practice.py articles/clean-a-messy-customer-list-with-claude-code/practice.json`.
 
-## Run, verify, reset
+## Completion evidence
+`unique_count + duplicate_ids count == input_count`, with duplicate IDs preserved for review.
 
-No local code is claimed in this phase.
+## Rubric
+Pass when normalization is explicit and no row disappears. Revise if output cannot account for every input row.
 
-## Next decision
+## Accessibility
+Reason through the three-row fixture in prose or a text table; no color is required.
 
-Approve a synthetic fixture and the invariants that define "nothing was lost".
+## Safety and cost boundary
+All names and `.test` addresses are synthetic. Never substitute live customer data. The baseline is offline.
+
+## Provenance boundary
+Identity source: `profrod-site/content/articles/clean-a-messy-customer-list-with-claude-code.md`. No article body, prompt, or customer record is copied.

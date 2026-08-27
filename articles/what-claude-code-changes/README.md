@@ -1,20 +1,30 @@
-# What Claude Code Actually Changes — and What It Doesn't
+# What Claude Code Actually Changes — and What It Doesn't — practice companion
 
-**status: mapped**
+**Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
-## Argument-to-demonstration contract
+## Practice objective
+Classify a proposed change by files and side effects before accepting generated work.
 
-The article distinguishes changed from unchanged work. A demonstration needs an agreed synthetic
-workflow and measurable before/after criteria.
+## Prerequisites
+Python 3 and familiarity with a code-review diff.
 
-## Provenance and boundary
+## Exercise
+Inspect `practice.json`. Add a dependency action to a multi-file change and predict its risk and review requirement.
 
-Source: `profrod-site/content/articles/what-claude-code-changes.md`.
+## Run and verification
+Run `python3 tools/run_article_practice.py articles/what-claude-code-changes/practice.json`.
 
-## Run, verify, reset
+## Completion evidence
+Low-risk documentation work and high-risk destructive work receive visibly different review decisions.
 
-No local code is claimed in this phase.
+## Rubric
+Pass when risk follows observable actions. Revise if deletion, permissions, dependencies, migrations, or external writes can be low risk.
 
-## Next decision
+## Accessibility
+Inputs and outputs are text lists and may be classified in prose.
 
-Choose a synthetic workflow whose changed and unchanged parts can be tested without a provider.
+## Safety and cost boundary
+The fixture describes changes but performs none. No repository mutation, provider call, credential, or personal data is involved.
+
+## Provenance boundary
+Identity source: `profrod-site/content/articles/what-claude-code-changes.md`. No article body or real diff is copied.

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "exercise_type": "role-routing",
+  "cases": {
+    "positive": {"input": {"decision_type": "implementation"}, "expected": {"route": "stream", "known_type": true}},
+    "failure": {"input": {"decision_type": "undefined"}, "expected": {"route": "operator", "known_type": false}}
+  }
+}
