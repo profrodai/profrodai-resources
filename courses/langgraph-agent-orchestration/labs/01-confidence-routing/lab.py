@@ -24,10 +24,17 @@ def assess_cases(data: dict[str, object]) -> list[dict[str, object]]:
     if not isinstance(cases, list) or not cases:
         raise ValueError("routing fixture must contain a non-empty cases list")
     result: list[dict[str, object]] = []
+    case_ids: set[str] = set()
     for case in cases:
         if not isinstance(case, dict) or set(case) != {"id", "confidence"} or not isinstance(case["id"], str):
             raise ValueError("each routing case must contain only id and confidence")
-        result.append({"id": case["id"], **route(case["confidence"])})
+        case_id = case["id"].strip()
+        if not case_id:
+            raise ValueError("routing case id must be a non-empty string")
+        if case_id in case_ids:
+            raise ValueError("routing case ids must be unique after trimming whitespace")
+        case_ids.add(case_id)
+        result.append({"id": case_id, **route(case["confidence"])})
     return result
 
 

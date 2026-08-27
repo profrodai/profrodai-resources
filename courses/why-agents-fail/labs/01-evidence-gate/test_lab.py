@@ -17,6 +17,15 @@ class EvidenceGateTest(unittest.TestCase):
     def test_rejects_an_empty_requirement_list_before_it_can_pass(self):
         with self.assertRaisesRegex(ValueError, "required evidence IDs must be a non-empty set"):
             assess_claim({"claim_id": "x", "required": [], "supplied": []})
+    def test_rejects_whitespace_only_evidence_ids_before_they_can_pass(self):
+        with self.assertRaisesRegex(ValueError, "non-empty"):
+            assess_claim({"claim_id": "x", "required": ["  "], "supplied": ["   "]})
+    def test_trims_evidence_ids_and_rejects_visual_duplicates(self):
+        self.assertEqual(verify({" approval-v1 "}, {"approval-v1"})["verdict"], "pass")
+        with self.assertRaisesRegex(ValueError, "unique after trimming"):
+            verify({"approval-v1", " approval-v1 "}, {"approval-v1"})
+        with self.assertRaisesRegex(ValueError, "unique after trimming"):
+            assess_claim({"claim_id": "x", "required": ["approval-v1", " approval-v1 "], "supplied": ["approval-v1"]})
     def test_baseline_fixture_has_a_fixed_failure_trace(self):
         path = FIXTURES / "baseline.json"
         self.assertEqual("74955198e201574c80d4d3262d8c6cf167a9ac6b644552fa072c64d8a5eb79c9", hashlib.sha256(path.read_bytes()).hexdigest())

@@ -6,17 +6,23 @@ import json
 from pathlib import Path
 
 
+def canonicalize_evidence_ids(name: str, evidence_ids: set[str], *, allow_empty: bool) -> set[str]:
+    """Return trimmed evidence IDs while rejecting blank or visually duplicate IDs."""
+    if not isinstance(evidence_ids, set) or (not allow_empty and not evidence_ids):
+        raise ValueError(f"{name} evidence IDs must be a {'non-empty ' if not allow_empty else ''}set of non-empty strings")
+    if any(not isinstance(evidence_id, str) or not evidence_id.strip() for evidence_id in evidence_ids):
+        raise ValueError(f"{name} evidence IDs must be a {'non-empty ' if not allow_empty else ''}set of non-empty strings")
+    canonical_ids = {evidence_id.strip() for evidence_id in evidence_ids}
+    if len(canonical_ids) != len(evidence_ids):
+        raise ValueError(f"{name} evidence IDs must be unique after trimming whitespace")
+    return canonical_ids
+
+
 def verify(required: set[str], supplied: set[str]) -> dict[str, object]:
     """Return a deterministic verdict without treating duplicates as new evidence."""
-    for name, evidence_ids, allow_empty in (
-        ("required", required, False),
-        ("supplied", supplied, True),
-    ):
-        if not isinstance(evidence_ids, set) or (not allow_empty and not evidence_ids):
-            raise ValueError(f"{name} evidence IDs must be a {'non-empty ' if not allow_empty else ''}set of non-empty strings")
-        if any(not isinstance(evidence_id, str) or not evidence_id for evidence_id in evidence_ids):
-            raise ValueError(f"{name} evidence IDs must be a {'non-empty ' if not allow_empty else ''}set of non-empty strings")
-    missing = sorted(required - supplied)
+    canonical_required = canonicalize_evidence_ids("required", required, allow_empty=False)
+    canonical_supplied = canonicalize_evidence_ids("supplied", supplied, allow_empty=True)
+    missing = sorted(canonical_required - canonical_supplied)
     return {"verdict": "pass" if not missing else "fail", "missing": missing}
 
 
@@ -27,12 +33,16 @@ def assess_claim(claim: dict[str, object]) -> dict[str, object]:
     supplied = claim.get("supplied")
     if not isinstance(claim_id, str) or not claim_id:
         raise ValueError("claim_id must be a non-empty string")
-    if not all(isinstance(value, list) and all(isinstance(item, str) and item for item in value) for value in (required, supplied)):
+    if not all(isinstance(value, list) and all(isinstance(item, str) and item.strip() for item in value) for value in (required, supplied)):
         raise ValueError("required and supplied must be lists of non-empty evidence IDs")
-    result = verify(set(required), set(supplied))
+    canonical_required = {item.strip() for item in required}
+    canonical_supplied = {item.strip() for item in supplied}
+    if len(canonical_required) != len(required) or len(canonical_supplied) != len(supplied):
+        raise ValueError("required and supplied evidence IDs must be unique after trimming whitespace")
+    result = verify(canonical_required, canonical_supplied)
     return {
         "claim_id": claim_id,
-        "evidence_supplied": len(set(supplied)),
+        "evidence_supplied": len(canonical_supplied),
         "missing": result["missing"],
         "verdict": result["verdict"],
     }

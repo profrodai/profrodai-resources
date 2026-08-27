@@ -26,3 +26,8 @@ class ConfidenceRoutingTest(unittest.TestCase):
     def test_bad_fixture_shape_is_denied(self):
         with self.assertRaisesRegex(ValueError, "only id and confidence"):
             assess_cases({"cases": [{"id": "bad", "confidence": 0.9, "route": "tool"}]})
+    def test_blank_and_visually_duplicate_case_ids_are_denied(self):
+        with self.assertRaisesRegex(ValueError, "non-empty"):
+            assess_cases({"cases": [{"id": " ", "confidence": 0.9}]})
+        with self.assertRaisesRegex(ValueError, "unique after trimming"):
+            assess_cases({"cases": [{"id": "case", "confidence": 0.9}, {"id": " case ", "confidence": 0.8}]})
