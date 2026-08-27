@@ -1,15 +1,42 @@
-# profrodai-resources
+<p align="center">
+  <a href="https://profrod.ai">
+    <img src="https://www.profrod.ai/og-image.webp" width="900" alt="Prof Rod teaching real-world AI automation with illustrated companions">
+  </a>
+</p>
 
-Small, runnable exercises that help you practise ideas taught at
-[profrod.ai](https://profrod.ai).
+<h1 align="center">Practice AI Engineering. Prove What Works.</h1>
 
-You do not need an API key, a paid account, private data, or access to a live AI
-service. The beginner exercises run locally with invented data, so it is safe to
-experiment and make mistakes.
+<p align="center">
+  <strong>24 small, runnable companions for the courses and articles at <a href="https://profrod.ai">profrod.ai</a>.</strong><br>
+  Learn with real files, visible failures, and tests you can run on your own computer.
+</p>
 
-> This repository contains practice material, not the courses or articles
-> themselves. Read the teaching material on profrod.ai, then use these exercises
-> to learn by changing real files and running real checks.
+<p align="center">
+  <a href="https://github.com/profrodai/profrodai-resources/actions/workflows/verify.yml"><img src="https://github.com/profrodai/profrodai-resources/actions/workflows/verify.yml/badge.svg" alt="Repository checks"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2f855a" alt="MIT License"></a>
+  <img src="https://img.shields.io/badge/beginner_path-Python_3.10%2B-3776ab" alt="Beginner path uses Python 3.10 or newer">
+</p>
+
+<p align="center">
+  <a href="#start-here-your-first-exercise-in-five-minutes"><strong>Run your first exercise</strong></a>
+  · <a href="#what-should-i-practise-next">Choose a practice</a>
+  · <a href="#common-problems">Fix a problem</a>
+  · <a href="#for-contributors-and-maintainers">Contribute</a>
+</p>
+
+---
+
+**The learning loop:** read the teaching material → predict what should happen →
+change the bytes → run the check → explain the evidence.
+
+The Python beginner path makes no network calls after you clone the repository.
+Every baseline uses invented data, and no exercise requires an API key, paid
+call, or live AI service. The optional Node.js exercise downloads its locked
+packages before it runs.
+
+> **Companion boundary:** this repository contains practice material, not the
+> courses or articles themselves. It never copies or republishes the teaching
+> material from profrod.ai.
 
 ## Start here: your first exercise in five minutes
 
@@ -32,16 +59,20 @@ the Cursor `order-api` exercise.
 Copy and paste these commands into your terminal one line at a time:
 
 ```bash
-git clone https://github.com/profrodai/profrodai-resources.git
+git clone --depth 1 https://github.com/profrodai/profrodai-resources.git
 cd profrodai-resources
 ```
 
 You should now be inside a folder named `profrodai-resources`.
 
+Prefer buttons to Git commands? [Download the repository as a ZIP file](https://github.com/profrodai/profrodai-resources/archive/refs/heads/main.zip),
+unzip it, and open your terminal in the new folder.
+
 ### 2. Run a ready-made example
 
 ```bash
-python3 tools/run_article_practice.py articles/build-a-working-agent-with-sovereign-agent/practice.json
+python3 tools/run_article_practice.py \
+  articles/build-a-working-agent-with-sovereign-agent/practice.json
 ```
 
 You should see this result:
@@ -68,6 +99,11 @@ That output proves two things:
 
 If you see that output, congratulations: you have run your first verified
 practice exercise.
+
+**What just happened?** You did not ask an AI to tell you it succeeded. You ran
+a deterministic check that proved one example complete and denied another
+example because evidence was missing. That difference is the central habit
+these companions teach.
 
 ### 3. Make a small change
 
@@ -272,10 +308,23 @@ Never paste real customer data, credentials, API keys, or private company
 records into an exercise. If you later connect an exercise to a live service,
 that is a separate project with its own cost, privacy, and permission review.
 
+## Questions and feedback
+
+If an instruction is unclear or an example behaves differently on your
+computer, [open an issue](https://github.com/profrodai/profrodai-resources/issues).
+Include the exercise path, the command you ran, and the error text. Remove all
+credentials, private data, and identifying customer information before posting.
+
 ## For contributors and maintainers
 
-Beginners can stop here. The rest explains how the repository proves that its
-practice map remains honest.
+The learner path above is intentionally simple. The repository-wide provenance,
+maintenance, and contribution machinery is available below without interrupting
+that path.
+
+<details>
+<summary><strong>Open maintainer verification and catalog details</strong></summary>
+
+<br>
 
 ### Public pull-request gate
 
@@ -339,6 +388,8 @@ Detailed contract rules live in the
 The Transformation Tracker course also has a separate public companion at
 [`profrodai/transformation-tracker-course`](https://github.com/profrodai/transformation-tracker-course);
 the small local lab here does not replace it.
+
+</details>
 
 ## License
 
