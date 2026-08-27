@@ -8,6 +8,14 @@ from pathlib import Path
 
 def verify(required: set[str], supplied: set[str]) -> dict[str, object]:
     """Return a deterministic verdict without treating duplicates as new evidence."""
+    for name, evidence_ids, allow_empty in (
+        ("required", required, False),
+        ("supplied", supplied, True),
+    ):
+        if not isinstance(evidence_ids, set) or (not allow_empty and not evidence_ids):
+            raise ValueError(f"{name} evidence IDs must be a {'non-empty ' if not allow_empty else ''}set of non-empty strings")
+        if any(not isinstance(evidence_id, str) or not evidence_id for evidence_id in evidence_ids):
+            raise ValueError(f"{name} evidence IDs must be a {'non-empty ' if not allow_empty else ''}set of non-empty strings")
     missing = sorted(required - supplied)
     return {"verdict": "pass" if not missing else "fail", "missing": missing}
 
@@ -44,4 +52,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Check a synthetic claim against named evidence IDs.")
     parser.add_argument("fixture", nargs="?", type=Path, default=Path("fixtures/baseline.json"))
     args = parser.parse_args()
-    print(json.dumps(assess_claim(load_claim(args.fixture)), indent=2, sort_keys=True))
+    try:
+        result = assess_claim(load_claim(args.fixture))
+    except ValueError as error:
+        parser.error(str(error))
+    print(json.dumps(result, indent=2, sort_keys=True))

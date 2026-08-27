@@ -11,6 +11,12 @@ FIXTURES = Path(__file__).parent / "fixtures"
 class EvidenceGateTest(unittest.TestCase):
     def test_passes_complete_evidence_set(self): self.assertEqual(verify({"a"}, {"a"})["verdict"], "pass")
     def test_names_missing_source(self): self.assertEqual(verify({"a","b"}, {"a"}), {"verdict":"fail","missing":["b"]})
+    def test_rejects_an_empty_evidence_requirement(self):
+        with self.assertRaisesRegex(ValueError, "required evidence IDs must be a non-empty set"):
+            verify(set(), {"receipt-v1"})
+    def test_rejects_an_empty_requirement_list_before_it_can_pass(self):
+        with self.assertRaisesRegex(ValueError, "required evidence IDs must be a non-empty set"):
+            assess_claim({"claim_id": "x", "required": [], "supplied": []})
     def test_baseline_fixture_has_a_fixed_failure_trace(self):
         path = FIXTURES / "baseline.json"
         self.assertEqual("74955198e201574c80d4d3262d8c6cf167a9ac6b644552fa072c64d8a5eb79c9", hashlib.sha256(path.read_bytes()).hexdigest())

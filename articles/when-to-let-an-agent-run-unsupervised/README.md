@@ -37,6 +37,8 @@ fixture to claim a passing result.
 
 ## Completion evidence
 Readiness is true only when every hard condition is true; missing controls and the decision are named.
+Each proposal also needs a unique, non-empty ID and a finite readiness score from 0 through 100 inclusive.
+Malformed proposals stop the assessment with an error; they never become `ready`.
 
 ## Rubric
 Pass when absence of any hard gate blocks autonomy, including a proposal with a high readiness score. Revise

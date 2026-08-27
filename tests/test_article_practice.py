@@ -5,7 +5,10 @@ from __future__ import annotations
 import importlib.util
 import json
 import hashlib
+import math
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -115,6 +118,49 @@ class ArticlePracticeTests(unittest.TestCase):
         proposals["proposals"][0]["controls"] = ["bounded_scope"]
         with self.assertRaisesRegex(ValueError, "controls must be a JSON object"):
             PRACTICE.assess_autonomy_proposals(proposals)
+
+    def test_autonomy_proposals_reject_empty_and_duplicate_ids(self) -> None:
+        source = ROOT / "articles" / "when-to-let-an-agent-run-unsupervised" / "proposals.json"
+        for mutation, expected_error in (("empty", "non-empty"), ("duplicate", "unique")):
+            with self.subTest(mutation=mutation):
+                proposals = json.loads(source.read_text())
+                proposals["proposals"][0]["id"] = "" if mutation == "empty" else proposals["proposals"][1]["id"]
+                with self.assertRaisesRegex(ValueError, expected_error):
+                    PRACTICE.assess_autonomy_proposals(proposals)
+
+    def test_autonomy_proposals_reject_non_finite_and_out_of_range_scores(self) -> None:
+        source = ROOT / "articles" / "when-to-let-an-agent-run-unsupervised" / "proposals.json"
+        for score in (math.nan, math.inf, -math.inf, -0.1, 100.1):
+            with self.subTest(score=score):
+                proposals = json.loads(source.read_text())
+                proposals["proposals"][0]["readiness_score"] = score
+                with self.assertRaisesRegex(ValueError, "readiness_score"):
+                    PRACTICE.assess_autonomy_proposals(proposals)
+
+    def test_autonomy_proposals_accept_score_range_endpoints(self) -> None:
+        source = ROOT / "articles" / "when-to-let-an-agent-run-unsupervised" / "proposals.json"
+        proposals = json.loads(source.read_text())
+        proposals["proposals"][0]["readiness_score"] = 0
+        proposals["proposals"][1]["readiness_score"] = 100
+        results = PRACTICE.assess_autonomy_proposals(proposals)
+        self.assertEqual([0, 100], [results[0]["readiness_score"], results[1]["readiness_score"]])
+
+    def test_autonomy_cli_reports_a_friendly_validation_error(self) -> None:
+        source = ROOT / "articles" / "when-to-let-an-agent-run-unsupervised" / "proposals.json"
+        proposals = json.loads(source.read_text())
+        proposals["proposals"][0]["id"] = ""
+        with tempfile.TemporaryDirectory() as directory:
+            invalid = Path(directory) / "invalid-proposals.json"
+            invalid.write_text(json.dumps(proposals))
+            result = subprocess.run(
+                [sys.executable, str(ROOT / "tools" / "run_autonomy_assessment.py"), str(invalid)],
+                capture_output=True,
+                check=False,
+                text=True,
+            )
+        self.assertEqual(1, result.returncode)
+        self.assertEqual("", result.stdout)
+        self.assertIn("autonomy assessment failed: proposal id must be a non-empty string", result.stderr)
 
 
 if __name__ == "__main__":
