@@ -97,19 +97,20 @@ Every course practice has a `PRACTICE.md` file with an objective, guided task,
 project, evidence checklist, rubric, accessibility option, safety boundary, and
 verification command.
 
-| If you want to practise… | Open this guide | Runtime |
-|---|---|---|
-| Changing and testing a small order API | [Agentic Coding with Cursor](courses/agentic-coding-with-cursor/order-api/PRACTICE.md) | Node.js |
-| Checking whether a business brief has enough evidence | [Claude Code for Business](courses/claude-code-for-business/labs/01-brief-readiness/PRACTICE.md) | Python |
-| Routing uncertain work to human review | [LangGraph Agent Orchestration](courses/langgraph-agent-orchestration/labs/01-confidence-routing/PRACTICE.md) | Python |
-| Choosing an eligible model without hiding cost or latency | [Nebius Token Factory in Production](courses/nebius-token-factory-in-production/labs/01-model-selection/PRACTICE.md) | Python |
-| Turning retrieval inputs into a bounded deployment plan | [NVIDIA NIM in Production](courses/nvidia-nim-in-production/labs/01-retrieval-plan/PRACTICE.md) | Python |
-| Storing evidence without accepting duplicates | [Tools, Memory, and Multi-Agent Systems](courses/tools-memory-and-multi-agent-systems/labs/01-evidence-store/PRACTICE.md) | Python |
-| Measuring a before-and-after time saving honestly | [Transformation Tracker with Claude Code](courses/transformation-tracker-with-claude-code/labs/01-baseline-delta/PRACTICE.md) | Python |
-| Separating deterministic code from uncertain agent work | [Two Architectures](courses/two-architectures/labs/01-boundary-classifier/PRACTICE.md) | Python |
-| Preventing a voice agent from speaking after a call ends | [Voice Agents, Not Chatbots](courses/voice-agents-not-chatbots/labs/01-turn-guard/PRACTICE.md) | Python |
-| Rejecting an answer that lacks required evidence | [Why Agents Fail](courses/why-agents-fail/labs/01-evidence-gate/PRACTICE.md) | Python |
-| Measuring operator minutes saved without hiding regressions | [ZEO ITAM Autumn 2026](courses/zeo-itam-autumn-2026/labs/01-minutes-baseline/PRACTICE.md) | Python |
+Choose the description that sounds most useful. Each link opens the matching
+practice guide; its final word tells you which runtime you need.
+
+- **Change and test a small order API** — [Agentic Coding with Cursor](courses/agentic-coding-with-cursor/order-api/PRACTICE.md) *(Node.js)*
+- **Check whether a business brief has enough evidence** — [Claude Code for Business](courses/claude-code-for-business/labs/01-brief-readiness/PRACTICE.md) *(Python)*
+- **Route uncertain work to human review** — [LangGraph Agent Orchestration](courses/langgraph-agent-orchestration/labs/01-confidence-routing/PRACTICE.md) *(Python)*
+- **Choose an eligible model without hiding cost or latency** — [Nebius Token Factory in Production](courses/nebius-token-factory-in-production/labs/01-model-selection/PRACTICE.md) *(Python)*
+- **Turn retrieval inputs into a bounded deployment plan** — [NVIDIA NIM in Production](courses/nvidia-nim-in-production/labs/01-retrieval-plan/PRACTICE.md) *(Python)*
+- **Store evidence without accepting duplicates** — [Tools, Memory, and Multi-Agent Systems](courses/tools-memory-and-multi-agent-systems/labs/01-evidence-store/PRACTICE.md) *(Python)*
+- **Measure a before-and-after time saving honestly** — [Transformation Tracker with Claude Code](courses/transformation-tracker-with-claude-code/labs/01-baseline-delta/PRACTICE.md) *(Python)*
+- **Separate deterministic code from uncertain agent work** — [Two Architectures](courses/two-architectures/labs/01-boundary-classifier/PRACTICE.md) *(Python)*
+- **Prevent a voice agent from speaking after a call ends** — [Voice Agents, Not Chatbots](courses/voice-agents-not-chatbots/labs/01-turn-guard/PRACTICE.md) *(Python)*
+- **Reject an answer that lacks required evidence** — [Why Agents Fail](courses/why-agents-fail/labs/01-evidence-gate/PRACTICE.md) *(Python)*
+- **Measure operator minutes saved without hiding regressions** — [ZEO ITAM Autumn 2026](courses/zeo-itam-autumn-2026/labs/01-minutes-baseline/PRACTICE.md) *(Python)*
 
 The **Why Agents Fail** exercise is a good first course practice. Run it from
 the repository root:
@@ -130,21 +131,22 @@ Each article folder contains:
 - `practice.json` — one successful case and one failure case; and
 - an exact command that checks both cases.
 
-| If you want to practise… | Open this exercise |
-|---|---|
-| Proving an agent result has evidence and an owner | [Build a Working Agent with sovereign-agent](articles/build-a-working-agent-with-sovereign-agent/README.md) |
-| Denying unsafe file targets and overwrites | [Build Your First ZeoCore Tool](articles/build-your-first-zeocore-tool/README.md) |
-| Comparing requested permissions with granted permissions | [Claude Code Permissions Are Your Org Chart](articles/claude-code-permissions-are-your-org-chart/README.md) |
-| Deduplicating customer data without losing records silently | [Clean a Messy Customer List](articles/clean-a-messy-customer-list-with-claude-code/README.md) |
-| Checking whether every task handoff has an owner and evidence | [Govern a Multi-Agent Project](articles/govern-a-multi-agent-project-with-zero-employee/README.md) |
-| Choosing a content block for a communication goal | [The Content Kit](articles/the-content-kit/README.md) |
-| Comparing verification cost with expected failure loss | [Unverified Output Has a Negative Margin](articles/unverified-output-has-a-negative-margin/README.md) |
-| Calculating a synthetic token-usage cost | [What Claude Code Actually Costs](articles/what-claude-code-actually-costs/README.md) |
-| Deciding whether a proposed change needs review | [What Claude Code Actually Changes](articles/what-claude-code-changes/README.md) |
-| Routing decisions to operator, Master, stream, or Sparring | [What Is a Zero-Employee Organization?](articles/what-is-a-zero-employee-organization/README.md) |
-| Checking whether a task is safe to run unsupervised | [When Can You Actually Walk Away?](articles/when-to-let-an-agent-run-unsupervised/README.md) |
-| Comparing the transaction cost of a firm and a market | [Why AI Agents Don't Dissolve the Firm](articles/why-ai-agents-dont-dissolve-the-firm/README.md) |
-| Rebuilding state from an ordered event record | [Your Chat History Is Not a System of Record](articles/your-chat-history-is-not-a-system-of-record/README.md) |
+Choose one idea to explore. Every link opens a short, offline JSON exercise;
+you only need Python to run it.
+
+- **Prove an agent result has evidence and an owner** — [Build a Working Agent with sovereign-agent](articles/build-a-working-agent-with-sovereign-agent/README.md)
+- **Deny unsafe file targets and overwrites** — [Build Your First ZeoCore Tool](articles/build-your-first-zeocore-tool/README.md)
+- **Compare requested permissions with granted permissions** — [Claude Code Permissions Are Your Org Chart](articles/claude-code-permissions-are-your-org-chart/README.md)
+- **Deduplicate customer data without silently losing records** — [Clean a Messy Customer List](articles/clean-a-messy-customer-list-with-claude-code/README.md)
+- **Check whether every task handoff has an owner and evidence** — [Govern a Multi-Agent Project](articles/govern-a-multi-agent-project-with-zero-employee/README.md)
+- **Choose a content block for a communication goal** — [The Content Kit](articles/the-content-kit/README.md)
+- **Compare verification cost with expected failure loss** — [Unverified Output Has a Negative Margin](articles/unverified-output-has-a-negative-margin/README.md)
+- **Calculate a synthetic token-usage cost** — [What Claude Code Actually Costs](articles/what-claude-code-actually-costs/README.md)
+- **Decide whether a proposed change needs review** — [What Claude Code Actually Changes](articles/what-claude-code-changes/README.md)
+- **Route decisions to operator, Master, stream, or Sparring** — [What Is a Zero-Employee Organization?](articles/what-is-a-zero-employee-organization/README.md)
+- **Check whether a task is safe to run unsupervised** — [When Can You Actually Walk Away?](articles/when-to-let-an-agent-run-unsupervised/README.md)
+- **Compare the transaction cost of a firm and a market** — [Why AI Agents Don't Dissolve the Firm](articles/why-ai-agents-dont-dissolve-the-firm/README.md)
+- **Rebuild state from an ordered event record** — [Your Chat History Is Not a System of Record](articles/your-chat-history-is-not-a-system-of-record/README.md)
 
 ## A simple way to work through any exercise
 
