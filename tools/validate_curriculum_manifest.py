@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -84,12 +85,38 @@ def validate_contract(contract: object, required: set[str], label: str) -> None:
             require_string(value, f"{label}.{key}")
 
 
+H2_PATTERN = re.compile(r"^##[ \t]+(.+?)[ \t]*$")
+FENCE_PATTERN = re.compile(r"^[ \t]*(`{3,}|~{3,})")
+
+
+def markdown_h2_headings(text: str) -> set[str]:
+    """Return literal H2 text, excluding fenced-code lookalikes."""
+    headings: set[str] = set()
+    fence: str | None = None
+    for line in text.splitlines():
+        fence_match = FENCE_PATTERN.match(line)
+        if fence_match:
+            marker = fence_match.group(1)
+            if fence is None:
+                fence = marker[0]
+            elif marker[0] == fence:
+                fence = None
+            continue
+        if fence is not None:
+            continue
+        heading_match = H2_PATTERN.match(line)
+        if heading_match:
+            headings.add(heading_match.group(1))
+    return headings
+
+
 def require_readme_headings(path: Path, headings: tuple[str, ...]) -> None:
     try:
         text = path.read_text()
     except FileNotFoundError:
         fail(f"missing contract README: {path.relative_to(ROOT)}")
-    missing = [heading for heading in headings if heading not in text]
+    parsed_headings = markdown_h2_headings(text)
+    missing = [heading for heading in headings if heading not in parsed_headings]
     if missing:
         fail(f"contract README lacks required headings: {', '.join(missing)}")
 
@@ -192,11 +219,11 @@ def validate(index_path: Path = DEFAULT_INDEX, manifest_path: Path = DEFAULT_MAN
             validate_lab_contract(labs[0])
             require_readme_headings(
                 ROOT / "courses/agentic-coding-with-cursor/README.md",
-                ("## Audience", "## Outcomes", "## Prerequisites", "## Module sequence", "## Assessment", "## Safety and cost boundary", "## Completion evidence"),
+                ("Audience", "Outcomes", "Prerequisites", "Module sequence", "Assessment", "Safety and cost boundary", "Completion evidence"),
             )
             require_readme_headings(
                 ROOT / "courses/agentic-coding-with-cursor/order-api/README.md",
-                ("## Objective", "## Setup", "## Commands", "## Expected result", "## Verification", "## Rubric", "## Failure modes", "## Extensions"),
+                ("Objective", "Setup", "Commands", "Expected result", "Verification", "Rubric", "Failure modes", "Extensions"),
             )
         elif path == ZEOTOOL_PATH:
             if set(record) != STRUCTURAL_KEYS | {"readme_contract"}:
@@ -204,7 +231,7 @@ def validate(index_path: Path = DEFAULT_INDEX, manifest_path: Path = DEFAULT_MAN
             validate_contract(record["readme_contract"], ARTICLE_CONTRACT_KEYS, "ZeoCore article readme_contract")
             require_readme_headings(
                 ROOT / "articles/build-your-first-zeocore-tool/README.md",
-                ("## Thesis", "## Prerequisites", "## Demonstration and exercise route", "## Fixtures", "## Verification", "## Next learning step"),
+                ("Thesis", "Prerequisites", "Demonstration and exercise route", "Fixtures", "Verification", "Next learning step"),
             )
         else:
             fail(f"only the approved records may be complete: {path}")

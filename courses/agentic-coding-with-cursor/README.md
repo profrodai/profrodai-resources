@@ -46,7 +46,7 @@ change. The baseline does not assess model prompting or provider-specific use.
 The learner can run `make verify` and explain which passing checks establish
 the behavior of the change they reviewed.
 
-## Prerequisites, runtime, safety, and cost
+## Prerequisites
 
 Node and npm are required. `order-api/package-lock.json` pins dependencies. The baseline is
 credential-free, uses in-memory data, and makes no network calls. Any Cursor or model usage is
