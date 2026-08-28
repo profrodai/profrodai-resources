@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "policy": "This registry maps approved public teaching sources to their future home in profrodai-resources. A pin identifies reviewed bytes; it does not itself authorize copying, relicensing, or publication.",
+  "sources": [
+    {
+      "id": "transformation-tracker-course",
+      "upstreamUrl": "https://github.com/profrodai/transformation-tracker-course",
+      "pinnedCommit": "0b3452e6975103dfc3c7373a6df8e2ea2105b15c",
+      "originalLicense": "MIT",
+      "licenseStatus": "verified-mit",
+      "importMode": "canonical-import",
+      "migrationStatus": "mapped",
+      "target": {"path": "courses/transformation-tracker-with-claude-code", "documentation": ["SOURCE.md", "MIGRATION.md"]}
+    },
+    {
+      "id": "claude-code-101",
+      "upstreamUrl": "https://github.com/profrodai/claude-code-101",
+      "pinnedCommit": "d3b2a6b2b51aa7f4a458a30e1ba2b2ff83a07b89",
+      "originalLicense": "MIT",
+      "licenseStatus": "verified-mit",
+      "importMode": "legacy-modernize",
+      "migrationStatus": "mapped",
+      "target": {"path": "courses/claude-code-for-business", "documentation": ["SOURCE.md", "MIGRATION.md"]}
+    },
+    {
+      "id": "langgraph-nebius",
+      "upstreamUrl": "https://github.com/profrodai/langgraph-nebius",
+      "pinnedCommit": "78eeb32673b30d2e9fad7671ba28a8fc5d1766d1",
+      "originalLicense": "MIT",
+      "licenseStatus": "verified-mit",
+      "importMode": "legacy-modernize",
+      "migrationStatus": "mapped",
+      "target": {"path": "courses/langgraph-agent-orchestration", "documentation": ["SOURCE.md", "MIGRATION.md"]}
+    },
+    {
+      "id": "xolo-consulting",
+      "upstreamUrl": "https://github.com/profrodai/xolo-consulting",
+      "pinnedCommit": "bc4d20edc2658614b68618e8fc69fb2818d392e7",
+      "originalLicense": "No license declared at pinned source",
+      "licenseStatus": "operator-authorized-mit-grant-pending-record",
+      "importMode": "template-import",
+      "migrationStatus": "mapped",
+      "target": {"path": "courses/claude-code-for-business/template/xolo-consulting", "documentation": ["SOURCE.md", "MIGRATION.md"]}
+    },
+    {
+      "id": "zeotool",
+      "upstreamUrl": "https://github.com/profrodai/zeotool",
+      "pinnedCommit": null,
+      "originalLicense": "MIT pending merged ZeoTool source pin",
+      "licenseStatus": "awaiting-merged-mit-pin",
+      "importMode": "awaiting-mit-import",
+      "migrationStatus": "awaiting-merged-mit-pin",
+      "historicalSource": {
+        "name": "QuackTool",
+        "upstreamUrl": "https://github.com/profrodai/quacktool",
+        "pinnedCommit": "2a69d2ee6f79b24416e1a6a14104a927addb4deb",
+        "license": "GPL-3.0"
+      },
+      "target": {"path": "courses/tools-memory-and-multi-agent-systems/legacy/quacktool", "documentation": ["SOURCE.md", "MIGRATION.md"]}
+    },
+    {
+      "id": "agent-engineering-foundations",
+      "upstreamUrl": "https://github.com/rodriveracom/agent-engineering-foundations",
+      "pinnedCommit": "ec7bb274b9dae25b08d1ff58ff2db348855afe0a",
+      "originalLicense": "MIT",
+      "licenseStatus": "verified-mit",
+      "importMode": "curriculum-adoption",
+      "migrationStatus": "mapped",
+      "target": {"path": "courses/agent-engineering-foundations", "documentation": ["SOURCE.md", "MIGRATION.md", "README.md"]}
+    },
+    {
+      "id": "llm-engineering-essentials",
+      "upstreamUrl": "https://github.com/rodriveracom/LLM-Engineering-Essentials",
+      "pinnedCommit": "01f05c3e616a01901ae9fce693006c8cb8e4c411",
+      "originalLicense": "MIT",
+      "licenseStatus": "verified-mit",
+      "importMode": "curriculum-adoption",
+      "migrationStatus": "mapped",
+      "target": {"path": "courses/llm-engineering-essentials", "documentation": ["SOURCE.md", "MIGRATION.md", "README.md"]}
+    }
+  ]
+}

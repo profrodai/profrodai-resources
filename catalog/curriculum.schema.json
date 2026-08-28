@@ -2,11 +2,12 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "profrodai-resources curriculum catalog",
   "type": "object",
-  "required": ["schemaVersion", "sourceSnapshot", "courses", "articles"],
+  "required": ["schemaVersion", "sourceSnapshot", "courses", "articles", "adoptedCourses"],
   "properties": {
     "schemaVersion": {"const": 1},
     "sourceSnapshot": {"const": "catalog/profrod-site-source-index.json"},
     "courses": {"type": "array", "minItems": 11},
-    "articles": {"type": "array", "minItems": 13}
+    "articles": {"type": "array", "minItems": 13},
+    "adoptedCourses": {"type": "array", "minItems": 2}
   }
 }

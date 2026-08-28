@@ -29,3 +29,11 @@ Use `make run` for the sample trace, `make verify` for tests, and `git restore .
 ## Practice companion
 
 The [`evidence-store` guided practice](labs/01-evidence-store/PRACTICE.md) proves duplicate denial and no-mutation behavior with a rubric and text-only alternative.
+
+## ZeoTool provenance boundary
+
+[ZeoTool](https://github.com/profrodai/zeotool) is the canonical public repository. Resources
+will not import it until a merged MIT ZeoTool commit is pinned and reviewed. The
+[legacy QuackTool record](legacy/quacktool/SOURCE.md) preserves the prior GPL-3.0 source only as
+historical provenance; [its migration record](legacy/quacktool/MIGRATION.md) prohibits copying
+or relicensing those historical source bytes.

@@ -17,6 +17,11 @@
   <img src="https://img.shields.io/badge/beginner_path-Python_3.10%2B-3776ab" alt="Beginner path uses Python 3.10 or newer">
 </p>
 
+This repository is also a top-down curriculum map and scaffold. Every site-backed runnable course has one small,
+credential-free vertical slice that accepts an input, emits an observable result, and proves it
+with a test. Those slices establish the run/verify/reset contract for later labs; they are not
+completed course material, nor a substitute for the lessons.
+
 <p align="center">
   <a href="#start-here-your-first-exercise-in-five-minutes"><strong>Run your first exercise</strong></a>
   · <a href="#what-should-i-practise-next">Choose a practice</a>
@@ -390,6 +395,85 @@ The Transformation Tracker course also has a separate public companion at
 the small local lab here does not replace it.
 
 </details>
+
+## Taxonomy and consolidation status
+
+- `starter`: runnable teaching code already supports a lesson path.
+- `scaffolded`: one functional vertical slice is present; additional labs are intentionally not
+  authored yet.
+- `mapped`: source and documentation are catalogued, but no runnable companion is claimed.
+
+Course directories are `courses/<site-course-slug>/`; article mappings are
+`articles/<site-article-slug>/`. A course may link an external, already-public companion rather
+than duplicate or migrate it. Article code needs a separate source/licensing and demonstration
+decision before it is added.
+
+## Consolidating approved public companions
+
+The resources repository is the planned maintained home for approved public ProfRod teaching
+material. The source-to-target registry is
+[`catalog/consolidation-sources.json`](catalog/consolidation-sources.json); the readable policy,
+status table, and gates are in [`docs/consolidation.md`](docs/consolidation.md). A mapping records
+only reviewed provenance and intended destination. It never copies source bodies, rewrites an
+upstream history, or silently changes a licence.
+
+Two course curricula have been adopted as `mapped` documentation only:
+
+- [Agent Engineering Foundations](courses/agent-engineering-foundations/)
+- [LLM Engineering Essentials](courses/llm-engineering-essentials/)
+
+They have no runnable labs until an offline, credential-free vertical slice and course gate land.
+
+## Contributing a next lab
+
+1. Add or amend a catalog entry and keep its source pointer truthful.
+2. Create a course-local README and a self-contained lab with `make run`, `make test`, and
+   `make verify`.
+3. Keep the first run deterministic, offline, and credential-free. Put any live-provider setup
+   behind a later, clearly labelled opt-in decision.
+4. Run `make verify` from the repository root. The catalog validator fails closed if an entry,
+   README, runtime contract, or course gate is missing.
+
+## Bootstrap record
+
+The published initial commit contains `README.md` and `LICENSE` only. It predates the clarified
+repository-birth contract in RULING-216 Amendment A2. This PR introduces `.gitignore` as its first
+content diff, before any course resource reaches `main`; the public history is not rewritten to
+claim otherwise. Future resource repositories start with their required safety `.gitignore`.
+
+## Current runnable course
+
+| Course | Directory | What's there |
+|---|---|---|
+| [Agentic Coding with Cursor](https://profrod.ai/courses/agentic-coding-with-cursor) | [`courses/agentic-coding-with-cursor/order-api/`](courses/agentic-coding-with-cursor/order-api/) | `order-api`, the small Node/Express/TypeScript order-lookup service the course runs against starting in lesson 4. |
+
+The complete map names all remaining source courses. Each gets its own directory under
+`courses/<course-slug>/`; nothing is shared across courses unless a later README says otherwise.
+
+## Using a course's code
+
+Clone the whole repo, or just the one course you need:
+
+```bash
+git clone https://github.com/profrodai/profrodai-resources.git
+cd profrodai-resources/courses/agentic-coding-with-cursor/order-api
+npm install
+npm test
+```
+
+From the repository root, run the project gate with `make verify`. It performs the locked install,
+format check, tracked agent-exhaust boundary lint, test suite, TypeScript check, and high-severity
+dependency audit.
+
+Each course directory is self-contained: its own `package.json`, its own dependencies, runnable
+on its own without anything else in this repo.
+
+## Current companion boundary
+
+The Transformation Tracker public companion remains live while its canonical import is only
+mapped. The existing `labs/01-baseline-delta` is explicitly its successor scaffold, not its
+replacement. The consolidation policy forbids archiving a legacy repository before a reviewed
+replacement and clear learner redirect exist.
 
 ## License
 

@@ -13,6 +13,7 @@ TRUSTED_WORKFLOW = ROOT / ".github" / "workflows" / "trusted-provenance.yml"
 MAKEFILE = ROOT / "Makefile"
 VALIDATOR = ROOT / "tools" / "validate_catalog.py"
 CATALOG = ROOT / "catalog" / "curriculum.json"
+CONSOLIDATION = ROOT / "catalog" / "consolidation-sources.json"
 
 
 def fail(message: str) -> None:
@@ -31,6 +32,7 @@ def main() -> None:
     makefile = MAKEFILE.read_text()
     validator = VALIDATOR.read_text()
     catalog = json.loads(CATALOG.read_text())
+    consolidation = json.loads(CONSOLIDATION.read_text())
 
     require(pr, "pull_request:", "PR-safe workflow")
     require(pr, "make verify-pr", "PR-safe workflow")
@@ -47,6 +49,12 @@ def main() -> None:
         require(makefile, required, "Makefile")
     if len(catalog.get("courses", [])) != 11:
         fail("catalog must enumerate exactly 11 course gates")
+    if len(catalog.get("adoptedCourses", [])) != 2:
+        fail("catalog must enumerate exactly two mapped adopted courses")
+    if len(consolidation.get("sources", [])) != 7:
+        fail("consolidation registry must enumerate exactly seven approved sources")
+    if "consolidation:" not in makefile:
+        fail("Makefile must validate the consolidation registry")
     require(validator, 'git_output(source_repo, "cat-file", "-e"', "source validator")
     require(validator, 'git_output(source_repo, "show", f"{commit}:{path}")', "source validator")
     require(validator, "--structure-only", "source validator")
