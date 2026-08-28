@@ -1,0 +1,7 @@
+{
+  "objective": "Reconcile the fictional Xolo invoice queue and name unmatched records.",
+  "owner": "Xolo operations reviewer",
+  "scope": "Only the supplied synthetic invoices; no customer contact or payment action.",
+  "evidence": "A list of unmatched invoice IDs with the comparison used.",
+  "escalation": "Hold ambiguous records for the operations reviewer."
+}

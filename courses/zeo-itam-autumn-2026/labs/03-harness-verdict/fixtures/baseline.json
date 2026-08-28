@@ -1,0 +1,7 @@
+{
+  "claim_id": "xolo-reconciliation-01",
+  "owner": "Xolo operations reviewer",
+  "check": "synthetic-ledger-reconciliation",
+  "expected": "one invoice unmatched",
+  "observed": "one invoice unmatched"
+}
