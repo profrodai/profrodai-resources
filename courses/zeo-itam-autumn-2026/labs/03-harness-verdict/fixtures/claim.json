@@ -1,0 +1,6 @@
+{
+  "claim_id": "xolo-reconciliation-01",
+  "owner": "Xolo operations reviewer",
+  "check": "invoice-receipt-reconciliation",
+  "claimed_unmatched_ids": ["xolo-103"]
+}

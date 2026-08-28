@@ -1,25 +1,55 @@
-# Minutes baseline guided practice
+# Class 1 — minutes baseline practice
+
+## Learn first
+
+[Lab: Instrument One Manual Workflow, Your Minutes Baseline](https://profrod.ai/courses/zeo-itam-autumn-2026/lesson/03-lab-minutes-baseline)
 
 ## Objective
-Measure operator minutes before and after a synthetic workflow change while preserving regressions.
+
+Measure the original workflow before claiming an intervention made it faster.
 
 ## Guided exercise
-Calculate a saving and a slowdown, then explain why both outcomes are useful evidence.
+
+Run `make -C labs/01-minutes-baseline run`. It compares 45 baseline minutes with 30 observed minutes.
+Predict the percentage before running it. Then use Python to call `measure(20, 25)` and explain why the
+negative result is evidence rather than a reason to rewrite the baseline.
 
 ## Project
-Add a zero-minute invalid input and a sequence of three observations that retains the original baseline.
+
+Call `measure(45, 45)`, then call `measure(0, 20)`. Record the valid no-change result and the invalid-input
+error separately. A valid measurement does not have to show a saving.
+
+## Transfer challenge
+
+Invent three aggregate observations for one fictional workflow. Keep its original baseline fixed, include one
+regression, and write one sentence describing the next investigation you would request. Do not use personal or employer data.
 
 ## Evidence
-Provide both directions, invalid-input test, preserved baseline, and course gate output.
+
+Submit your prediction, the saving, the regression, the invalid-input error, and `make verify` output.
+
+## Debrief
+
+A passing result proves only that this calculation preserved its inputs and percentage; it does not prove that an AI system improved a real workflow.
 
 ## Rubric
-Pass: regression is visible and original measurement is immutable. Revise: unfavorable data is discarded or rewritten.
+
+Pass when a saving and regression remain visible and an invalid input is named instead of hidden.
 
 ## Accessibility
-Use a text table and calculator; no dashboard or timed activity is required.
+
+Use a text table or spoken explanation; no dashboard, chart, or timed task is required.
 
 ## Safety and cost
-Use invented aggregate minutes. Do not include personal productivity data, credentials, or provider access.
+
+Use invented aggregate minutes only. Do not include employer data, personal productivity data, credentials, or provider access.
+
+## Troubleshooting
+
+- `baseline must be positive` means a zero/negative baseline is not a meaningful denominator.
+- A negative percentage means observed minutes exceeded baseline; retain it.
+- Use a text table if a calculator or chart is inaccessible.
 
 ## Verify
+
 From the course directory run `make verify`.

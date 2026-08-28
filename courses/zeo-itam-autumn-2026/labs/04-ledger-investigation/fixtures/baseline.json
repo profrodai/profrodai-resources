@@ -1,0 +1,5 @@
+[
+  {"id": "xolo-101", "amount": 24, "receipt": true},
+  {"id": "xolo-102", "amount": 31, "receipt": true},
+  {"id": "xolo-103", "amount": 18, "receipt": false}
+]
