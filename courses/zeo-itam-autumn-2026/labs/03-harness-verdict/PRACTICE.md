@@ -10,27 +10,27 @@ Separate a claimed result from the independent observation that must support it.
 
 ## Guided exercise
 
-Run `make -C labs/03-harness-verdict run`. Predict the verdict before reading the JSON output: the claimed and observed synthetic reconciliation results agree.
+Run `make -C labs/03-harness-verdict run`. Predict the verdict before reading the JSON output. The lab derives unmatched invoice IDs from `fixtures/evidence.json`, then compares that derived result with the claim in `fixtures/claim.json`.
 
 ## Project
 
-Copy `fixtures/baseline.json` to `learner-claim.json`. Change only `observed` to a different result and run `python3 lab.py learner-claim.json`. Then blank `check`. Compare the two hold reasons.
+Copy both fixture files to `learner-claim.json` and `learner-evidence.json`. Change only `claimed_unmatched_ids` in your claim, then run `python3 lab.py learner-claim.json learner-evidence.json`. Next change `check` to `never-executed`. Compare the two hold reasons.
 
 ## Transfer challenge
 
-Create a fictional claim for a document-classification task. Name the owner and independent check, then make one version where the check disagrees. Explain why a plausible answer still cannot be accepted.
+Create a fictional claim for a document-classification task plus a separate evidence file from which its result can be computed. Make one claim disagree with that evidence. Explain why a plausible answer still cannot be accepted.
 
 ## Evidence
 
-Submit both hold outputs and `make verify` output. An accept verdict proves agreement between the supplied claim and check; it does not prove a real-world outcome, completeness, or safety.
+Submit both hold outputs and `make verify` output. An accept verdict proves agreement between a supplied claim and a result recomputed from separate supplied evidence; it does not prove a real-world outcome, completeness, or safety.
 
 ## Debrief
 
-The harness holds disagreements because a plausible claim is not evidence.
+The harness holds disagreements because a plausible claim is not evidence. Naming a check is also insufficient: the approved check must actually derive an observation from distinct evidence bytes.
 
 ## Rubric
 
-Pass when a missing check and a conflicting check both hold the claim with distinct reasons.
+Pass when a missing, unrecognized, or conflicting check all hold the claim with distinct reasons.
 
 ## Accessibility
 

@@ -27,7 +27,7 @@ do not add employer data, credentials, student records, or a live model/API.
 | Class 1 | [Instrument a minutes baseline](https://profrod.ai/courses/zeo-itam-autumn-2026/lesson/03-lab-minutes-baseline) | [01 minutes baseline](labs/01-minutes-baseline/PRACTICE.md) | A slowdown is retained rather than erased. |
 | Class 2 | [Prompting is briefing](https://profrod.ai/courses/zeo-itam-autumn-2026/lesson/02-prompting-is-briefing) | [02 brief contract](labs/02-brief-contract/PRACTICE.md) | A request cannot proceed without scope, owner, evidence, and escalation. |
 | Class 3 | [The harness at work](https://profrod.ai/courses/zeo-itam-autumn-2026/lesson/04-the-harness-at-work) | [03 harness verdict](labs/03-harness-verdict/PRACTICE.md) | A claimed result is held when its independent check disagrees. |
-| Class 4 | [Needle in Xolo's ledger](https://profrod.ai/courses/zeo-itam-autumn-2026/lesson/03-lab-the-needle-in-xolos-ledger) | [04 ledger investigation](labs/04-ledger-investigation/PRACTICE.md) | A bounded investigation names a missing receipt or duplicate record. |
+| Class 4 | [Needle in Xolo's ledger](https://profrod.ai/courses/zeo-itam-autumn-2026/lesson/03-lab-the-needle-in-xolos-ledger) | [04 ledger investigation](labs/04-ledger-investigation/PRACTICE.md) | A transfer exercise: a bounded investigation names a missing receipt or duplicate record. |
 
 ## Prerequisites, runtime, safety, and cost
 

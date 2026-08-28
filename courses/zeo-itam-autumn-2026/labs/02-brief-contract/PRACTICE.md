@@ -8,6 +8,8 @@
 
 Turn a fictional request into a reviewable work order before any agent or person begins work.
 
+The Site lesson's Inputs / Output / Rules / Evidence / Stop shape is adapted here as scope / objective / scope / evidence / escalation; this practical also makes the accountable owner explicit. The overlap is intentional: a bounded scope acts as both input boundary and rule, while escalation makes the stop condition actionable.
+
 ## Guided exercise
 
 Run `make -C labs/02-brief-contract run`. Predict whether the fictional Xolo brief can begin and name the five fields that make it reviewable.

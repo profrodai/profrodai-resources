@@ -8,6 +8,8 @@
 
 Find concrete integrity gaps in a bounded fictional ledger without silently repairing the evidence.
 
+This is a transfer exercise inspired by the linked lesson's bounded-search discipline; it does not reproduce the Site's lost-in-the-middle experiment.
+
 ## Guided exercise
 
 Run `make -C labs/04-ledger-investigation run`. Predict which record requires review and why before looking at the output.
