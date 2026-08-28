@@ -151,9 +151,12 @@ def assess_autonomy_proposals(data: dict[str, Any]) -> list[dict[str, Any]]:
         score = proposal["readiness_score"]
         if not isinstance(proposal_id, str) or not proposal_id.strip():
             raise ValueError("proposal id must be a non-empty string")
+        proposal_id = proposal_id.strip()
         if proposal_id in proposal_ids:
-            raise ValueError("proposal ids must be unique")
-        if isinstance(score, bool) or not isinstance(score, (int, float)) or not math.isfinite(score):
+            raise ValueError("proposal ids must be unique after trimming whitespace")
+        if isinstance(score, bool) or not isinstance(score, (int, float)):
+            raise ValueError("readiness_score must be a finite number from 0 through 100")
+        if isinstance(score, float) and not math.isfinite(score):
             raise ValueError("readiness_score must be a finite number from 0 through 100")
         if not AUTONOMY_SCORE_MINIMUM <= score <= AUTONOMY_SCORE_MAXIMUM:
             raise ValueError("readiness_score must be from 0 through 100")

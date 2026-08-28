@@ -128,9 +128,18 @@ class ArticlePracticeTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, expected_error):
                     PRACTICE.assess_autonomy_proposals(proposals)
 
+    def test_autonomy_proposals_reject_whitespace_and_visual_duplicate_ids(self) -> None:
+        source = ROOT / "articles" / "when-to-let-an-agent-run-unsupervised" / "proposals.json"
+        for mutation, expected_error in (("whitespace", "non-empty"), ("visual-duplicate", "unique after trimming")):
+            with self.subTest(mutation=mutation):
+                proposals = json.loads(source.read_text())
+                proposals["proposals"][0]["id"] = "   " if mutation == "whitespace" else " missing-rollback "
+                with self.assertRaisesRegex(ValueError, expected_error):
+                    PRACTICE.assess_autonomy_proposals(proposals)
+
     def test_autonomy_proposals_reject_non_finite_and_out_of_range_scores(self) -> None:
         source = ROOT / "articles" / "when-to-let-an-agent-run-unsupervised" / "proposals.json"
-        for score in (math.nan, math.inf, -math.inf, -0.1, 100.1):
+        for score in (math.nan, math.inf, -math.inf, -0.1, 100.1, 10**10000):
             with self.subTest(score=score):
                 proposals = json.loads(source.read_text())
                 proposals["proposals"][0]["readiness_score"] = score
@@ -161,6 +170,22 @@ class ArticlePracticeTests(unittest.TestCase):
         self.assertEqual(1, result.returncode)
         self.assertEqual("", result.stdout)
         self.assertIn("autonomy assessment failed: proposal id must be a non-empty string", result.stderr)
+
+    def test_autonomy_cli_reports_a_friendly_huge_score_error(self) -> None:
+        source = ROOT / "articles" / "when-to-let-an-agent-run-unsupervised" / "proposals.json"
+        with tempfile.TemporaryDirectory() as directory:
+            invalid = Path(directory) / "invalid-proposals.json"
+            invalid.write_text(source.read_text().replace('"readiness_score": 72', '"readiness_score": 1e10000'))
+            result = subprocess.run(
+                [sys.executable, str(ROOT / "tools" / "run_autonomy_assessment.py"), str(invalid)],
+                capture_output=True,
+                check=False,
+                text=True,
+            )
+        self.assertEqual(1, result.returncode)
+        self.assertEqual("", result.stdout)
+        self.assertIn("autonomy assessment failed: readiness_score must be a finite number from 0 through 100", result.stderr)
+        self.assertNotIn("Traceback", result.stderr)
 
 
 if __name__ == "__main__":

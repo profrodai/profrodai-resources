@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import sys
 
 THRESHOLD = 0.8
 
@@ -24,10 +25,17 @@ def assess_cases(data: dict[str, object]) -> list[dict[str, object]]:
     if not isinstance(cases, list) or not cases:
         raise ValueError("routing fixture must contain a non-empty cases list")
     result: list[dict[str, object]] = []
+    case_ids: set[str] = set()
     for case in cases:
         if not isinstance(case, dict) or set(case) != {"id", "confidence"} or not isinstance(case["id"], str):
             raise ValueError("each routing case must contain only id and confidence")
-        result.append({"id": case["id"], **route(case["confidence"])})
+        case_id = case["id"].strip()
+        if not case_id:
+            raise ValueError("routing case id must be a non-empty string")
+        if case_id in case_ids:
+            raise ValueError("routing case ids must be unique after trimming whitespace")
+        case_ids.add(case_id)
+        result.append({"id": case_id, **route(case["confidence"])})
     return result
 
 
@@ -44,4 +52,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Route synthetic confidence signals safely.")
     parser.add_argument("fixture", nargs="?", type=Path, default=Path("fixtures/routing-cases.json"))
     args = parser.parse_args()
-    print(json.dumps(assess_cases(load_cases(args.fixture)), indent=2, sort_keys=True))
+    try:
+        result = assess_cases(load_cases(args.fixture))
+    except ValueError as error:
+        print(f"error: {error}", file=sys.stderr)
+        raise SystemExit(1) from error
+    print(json.dumps(result, indent=2, sort_keys=True))
