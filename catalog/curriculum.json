@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceSnapshot": "catalog/profrod-site-source-index.json",
-  "sourceBoundary": "Slugs, titles, and source paths are catalogued from a pinned profrod-site snapshot. Teaching bodies are not copied here.",
+  "sourceBoundary": "Slugs, titles, and source paths are catalogued from a pinned profrod-site snapshot. Teaching bodies are not copied here. Approved public companion sources are registered separately in catalog/consolidation-sources.json.",
   "courses": [
     {"slug":"agentic-coding-with-cursor","title":"Agentic Coding with Cursor","genre":"tool","status":"starter","source":{"path":"content/courses/agentic-coding-with-cursor/_course.md"},"coursePath":"courses/agentic-coding-with-cursor","stubPath":"courses/agentic-coding-with-cursor/order-api"},
     {"slug":"claude-code-for-business","title":"Claude Code for Business","genre":"outcome","status":"scaffolded","source":{"path":"content/courses/claude-code-for-business/_course.md"},"coursePath":"courses/claude-code-for-business","stubPath":"courses/claude-code-for-business/labs/01-brief-readiness"},
@@ -29,5 +29,9 @@
     {"slug":"when-to-let-an-agent-run-unsupervised","title":"When Can You Actually Walk Away?","source":{"path":"content/articles/when-to-let-an-agent-run-unsupervised.md"}},
     {"slug":"why-ai-agents-dont-dissolve-the-firm","title":"Why AI Agents Don't Dissolve the Firm","source":{"path":"content/articles/why-ai-agents-dont-dissolve-the-firm.md"}},
     {"slug":"your-chat-history-is-not-a-system-of-record","title":"Your Chat History Is Not a System of Record","source":{"path":"content/articles/your-chat-history-is-not-a-system-of-record.md"}}
+  ],
+  "adoptedCourses": [
+    {"slug":"agent-engineering-foundations","title":"Agent Engineering Foundations","status":"mapped","consolidationSource":"agent-engineering-foundations","coursePath":"courses/agent-engineering-foundations"},
+    {"slug":"llm-engineering-essentials","title":"LLM Engineering Essentials","status":"mapped","consolidationSource":"llm-engineering-essentials","coursePath":"courses/llm-engineering-essentials"}
   ]
 }

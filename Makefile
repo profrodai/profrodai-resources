@@ -1,10 +1,10 @@
-.PHONY: verify verify-pr install format-check lint test typecheck audit catalog catalog-structure curriculum curriculum-pr curriculum-contract curriculum-maintenance ci-trust-check
+.PHONY: verify verify-pr install format-check lint test typecheck audit catalog catalog-structure consolidation curriculum curriculum-pr curriculum-contract curriculum-maintenance ci-trust-check
 
 ORDER_API_DIR := courses/agentic-coding-with-cursor/order-api
 
-verify: ci-trust-check format-check lint catalog curriculum curriculum-contract curriculum-maintenance
+verify: ci-trust-check format-check lint catalog consolidation curriculum curriculum-contract curriculum-maintenance
 
-verify-pr: ci-trust-check format-check lint catalog-structure curriculum-pr curriculum-contract curriculum-maintenance
+verify-pr: ci-trust-check format-check lint catalog-structure consolidation curriculum-pr curriculum-contract curriculum-maintenance
 
 install:
 	cd $(ORDER_API_DIR) && npm ci
@@ -35,6 +35,10 @@ catalog:
 
 catalog-structure:
 	python3 tools/validate_catalog.py --structure-only
+
+consolidation:
+	python3 tools/validate_catalog.py --structure-only
+	python3 tools/test_validate_catalog.py
 
 curriculum:
 	@set -e; \

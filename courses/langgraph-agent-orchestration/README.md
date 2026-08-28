@@ -23,6 +23,10 @@ credential-free slice models a decision only; it does not bundle LangGraph or co
 Python 3.10 or newer, standard library only; deterministic and offline. A later live graph needs its own
 LangGraph version, provider, and credential decision.
 
+The approved `langgraph-nebius` source is historical and must not be treated as current setup
+guidance. [SOURCE.md](SOURCE.md) and [MIGRATION.md](MIGRATION.md) pin it and require a dependency
+and credential audit before any exercise is modernized.
+
 ## Run, verify, reset
 
 `make run` prints two routing outcomes; `make verify` runs unit tests. Reset local changes with

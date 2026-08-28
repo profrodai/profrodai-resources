@@ -12,6 +12,11 @@ than treating a confident draft as a completed business task.
 Source: [`profrod-site/content/courses/claude-code-for-business/_course.md`](https://github.com/rodriveracom/profrod-site/tree/main/content/courses/claude-code-for-business). This is a
 small deterministic teaching slice, not copied course content or a live Claude Code integration.
 
+The pinned Claude Code 101 course is a legacy-modernization source, and the fictional Xolo
+template is a separately mapped future template import. Their provenance, licence boundary, and
+next gates are in [SOURCE.md](SOURCE.md), [MIGRATION.md](MIGRATION.md), and
+[`template/xolo-consulting/`](template/xolo-consulting/).
+
 ## Module-to-lab roadmap
 
 | Course module | Lab | Expected output |
