@@ -373,8 +373,11 @@ never receive the private-source credential. See the
 checks exist. It does not mean the source course or article is reproduced or
 finished here. `maturity` describes teaching maturity, while `review_status`
 records independent human pedagogical and accessibility review. The current
-manifest truthfully claims 11 scaffold courses, 13 mapped articles, zero
-developed resources, and zero operator-reviewed resources.
+manifest truthfully claims 10 scaffold courses, one developed flagship course
+(ZEO ITAM · Autumn 2026), 13 mapped articles, and zero operator-reviewed
+resources. `developed` records a complete multi-practical teaching contract
+with direct Site lesson links and independent acceptance; it is not a claim of
+operator pedagogical or accessibility review.
 
 ### Contributing practice material
 
