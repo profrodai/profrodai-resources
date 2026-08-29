@@ -19,6 +19,7 @@ DEFAULT_INDEX = ROOT / "catalog" / "profrod-site-source-index.json"
 DEFAULT_MANIFEST = ROOT / "catalog" / "curriculum-manifest.json"
 EXPECTED_SNAPSHOT = "fa07dee7feb55df59022c21ffb6b46352ae601b6"
 DEVELOPED_COURSE_PATHS = {
+    "content/courses/agentic-coding-with-cursor/_course.md",
     "content/courses/zeo-itam-autumn-2026/_course.md",
 }
 RECORD_KEYS = {
@@ -265,7 +266,7 @@ def validate(index_path: Path = DEFAULT_INDEX, manifest_path: Path = DEFAULT_MAN
     if seen != set(catalog):
         fail("manifest/source-index path sets differ")
     fixed_counts = {key: counts[key] for key in ("course", "article", "complete", "developed")}
-    if fixed_counts != {"course": 11, "article": 13, "complete": 24, "developed": 1}:
+    if fixed_counts != {"course": 11, "article": 13, "complete": 24, "developed": 2}:
         fail(f"unexpected curriculum coverage: {counts}")
     reject_source_bodies()
     return counts
