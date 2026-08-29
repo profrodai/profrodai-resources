@@ -37,7 +37,7 @@ class CurriculumManifestTests(unittest.TestCase):
 
     def test_full_24_resource_companion_contract_is_valid(self) -> None:
         self.assertEqual(
-            {"course": 11, "article": 13, "complete": 24, "developed": 1, "reviewed": 0},
+            {"course": 11, "article": 13, "complete": 24, "developed": 2, "reviewed": 0},
             VALIDATOR.validate(),
         )
 
@@ -68,7 +68,10 @@ class CurriculumManifestTests(unittest.TestCase):
         fixture["records"][0]["kind"] = "article"
         self.assert_invalid(fixture, "kind does not match")
         fixture = self.manifest()
-        fixture["records"][0]["maturity"] = "developed"
+        fixture["records"][0]["maturity"] = "scaffold"
+        self.assert_invalid(fixture, "maturity must remain developed")
+        fixture = self.manifest()
+        fixture["records"][1]["maturity"] = "developed"
         self.assert_invalid(fixture, "maturity must remain scaffold")
         fixture = self.manifest()
         fixture["records"][10]["maturity"] = "scaffold"
