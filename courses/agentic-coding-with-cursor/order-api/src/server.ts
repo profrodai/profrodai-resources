@@ -17,12 +17,8 @@ app.post("/orders", (req, res) => {
   res.status(201).json({ received: true });
 });
 
-// The course's lesson 4 source (reproduced above) exports `app` and stops
-// there — it's read and edited by Cursor, and imported directly by the
-// tests, neither of which needs a bound port. Actually running the service
-// with `npm run dev` needs a `.listen()` call, which the lesson never shows
-// because it never boots the server on the page. Added here, gated so
-// importing this module (as the test suite does) still has no side effect.
+// Keep importing the app side-effect free so the deterministic test suite can
+// exercise it without binding a local port.
 if (require.main === module) {
   const port = process.env.PORT ? Number(process.env.PORT) : 3000;
   app.listen(port, () => {

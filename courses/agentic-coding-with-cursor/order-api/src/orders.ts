@@ -1,4 +1,4 @@
-interface Order {
+export interface Order {
   id: string;
   customerId: string;
   total: number;
@@ -8,6 +8,8 @@ interface Order {
 const orders = new Map<string, Order>([
   ["ord_1", { id: "ord_1", customerId: "cus_1", total: 42.5, status: "shipped" }],
   ["ord_2", { id: "ord_2", customerId: "cus_1", total: 18.0, status: "pending" }],
+  ["ord_4", { id: "ord_4", customerId: "cus_1", total: 64.0, status: "delivered" }],
+  ["ord_5", { id: "ord_5", customerId: "cus_1", total: 27.5, status: "pending" }],
   ["ord_3", { id: "ord_3", customerId: "cus_2", total: 91.2, status: "delivered" }],
 ]);
 
