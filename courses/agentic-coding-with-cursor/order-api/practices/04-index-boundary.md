@@ -10,11 +10,11 @@ This practice makes an index boundary concrete: files that should not become age
 
 ## Baseline trace
 
-Read `.cursorignore` and `fixtures/private/example.env`. The value is deliberately fake; the point is the boundary, not a credential.
+Read `practice-assets/index-boundary.txt` and `fixtures/private/example.env`. The value is deliberately fake; the point is the boundary, not a credential. The fixture is not active tool configuration; apply an equivalent boundary only in your own local tool setup.
 
 ## Guided variation
 
-Add one synthetic path pattern that a build tool might generate locally, then explain why it does not belong in an agent’s context window.
+Add one synthetic path pattern that a build tool might generate locally to the fixture, then explain why it does not belong in an agent’s context window.
 
 ## Transfer challenge
 

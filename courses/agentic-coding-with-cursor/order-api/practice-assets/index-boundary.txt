@@ -1,0 +1,8 @@
+# Synthetic agent-context boundary fixture
+
+These patterns are examples for a learner's local tool configuration. They are not active
+repository configuration and do not contain real secrets.
+
+fixtures/private/**  # synthetic stand-in for credential-like local material
+generated/**         # noisy generated output does not aid source review
+*.local              # machine-specific files should not become shared context

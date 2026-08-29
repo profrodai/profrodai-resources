@@ -21,10 +21,12 @@ test("cached customer views keep every output-affecting option in the key", () =
   const client = new OrderClient();
 
   const firstPending = client.listForCustomer("cus_1", { status: "pending", limit: 1 });
+  const twoPending = client.listForCustomer("cus_1", { status: "pending", limit: 2 });
   const allOrders = client.listForCustomer("cus_1");
   const delivered = client.listForCustomer("cus_1", { status: "delivered" });
 
   expect(firstPending).toHaveLength(1);
+  expect(twoPending).toHaveLength(2);
   expect(allOrders).toHaveLength(4);
   expect(delivered.map((order) => order.id)).toEqual(["ord_4"]);
 });

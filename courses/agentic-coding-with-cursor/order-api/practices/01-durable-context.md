@@ -10,7 +10,7 @@ This practice makes a durable project instruction tangible: a request can remain
 
 ## Baseline trace
 
-Read `.cursor/rules/order-api-boundary.mdc`. Then run `npm test` from `order-api/`; the service and its acceptance checks are deterministic and need no Cursor account.
+Read `practice-assets/durable-context.md`. It is a tracked, tool-neutral fixture for the kind of durable project context you would configure locally. Then run `npm test` from `order-api/`; the service and its acceptance checks are deterministic and need no Cursor account.
 
 ## Guided variation
 
