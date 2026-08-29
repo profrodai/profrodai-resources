@@ -18,6 +18,9 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INDEX = ROOT / "catalog" / "profrod-site-source-index.json"
 DEFAULT_MANIFEST = ROOT / "catalog" / "curriculum-manifest.json"
 EXPECTED_SNAPSHOT = "fa07dee7feb55df59022c21ffb6b46352ae601b6"
+DEVELOPED_COURSE_PATHS = {
+    "content/courses/zeo-itam-autumn-2026/_course.md",
+}
 RECORD_KEYS = {
     "catalog_path",
     "kind",
@@ -215,7 +218,13 @@ def validate(index_path: Path = DEFAULT_INDEX, manifest_path: Path = DEFAULT_MAN
         kind = record["kind"]
         if kind != catalog[catalog_path]:
             fail(f"kind does not match source identity: {catalog_path}")
-        expected_maturity = "scaffold" if kind == "course" else "mapped"
+        expected_maturity = (
+            "developed"
+            if catalog_path in DEVELOPED_COURSE_PATHS
+            else "scaffold"
+            if kind == "course"
+            else "mapped"
+        )
         if record["maturity"] != expected_maturity:
             fail(f"maturity must remain {expected_maturity}: {catalog_path}")
         if record["contract_status"] != "complete":
@@ -256,7 +265,7 @@ def validate(index_path: Path = DEFAULT_INDEX, manifest_path: Path = DEFAULT_MAN
     if seen != set(catalog):
         fail("manifest/source-index path sets differ")
     fixed_counts = {key: counts[key] for key in ("course", "article", "complete", "developed")}
-    if fixed_counts != {"course": 11, "article": 13, "complete": 24, "developed": 0}:
+    if fixed_counts != {"course": 11, "article": 13, "complete": 24, "developed": 1}:
         fail(f"unexpected curriculum coverage: {counts}")
     reject_source_bodies()
     return counts
