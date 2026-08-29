@@ -1,12 +1,12 @@
 # Agentic Coding with Cursor
 
-**Status:** starter
+**Status:** practical track · **Runtime:** Node 20+ · **Cost:** free and offline
 
 ## Learner promise
 
-Use a small, real order service to practice reviewing an agent edit as you would a teammate's
-pull request. The course site supplies the teaching sequence; this repository supplies the
-starting state used from lesson 4 onward.
+Use a small order service to practice reviewing an agent edit as you would a teammate's pull
+request. The course site supplies the teaching sequence; this repository supplies original,
+synthetic exercises that make the review habits observable.
 
 ## Audience
 
@@ -27,19 +27,25 @@ or pre-apply the edits students are expected to make.
 
 ## Module-to-lab roadmap
 
-| Course module | Lab | What can be explored now |
+Read the linked lesson before each practice. The order data, rules, and index boundary below are
+invented for this companion; they do not reproduce the Site's lesson bodies.
+
+| Practice | Learn first on profrod.ai | You will demonstrate |
 |---|---|---|
-| Core practices | [`order-api`](order-api/) | Run and test the service, then make and review an agent-assisted change. |
+| [01 · durable context](order-api/practices/01-durable-context.md) | [Cursor rules](https://profrod.ai/courses/agentic-coding-with-cursor/lesson/04-cursor-rules-durable-context) | A local rule constrains an edit without needing a live agent. |
+| [02 · scoped change](order-api/practices/02-scoped-change.md) | [Right-size an agent request](https://profrod.ai/courses/agentic-coding-with-cursor/lesson/05-right-size-the-agent-request) | A request names behavior, boundaries, and evidence before code changes. |
+| [03 · behavioral review](order-api/practices/03-behavioral-review.md) | [When the agent gets it wrong](https://profrod.ai/courses/agentic-coding-with-cursor/lesson/08-when-the-agent-gets-it-wrong) | A plausible cache edit is rejected by an independent behavior test. |
+| [04 · index boundary](order-api/practices/04-index-boundary.md) | [Cursorignore and team rules](https://profrod.ai/courses/agentic-coding-with-cursor/lesson/09-cursorignore-and-team-rules) | Sensitive-pattern paths are excluded from the companion's agent context. |
 
 ## Module sequence
 
-Orient in the service, run the known-good baseline, then make and review one
-bounded change before accepting it.
+Orient in the service, inspect the durable local context, write a bounded request, and use the
+behavioral tests to review an intentionally tempting cache variation before accepting any change.
 
 ## Assessment
 
-A learner explains the observed behavior and submits a verified, reviewable
-change. The baseline does not assess model prompting or provider-specific use.
+A learner explains the observed behavior and submits a verified, reviewable change. The baseline
+does not assess model prompting or provider-specific use.
 
 ## Completion evidence
 
@@ -61,9 +67,12 @@ repository or its fixtures.
 ## Run, verify, reset, expected output
 
 `make run` starts the local service; `make verify` installs locked dependencies, typechecks,
-tests, and audits it. Expect deterministic order lookup responses and four passing tests. Reset
+tests, and audits it. Expect deterministic order lookup responses and passing behavior checks.
+Reset
 your own exploration with `git restore .` and remove ignored dependencies with `npm ci`.
 
 ## Practice companion
 
-Use the [`order-api` guided practice](order-api/PRACTICE.md) for the bounded project, evidence requirements, rubric, accessibility alternative, and safety boundary. It reinforces the course through runnable bytes and does not reproduce lesson prose.
+Start with the [`order-api` practice overview](order-api/PRACTICE.md), then complete the four
+linked practicals in order. They reinforce the course through runnable bytes and do not reproduce
+lesson prose.
