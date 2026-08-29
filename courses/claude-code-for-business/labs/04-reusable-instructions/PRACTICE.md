@@ -7,6 +7,7 @@ Read [Practice 04: Durable Instructions, Reusable Workflows](https://profrod.ai/
 ## Reinforcement contract
 
 Reusable instructions must tell a future operator when to act, what to do, what to produce, and how to verify it.
+It is a tool-neutral structural transfer, not a direct exercise of a durable on-disk Claude Code instruction file.
 
 ## Baseline trace
 

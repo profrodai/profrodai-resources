@@ -7,6 +7,7 @@ Read [Practice 01: Brief Before You Delegate](https://profrod.ai/courses/claude-
 ## Reinforcement contract
 
 This practice makes a delegation brief concrete: confidence is not readiness unless the task has an accountable owner and named evidence.
+It is a tool-neutral structural transfer, not a direct exercise of Claude Code Plan Mode approval.
 
 ## Baseline trace
 
