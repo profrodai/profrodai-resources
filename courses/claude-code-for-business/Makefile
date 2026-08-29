@@ -1,8 +1,10 @@
 .PHONY: run test verify
-LAB := labs/01-brief-readiness
+LABS := labs/01-brief-readiness labs/02-scope-boundary labs/03-evidence-reconciliation labs/04-reusable-instructions labs/05-draft-release
 run:
-	$(MAKE) -C $(LAB) run
+	@for lab in $(LABS); do $(MAKE) -C $$lab run; done
 test:
-	$(MAKE) -C $(LAB) test
+	@for lab in $(LABS); do $(MAKE) -C $$lab test; done
+	python3 -m unittest -v test_practical_map.py
 verify:
-	$(MAKE) -C $(LAB) verify
+	@for lab in $(LABS); do $(MAKE) -C $$lab verify; done
+	python3 -m unittest -v test_practical_map.py
