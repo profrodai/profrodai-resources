@@ -47,6 +47,7 @@ UNIT_TOPICS = {
     11: ("exact-spending-approval", "approval-repair-transfer"),
     12: ("durable-order-evidence", "ambiguous-order-recovery"),
     13: ("worker-crash-recovery", "recovery-repair-transfer"),
+    14: ("bounded-mcp-client", "mcp-repair-transfer"),
     15: ("tool-isolation", "isolation-repair-transfer"),
     16: ("agent-evaluation", "evaluation-statistics"),
     17: ("controlled-improvement", "winners-curse-and-preferences"),

@@ -1,4 +1,4 @@
-# Chapter 14: Build an MCP client and tool server
+# Chapter 14: External tools with MCP
 
 > **Learn with Prof Rod** — *Build Your Always-On AI Agent From Scratch*.
 > **Read the full book and get the latest learning materials:** [https://profrod.ai/book](https://profrod.ai/book).
@@ -6,43 +6,20 @@
 > — bring your questions, compare experiments and share what you build.
 > **Original source and updates:** [profrodai/sovereign-agent](https://github.com/profrodai/sovereign-agent).
 
-**PLANNED — construction brief; no completed notebook or solution is published for this chapter.**
+**Available draft · two ninety-minute units · twenty-chapter edition**
 
-This slot belongs to the single twenty-chapter edition. Read the detailed chapter scope in the textbook's Chapter 14. The existing course material for later chapters remains available using its supplied reference runtime; completing it does not demonstrate construction of this missing foundation.
+Retain your own attempt before reading these worked solutions. Explain the reasoning, then solve a changed case without looking.
 
-The planned exercises are two independent ninety-minute units. Unit A builds and connects the component from its first principles. Unit B introduces a failure, requires a repair, and tests a changed case. Both will introduce every new library and concept where used, include predictions and progressive hints, and retain the learner's implementation and evidence.
+| Session | Notebook | Matching text | Purpose |
+|---|---|---|---|
+| A · 90 minutes | [A: build and connect a bounded MCP client](profrod-sovereign-agent-ch14-a-bounded-mcp-client-solution.ipynb) | [Markdown](profrod-sovereign-agent-ch14-a-bounded-mcp-client-solution.md) | Construct, connect and explain |
+| B · 90 minutes | [B: break the connection, repair and transfer](profrod-sovereign-agent-ch14-b-mcp-repair-transfer-solution.ipynb) | [Markdown](profrod-sovereign-agent-ch14-b-mcp-repair-transfer-solution.md) | Diagnose, repair and transfer |
 
-The solutions volume will explain each design decision, show the failed approach and repair, and include independently calculated expectations. The educator materials will include local student and worked copies, preparation instructions, misconception prompts, timing observations and an assessment rubric. These are requirements, not claims of delivery.
+Each notebook includes its own setup, first-principles introductions and supplied data, and needs only Python's standard library: no model, network or key. Each notebook writes the scripted teaching server to a temporary folder and starts it as a child process, so it needs a POSIX system (Colab, Linux or macOS). Use Google Colab (Python 3.13) or a local Python 3.12+ Jupyter kernel. No repository checkout, previous notebook kernel or live account is needed. Unit B can use an explicitly selected successful Unit A handoff; an invalid selected file refuses rather than substituting an answer.
 
-## Planned learning contract: MCP protocol construction
+Ninety minutes is the planned work allowance per unit. Actual completion time and understanding require classroom observation.
 
-**Starting knowledge and new concepts:** The agent/tool loop, durable work and recovery chapters. Introduce client/server, JSON-RPC messages, request IDs, newline framing, protocol negotiation, capabilities, subprocess pipes and timeouts.
-
-**Unit A construction:** Build a stdio client and a tiny tool server, initialize the connection, discover a read-only tool, validate arguments and invoke it through the existing dispatcher.
-
-| Minutes | Work |
-|---|---|
-| 0–10 | Predict a request and response exchange |
-| 10–30 | Read and write one framed JSON-RPC message |
-| 30–60 | Construct initialization and tool discovery |
-| 60–80 | Connect one validated tool call to the dispatcher |
-| 80–90 | Retain messages and explain capability versus permission |
-
-**Unit B diagnosis and transfer:** Send a mismatched response ID, malformed JSON, a timeout and an unauthorized advertised tool. Repair protocol handling while keeping authority in the dispatcher.
-
-| Minutes | Work |
-|---|---|
-| 0–15 | Retrieve framing and request-correlation rules |
-| 15–35 | Reproduce malformed and mismatched responses |
-| 35–60 | Repair bounded error handling and timeout cleanup |
-| 60–80 | Reject an advertised but unauthorized tool |
-| 80–90 | Explain why MCP does not provide OS containment |
-
-**Independent acceptance examples:** The matching request receives its own result. An unsolicited or mismatched ID cannot satisfy it. A tool advertised by the server does not become authorized by discovery. A timeout leaves an explicit failure and the child process is reaped.
-
-The worked chapter must show the first failing implementation, the specific observation that invalidates it, the repair and a new independently calculated case. It must explain each new library call before relying on it. No answer implementation is supplied yet.
-
-[Back to this asset](../profrod-sovereign-agent-solutions-start-here.md)
+[Setup](../profrod-sovereign-agent-solutions-setup.md) · [Back to this asset](../profrod-sovereign-agent-solutions-start-here.md)
 
 ## Keep building with Prof Rod
 

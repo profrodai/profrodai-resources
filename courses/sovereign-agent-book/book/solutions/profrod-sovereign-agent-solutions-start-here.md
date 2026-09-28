@@ -12,7 +12,7 @@ Study worked implementations and their reasoning after attempting the exercises.
 
 [Set up your environment](profrod-sovereign-agent-solutions-setup.md) · [Download the course as a ZIP](https://github.com/profrodai/profrodai-resources/archive/refs/heads/main.zip)
 
-The edition has twenty chapter slots. **Nineteen chapters currently have two ninety-minute units each: 38 units and 57 hours of available practice. Chapter 14 is a planned construction brief.** The finished plan calls for 40 units and 60 hours; those two additional units are not yet published. Existing units use a supplied runtime and can be studied while the new foundations are authored. No completed notebook is represented by an empty placeholder.
+The edition has twenty chapters. **Each has two ninety-minute units: 40 units and 60 hours of practice.** Every unit uses a supplied runtime and can be studied on its own.
 
 | Chapter | Topic | Availability |
 |---|---|---|
@@ -29,7 +29,7 @@ The edition has twenty chapter slots. **Nineteen chapters currently have two nin
 | 11 | [When to ask: calibration, oversight and spending permission](ch11/profrod-sovereign-agent-ch11-spending-permissions-solutions-guide.md) | Available draft — A and B, 90 minutes each |
 | 12 | [Exactly one order: lost replies, retries and idempotency](ch12/profrod-sovereign-agent-ch12-ambiguous-supplier-order-solutions-guide.md) | Available draft — A and B, 90 minutes each |
 | 13 | [Slow or dead: leases, fencing and crash recovery](ch13/profrod-sovereign-agent-ch13-worker-recovery-solutions-guide.md) | Available draft — A and B, 90 minutes each |
-| 14 | [Build an MCP client and tool server](ch14/profrod-sovereign-agent-ch14-mcp-tools-solutions-guide.md) | PLANNED — brief only |
+| 14 | [External tools with MCP: the protocol connects, the application decides](ch14/profrod-sovereign-agent-ch14-mcp-tools-solutions-guide.md) | Available draft — A and B, 90 minutes each |
 | 15 | [Prompt injection and isolation: words steer the model, boundaries hold](ch15/profrod-sovereign-agent-ch15-tool-isolation-solutions-guide.md) | Available draft — A and B, 90 minutes each |
 | 16 | [Evaluation as measurement: error bars and paired comparisons](ch16/profrod-sovereign-agent-ch16-agent-evaluation-solutions-guide.md) | Available draft — A and B, 90 minutes each |
 | 17 | [Optimizing against an evaluation: the winner's curse and preferences](ch17/profrod-sovereign-agent-ch17-controlled-improvement-solutions-guide.md) | Available draft — A and B, 90 minutes each |

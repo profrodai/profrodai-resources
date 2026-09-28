@@ -112,10 +112,10 @@
     {
       "number": 14,
       "lessonId": "mcp",
-      "title": "Connect an external tool with MCP",
+      "title": "External tools with MCP: the protocol connects, the application decides",
       "path": "ch14/profrod-sovereign-agent-ch14-mcp-tools-chapter.md",
-      "checkpoint": null,
-      "status": "PLANNED"
+      "checkpoint": "checkpoints/profrod_sovereign_agent_ch14_mcp_tools_checkpoint.py",
+      "status": "DRAFT"
     },
     {
       "number": 15,
