@@ -33,5 +33,8 @@
   "adoptedCourses": [
     {"slug":"agent-engineering-foundations","title":"Agent Engineering Foundations","status":"mapped","consolidationSource":"agent-engineering-foundations","coursePath":"courses/agent-engineering-foundations"},
     {"slug":"llm-engineering-essentials","title":"LLM Engineering Essentials","status":"mapped","consolidationSource":"llm-engineering-essentials","coursePath":"courses/llm-engineering-essentials"}
+  ],
+  "importedCourses": [
+    {"slug":"sovereign-agent-book","title":"Build Your Always-On AI Agent From Scratch: the course","status":"imported","consolidationSource":"sovereign-agent-book","coursePath":"courses/sovereign-agent-book"}
   ]
 }

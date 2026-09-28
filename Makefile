@@ -1,4 +1,4 @@
-.PHONY: verify verify-pr install format-check lint test typecheck audit catalog catalog-structure consolidation curriculum curriculum-pr curriculum-contract curriculum-maintenance ci-trust-check
+.PHONY: verify verify-pr install format-check lint test typecheck audit catalog catalog-structure consolidation curriculum curriculum-pr curriculum-contract curriculum-maintenance ci-trust-check imported-courses
 
 ORDER_API_DIR := courses/agentic-coding-with-cursor/order-api
 
@@ -52,6 +52,15 @@ curriculum-pr:
 	python3 tools/validate_catalog.py --structure-only --course-makefiles | while IFS= read -r course; do \
 		echo "=== PR-safe curriculum gate: $$course ==="; \
 		$(MAKE) -C "$$course" verify; \
+	done
+
+# Imported courses pin third-party packages in their own uv project, so their gates need uv and
+# run in their own PR-safe CI job rather than in the stdlib matrix.
+imported-courses:
+	@set -e; \
+	python3 tools/validate_catalog.py --structure-only --imported-makefiles | while IFS= read -r course; do \
+		echo "=== imported course gate: $$course ==="; \
+		$(MAKE) -C "$$course" setup verify; \
 	done
 
 curriculum-contract:

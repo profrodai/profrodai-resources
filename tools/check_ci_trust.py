@@ -51,8 +51,11 @@ def main() -> None:
         fail("catalog must enumerate exactly 11 course gates")
     if len(catalog.get("adoptedCourses", [])) != 2:
         fail("catalog must enumerate exactly two mapped adopted courses")
-    if len(consolidation.get("sources", [])) != 7:
-        fail("consolidation registry must enumerate exactly seven approved sources")
+    if len(consolidation.get("sources", [])) != 8:
+        fail("consolidation registry must enumerate exactly eight approved sources")
+    if len(catalog.get("importedCourses", [])) != 1:
+        fail("catalog must enumerate exactly one imported course")
+    require(makefile, "imported-courses:", "Makefile")
     if "consolidation:" not in makefile:
         fail("Makefile must validate the consolidation registry")
     require(validator, 'git_output(source_repo, "cat-file", "-e"', "source validator")
