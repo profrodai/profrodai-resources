@@ -77,6 +77,16 @@
       "importMode": "curriculum-adoption",
       "migrationStatus": "mapped",
       "target": {"path": "courses/llm-engineering-essentials", "documentation": ["SOURCE.md", "MIGRATION.md", "README.md"]}
+    },
+    {
+      "id": "sovereign-agent-book",
+      "upstreamUrl": "https://github.com/profrodai/sovereign-agent",
+      "pinnedCommit": "03b67411133409f6c897461639c704ec27264fa9",
+      "originalLicense": "Apache-2.0; the copyright holder authorised MIT for the migrated course material on 2026-09-28",
+      "licenseStatus": "operator-authorized-mit-grant-pending-record",
+      "importMode": "canonical-import",
+      "migrationStatus": "imported",
+      "target": {"path": "courses/sovereign-agent-book", "documentation": ["SOURCE.md", "MIGRATION.md"]}
     }
   ]
 }

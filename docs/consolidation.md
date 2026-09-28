@@ -28,8 +28,13 @@ machine-checked migration map; this document is its human-readable operating pol
 | ZeoTool | pending merged MIT SHA | future MIT import | `courses/tools-memory-and-multi-agent-systems/legacy/quacktool` | canonical public repository is `profrodai/zeotool`; import awaits a merged MIT pin |
 | Agent Engineering Foundations | `ec7bb27` | curriculum adoption | `courses/agent-engineering-foundations` | mapped |
 | LLM Engineering Essentials | `01f05c3` | curriculum adoption | `courses/llm-engineering-essentials` | mapped |
+| Sovereign Agent book course | `03b6741` | canonical import | `courses/sovereign-agent-book` | imported; operator-authorised MIT grant (2026-09-28) |
 
-No source code, notebooks, slides, data, or Git history is imported by this mapping commit.
+The mapping commit imported no source code, notebooks, slides, data, or Git history. The one
+import since is the Sovereign Agent book course: its notebooks, solutions, educator guides and
+chapter code, at the pin above, with no Git history. `imported` is the status of a canonical
+import that has landed, is documented in its own `SOURCE.md` and `MIGRATION.md`, and passes its
+own gate.
 
 ### ZeoTool rename record
 

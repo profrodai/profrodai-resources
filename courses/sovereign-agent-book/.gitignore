@@ -1,0 +1,4 @@
+# Local course environment and learner output; never course material.
+.venv/
+__pycache__/
+practical-work/

@@ -11,6 +11,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 LINK_PATTERN = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+FENCE_PATTERN = re.compile(r"^\s*(`{3,}|~{3,})")
 
 
 def markdown_paths(root: Path) -> list[Path]:
@@ -37,7 +38,15 @@ def markdown_paths(root: Path) -> list[Path]:
 def broken_links(root: Path = ROOT) -> list[str]:
     broken: list[str] = []
     for markdown in markdown_paths(root):
+        fence = None
         for line_number, line in enumerate(markdown.read_text().splitlines(), start=1):
+            # Code in a fenced block is code: `table["SHOP"](...)` is a call, not a link.
+            marker = FENCE_PATTERN.match(line)
+            if marker and (fence is None or marker.group(1)[0] == fence):
+                fence = marker.group(1)[0] if fence is None else None
+                continue
+            if fence is not None:
+                continue
             for raw_target in LINK_PATTERN.findall(line):
                 target = raw_target.strip().split(maxsplit=1)[0].strip("<>")
                 if target.startswith(("http://", "https://", "mailto:", "#")):

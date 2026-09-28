@@ -1,0 +1,24 @@
+[project]
+name = "sovereign-agent-book-course"
+version = "2026.9.28"
+description = "Exercises, solutions, educator guides and chapter code for Build Your Always-On AI Agent From Scratch (profrod.ai/book)."
+requires-python = ">=3.14"
+license = "MIT"
+dependencies = [
+  # The finished agent the chapters build toward. Pinned to the commit the course was imported
+  # from until a PyPI release carries it (sovereign-agent 1.4.0 predates 21 commits the course uses).
+  "sovereign-agent @ git+https://github.com/profrodai/sovereign-agent@03b67411133409f6c897461639c704ec27264fa9",
+  "pydantic>=2,<3",
+]
+
+[dependency-groups]
+course = [
+  "ipykernel==7.3.0",
+  "jupytext==1.19.5",
+  "nbclient==0.11.0",
+  "nbformat==5.11.1",
+]
+
+[tool.uv]
+package = false
+default-groups = ["course"]

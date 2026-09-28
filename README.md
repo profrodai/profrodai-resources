@@ -43,6 +43,15 @@ packages before it runs.
 > courses or articles themselves. It never copies or republishes the teaching
 > material from profrod.ai.
 
+## The book's course: build an always-on agent, one unit at a time
+
+Reading **Build Your Always-On AI Agent From Scratch** on
+[profrod.ai/book](https://profrod.ai/book)? Its practice lives here, in
+[`courses/sovereign-agent-book`](courses/sovereign-agent-book/): 38 ninety-minute notebook units,
+two per chapter, each with a one-click Colab badge, a separate worked solution, and educator
+guides for a class. They build, piece by piece, the finished agent in
+[profrodai/sovereign-agent](https://github.com/profrodai/sovereign-agent).
+
 ## Start here: your first exercise in five minutes
 
 ### What you need
@@ -448,6 +457,7 @@ claim otherwise. Future resource repositories start with their required safety `
 
 | Course | Directory | What's there |
 |---|---|---|
+| [Build Your Always-On AI Agent From Scratch](https://profrod.ai/book) | [`courses/sovereign-agent-book/`](courses/sovereign-agent-book/) | The book's course, imported from sovereign-agent: 38 notebook units with solutions and educator guides, and the chapter code. Its gate (`make imported-courses`) needs uv and Python 3.14. |
 | [Agentic Coding with Cursor](https://profrod.ai/courses/agentic-coding-with-cursor) | [`courses/agentic-coding-with-cursor/order-api/`](courses/agentic-coding-with-cursor/order-api/) | `order-api`, the small Node/Express/TypeScript order-lookup service the course runs against starting in lesson 4. |
 
 The complete map names all remaining source courses. Each gets its own directory under

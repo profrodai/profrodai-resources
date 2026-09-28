@@ -18,12 +18,17 @@ CONSOLIDATION_SOURCES_PATH = ROOT / "catalog" / "consolidation-sources.json"
 EXPECTED_COURSES = 11
 EXPECTED_ARTICLES = 13
 EXPECTED_ADOPTED_COURSES = 2
-EXPECTED_CONSOLIDATION_SOURCES = 7
+EXPECTED_CONSOLIDATION_SOURCES = 8
+EXPECTED_IMPORTED_COURSES = 1
 REQUIRED_COURSE_KEYS = {"slug", "title", "genre", "status", "source", "coursePath", "stubPath"}
 REQUIRED_ADOPTED_COURSE_KEYS = {"slug", "title", "status", "consolidationSource", "coursePath"}
+REQUIRED_IMPORTED_COURSE_KEYS = REQUIRED_ADOPTED_COURSE_KEYS
+# An imported course is runnable here, so it names its own environment and gate: a uv project
+# with a lockfile (its dependencies are pinned, not the standard library), and make targets.
+IMPORTED_COURSE_FILES = ("README.md", "SOURCE.md", "MIGRATION.md", "NOTICE", "Makefile", "pyproject.toml", "uv.lock", "runtime.txt")
 SOURCE_LICENSE_STATUSES = {"verified-mit", "operator-authorized-mit-grant-pending-record", "awaiting-merged-mit-pin"}
 IMPORT_MODES = {"canonical-import", "legacy-modernize", "template-import", "curriculum-adoption", "awaiting-mit-import"}
-MIGRATION_STATUSES = {"mapped", "awaiting-merged-mit-pin"}
+MIGRATION_STATUSES = {"mapped", "awaiting-merged-mit-pin", "imported"}
 LEGACY_QUACKTOOL_URL = "https://github.com/profrodai/quacktool"
 ZEOTOOL_URL = "https://github.com/profrodai/zeotool"
 
@@ -162,7 +167,7 @@ def validate_historical_quacktool_source(source: dict[str, object]) -> tuple[str
     )
 
 
-def validate_consolidation_sources(adopted_courses: list[object]) -> None:
+def validate_consolidation_sources(adopted_courses: list[object]) -> dict[str, dict[str, object]]:
     """Require every approved upstream to have a truthful, documented target.
 
     This is intentionally static: PR CI must not fetch an upstream repository or need a
@@ -232,11 +237,45 @@ def validate_consolidation_sources(adopted_courses: list[object]) -> None:
         require_text(ROOT / course_path / "README.md", (f"# {title}", "Status: mapped", "Curriculum outline", "Credential and live-API boundary", "Next gate"), f"adopted course README for {slug}")
     if len(adopted_ids) != EXPECTED_ADOPTED_COURSES:
         fail(f"expected exactly {EXPECTED_ADOPTED_COURSES} adopted courses")
+    return {source["id"]: source for source in sources}
+
+
+def validate_imported_courses(imported_courses: list[object], sources: dict[str, dict[str, object]]) -> list[str]:
+    """A canonical import that landed: registered as imported, documented, and runnable here."""
+    paths: list[str] = []
+    imported_ids: set[str] = set()
+    for course in imported_courses:
+        if not isinstance(course, dict) or set(course) != REQUIRED_IMPORTED_COURSE_KEYS:
+            fail("an imported course entry has an incomplete or unexpected contract")
+        slug, title, source_id, course_path = course["slug"], course["title"], course["consolidationSource"], course["coursePath"]
+        if not all(isinstance(value, str) and value for value in (slug, title, source_id, course_path)):
+            fail("imported course identity fields must be nonempty strings")
+        source = sources.get(source_id)
+        if course["status"] != "imported" or source is None or source_id in imported_ids:
+            fail(f"imported course {slug} must be uniquely tied to a registered consolidation source")
+        if source["importMode"] != "canonical-import" or source["migrationStatus"] != "imported":
+            fail(f"imported course {slug} must come from a canonical import registered as imported")
+        target = source["target"]
+        if not isinstance(target, dict) or target.get("path") != course_path:
+            fail(f"imported course {slug} must live at its source's registered target")
+        if source["licenseStatus"] not in {"verified-mit", "operator-authorized-mit-grant-pending-record"}:
+            fail(f"imported course {slug} must carry a verified or operator-authorised MIT licence")
+        imported_ids.add(source_id)
+        for name in IMPORTED_COURSE_FILES:
+            require_file(ROOT / course_path / name, f"imported course {name} for {slug}")
+        require_text(ROOT / course_path / "README.md", (f"# {title}", "Status: imported", "Learner promise", "Prerequisites", "Run, verify, reset", "Credential and live-API boundary", "Source boundary"), f"imported course README for {slug}")
+        require_text(ROOT / course_path / "Makefile", ("run:", "test:", "verify:"), f"imported course Makefile for {slug}")
+        require_text(ROOT / course_path / "NOTICE", ("MIT",), f"imported course NOTICE for {slug}")
+        paths.append(course_path)
+    if len(imported_ids) != EXPECTED_IMPORTED_COURSES:
+        fail(f"expected exactly {EXPECTED_IMPORTED_COURSES} imported course")
+    return paths
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--course-makefiles", action="store_true")
+    parser.add_argument("--imported-makefiles", action="store_true", help="list imported courses, whose gates need uv")
     parser.add_argument("--structure-only", action="store_true", help="validate local catalog structure without claiming pinned-source provenance")
     parser.add_argument("--source-repo", default=os.environ.get("PROFROD_SITE_REPO"), help="path to a checkout containing the pinned profrod-site git object")
     args = parser.parse_args()
@@ -262,12 +301,15 @@ def main() -> None:
     courses = data.get("courses")
     articles = data.get("articles")
     adopted_courses = data.get("adoptedCourses")
+    imported_courses = data.get("importedCourses")
     if not isinstance(courses, list) or len(courses) != EXPECTED_COURSES:
         fail(f"expected exactly {EXPECTED_COURSES} courses")
     if not isinstance(articles, list) or len(articles) != EXPECTED_ARTICLES:
         fail(f"expected exactly {EXPECTED_ARTICLES} articles")
     if not isinstance(adopted_courses, list) or len(adopted_courses) != EXPECTED_ADOPTED_COURSES:
         fail(f"expected exactly {EXPECTED_ADOPTED_COURSES} adopted courses")
+    if not isinstance(imported_courses, list):
+        fail("catalog must list importedCourses")
     course_slugs = set()
     course_paths = []
     for course in courses:
@@ -329,12 +371,15 @@ def main() -> None:
             f"article README for {slug}",
         )
         require_text(readme, (f"# {article['title']}",), f"article README title for {slug}")
-    validate_consolidation_sources(adopted_courses)
+    sources = validate_consolidation_sources(adopted_courses)
+    imported_paths = validate_imported_courses(imported_courses, sources)
     if args.course_makefiles:
         print("\n".join(course_paths))
+    elif args.imported_makefiles:
+        print("\n".join(imported_paths))
     else:
         mode = "structure valid; pinned-source provenance not checked" if args.structure_only else "valid"
-        print(f"catalog {mode}: {len(courses)} courses, {len(articles)} articles")
+        print(f"catalog {mode}: {len(courses)} courses, {len(articles)} articles, {len(imported_paths)} imported course")
 
 
 if __name__ == "__main__":
