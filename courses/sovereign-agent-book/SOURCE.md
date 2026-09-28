@@ -26,10 +26,17 @@ From that commit, with its relative layout kept so every path the code computes 
 - Because notebook bytes changed, every notebook and handoff was executed again here; the receipt
   is `docs/evidence/book-four-assets/verification-v3.json`.
 
-## Licence
+## After import
+
+- 2026-09-28: Chapter 14 (external tools with MCP) was written here, not imported: two units, their
+  solutions and educator copies, a learner file, a scripted teaching server, a checkpoint and an
+  experiment with its receipt in `docs/evidence/book-ch14/`. All 80 notebooks and 20 handoffs were
+  executed again; the receipt is `docs/evidence/book-four-assets/verification-v4.json`.
+
+## License
 
 The source is Apache-2.0 at the pin. On 2026-09-28 the operator, Rod Rivera, as copyright holder,
-authorised the migrated course material to be published here under this repository's MIT licence
+authorized the migrated course material to be published here under this repository's MIT license
 (recorded as `operator-authorized-mit-grant-pending-record` in `catalog/consolidation-sources.json`).
 The sovereign-agent package the chapter code imports remains Apache-2.0 and is installed from its
 own repository, not copied.

@@ -35,10 +35,10 @@ else:
 ROOT = Path(__file__).resolve().parents[1]
 BOOK = ROOT / "book"
 COURSE = ("exercises", "solutions", "educator")
-PLANNED = {14}
+PLANNED: set[int] = set()
 AVAILABLE = set(range(1, 21)) - PLANNED
 EXPECTED = {f"ch{chapter:02d}-{letter}" for chapter in AVAILABLE for letter in "ab"}
-RECEIPT = ROOT / "docs/evidence/book-four-assets/verification-v3.json"
+RECEIPT = ROOT / "docs/evidence/book-four-assets/verification-v4.json"
 LEGACY = runpy.run_path(str(ROOT / "scripts/verify_practical_course_v1.py"))
 
 
@@ -150,7 +150,7 @@ def verify_layout(book: Path = BOOK) -> dict:
             assert "Join the Prof Rod learner community" in source, path
             for url in (distribution.BOOK_URL, distribution.COMMUNITY_URL, distribution.SOURCE_URL):
                 assert url in source, path
-    assert len(notebook_paths(book)) == 76
+    assert len(notebook_paths(book)) == 80
     return manifest
 
 
@@ -165,7 +165,7 @@ def verify_code() -> None:
             [sys.executable, str(BOOK / "textbook" / row["checkpoint"])], cwd=ROOT, check=True, timeout=120
         )
         ran += 1
-    print(f"CHAPTER CODE: {ran} checkpoints ran against sovereign-agent; chapter 14 remains PLANNED.")
+    print(f"CHAPTER CODE: {ran} checkpoints ran against sovereign-agent.")
 
 
 def execute_one(path: Path) -> dict:
@@ -246,11 +246,11 @@ def verify_receipt(path: Path = RECEIPT, book: Path = BOOK) -> None:
     receipt = json.loads(path.read_text())
     assert receipt["schemaVersion"] == 1 and receipt["edition"] == "four-assets-20-chapters"
     rows = receipt["notebooks"]
-    assert len(rows) == 76 and {(row["id"], row["asset"]) for row in rows} == {
+    assert len(rows) == 80 and {(row["id"], row["asset"]) for row in rows} == {
         (identity, asset) for identity in EXPECTED for asset in ("exercises", "solutions")
     }, "notebook coverage drift"
     assert {str(p.relative_to(book)) for p in notebook_paths(book)} == {row["notebook"] for row in rows}
-    assert len(receipt["handoffs"]) == 19
+    assert len(receipt["handoffs"]) == 20
     assert {row["chapter"] for row in receipt["handoffs"]} == AVAILABLE
     assert all(row["selectedLearnerHandoff"] == "PASS" for row in receipt["handoffs"])
     for row in rows:
@@ -264,7 +264,7 @@ def verify_receipt(path: Path = RECEIPT, book: Path = BOOK) -> None:
         assert row["coreHoldout"] == ("PASS" if row["asset"] == "solutions" else "NOT_DISTRIBUTED")
         for field in ("notebook", "markdown"):
             assert digest(local_file(book, row[field])) == row[field + "Sha256"], "verified bytes changed"
-    print("COURSE: 38 exercise units, 38 solutions, 19 selected handoffs; exact executed bytes intact.")
+    print("COURSE: 40 exercise units, 40 solutions, 20 selected handoffs; exact executed bytes intact.")
 
 
 def execute(workers: int, *, record: bool = True) -> None:
@@ -281,7 +281,6 @@ def execute(workers: int, *, record: bool = True) -> None:
         "notebooks": notebooks,
         "handoffs": handoffs,
         "limits": [
-            "One planned chapter contains no executable notebooks.",
             "Ninety minutes is a teaching plan, not measured classroom duration.",
             "Offline execution does not certify real phone delivery or host operation.",
         ],
