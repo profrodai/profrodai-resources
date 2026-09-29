@@ -12,8 +12,11 @@ import math
 import random
 import runpy
 import sqlite3
+import subprocess
+import sys
 import tempfile
 import time
+from contextlib import contextmanager
 from pathlib import Path
 
 from reference_organizations.store.account_recovery import (
@@ -23,11 +26,47 @@ from reference_organizations.store.account_recovery import (
 )
 from reference_organizations.store.agent import OfflineShopModel, seed_lucy, shop_dispatcher
 from reference_organizations.store.assistant import run_once
+from reference_organizations.store.supplier import SupplierClient
 from sovereign_agent import assistant_orders as orders
 from sovereign_agent import assistant_work as work
 from sovereign_agent.assistant_service import backup, health, restore, unit_text
 from sovereign_agent.database import Database
 from sovereign_agent.model_turn import ToolCall
+
+
+@contextmanager
+def supplied_supplier_process(root):
+    """The supplied supplier, with account epochs, until this chapter is rebuilt."""
+    ready, path = root / "ready", root / "supplier.sqlite"
+    process = subprocess.Popen(
+        [
+            sys.executable,
+            "-m",
+            "reference_organizations.store.supplier",
+            "--database",
+            str(path),
+            "--port",
+            "0",
+            "--ready",
+            str(ready),
+        ],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    try:
+        deadline = time.monotonic() + 10
+        while not ready.exists() and time.monotonic() < deadline and process.poll() is None:
+            time.sleep(0.02)
+        if not ready.exists():
+            raise RuntimeError("chapter supplier failed to start")
+        yield SupplierClient("http://127.0.0.1:" + ready.read_text()), path
+    finally:
+        process.terminate()
+        try:
+            process.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            process.kill()
+            process.wait(timeout=5)
 
 
 def experiment(root, supplier_process):
@@ -233,16 +272,8 @@ def economics():
 
 def main():
     economics()
-    checkpoint_dir = Path(__file__).resolve().parent
-    if not (
-        checkpoint_dir / "profrod_sovereign_agent_ch11_spending_permissions_checkpoint.py"
-    ).exists():
-        checkpoint_dir = Path("book/textbook/checkpoints")
-    supplier_process = runpy.run_path(
-        str(checkpoint_dir / "profrod_sovereign_agent_ch11_spending_permissions_checkpoint.py")
-    )["supplier_process"]
     with tempfile.TemporaryDirectory(prefix="lucy-maintenance-") as directory:
-        result = experiment(Path(directory), supplier_process)
+        result = experiment(Path(directory), supplied_supplier_process)
     unit = unit_text(
         Path("/srv/lucy/state"), Path("/srv/lucy/releases/one/.venv/bin/sovereign-agent")
     )
