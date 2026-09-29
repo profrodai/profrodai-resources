@@ -120,11 +120,8 @@ def overflow():
     print("ok   a context that cannot fit is refused, never cut silently")
 
 
-def measured_context():
-    """The receipt's tables recomputed from its rows, and its inputs regenerated here."""
-    receipt = json.loads(
-        (BOOK.parents[1] / "docs/evidence/book-ch21/ch21-context-receipt-v1.json").read_text()
-    )
+def recomputed(receipt):
+    """One receipt's tables, recomputed from its own rows."""
     for entry in receipt["depthTable"]:
         rows = [
             r
@@ -147,9 +144,47 @@ def measured_context():
     assert truth == receipt["truncation"][receipt["models"][0]]["_truth"]
     digest = EXPERIMENT["digest"](text)
     assert f"pistachio {truth['pistachio']}" in digest and f"{truth['count']} sales" in digest
-    for row in receipt["estimate"]:
+    estimates = receipt["estimate"]
+    for row in estimates if isinstance(estimates, list) else sum(estimates.values(), []):
         assert row["estimateError"] == round(row["estimate"] / row["actual"] - 1, 3)
-    print("ok   the receipt's tables recompute from its rows; its inputs regenerate identically")
+
+
+def claude_cost(usage):
+    """List-price cost from token counts, with the client's own price table."""
+    prices = EXPERIMENT["CLAUDE"]["PRICES"]
+    total = 0.0
+    for model, used in usage["usage"].items():
+        price_in, price_out, price_write, price_read = prices[model]
+        total += (
+            used["input_tokens"] * price_in
+            + used["output_tokens"] * price_out
+            + used["cache_creation_input_tokens"] * price_write
+            + used["cache_read_input_tokens"] * price_read
+        ) / 1_000_000
+    return round(total, 4)
+
+
+def measured_context():
+    """Both receipts' tables recomputed from their rows, and their inputs regenerated here."""
+    evidence = BOOK.parents[1] / "docs/evidence/book-ch21"
+    recomputed(json.loads((evidence / "ch21-context-receipt-v1.json").read_text()))
+    raw = (evidence / "ch21-context-claude-receipt-v1.json").read_text()
+    assert "sk-ant" not in raw and "x-api-key" not in raw, "a receipt must never hold a key"
+    claude = json.loads(raw)
+    recomputed(claude)
+    runs = [claude["usage"], *(run["usage"] for run in claude.get("additionalRuns", []))]
+    for usage in runs:
+        assert usage["costUsd"] == claude_cost(usage) <= usage["ceilingUsd"]
+    for layouts in claude["layout"].values():
+        for layout in layouts.values():
+            later = layout["turns"][1:]
+            share = sum(r["cacheReadTokens"] for r in later) / sum(r["promptTokens"] for r in later)
+            assert layout["cacheReadShareAfterFirst"] == round(share, 3)
+    spent = sum(usage["costUsd"] for usage in runs)
+    print(
+        "ok   both receipts' tables recompute from their rows; inputs regenerate identically; "
+        f"the Claude runs cost {spent:.2f} USD at list price"
+    )
 
 
 def main():
