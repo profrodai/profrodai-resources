@@ -3,7 +3,11 @@
 # Join the Prof Rod learner community: https://profrod.ai/community
 # Original source and updates: https://github.com/profrodai/sovereign-agent
 
-"""Chapter 13: replace a killed owner, then fence an old owner that is still alive."""
+"""Chapter 13: replace a killed owner, then fence an old owner that is still alive.
+
+The queue, leases, orders and supplier are the learner's own: Chapter 13's worker file on
+Chapter 11's approvals and supplier, Chapter 8's queue and Chapter 4's store.
+"""
 
 import argparse
 import json
@@ -15,15 +19,16 @@ import subprocess
 import sys
 import tempfile
 import time
-from contextlib import contextmanager
 from pathlib import Path
 
-from reference_organizations.store.agent import seed_lucy
-from reference_organizations.store.assistant import run_once
-from reference_organizations.store.supplier import SupplierClient
-from sovereign_agent.assistant_orders import SpendingPolicy, approve, execute, propose
-from sovereign_agent.assistant_work import claim, enqueue, finish, observe
-from sovereign_agent.database import Database
+LEARNER = Path(__file__).resolve().parents[1] / "learner"
+WORKER = runpy.run_path(str(LEARNER / "profrod_sovereign_agent_ch13_worker_learner.py"))
+APPROVAL = runpy.run_path(str(LEARNER / "profrod_sovereign_agent_ch11_approval_learner.py"))
+SUPPLIER = runpy.run_path(str(LEARNER / "profrod_sovereign_agent_ch11_supplier_learner.py"))
+open_worker_shop, enqueue, claim = WORKER["open_worker_shop"], WORKER["enqueue"], WORKER["claim"]
+observe, finish, recover_once = WORKER["observe"], WORKER["finish"], WORKER["recover_once"]
+SpendingPolicy, propose = APPROVAL["SpendingPolicy"], APPROVAL["propose"]
+approve, execute = APPROVAL["approve"], APPROVAL["execute"]
 
 
 def wait_until(check, seconds=8):
@@ -37,24 +42,23 @@ def wait_until(check, seconds=8):
 
 
 def old_worker(root, target):
-    db = Database(root / "agent.sqlite")
+    db, _ = open_worker_shop(root / "agent.sqlite")
     work = claim(db, "old-worker", ttl=2)
     assert work is not None
-    supplier = SupplierClient(target)
+    supplier = SUPPLIER["SupplierClient"](target)
     operation = propose(db, work, "SKU-VANILLA", 6, target=supplier.identity)
     digest = db.connection.execute("SELECT digest FROM assistant_orders").fetchone()[0]
     policy = SpendingPolicy(frozenset({"lucy"}), total_cents=2000)
     approve(db, operation, digest, actor="lucy", policy=policy, expires=time.time() + 60)
-    expires = db.connection.execute("SELECT expires FROM assistant_work").fetchone()[0]
     temporary = root / "worker-ready.tmp"
     temporary.write_text(
         json.dumps(
             {
                 "pid": os.getpid(),
                 "operation": operation,
-                "work": work.id,
+                "work": work.work_id,
                 "generation": work.generation,
-                "expires": expires,
+                "expires": work.expires,
             }
         )
     )
@@ -77,52 +81,56 @@ def old_worker(root, target):
     db.close()
 
 
-class NoNewReasoning:
-    def complete(self, *args, **kwargs):
-        raise AssertionError("replacement must continue the existing approved record")
-
-
-@contextmanager
-def supplied_supplier_process(root):
-    """The supplied supplier, with account epochs, until this chapter is rebuilt."""
-    ready, path = root / "ready", root / "supplier.sqlite"
-    process = subprocess.Popen(
-        [
-            sys.executable,
-            "-m",
-            "reference_organizations.store.supplier",
-            "--database",
-            str(path),
-            "--port",
-            "0",
-            "--ready",
-            str(ready),
-        ],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
+def fencing(root):
+    """Fences tested while the replacement still holds the work, with a reused owner label."""
+    db, queue = open_worker_shop(root / "fencing.sqlite")
     try:
-        deadline = time.monotonic() + 10
-        while not ready.exists() and time.monotonic() < deadline and process.poll() is None:
-            time.sleep(0.02)
-        if not ready.exists():
-            raise RuntimeError("chapter supplier failed to start")
-        yield SupplierClient("http://127.0.0.1:" + ready.read_text()), path
+        first = enqueue(queue, "phone:first", "lucy", "Prepare the stock draft")
+        second = enqueue(queue, "phone:second", "lucy", "Explain the draft")
+        start = time.time()
+        old = claim(db, "worker", ttl=10, now=start)
+        assert old.work_id == first and old.generation == 1
+        # The session already has a live holder: its second turn waits.
+        assert claim(db, "other", now=start + 1) is None
+        # After expiry, the same owner label reacquires the same work as generation 2.
+        new = claim(db, "worker", ttl=60, now=start + 11)
+        assert (new.work_id, new.generation) == (first, 2)
+        for name, action in {
+            "transcript": lambda: observe(db, old, {"role": "assistant", "content": "old"}),
+            "completion": lambda: finish(db, old, "DONE", "old result"),
+        }.items():
+            try:
+                action()
+            except PermissionError:
+                pass
+            else:
+                raise AssertionError("generation 1 wrote while generation 2 held: " + name)
+        observe(db, new, {"role": "assistant", "content": "current"})
+        finish(db, new, "DONE", "current result")
+        after = claim(db, "next", ttl=60)
+        assert (after.work_id, after.generation) == (second, 1)
+        rows = db.connection.execute("SELECT generation FROM transcript").fetchall()
+        assert [tuple(r) for r in rows] == [(2,)]
     finally:
-        process.terminate()
-        try:
-            process.wait(timeout=5)
-        except subprocess.TimeoutExpired:
-            process.kill()
-            process.wait(timeout=5)
+        db.close()
+    print(
+        "ok   a reused owner label gets generation 2; generation 1 is refused while it holds;"
+        " a session's next turn waits"
+    )
 
 
 def experiment(root, *, kill):
     root.mkdir()
-    with supplied_supplier_process(root) as (supplier, supplier_path):
-        db = Database(root / "agent.sqlite")
-        seed_lucy(db)
-        identifier = enqueue(db, "morning", "lucy", "Replenish vanilla")
+    supplier_context = runpy.run_path(
+        str(
+            Path(__file__).with_name(
+                "profrod_sovereign_agent_ch11_spending_permissions_checkpoint.py"
+            )
+        )
+    )["supplier_process"]
+    with supplier_context(root) as (supplier, supplier_path):
+        db, queue = open_worker_shop(root / "agent.sqlite")
+        identifier = enqueue(queue, "morning", "lucy", "Replenish vanilla")
         # Only the child creates the claim and approval before becoming unavailable.
         environment = {
             key: value
@@ -142,6 +150,7 @@ def experiment(root, *, kill):
             stderr=subprocess.PIPE,
             text=True,
             env=environment,
+            cwd=os.getcwd(),
         )
         try:
             ready = root / "worker-ready.json"
@@ -158,18 +167,16 @@ def experiment(root, *, kill):
                 assert child.poll() is None
             # Observe actual expiry; this case does not rewrite or fast-forward the ledger.
             wait_until(lambda: time.time() > prior["expires"] + 0.05)
-            result = run_once(
-                db,
-                NoNewReasoning(),
-                owner="replacement",
-                supplier=supplier,
-                policy=SpendingPolicy(frozenset({"lucy"}), total_cents=2000),
-            )
+            policy = SpendingPolicy(frozenset({"lucy"}), total_cents=2000)
+            result = recover_once(db, owner="replacement", supplier=supplier, policy=policy)
             assert result["status"] == "DONE" and result["work"] == identifier
             current = db.connection.execute(
-                "SELECT generation,owner,status FROM assistant_work"
+                "SELECT l.generation, w.worker_id, o.status FROM work w"
+                " JOIN assignment_leases l ON l.work_id = w.work_id"
+                " JOIN outcomes o ON o.work_id = w.work_id WHERE w.work_id = ?",
+                (identifier,),
             ).fetchone()
-            assert tuple(current) == (2, "replacement", "DONE")
+            assert tuple(current) == (2, "replacement#2", "DONE")
             boundaries = []
             if not kill:
                 assert child.poll() is None
@@ -187,17 +194,16 @@ def experiment(root, *, kill):
                     "SELECT reserved_cents,spent_cents FROM assistant_spending"
                 ).fetchone()
             ) == (0, 1500)
-            assert (
-                db.connection.execute("SELECT count(*) FROM assistant_transcript").fetchone()[0]
-                == 0
-            )
-            assert run_once(db, NoNewReasoning(), supplier=supplier)["status"] == "IDLE"
+            assert db.connection.execute("SELECT count(*) FROM transcript").fetchone()[0] == 0
+            assert recover_once(db, owner="later", supplier=supplier, policy=policy) == {
+                "status": "IDLE"
+            }
             return {
                 "case": "killed" if kill else "still_alive",
                 "initial_pid": prior["pid"],
                 "observed_exit": child.returncode,
-                "generation": current["generation"],
-                "work_state": current["status"],
+                "generation": current[0],
+                "work_state": current[2],
                 "supplier_orders": 1,
                 "spent_cents": 1500,
                 "stale_boundaries_refused": boundaries,
@@ -258,6 +264,7 @@ def main():
     lease_arithmetic()
     with tempfile.TemporaryDirectory(prefix="lucy-worker-") as directory:
         root = Path(directory)
+        fencing(root)
         results = [experiment(root / "killed", kill=True), experiment(root / "stale", kill=False)]
     print("Killed worker replaced:", results[0]["work_state"])
     print("Live stale worker refused:", len(results[1]["stale_boundaries_refused"]))
