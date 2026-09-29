@@ -20,6 +20,7 @@ import concurrent.futures
 import hashlib
 import json
 import platform
+import re
 import runpy
 import subprocess
 import sys
@@ -154,18 +155,65 @@ def verify_layout(book: Path = BOOK) -> dict:
     return manifest
 
 
+# Chapters whose checkpoint builds only on the standard library, locked dependencies and the
+# learner's own files. The book promises every chapter joins this set; none may leave it.
+FROM_SCRATCH = frozenset({1, 2, 3, 4, 6, 8, 14, 21})
+SUPPLIED = ("sovereign_agent", "reference_organizations")
+# Runs a checkpoint as its own script would run, with the supplied packages refused on import,
+# so a file the checkpoint loads indirectly cannot bring them back either.
+FROM_SCRATCH_RUNNER = """
+import runpy, sys
+class Refuse:
+    def find_spec(self, name, path=None, target=None):
+        if name.split(".")[0] in {supplied!r}:
+            raise ImportError(name + " is supplied code; this chapter builds from learner files")
+sys.meta_path.insert(0, Refuse())
+sys.argv = [{path!r}]
+sys.path[0] = {folder!r}
+runpy.run_path({path!r}, run_name="__main__")
+"""
+
+
+def supplied_imports(chapter: int) -> list[str]:
+    """Import lines naming a supplied package, in a chapter's checkpoint and learner files. This
+    catches what the import hook cannot: a supplied import on a path the checkpoint never runs,
+    such as a live-model branch."""
+    textbook = BOOK / "textbook"
+    files = [*textbook.glob(f"checkpoints/*_ch{chapter:02d}_*.py")]
+    files += textbook.glob(f"learner/*_ch{chapter:02d}_*.py")
+    pattern = re.compile(r"^\s*(from|import)\s+(" + "|".join(SUPPLIED) + r")\b")
+    return [
+        f"{path.name}:{number}"
+        for path in files
+        for number, line in enumerate(path.read_text().splitlines(), 1)
+        if pattern.match(line)
+    ]
+
+
 def verify_code() -> None:
-    """Every draft chapter's checkpoint runs, from the course root, against the pinned package."""
+    """Every draft chapter's checkpoint runs from the course root; the from-scratch chapters run
+    with the supplied packages refused."""
     manifest = verify_layout()
-    ran = 0
+    ran, scratch = 0, 0
     for row in manifest["chapters"]:
         if row["status"] == "PLANNED":
             continue
-        subprocess.run(
-            [sys.executable, str(BOOK / "textbook" / row["checkpoint"])], cwd=ROOT, check=True, timeout=120
-        )
+        path = BOOK / "textbook" / row["checkpoint"]
+        command = [sys.executable, str(path)]
+        if row["number"] in FROM_SCRATCH:
+            found = supplied_imports(row["number"])
+            assert not found, f"chapter {row['number']} imports supplied code: {found}"
+            runner = FROM_SCRATCH_RUNNER.format(
+                supplied=set(SUPPLIED), path=str(path), folder=str(path.parent)
+            )
+            command = [sys.executable, "-c", runner]
+            scratch += 1
+        subprocess.run(command, cwd=ROOT, check=True, timeout=120)
         ran += 1
-    print(f"CHAPTER CODE: {ran} checkpoints ran against sovereign-agent.")
+    print(
+        f"CHAPTER CODE: {ran} checkpoints ran; {scratch} build only on learner code, "
+        f"{ran - scratch} still import the supplied sovereign-agent package."
+    )
 
 
 def execute_one(path: Path) -> dict:

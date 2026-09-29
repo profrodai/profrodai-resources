@@ -3,99 +3,63 @@
 # Join the Prof Rod learner community: https://profrod.ai/community
 # Original source and updates: https://github.com/profrodai/sovereign-agent
 
-"""Chapter 2: typed shop tools over the same in-memory fixture."""
+"""Chapter 2: typed shop tools over the same in-memory fixture.
 
-import copy
+Everything here is the learner's own: the tool call, the dispatcher and the shop tools come from
+the Chapter 2 learner file, and the checkpoint checks them.
+"""
+
 import json
 import math
 import random
 import runpy
 from pathlib import Path
 
-from pydantic import BaseModel, ConfigDict, Field
-
-from sovereign_agent.model_turn import ToolCall
-from sovereign_agent.tool_dispatch import Dispatcher, ExecutableTool
-
+BOOK = Path(__file__).resolve().parents[1]
 SHOP = runpy.run_path(
     str(Path(__file__).with_name("profrod_sovereign_agent_ch01_first_model_call_checkpoint.py"))
 )["SHOP"]
-PRICES = {"SKU-VANILLA": 250, "SKU-CHOCOLATE": 300, "SKU-STRAWBERRY": 275}
-
-
-class NoArguments(BaseModel):
-    model_config = ConfigDict(extra="forbid", strict=True)
-
-
-class ProductArguments(NoArguments):
-    sku: str = Field(min_length=1, max_length=100)
-
-
-class DraftArguments(ProductArguments):
-    quantity: int = Field(gt=0, le=1000)
-
-
-def build_tools(shop):
-    products = {row["sku"]: copy.deepcopy(row) for row in shop["products"]}
-    if len(products) != len(shop["products"]):
-        raise ValueError("duplicate product identity")
-
-    def stock(_):
-        return [
-            {**row, "needed": max(0, row["reorder_point"] - row["on_hand"])}
-            for _, row in sorted(products.items())
-        ]
-
-    def supplier(args):
-        if args.sku not in products:
-            raise KeyError("unknown product")
-        return {
-            "sku": args.sku,
-            "supplier": "lucy-local",
-            "currency": "USD",
-            "unit_cost_cents": PRICES[args.sku],
-        }
-
-    def draft(args):
-        row = products[args.sku]
-        needed = max(0, row["reorder_point"] - row["on_hand"])
-        if args.quantity != needed:
-            raise ValueError("quantity differs from the replenishment need")
-        quote = supplier(ProductArguments(sku=args.sku))
-        return {
-            **quote,
-            "quantity": args.quantity,
-            "total_cents": args.quantity * quote["unit_cost_cents"],
-            "status": "DRAFT",
-        }
-
-    tools = [
-        ExecutableTool(
-            "list_stock",
-            "Read the fixture and deterministic needed quantities.",
-            NoArguments,
-            stock,
-        ),
-        ExecutableTool(
-            "supplier",
-            "Read a product's supplier and unit price in USD cents.",
-            ProductArguments,
-            supplier,
-        ),
-        ExecutableTool(
-            "draft_order",
-            "Calculate a draft with quantity equal to needed. Never purchases.",
-            DraftArguments,
-            draft,
-        ),
-    ]
-    return Dispatcher(tools, allowed=frozenset(tool.name for tool in tools))
-
-
-BOOK = Path(__file__).resolve().parents[1]
+LEARNER = runpy.run_path(
+    str(BOOK / "learner/profrod_sovereign_agent_ch02_pydantic_shop_tools_learner.py")
+)
+ToolCall, build_tools = LEARNER["ToolCall"], LEARNER["build_tools"]
 DECODE = runpy.run_path(
     str(BOOK / "learner/profrod_sovereign_agent_ch02_constrained_decoding_learner.py")
 )
+
+
+def refusals():
+    """The learner's dispatcher refuses before a handler runs, and bounds what it returns."""
+    tool, dispatcher = LEARNER["ExecutableTool"], LEARNER["Dispatcher"]
+    ran = []
+
+    def write(args):
+        ran.append(args)
+        return {"written": True}
+
+    def huge(_):
+        return "x" * 1000
+
+    empty = LEARNER["NoArguments"]
+    tools = [
+        tool("write_order", "Consequential.", empty, write, consequential=True),
+        tool("huge", "Returns too much.", empty, huge),
+    ]
+    guarded = dispatcher(tools, allowed=frozenset({"write_order", "huge"}), max_result_bytes=128)
+    call = lambda name, arguments: guarded.invoke(ToolCall(id="c", name=name, arguments=arguments))  # noqa: E731
+    assert call("write_order", {})["error"] == "write_authority_required" and not ran
+    assert call("delete_all", {})["error"] == "tool_not_allowed"
+    assert call("huge", {"extra": 1})["error"] == "invalid_arguments"
+    assert call("huge", {})["error"] == "result_too_large"
+    shop = build_tools(SHOP)
+    for arguments in ({"sku": "SKU-VANILLA", "quantity": "6"}, {"sku": "SKU-VANILLA"}):
+        assert shop.invoke(ToolCall(id="d", name="draft_order", arguments=arguments)) == {
+            "ok": False,
+            "error": "invalid_arguments",
+        }
+    wrong = ToolCall(id="d", name="draft_order", arguments={"sku": "SKU-VANILLA", "quantity": 5})
+    assert shop.invoke(wrong) == {"ok": False, "error": "tool_failed"}
+    print("ok   refused: missing authority, unknown tool, bad arguments, oversized result")
 
 
 def structured():
@@ -143,6 +107,7 @@ def structured():
 
 def main():
     structured()
+    refusals()
     tools = build_tools(SHOP)
     stock = tools.invoke(ToolCall(id="stock", name="list_stock", arguments={}))
     print([(row["sku"], row["needed"]) for row in stock["value"]])

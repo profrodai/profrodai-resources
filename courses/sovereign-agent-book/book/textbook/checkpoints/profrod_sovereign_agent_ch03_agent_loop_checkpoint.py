@@ -11,6 +11,9 @@ import json
 import math
 import random
 import runpy
+import threading
+import time
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 LEARNER = runpy.run_path(
@@ -24,6 +27,7 @@ HTTPModel, ModelError = LEARNER["HTTPModel"], LEARNER["ModelError"]
 ModelTurn, ToolCall = LEARNER["ModelTurn"], LEARNER["ToolCall"]
 
 SHOP_TOOLS = LEARNER["shop_tools"]
+TRANSPORT = LEARNER["transport"]
 MESSAGES = [
     {
         "role": "system",
@@ -133,6 +137,124 @@ def reliability():
     print("ok   the budget formula gives the smallest budget reaching 99%")
 
 
+class CountingTools:
+    """The shop's dispatcher, counting what the loop actually invokes."""
+
+    def __init__(self):
+        self.inner = SHOP_TOOLS["build_tools"](SHOP_TOOLS["SHOP"])
+        self.invoked = []
+
+    def schemas(self):
+        return self.inner.schemas()
+
+    def invoke(self, call):
+        self.invoked.append(call.id)
+        return self.inner.invoke(call)
+
+
+def boundaries():
+    """The loop's limits, each checked against the learner's run_loop with authored turns."""
+
+    def run(turns, **limits):
+        tools = CountingTools()
+        return run_loop(ReplayModel(turns), tools, MESSAGES, limits=Limits(**limits)), tools
+
+    stock = ToolCall(id="stock-1", name="list_stock", arguments={})
+    before = json.dumps(MESSAGES)
+
+    # A reply that arrives after the deadline is discarded, and none of its calls run.
+    now = [0.0]
+
+    class LateModel:
+        def complete(self, messages, tools, *, timeout, max_output_tokens):
+            messages.append({"role": "user", "content": "the model edits its copy"})
+            now[0] += 61
+            return ModelTurn(calls=(stock,))
+
+    tools = CountingTools()
+    late = run_loop(LateModel(), tools, MESSAGES, limits=Limits(), clock=lambda: now[0])
+    assert late.status == "TIME_LIMIT" and tools.invoked == [] and len(late.messages) == 2
+
+    again = ModelTurn(calls=(stock,))
+    result, tools = run([ModelTurn(calls=(stock,)), again])
+    assert result.status == "REPEATED_CALL_ID" and tools.invoked == ["stock-1"]
+    result, tools = run([ModelTurn(calls=(stock, stock))])
+    assert result.status == "REPEATED_CALL_ID" and tools.invoked == []
+
+    # A five-cent budget admits one three-cent call, then refuses the next before sending it.
+    second = ToolCall(id="stock-2", name="list_stock", arguments={})
+    turns = [ModelTurn(calls=(stock,)), ModelTurn(calls=(second,))]
+    result, _ = run(turns, estimated_call_cents=3, model_budget_cents=5)
+    assert result.status == "MODEL_COST_LIMIT" and result.model_calls == 1
+
+    three = tuple(ToolCall(id=f"s{i}", name="list_stock", arguments={}) for i in range(3))
+    result, tools = run([ModelTurn(calls=three)], tool_calls=2)
+    assert result.status == "TOOL_LIMIT" and tools.invoked == []
+
+    result, _ = run([ModelTurn(content="done", output_tokens=2_000)])
+    assert result.status == "INVALID_USAGE"
+    result, _ = run([ModelTurn(content="   ")])
+    assert result.status == "EMPTY_REPLY"
+    result, _ = run([])
+    assert result.status == "MODEL_FAILED"
+    result, _ = run([ModelTurn(calls=(stock,))] * 3, model_calls=1)
+    assert result.status == "MODEL_CALL_LIMIT"
+    assert json.dumps(MESSAGES) == before, "the loop changed the caller's messages"
+    print(
+        "ok   boundaries: late reply, repeated ids, cost and tool limits before sending, "
+        "bad usage, empty reply, model failure, call limit; caller's messages unchanged"
+    )
+
+
+class Routes(BaseHTTPRequestHandler):
+    """A local server with one route per way a model endpoint can misbehave."""
+
+    def log_message(self, *args):
+        pass
+
+    def do_POST(self):
+        self.rfile.read(int(self.headers["Content-Length"]))
+        if self.path == "/slow":
+            time.sleep(3)
+        if self.path == "/redirect":
+            self.send_response(302)
+            self.send_header("Location", "http://127.0.0.1:1/elsewhere")
+            self.end_headers()
+            return
+        body = b"x" * 2_000 if self.path == "/big" else b'{"ok": true}'
+        self.send_response(404 if self.path == "/missing" else 200)
+        self.end_headers()
+        self.wfile.write(body)
+
+
+def transport():
+    """The learner's killable request against a local server: bounded time, size and redirects."""
+    server = ThreadingHTTPServer(("127.0.0.1", 0), Routes)
+    server.daemon_threads = True
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    base = f"http://127.0.0.1:{server.server_port}"
+    request = TRANSPORT["request"]
+
+    def outcome(path, **options):
+        try:
+            return request(base + path, data=b"{}", **options)
+        except (OSError, TimeoutError) as error:
+            return type(error).__name__
+
+    try:
+        ok = outcome("/ok", timeout=10)
+        assert (ok.status, ok.body) == (200, b'{"ok": true}')
+        assert outcome("/missing", timeout=10).status == 404
+        assert outcome("/big", timeout=10, maximum_bytes=1_000) == "OSError"
+        assert outcome("/redirect", timeout=10) == "OSError"
+        started = time.monotonic()
+        assert outcome("/slow", timeout=1) == "TimeoutError"
+        assert time.monotonic() - started < 2.5, "the deadline did not bound the wait"
+    finally:
+        server.shutdown()
+    print("ok   transport: reply, error status, oversized body, redirect refused, deadline kept")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--live", action="store_true")
@@ -140,6 +262,8 @@ def main():
     parser.add_argument("--transcript", action="store_true")
     args = parser.parse_args()
     reliability()
+    boundaries()
+    transport()
     model = HTTPModel(model=args.model) if args.live else ReplayModel(opening_turns())
     dispatcher = SHOP_TOOLS["build_tools"](SHOP_TOOLS["SHOP"])
     result = run_loop(model, dispatcher, MESSAGES, limits=Limits())

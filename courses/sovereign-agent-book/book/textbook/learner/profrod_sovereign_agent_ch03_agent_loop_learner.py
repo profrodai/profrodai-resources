@@ -15,6 +15,9 @@ from dataclasses import dataclass
 shop_tools = runpy.run_path(
     "book/textbook/learner/profrod_sovereign_agent_ch02_pydantic_shop_tools_learner.py"
 )
+transport = runpy.run_path(
+    "book/textbook/learner/profrod_sovereign_agent_ch03_http_transport_learner.py"
+)
 
 
 ToolCall = shop_tools["ToolCall"]
@@ -206,15 +209,11 @@ def opening_turns():
 class HTTPModel:
     """One local Ollama response; never executes tools itself."""
 
-    def __init__(self, model="qwen3", request=None):
-        self.model, self.request = model, request
+    def __init__(self, model="qwen3", request=None, reasoning_effort="none"):
+        self.model, self.reasoning_effort = model, reasoning_effort
+        self.request = request or transport["request"]
 
     def complete(self, messages, tools, *, timeout, max_output_tokens):
-        transport = self.request
-        if transport is None:
-            from sovereign_agent.http_transport import request
-
-            transport = request
         payload = {
             "model": self.model,
             "messages": messages,
@@ -222,10 +221,10 @@ class HTTPModel:
             "stream": False,
             "max_tokens": max_output_tokens,
             "temperature": 0,
-            "reasoning_effort": "none",
+            "reasoning_effort": self.reasoning_effort,
         }
         try:
-            response = transport(
+            response = self.request(
                 "http://localhost:11434/v1/chat/completions",
                 data=json.dumps(payload).encode(),
                 headers={"Content-Type": "application/json"},
