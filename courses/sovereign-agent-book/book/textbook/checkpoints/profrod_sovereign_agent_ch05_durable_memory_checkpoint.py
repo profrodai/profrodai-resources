@@ -13,13 +13,6 @@ import runpy
 import tempfile
 from pathlib import Path
 
-from reference_organizations.store.agent import OfflineShopModel, seed_lucy, shop_dispatcher
-from sovereign_agent.agent_loop import run_loop
-from sovereign_agent.assistant_context import context, forget, preferences, remember
-from sovereign_agent.assistant_work import claim, enqueue, finish
-from sovereign_agent.database import Database
-from sovereign_agent.model_turn import HTTPModel
-
 
 class ObservedModel:
     def __init__(self, model):
@@ -34,6 +27,10 @@ class ObservedModel:
 
 BOOK = Path(__file__).resolve().parents[1]
 RETRIEVAL = runpy.run_path(str(BOOK / "learner/profrod_sovereign_agent_ch05_retrieval_learner.py"))
+MEMORY = runpy.run_path(str(BOOK / "learner/profrod_sovereign_agent_ch05_memory_learner.py"))
+open_memory, remember, forget = MEMORY["open_memory"], MEMORY["remember"], MEMORY["forget"]
+preferences, context = MEMORY["preferences"], MEMORY["context"]
+record_result, memory_revision = MEMORY["record_result"], MEMORY["memory_revision"]
 
 
 def retrieval():
@@ -71,6 +68,47 @@ def retrieval():
     print("ok   the receipt's BM25 recall@3 and MRR recompute exactly:", fresh["recall_at_3"])
 
 
+def boundaries(folder):
+    """The memory rules the chapter states, each on the learner's functions."""
+    db = open_memory(Path(folder) / "boundaries.sqlite")
+    try:
+        # Capacity: a hundred active names, then only corrections of existing names.
+        for i in range(100):
+            remember(db, "cap", f"n{i}", "v", f"cap/{i}")
+        try:
+            remember(db, "cap", "n100", "v", "cap/100")
+            raise AssertionError("a 101st preference name was accepted")
+        except ValueError:
+            pass
+        remember(db, "cap", "n0", "corrected", "cap/101")
+        assert preferences(db, "cap", "n0", maximum=1)[0]["value"] == "corrected"
+
+        # Sessions are separate, and a failed forget changes nothing.
+        remember(db, "lucy", "supplier", "Ask for afternoon delivery", "lucy/message/2")
+        remember(db, "other", "supplier", "Another operator's supplier", "other/message/1")
+        assert "Another operator" not in context(db, "lucy", "supplier", allowed=frozenset())[0][
+            "content"
+        ]
+        before = memory_revision(db, "lucy")
+        try:
+            with db.immediate() as connection:
+                connection.execute("DELETE FROM assistant_preferences WHERE session='lucy'")
+                raise RuntimeError("failure before the revision advances")
+        except RuntimeError:
+            pass
+        assert preferences(db, "lucy")[0]["value"] == "Ask for afternoon delivery"
+        assert memory_revision(db, "lucy") == before
+
+        # A turn that began before forgetting finishes late; its result stays out.
+        forget(db, "lucy", "supplier")
+        record_result(db, "lucy", "Earlier request", "afternoon delivery, late", before)
+        late = context(db, "lucy", "delivery", allowed=frozenset())[0]["content"]
+        assert "afternoon delivery" not in late
+    finally:
+        db.close()
+    print("ok   memory: capacity, separate sessions, failed forget rolls back, late turn excluded")
+
+
 def main():
     retrieval()
     parser = argparse.ArgumentParser(description=__doc__)
@@ -79,21 +117,20 @@ def main():
     parser.add_argument("--transcript", action="store_true")
     args = parser.parse_args()
     with tempfile.TemporaryDirectory(prefix="lucy-memory-") as temporary:
+        boundaries(temporary)
         path = Path(temporary) / "agent.sqlite"
-        db = Database(path)
-        seed_lucy(db)
+        db = open_memory(path)
         remember(db, "lucy", "supplier", "Ask for morning delivery", "lucy/message/1")
         db.close()
-        db = Database(path)
+        db = open_memory(path)
         retained = preferences(db, "lucy", "delivery")[0]
         assert retained["source"] == "lucy/message/1"
         print("After reopening:", retained["value"])
         remember(db, "lucy", "supplier", "Ask for afternoon delivery", "lucy/message/2")
         print("After correction:", preferences(db, "lucy", "delivery")[0]["value"])
         remember(db, "lucy", "format", "three bullets", "lucy/message/3")
-        enqueue(db, "old-turn", "lucy", "Prepare a brief")
-        owner = claim(db, "first-worker")
-        finish(db, owner, "DONE", "Lucy asks for afternoon delivery.")
+        earlier = memory_revision(db, "lucy")
+        record_result(db, "lucy", "Prepare a brief", "Lucy asks for afternoon delivery.", earlier)
         forget(db, "lucy", "supplier")
         selected = context(db, "lucy", "Prepare replenishment drafts.", allowed=frozenset())
         assert "afternoon delivery" not in selected[0]["content"]
@@ -101,27 +138,27 @@ def main():
         print("Forgotten value in future context:", "afternoon delivery" in selected[0]["content"])
         assert db.connection.execute("SELECT count(*) FROM assistant_work").fetchone()[0] == 1
         print("Operational record retained:", True)
-        enqueue(db, "new-turn", "lucy", "Prepare replenishment drafts from current stock.")
-        model = ObservedModel(
-            HTTPModel(model=args.model, reasoning_effort="none")
-            if args.live
-            else OfflineShopModel()
-        )
         previous = runpy.run_path(
             str(Path(__file__).with_name("profrod_sovereign_agent_ch03_agent_loop_checkpoint.py"))
         )
-        dispatcher = shop_dispatcher(db)
-        messages = context(
-            db, "lucy", previous["MESSAGES"][1]["content"], allowed=dispatcher.allowed
+        model = ObservedModel(
+            previous["HTTPModel"](model=args.model)
+            if args.live
+            else previous["ReplayModel"](previous["opening_turns"]())
         )
+        tools = previous["SHOP_TOOLS"]["build_tools"](previous["SHOP_TOOLS"]["SHOP"])
+        request = previous["MESSAGES"][1]["content"]
+        revision = memory_revision(db, "lucy")
+        messages = context(db, "lucy", request, allowed=tools.allowed)
         messages[0]["content"] = previous["MESSAGES"][0]["content"] + "\n" + messages[0]["content"]
-        current = claim(db, "new-worker")
-        result = run_loop(model, dispatcher, messages)
+        result = previous["run_loop"](model, tools, messages)
         assert model.first_messages is not None
         assert "three bullets" in model.first_messages[0]["content"]
         assert "afternoon delivery" not in model.first_messages[0]["content"]
         passed = previous["draft_evidence"](result)
-        finish(db, current, "DONE" if passed else "BLOCKED", result.answer)
+        if passed:
+            # Only a turn whose drafts passed may become history for future context.
+            record_result(db, "lucy", request, result.answer, revision)
         print("Context reached the model:", True)
         print("Draft evidence:", "PASS" if passed else "FAIL")
         if args.transcript:
