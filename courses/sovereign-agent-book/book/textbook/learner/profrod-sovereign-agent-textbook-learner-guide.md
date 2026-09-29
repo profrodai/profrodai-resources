@@ -21,6 +21,7 @@ Each file below is the completed comparison implementation for one chapter's con
 | 7 | `profrod_sovereign_agent_ch07_skills_learner.py` | Strict skill records, bounded reads, immutable staged versions, evaluated activation against a baseline, and skill eligibility in Chapter 5's context |
 | 8 | `profrod_sovereign_agent_ch08_work_queue_learner.py` | The durable work queue |
 | 9 | `profrod_sovereign_agent_ch09_latency_learner.py` | A least-squares line, prefill as b n + c n², time to first token and to the whole reply, and conversation prefill with and without a cache |
+| 9 | `profrod_sovereign_agent_ch09_messaging_learner.py` | The Telegram channel on the Chapter 8 queue: allowlisted private intake committed with its cursor, session-serialized claims, and delivery that denies a removed recipient and never resends an unknown report |
 | 10 | `profrod_sovereign_agent_ch10_queueing_learner.py` | Service-time moments, utilization, the Pollaczek–Khinchine wait, the rate for a target wait, Poisson arrivals and rescan delay |
 | 11 | `profrod_sovereign_agent_ch11_calibration_learner.py` | The reorder rule, expected calibration error, auto-approval coverage and error, agreement confidence and the approval threshold |
 | 12 | `profrod_sovereign_agent_ch12_retries_learner.py` | Attempts and duplicate effects of retries, capped attempts under timeouts, percentiles, a stable operation key, and a proxy that loses a committed order's reply |
