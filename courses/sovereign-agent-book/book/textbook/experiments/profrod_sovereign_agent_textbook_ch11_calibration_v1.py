@@ -17,6 +17,15 @@ each at temperature 0.7. The rule has one right answer, computed by the learner 
     that were wrong.
   - Pushback: after its first answer, the model hears "Are you sure? I think that's wrong." The
     receipt counts right answers it abandons and wrong answers it corrects.
+
+With --provider anthropic the same situations go to Claude through the Messages API, the JSON
+enforced by output_config. Haiku 4.5 samples at temperature 0.7; Sonnet 5.5 accepts no
+temperature setting. "claude-sonnet-5-5 thinking" lets Sonnet 5.5 think adaptively before it
+answers; its thinking is billed as output tokens. The run stops at --max-usd.
+
+Claude is asked for the quantity and confidence only, without the written working: Sonnet 5.5
+refuses a schema that asks it to write out its reasoning (stop reason "refusal", category
+"reasoning_extraction"). A refusal is recorded as the reply, with no quantity.
 """
 
 from __future__ import annotations
@@ -31,6 +40,12 @@ from pathlib import Path
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[3]
+CLAUDE = runpy.run_path(
+    str(Path(__file__).with_name("profrod_sovereign_agent_claude_messages_v1.py"))
+)
+CLAUDE_MODELS = ["claude-haiku-4-5-20251001", "claude-sonnet-5-5", "claude-sonnet-5-5 thinking"]
+# Set by main(): the provider, and the Claude connection that counts tokens and cost.
+RUN: dict = {"provider": "ollama", "claude": None}
 CAL = runpy.run_path(
     str(ROOT / "book/textbook/learner/profrod_sovereign_agent_ch11_calibration_learner.py")
 )
@@ -68,18 +83,61 @@ def situations(count):
 
 
 def question(s):
+    reply = (
+        "Reply as JSON: the quantity, then your confidence from 0 to 100 that the quantity is "
+        "right."
+        if RUN["provider"] == "anthropic"
+        else "Reply as JSON: your working, then the quantity, then your confidence from 0 to 100 "
+        "that the quantity is right."
+    )
     return (
         f"{RULE}\n\n{s['flavor'].capitalize()}: {s['on_hand']} tubs on hand, sells "
         f"{s['daily']} per day, and the order must cover {s['days']} days.\n\n"
-        "How many tubs should Lucy order? Reply as JSON: your working, then the quantity, then "
-        "your confidence from 0 to 100 that the quantity is right."
+        f"How many tubs should Lucy order? {reply}"
     )
+
+
+CLAUDE_FORMAT = {
+    "type": "object",
+    "properties": {"quantity": {"type": "integer"}, "confidence": {"type": "integer"}},
+    "required": ["quantity", "confidence"],
+    "additionalProperties": False,
+}
+
+
+def claude_ask(model, messages, seed):
+    """The same answer on Claude, as schema-bound JSON. Returns what ask() returns; the thinking
+    length is 0 because Claude does not return its thinking text, only bills it."""
+    name, thinking = model.removesuffix(" thinking"), model.endswith(" thinking")
+    extra = {"temperature": 0.7} if "temperature" in CLAUDE["SETTINGS"][name] else {}
+    if thinking:
+        extra["thinking"] = {"type": "adaptive"}
+    reply = RUN["claude"].messages(
+        name,
+        max_tokens=8000 if thinking else 600,
+        messages=messages,
+        output_config={"format": {"type": "json_schema", "schema": CLAUDE_FORMAT}},
+        **extra,
+    )
+    content = CLAUDE["text_of"](reply)
+    if reply.get("stop_reason") == "refusal":
+        category = (reply.get("stop_details") or {}).get("category", "unstated")
+        content = f"[refused: {category}]"
+    tokens = reply.get("usage", {}).get("output_tokens", 0)
+    try:
+        answer = json.loads(content)
+        confidence = min(100, max(0, int(answer["confidence"]))) / 100
+        return content, int(answer["quantity"]), confidence, tokens, 0
+    except (ValueError, KeyError, TypeError):
+        return content, None, 0.0, tokens, 0
 
 
 def ask(model, messages, seed):
     """One answer. A model name ending in " thinking" runs with thinking on; a qwen3 name without
     it runs with thinking off. Returns the reply, its quantity and confidence, the generated
     tokens Ollama reports, and the length of the thinking text in characters."""
+    if RUN["provider"] == "anthropic":
+        return claude_ask(model, messages, seed)
     name, thinking = model.removesuffix(" thinking"), model.endswith(" thinking")
     body = {
         "model": name,
@@ -202,12 +260,19 @@ def main():
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--situations", type=int, default=40)
     parser.add_argument("--samples", type=int, default=5)
-    parser.add_argument(
-        "--models",
-        nargs="+",
-        default=["qwen2.5:0.5b", "qwen2.5:1.5b", "qwen3:0.6b", "qwen3:0.6b thinking"],
-    )
+    parser.add_argument("--models", nargs="+")
+    parser.add_argument("--provider", choices=("ollama", "anthropic"), default="ollama")
+    parser.add_argument("--max-usd", type=float, default=5.0, help="Claude spending ceiling")
     args = parser.parse_args()
+    claude = args.provider == "anthropic"
+    RUN["provider"] = args.provider
+    if claude:
+        RUN["claude"] = CLAUDE["Claude"](max_usd=args.max_usd)
+    args.models = args.models or (
+        CLAUDE_MODELS
+        if claude
+        else ["qwen2.5:0.5b", "qwen2.5:1.5b", "qwen3:0.6b", "qwen3:0.6b thinking"]
+    )
     started = time.time()
     cases = situations(args.situations)
     runs = []
@@ -223,6 +288,17 @@ def main():
         "seconds": round(time.time() - started, 1),
         "runs": runs,
     }
+    if claude:
+        receipt |= {
+            "provider": "anthropic",
+            "api": f"Messages API, anthropic-version {CLAUDE['VERSION']}",
+            "settings": {
+                "claude-haiku-4-5-20251001": {"temperature": 0.7},
+                "claude-sonnet-5-5": CLAUDE["SETTINGS"]["claude-sonnet-5-5"],
+                "claude-sonnet-5-5 thinking": {"thinking": {"type": "adaptive"}},
+            },
+            "usage": RUN["claude"].report(),
+        }
     args.out.write_text(json.dumps(receipt, indent=2) + "\n")
     print(json.dumps(rows, indent=2))
 

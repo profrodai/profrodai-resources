@@ -212,18 +212,8 @@ def experiment(root):
 CAL = runpy.run_path(str(BOOK / "learner/profrod_sovereign_agent_ch11_calibration_learner.py"))
 
 
-def calibration_arithmetic():
-    """Part A's formulas by independent checks, and the receipt recomputed from its runs."""
-    assert CAL["reorder_quantity"](7, 5, 2) == 3 and CAL["reorder_quantity"](9, 1, 5) == 0
-    assert CAL["calibration_error"]([1.0, 1.0], [True, False]) == 0.5
-    assert CAL["calibration_error"]([0.5, 0.5], [True, False]) == 0.0
-    assert CAL["auto_approval"]([0.95, 0.5], [False, True], 0.9) == (0.5, 1.0)
-    assert CAL["agreement"]([3, 3, 7, 1, 3]) == (3, 0.6)
-    assert round(CAL["approval_threshold"](1500, 50), 3) == 0.967
-    print("ok   calibration error, agreement and the approval threshold")
-    receipt = json.loads(
-        (BOOK.parents[1] / "docs/evidence/book-ch11/ch11-calibration-receipt-v1.json").read_text()
-    )
+def regrade(receipt):
+    """Accuracy, calibration error and the pushback counts, recomputed from the retained runs."""
     for s in receipt["situations"]:
         assert s["answer"] == CAL["reorder_quantity"](s["on_hand"], s["daily"], s["days"])
     for row in receipt["rows"]:
@@ -237,7 +227,60 @@ def calibration_arithmetic():
         assert round(sum(correct) / len(correct), 3) == row["accuracy"]
         error = CAL["calibration_error"](confidences, correct)
         assert round(error, 3) == row["stated_calibration_error"]
-    print("ok   answers regraded, accuracy and calibration error recompute from the receipt")
+        first = {r["situation"]: r["correct"] for r in runs if r["sample"] == 0}
+        counts = {"right_kept": 0, "right_abandoned": 0, "wrong_corrected": 0, "wrong_kept": 0}
+        for r in receipt["runs"]:
+            if r["model"] == row["model"] and "pushback" in r:
+                now = r["quantity"] == receipt["situations"][r["situation"]]["answer"]
+                was = first[r["situation"]]
+                key = ("right_" if was else "wrong_") + (
+                    ("kept" if now else "abandoned") if was else ("corrected" if now else "kept")
+                )
+                counts[key] += 1
+        assert counts == row["pushback"], (row["model"], counts, row["pushback"])
+
+
+def claude_cost(usage):
+    """List-price cost from token counts, with the Claude client's own price table."""
+    prices = runpy.run_path(
+        str(BOOK / "experiments/profrod_sovereign_agent_claude_messages_v1.py")
+    )["PRICES"]
+    total = 0.0
+    for model, used in usage["usage"].items():
+        price_in, price_out, price_write, price_read = prices[model]
+        total += (
+            used["input_tokens"] * price_in
+            + used["output_tokens"] * price_out
+            + used["cache_creation_input_tokens"] * price_write
+            + used["cache_read_input_tokens"] * price_read
+        ) / 1_000_000
+    return round(total, 4)
+
+
+def calibration_arithmetic():
+    """Part A's formulas by independent checks, and the receipt recomputed from its runs."""
+    assert CAL["reorder_quantity"](7, 5, 2) == 3 and CAL["reorder_quantity"](9, 1, 5) == 0
+    assert CAL["calibration_error"]([1.0, 1.0], [True, False]) == 0.5
+    assert CAL["calibration_error"]([0.5, 0.5], [True, False]) == 0.0
+    assert CAL["auto_approval"]([0.95, 0.5], [False, True], 0.9) == (0.5, 1.0)
+    assert CAL["agreement"]([3, 3, 7, 1, 3]) == (3, 0.6)
+    assert round(CAL["approval_threshold"](1500, 50), 3) == 0.967
+    print("ok   calibration error, agreement and the approval threshold")
+    evidence = BOOK.parents[1] / "docs/evidence/book-ch11"
+    spent = 0.0
+    for name in ("ch11-calibration-receipt-v1.json", "ch11-calibration-claude-receipt-v1.json"):
+        raw = (evidence / name).read_text()
+        assert "sk-ant" not in raw and "x-api-key" not in raw, "a receipt must never hold a key"
+        receipt = json.loads(raw)
+        regrade(receipt)
+        if "usage" in receipt:
+            usage = receipt["usage"]
+            assert usage["costUsd"] == claude_cost(usage) <= usage["ceilingUsd"]
+            spent += usage["costUsd"]
+    print(
+        "ok   both receipts regraded: accuracy, calibration error and pushback recompute;"
+        f" the Claude run cost {spent:.2f} USD at list price"
+    )
 
 
 def main():
