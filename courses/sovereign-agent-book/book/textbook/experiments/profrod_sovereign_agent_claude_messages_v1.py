@@ -5,10 +5,11 @@
 
 """A standard-library client for the Claude Messages API, used by the chapters' experiments.
 
-The key comes from ANTHROPIC_API_KEY in the environment, or from the course folder's `.env`
-file, which git ignores. It is never printed, logged or written to a receipt. Every request is
-counted against a spending ceiling, and every experiment records the tokens and the list-price
-cost it used, so a Claude run is as inspectable as a local one.
+The key comes from ANTHROPIC_API_KEY in the environment, else from the `.env` file named by
+ANTHROPIC_ENV_FILE, else from the course folder's `.env`, which git ignores. It is never
+printed, logged or written to a receipt. Every request is counted against a spending ceiling,
+and every experiment records the tokens and the list-price cost it used, so a Claude run is as
+inspectable as a local one.
 
 Prices, model ids and request settings are from platform.claude.com, read on 2026-09-29: the
 pricing page, the models overview and the thinking page.
@@ -53,10 +54,11 @@ class BudgetExceededError(Exception):
 
 
 def api_key() -> str:
-    """ANTHROPIC_API_KEY from the environment, else from the course folder's .env file."""
+    """ANTHROPIC_API_KEY from the environment, else from ANTHROPIC_ENV_FILE's file, else from the
+    course folder's .env file. The value is returned, never printed."""
     key = os.environ.get("ANTHROPIC_API_KEY", "")
     if not key:
-        env = COURSE / ".env"
+        env = Path(os.environ.get("ANTHROPIC_ENV_FILE") or COURSE / ".env").expanduser()
         if env.is_file():
             for line in env.read_text().splitlines():
                 name, _, value = line.strip().partition("=")
