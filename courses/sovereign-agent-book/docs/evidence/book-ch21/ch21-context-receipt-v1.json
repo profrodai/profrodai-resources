@@ -1,0 +1,7911 @@
+{
+ "schemaVersion": 1,
+ "chapter": 21,
+ "created": "2026-09-29",
+ "python": "3.14.3",
+ "ollama": "0.32.5",
+ "models": [
+  "qwen2.5:0.5b",
+  "qwen2.5:1.5b",
+  "qwen3:0.6b"
+ ],
+ "seed": 7,
+ "temperature": 0,
+ "numCtx": 32768,
+ "coldStart": "each model is unloaded, then loaded once, before each measurement",
+ "depth": {
+  "qwen2.5:0.5b": [
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "40",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "13",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "22",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "32",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "13",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "14",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "35",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "21",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "21",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "15",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "32",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "2",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "2",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "40",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "40",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "40",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "22",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "35",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "13",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "14",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "14",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "14",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "21",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "14",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "28",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "2",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "5",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "34",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "1",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "12",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "1",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "22",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "15",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "33",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "34",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "1",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "12",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "36",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "5",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "13",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "13",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "14",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "5",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "34",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "12",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "13",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "39",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "19",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "32",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "39",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "12",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "10",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "There is 1 tub that arrived with the ord",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "14",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "There is 1 tub that arrived with the ord",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "1",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "37",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "2",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "1",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "36",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "38",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "18",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "1",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "To find the number of tubs delivered to ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "To find the number of tubs delivered to ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "To find the number of tubs that arrived ",
+    "correct": false,
+    "promptTokens": 16051
+   }
+  ],
+  "qwen2.5:1.5b": [
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "21",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "32",
+    "correct": false,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1031
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "22",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "32",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "13",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "25",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "32",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "9",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "27",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "8",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "19",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "22",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "25",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "28",
+    "correct": false,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4067
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "32",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "22",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "27",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "17",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "34",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "12",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "6",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "8",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "25",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "5",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "9",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "29",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "22",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "14",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "21",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "25",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "32",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "22",
+    "correct": false,
+    "promptTokens": 8039
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8039
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "14",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "39",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "34",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "6",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "34",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "22",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "39",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "29",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "12",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "36",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "25",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "34",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "23",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "11",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "14",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "31",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "7",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "20",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "30",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "35",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "3",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "7",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "22",
+    "correct": false,
+    "promptTokens": 16051
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16051
+   }
+  ],
+  "qwen3:0.6b": [
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "22",
+    "correct": false,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "25",
+    "correct": false,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "22",
+    "correct": false,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 1039
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 4075
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 8047
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "12",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "21",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "9",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "9",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "9",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "9",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "9",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "9",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "25",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "25",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "9",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "9",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "25",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "9",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "25",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "27",
+    "correct": false,
+    "promptTokens": 16059
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "The number of tubs arrived with order A-",
+    "correct": true,
+    "promptTokens": 16059
+   }
+  ]
+ },
+ "depthMeta": {
+  "qwen2.5:0.5b": {
+   "tokensPerLine": 35.23,
+   "overflow": {
+    "numCtx": 8192,
+    "intendedTokens": 16000,
+    "estimatedTokens": 9766,
+    "rows": [
+     {
+      "order": "A-6305",
+      "expected": 12,
+      "answer": "To determine the number of tubs that arr",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-3471",
+      "expected": 40,
+      "answer": "To determine the number of tubs that arr",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-7468",
+      "expected": 15,
+      "answer": "To determine the number of tubs that arr",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-1791",
+      "expected": 13,
+      "answer": "To determine the number of tubs that arr",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-2186",
+      "expected": 22,
+      "answer": "To determine the number of tubs that arr",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-9779",
+      "expected": 35,
+      "answer": "To determine the number of tubs that arr",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-2542",
+      "expected": 7,
+      "answer": "To determine the number of tubs that arr",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-6991",
+      "expected": 7,
+      "answer": "To determine the number of tubs that arr",
+      "correct": false,
+      "promptTokens": 4098
+     }
+    ]
+   }
+  },
+  "qwen2.5:1.5b": {
+   "tokensPerLine": 35.23,
+   "overflow": {
+    "numCtx": 8192,
+    "intendedTokens": 16000,
+    "estimatedTokens": 9766,
+    "rows": [
+     {
+      "order": "A-6305",
+      "expected": 12,
+      "answer": "Based on the provided data, there is no ",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-3471",
+      "expected": 40,
+      "answer": "Based on the provided data, there is no ",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-7468",
+      "expected": 15,
+      "answer": "Based on the provided data, there is no ",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-1791",
+      "expected": 13,
+      "answer": "Based on the provided data, there is no ",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-2186",
+      "expected": 22,
+      "answer": "Based on the provided data, there is no ",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-9779",
+      "expected": 35,
+      "answer": "Based on the provided data, there is no ",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-2542",
+      "expected": 7,
+      "answer": "Based on the provided data, there is no ",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-6991",
+      "expected": 7,
+      "answer": "Based on the provided data, there is no ",
+      "correct": false,
+      "promptTokens": 4098
+     }
+    ]
+   }
+  },
+  "qwen3:0.6b": {
+   "tokensPerLine": 35.23,
+   "overflow": {
+    "numCtx": 8192,
+    "intendedTokens": 16000,
+    "estimatedTokens": 9766,
+    "rows": [
+     {
+      "order": "A-6305",
+      "expected": 12,
+      "answer": "To find the number of tubs arrived with ",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-3471",
+      "expected": 40,
+      "answer": "The order A-3471 arrived with **25 tubs*",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-7468",
+      "expected": 15,
+      "answer": "To find the number of tubs arrived with ",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-1791",
+      "expected": 13,
+      "answer": "To find the number of tubs arrived with ",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-2186",
+      "expected": 22,
+      "answer": "To find out how many tubs arrived with o",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-9779",
+      "expected": 35,
+      "answer": "The order A-9779 arrived with **40 tubs*",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-2542",
+      "expected": 7,
+      "answer": "To find the number of tubs arrived with ",
+      "correct": false,
+      "promptTokens": 4098
+     },
+     {
+      "order": "A-6991",
+      "expected": 7,
+      "answer": "To find the number of tubs arrived with ",
+      "correct": false,
+      "promptTokens": 4098
+     }
+    ]
+   }
+  }
+ },
+ "compaction": {
+  "qwen2.5:0.5b": {
+   "full": {
+    "estimatedTokens": 6398,
+    "correct": 5,
+    "n": 10,
+    "wilson95": [
+     0.237,
+     0.763
+    ],
+    "rows": [
+     {
+      "question": "What is the shop called?",
+      "kind": "pinned-note",
+      "answer": "The shop is Lucy's Scoops.",
+      "correct": true
+     },
+     {
+      "question": "Which flavor must never be ordered from Frostline?",
+      "kind": "pinned-note",
+      "answer": "Noted.",
+      "correct": false
+     },
+     {
+      "question": "What time does the shop close today? Give the hour only.",
+      "kind": "superseded",
+      "answer": "7 PM",
+      "correct": true
+     },
+     {
+      "question": "How many tubs of chocolate has Lucy approved? Number only.",
+      "kind": "superseded",
+      "answer": "Noted.",
+      "correct": false
+     },
+     {
+      "question": "Which supplier do we order vanilla from now?",
+      "kind": "pinned-note",
+      "answer": "Noted.",
+      "correct": false
+     },
+     {
+      "question": "How many tubs arrived with order A-4817? Number only.",
+      "kind": "old-tool-result",
+      "answer": "The number is 2.",
+      "correct": false
+     },
+     {
+      "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+      "kind": "old-tool-result",
+      "answer": "The last check was 15 tubs of chocolate, which is 3 more than the previous check",
+      "correct": false
+     },
+     {
+      "question": "What is the health inspector's name?",
+      "kind": "pinned-note",
+      "answer": "The health inspector coming Friday is Dana Ortiz.",
+      "correct": true
+     },
+     {
+      "question": "Where should the sign-up sheet go?",
+      "kind": "recent",
+      "answer": "The sign-up sheet should be placed by the till.",
+      "correct": true
+     },
+     {
+      "question": "How many tubs of mango have sold today? Number only.",
+      "kind": "recent-tool-result",
+      "answer": "Today, 11 tubs of mango were sold.",
+      "correct": true
+     }
+    ]
+   },
+   "1500": {
+    "window": {
+     "estimatedTokens": 73,
+     "correct": 3,
+     "n": 10,
+     "wilson95": [
+      0.108,
+      0.603
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "The ice cream shop is named \"Lucy's Delights\".",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Mango.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "6:00 PM",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "20.",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "We are ordering vanilla from the supplier who has shipped it to us today.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "20.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "Fourteen tubs of strawberry were in the freezer at the last check.",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Health Inspector: John Doe.",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "It's best to put it in a prominent place where people can easily see it.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "Today, 11 tubs of mango were sold.",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-window": {
+     "estimatedTokens": 720,
+     "correct": 4,
+     "n": 10,
+     "wilson95": [
+      0.168,
+      0.687
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "6 PM",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "41 tokens.",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7.",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "Put it by the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "Today, 11 tubs of mango were sold.",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-summary": {
+     "estimatedTokens": 720,
+     "correct": 4,
+     "n": 10,
+     "wilson95": [
+      0.168,
+      0.687
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "6 PM",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "41 tokens.",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7.",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "Put it by the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "Today, 11 tubs of mango were sold.",
+       "correct": true
+      }
+     ]
+    },
+    "pinned-clear-window": {
+     "estimatedTokens": 795,
+     "correct": 7,
+     "n": 10,
+     "wilson95": [
+      0.397,
+      0.892
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "The shop is Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Never order mango from Frostline.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 PM",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15.",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7.",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "Put it by the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "Today, 11 tubs of mango were sold.",
+       "correct": true
+      }
+     ]
+    }
+   },
+   "600": {
+    "window": {
+     "estimatedTokens": 73,
+     "correct": 3,
+     "n": 10,
+     "wilson95": [
+      0.108,
+      0.603
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "The ice cream shop is named \"Lucy's Delights\".",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Mango.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "6:00 PM",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "20.",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "We are ordering vanilla from the supplier who has shipped it to us today.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "20.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "Fourteen tubs of strawberry were in the freezer at the last check.",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Health Inspector: John Doe.",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "It's best to put it in a prominent place where people can easily see it.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "Today, 11 tubs of mango were sold.",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-window": {
+     "estimatedTokens": 593,
+     "correct": 4,
+     "n": 10,
+     "wilson95": [
+      0.168,
+      0.687
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "The ice cream shop is called \"Polar Dairy.\"",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 PM",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "41 tokens.",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7.",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "Put it by the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "Today, 11 tubs of mango were sold.",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-summary": {
+     "estimatedTokens": 109,
+     "correct": 1,
+     "n": 10,
+     "wilson95": [
+      0.018,
+      0.404
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "The shop is called Lucy's Ice Cream Shop.",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Chocolate.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "6 PM",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "Five.",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "We are ordering vanilla from the other side of town.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "20.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "0",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "I'm sorry, but I don't have any information about a specific health inspector or",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "It's best to put it in a prominent place where customers can easily find it.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "Ten.",
+       "correct": false
+      }
+     ]
+    },
+    "pinned-clear-window": {
+     "estimatedTokens": 602,
+     "correct": 8,
+     "n": 10,
+     "wilson95": [
+      0.49,
+      0.943
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "The shop is Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Vanilla is the only flavor that must not be ordered from Frostline.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 PM",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15.",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "We are ordering from Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "25.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7 tubs of strawberry.",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "The health inspector is Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "Put it by the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "Today, 11 tubs of mango were sold.",
+       "correct": true
+      }
+     ]
+    }
+   },
+   "_session": {
+    "fullEstimatedTokens": 6394,
+    "budgets": {
+     "1500": {
+      "compactReport": {
+       "before": 6394,
+       "steps": [
+        {
+         "step": "clear-tool-results",
+         "total": 716
+        }
+       ],
+       "after": 716
+      },
+      "summary": null
+     },
+     "600": {
+      "compactReport": {
+       "before": 6394,
+       "steps": [
+        {
+         "step": "clear-tool-results",
+         "total": 716
+        },
+        {
+         "step": "summarize",
+         "turns": 54,
+         "total": 105
+        }
+       ],
+       "after": 105
+      },
+      "summary": "Summary of the earlier conversation:\nLucy, please check the freezer and make sure you have enough chocolate for today's sale. We will adjust our plan to close at 6 pm tomorrow."
+     }
+    }
+   }
+  },
+  "qwen2.5:1.5b": {
+   "full": {
+    "estimatedTokens": 6398,
+    "correct": 6,
+    "n": 10,
+    "wilson95": [
+     0.313,
+     0.832
+    ],
+    "rows": [
+     {
+      "question": "What is the shop called?",
+      "kind": "pinned-note",
+      "answer": "Lucy's Scoops.",
+      "correct": true
+     },
+     {
+      "question": "Which flavor must never be ordered from Frostline?",
+      "kind": "pinned-note",
+      "answer": "Vanilla.",
+      "correct": false
+     },
+     {
+      "question": "What time does the shop close today? Give the hour only.",
+      "kind": "superseded",
+      "answer": "6 pm.",
+      "correct": false
+     },
+     {
+      "question": "How many tubs of chocolate has Lucy approved? Number only.",
+      "kind": "superseded",
+      "answer": "Noted.",
+      "correct": false
+     },
+     {
+      "question": "Which supplier do we order vanilla from now?",
+      "kind": "pinned-note",
+      "answer": "We currently order vanilla from Polar Dairy.",
+      "correct": true
+     },
+     {
+      "question": "How many tubs arrived with order A-4817? Number only.",
+      "kind": "old-tool-result",
+      "answer": "20 tubs arrived with order A-4817.",
+      "correct": true
+     },
+     {
+      "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+      "kind": "old-tool-result",
+      "answer": "Seven tubs.",
+      "correct": false
+     },
+     {
+      "question": "What is the health inspector's name?",
+      "kind": "pinned-note",
+      "answer": "The health inspector's name is Dana Ortiz.",
+      "correct": true
+     },
+     {
+      "question": "Where should the sign-up sheet go?",
+      "kind": "recent",
+      "answer": "The sign-up sheet should be placed by the till.",
+      "correct": true
+     },
+     {
+      "question": "How many tubs of mango have sold today? Number only.",
+      "kind": "recent-tool-result",
+      "answer": "There were 11 tubs of mango sold today.",
+      "correct": true
+     }
+    ]
+   },
+   "1500": {
+    "window": {
+     "estimatedTokens": 73,
+     "correct": 1,
+     "n": 10,
+     "wilson95": [
+      0.018,
+      0.404
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Ice Cream Shop.",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Vanilla.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "5:00 PM",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "25 tubs of chocolate have been approved.",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "We should switch to a different supplier for vanilla.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "5.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "Not applicable.",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "I'm sorry, but I don't have access to specific information about individual empl",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "In a prominent location near the entrance.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11 tubs.",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-window": {
+     "estimatedTokens": 720,
+     "correct": 7,
+     "n": 10,
+     "wilson95": [
+      0.397,
+      0.892
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Vanilla.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "6 pm.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "Noted, 20 tubs arrived with that order.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "There are 7 tubs of strawberry.",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till, please.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11 tubs.",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-summary": {
+     "estimatedTokens": 720,
+     "correct": 7,
+     "n": 10,
+     "wilson95": [
+      0.397,
+      0.892
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Vanilla.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "6 pm.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "Noted, 20 tubs arrived with that order.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "There are 7 tubs of strawberry.",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till, please.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11 tubs.",
+       "correct": true
+      }
+     ]
+    },
+    "pinned-clear-window": {
+     "estimatedTokens": 795,
+     "correct": 8,
+     "n": 10,
+     "wilson95": [
+      0.49,
+      0.943
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Chocolate.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15 tubs of chocolate have been approved.",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "Noted, 2 tubs arrived with that order.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "There are 7 tubs of strawberry.",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till, please.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11 tubs.",
+       "correct": true
+      }
+     ]
+    }
+   },
+   "600": {
+    "window": {
+     "estimatedTokens": 73,
+     "correct": 1,
+     "n": 10,
+     "wilson95": [
+      0.018,
+      0.404
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Ice Cream Shop.",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Vanilla.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "5:00 PM",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "25 tubs of chocolate have been approved.",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "We should switch to a different supplier for vanilla.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "5.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "Not applicable.",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "I'm sorry, but I don't have access to specific information about individual empl",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "In a prominent location near the entrance.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11 tubs.",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-window": {
+     "estimatedTokens": 593,
+     "correct": 6,
+     "n": 10,
+     "wilson95": [
+      0.313,
+      0.832
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Ice Cream Shop.",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Vanilla.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "72.",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "3.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7 tubs.",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till, please.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11 tubs.",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-summary": {
+     "estimatedTokens": 196,
+     "correct": 3,
+     "n": 10,
+     "wilson95": [
+      0.108,
+      0.603
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Chocolate.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "6 pm",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "100 tubs of chocolate have been approved.",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy is the new supplier for vanilla.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "25 tubs arrived for order A-4817.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "25 tubs of strawberry.",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "I'm sorry, but I don't have that information as I am an AI assistant and not con",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "In a prominent location near the entrance.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11 tubs.",
+       "correct": true
+      }
+     ]
+    },
+    "pinned-clear-window": {
+     "estimatedTokens": 602,
+     "correct": 8,
+     "n": 10,
+     "wilson95": [
+      0.49,
+      0.943
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Chocolate.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15 tubs of chocolate have been approved.",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "23.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7 tubs.",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11 tubs.",
+       "correct": true
+      }
+     ]
+    }
+   },
+   "_session": {
+    "fullEstimatedTokens": 6394,
+    "budgets": {
+     "1500": {
+      "compactReport": {
+       "before": 6394,
+       "steps": [
+        {
+         "step": "clear-tool-results",
+         "total": 716
+        }
+       ],
+       "after": 716
+      },
+      "summary": null
+     },
+     "600": {
+      "compactReport": {
+       "before": 6394,
+       "steps": [
+        {
+         "step": "clear-tool-results",
+         "total": 716
+        },
+        {
+         "step": "summarize",
+         "turns": 54,
+         "total": 192
+        }
+       ],
+       "after": 192
+      },
+      "summary": "Summary of the earlier conversation:\nLucy's Scoops has been operating since morning, with a focus on selling chocolate tubs and checking the freezer regularly. The conversation includes updates on orders from Frostline (mango), changes in closing time to 6 pm, and adjustments for vanilla sales at Polar Dairy. Sales figures are provided daily, including updates after changing plans to close earlier at 7 pm. The assistant also checks the freezer multiple times throughout the day and records deliveries as they come in."
+     }
+    }
+   }
+  },
+  "qwen3:0.6b": {
+   "full": {
+    "estimatedTokens": 6398,
+    "correct": 4,
+    "n": 10,
+    "wilson95": [
+     0.168,
+     0.687
+    ],
+    "rows": [
+     {
+      "question": "What is the shop called?",
+      "kind": "pinned-note",
+      "answer": "The shop is Lucy's Scoops.",
+      "correct": true
+     },
+     {
+      "question": "Which flavor must never be ordered from Frostline?",
+      "kind": "pinned-note",
+      "answer": "Noted.",
+      "correct": false
+     },
+     {
+      "question": "What time does the shop close today? Give the hour only.",
+      "kind": "superseded",
+      "answer": "6 pm.",
+      "correct": false
+     },
+     {
+      "question": "How many tubs of chocolate has Lucy approved? Number only.",
+      "kind": "superseded",
+      "answer": "11",
+      "correct": false
+     },
+     {
+      "question": "Which supplier do we order vanilla from now?",
+      "kind": "pinned-note",
+      "answer": "We order vanilla from **Polar Dairy**.",
+      "correct": true
+     },
+     {
+      "question": "How many tubs arrived with order A-4817? Number only.",
+      "kind": "old-tool-result",
+      "answer": "11",
+      "correct": false
+     },
+     {
+      "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+      "kind": "old-tool-result",
+      "answer": "11",
+      "correct": false
+     },
+     {
+      "question": "What is the health inspector's name?",
+      "kind": "pinned-note",
+      "answer": "The health inspector is Dana Ortiz.",
+      "correct": true
+     },
+     {
+      "question": "Where should the sign-up sheet go?",
+      "kind": "recent",
+      "answer": "Noted.",
+      "correct": false
+     },
+     {
+      "question": "How many tubs of mango have sold today? Number only.",
+      "kind": "recent-tool-result",
+      "answer": "11",
+      "correct": true
+     }
+    ]
+   },
+   "1500": {
+    "window": {
+     "estimatedTokens": 73,
+     "correct": 2,
+     "n": 10,
+     "wilson95": [
+      0.057,
+      0.51
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "The shop is called Lucy's Ice Cream Shop.",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Frostline does not order the mango flavor.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "11:00",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "11",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "We order vanilla from supplier X.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "17",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "11",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "The health inspector's name is not provided in the data.",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "The sign-up sheet should be placed in the corner of the counter or near the chec",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-window": {
+     "estimatedTokens": 720,
+     "correct": 6,
+     "n": 10,
+     "wilson95": [
+      0.313,
+      0.832
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "12",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "We order vanilla from Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "1",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "11",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "The health inspector's name is Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "Please put the sign-up sheet by the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-summary": {
+     "estimatedTokens": 720,
+     "correct": 6,
+     "n": 10,
+     "wilson95": [
+      0.313,
+      0.832
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "12",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "We order vanilla from Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "1",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "11",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "The health inspector's name is Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "Please put the sign-up sheet by the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "pinned-clear-window": {
+     "estimatedTokens": 795,
+     "correct": 6,
+     "n": 10,
+     "wilson95": [
+      0.313,
+      0.832
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "1",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "11",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "The health inspector is Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "Please put the sign-up sheet by the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    }
+   },
+   "600": {
+    "window": {
+     "estimatedTokens": 73,
+     "correct": 2,
+     "n": 10,
+     "wilson95": [
+      0.057,
+      0.51
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "The shop is called Lucy's Ice Cream Shop.",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Frostline does not order the mango flavor.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "11:00",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "11",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "We order vanilla from supplier X.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "17",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "11",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "The health inspector's name is not provided in the data.",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "The sign-up sheet should be placed in the corner of the counter or near the chec",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-window": {
+     "estimatedTokens": 593,
+     "correct": 4,
+     "n": 10,
+     "wilson95": [
+      0.168,
+      0.687
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "The shop is called Lucy's Ice Cream Shop.",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "12",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Noted.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "1",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "11",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "The health inspector's name is Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "It should be placed by the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-summary": {
+     "estimatedTokens": 190,
+     "correct": 6,
+     "n": 10,
+     "wilson95": [
+      0.313,
+      0.832
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "The flavor that must never be ordered from Frostline is vanilla.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "12",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "11 tubs arrived with order A-4817.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "11",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "The sign-up sheet should be placed by the till near the entrance.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "pinned-clear-window": {
+     "estimatedTokens": 602,
+     "correct": 8,
+     "n": 10,
+     "wilson95": [
+      0.49,
+      0.943
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Mango.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "1",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "11",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "The health inspector is Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "It should be placed by the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    }
+   },
+   "_session": {
+    "fullEstimatedTokens": 6394,
+    "budgets": {
+     "1500": {
+      "compactReport": {
+       "before": 6394,
+       "steps": [
+        {
+         "step": "clear-tool-results",
+         "total": 716
+        }
+       ],
+       "after": 716
+      },
+      "summary": null
+     },
+     "600": {
+      "compactReport": {
+       "before": 6394,
+       "steps": [
+        {
+         "step": "clear-tool-results",
+         "total": 716
+        },
+        {
+         "step": "summarize",
+         "turns": 54,
+         "total": 186
+        }
+       ],
+       "after": 186
+      },
+      "summary": "Summary of the earlier conversation:\nHere is a summary of the conversation:\n\n- Lucy confirmed the shop is Lucy's Scoops.\n- We close at 6 pm today.\n- We ordered 12 tubs of chocolate from Frostline.\n- We sold 12 tubs of chocolate today.\n- We plan to order vanilla from Polar Dairy.\n- We recorded the delivery.\n- We plan to close at 7 pm today.\n- We put the sign-up sheet by the till.\n- We updated sales.\n\nThe freezer is as it stands. Sales so far are today's sales. The health inspector is Dana Ortiz."
+     }
+    }
+   }
+  }
+ },
+ "truncation": {
+  "qwen2.5:0.5b": {
+   "full": {
+    "estimatedTokens": 4016,
+    "correct": 1,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "3",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "vanilla",
+      "correct": false
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "Chocolate",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "34",
+      "correct": false
+     }
+    ]
+   },
+   "head": {
+    "estimatedTokens": 1438,
+    "correct": 1,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "4",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "caramel",
+      "correct": false
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "strawberry",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "48",
+      "correct": false
+     }
+    ]
+   },
+   "head-and-tail": {
+    "estimatedTokens": 1440,
+    "correct": 1,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "34",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "chocolate",
+      "correct": false
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "chocolate",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "34",
+      "correct": false
+     }
+    ]
+   },
+   "digest": {
+    "estimatedTokens": 66,
+    "correct": 2,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "4",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "coconut",
+      "correct": true
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "coconut",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "8",
+      "correct": false
+     }
+    ]
+   },
+   "_truth": {
+    "pistachio": 81,
+    "first": "mango",
+    "last": "coconut",
+    "middle_time": "14:07",
+    "middle": "mango",
+    "count": 480
+   }
+  },
+  "qwen2.5:1.5b": {
+   "full": {
+    "estimatedTokens": 4016,
+    "correct": 2,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "36",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "coconut",
+      "correct": true
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "chocolate",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "346",
+      "correct": false
+     }
+    ]
+   },
+   "head": {
+    "estimatedTokens": 1438,
+    "correct": 2,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "9",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "coconut",
+      "correct": true
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "pistachio",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "94",
+      "correct": false
+     }
+    ]
+   },
+   "head-and-tail": {
+    "estimatedTokens": 1440,
+    "correct": 2,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "14",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "coconut",
+      "correct": true
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "mint",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "346",
+      "correct": false
+     }
+    ]
+   },
+   "digest": {
+    "estimatedTokens": 66,
+    "correct": 3,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "100",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "coconut",
+      "correct": true
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "vanilla",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "480",
+      "correct": true
+     }
+    ]
+   },
+   "_truth": {
+    "pistachio": 81,
+    "first": "mango",
+    "last": "coconut",
+    "middle_time": "14:07",
+    "middle": "mango",
+    "count": 480
+   }
+  },
+  "qwen3:0.6b": {
+   "full": {
+    "estimatedTokens": 4016,
+    "correct": 0,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "70",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "7.00",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "7.00",
+      "correct": false
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "7.00",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "380",
+      "correct": false
+     }
+    ]
+   },
+   "head": {
+    "estimatedTokens": 1438,
+    "correct": 0,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "70",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "7",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "7.00",
+      "correct": false
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "7",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "70",
+      "correct": false
+     }
+    ]
+   },
+   "head-and-tail": {
+    "estimatedTokens": 1440,
+    "correct": 0,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "700",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "7",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "7.00",
+      "correct": false
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "7",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "1000",
+      "correct": false
+     }
+    ]
+   },
+   "digest": {
+    "estimatedTokens": 66,
+    "correct": 3,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "81",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "coconut",
+      "correct": true
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "m",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "7",
+      "correct": false
+     }
+    ]
+   },
+   "_truth": {
+    "pistachio": 81,
+    "first": "mango",
+    "last": "coconut",
+    "middle_time": "14:07",
+    "middle": "mango",
+    "count": 480
+   }
+  }
+ },
+ "layout": {
+  "qwen2.5:0.5b": {
+   "volatile-first": {
+    "turns": [
+     {
+      "turn": 0,
+      "promptTokens": 1505,
+      "prefillMs": 331.7
+     },
+     {
+      "turn": 1,
+      "promptTokens": 1530,
+      "prefillMs": 304.5
+     },
+     {
+      "turn": 2,
+      "promptTokens": 1557,
+      "prefillMs": 311.3
+     },
+     {
+      "turn": 3,
+      "promptTokens": 1580,
+      "prefillMs": 317.1
+     },
+     {
+      "turn": 4,
+      "promptTokens": 1607,
+      "prefillMs": 320.1
+     },
+     {
+      "turn": 5,
+      "promptTokens": 1628,
+      "prefillMs": 326.8
+     },
+     {
+      "turn": 6,
+      "promptTokens": 1655,
+      "prefillMs": 334.3
+     },
+     {
+      "turn": 7,
+      "promptTokens": 1681,
+      "prefillMs": 340.3
+     },
+     {
+      "turn": 8,
+      "promptTokens": 1705,
+      "prefillMs": 343.7
+     },
+     {
+      "turn": 9,
+      "promptTokens": 1733,
+      "prefillMs": 351.1
+     }
+    ],
+    "medianPrefillMsAfterFirst": 326.8
+   },
+   "stable-first": {
+    "turns": [
+     {
+      "turn": 0,
+      "promptTokens": 1505,
+      "prefillMs": 303.2
+     },
+     {
+      "turn": 1,
+      "promptTokens": 1603,
+      "prefillMs": 36.3
+     },
+     {
+      "turn": 2,
+      "promptTokens": 1703,
+      "prefillMs": 36.7
+     },
+     {
+      "turn": 3,
+      "promptTokens": 1801,
+      "prefillMs": 37.6
+     },
+     {
+      "turn": 4,
+      "promptTokens": 1901,
+      "prefillMs": 38.2
+     },
+     {
+      "turn": 5,
+      "promptTokens": 1997,
+      "prefillMs": 33.8
+     },
+     {
+      "turn": 6,
+      "promptTokens": 2095,
+      "prefillMs": 39.6
+     },
+     {
+      "turn": 7,
+      "promptTokens": 2194,
+      "prefillMs": 39.9
+     },
+     {
+      "turn": 8,
+      "promptTokens": 2292,
+      "prefillMs": 40.2
+     },
+     {
+      "turn": 9,
+      "promptTokens": 2393,
+      "prefillMs": 41.2
+     }
+    ],
+    "medianPrefillMsAfterFirst": 38.2
+   }
+  },
+  "qwen2.5:1.5b": {
+   "volatile-first": {
+    "turns": [
+     {
+      "turn": 0,
+      "promptTokens": 1505,
+      "prefillMs": 894.4
+     },
+     {
+      "turn": 1,
+      "promptTokens": 1530,
+      "prefillMs": 898.6
+     },
+     {
+      "turn": 2,
+      "promptTokens": 1557,
+      "prefillMs": 922.2
+     },
+     {
+      "turn": 3,
+      "promptTokens": 1580,
+      "prefillMs": 938.8
+     },
+     {
+      "turn": 4,
+      "promptTokens": 1607,
+      "prefillMs": 941.9
+     },
+     {
+      "turn": 5,
+      "promptTokens": 1628,
+      "prefillMs": 963.0
+     },
+     {
+      "turn": 6,
+      "promptTokens": 1655,
+      "prefillMs": 981.1
+     },
+     {
+      "turn": 7,
+      "promptTokens": 1681,
+      "prefillMs": 1003.8
+     },
+     {
+      "turn": 8,
+      "promptTokens": 1705,
+      "prefillMs": 1007.0
+     },
+     {
+      "turn": 9,
+      "promptTokens": 1733,
+      "prefillMs": 1024.7
+     }
+    ],
+    "medianPrefillMsAfterFirst": 963.0
+   },
+   "stable-first": {
+    "turns": [
+     {
+      "turn": 0,
+      "promptTokens": 1505,
+      "prefillMs": 885.2
+     },
+     {
+      "turn": 1,
+      "promptTokens": 1603,
+      "prefillMs": 89.3
+     },
+     {
+      "turn": 2,
+      "promptTokens": 1703,
+      "prefillMs": 90.0
+     },
+     {
+      "turn": 3,
+      "promptTokens": 1801,
+      "prefillMs": 90.6
+     },
+     {
+      "turn": 4,
+      "promptTokens": 1901,
+      "prefillMs": 92.1
+     },
+     {
+      "turn": 5,
+      "promptTokens": 1997,
+      "prefillMs": 78.1
+     },
+     {
+      "turn": 6,
+      "promptTokens": 2095,
+      "prefillMs": 93.9
+     },
+     {
+      "turn": 7,
+      "promptTokens": 2194,
+      "prefillMs": 94.5
+     },
+     {
+      "turn": 8,
+      "promptTokens": 2292,
+      "prefillMs": 94.7
+     },
+     {
+      "turn": 9,
+      "promptTokens": 2393,
+      "prefillMs": 96.6
+     }
+    ],
+    "medianPrefillMsAfterFirst": 92.1
+   }
+  },
+  "qwen3:0.6b": {
+   "volatile-first": {
+    "turns": [
+     {
+      "turn": 0,
+      "promptTokens": 1513,
+      "prefillMs": 458.9
+     },
+     {
+      "turn": 1,
+      "promptTokens": 1538,
+      "prefillMs": 427.6
+     },
+     {
+      "turn": 2,
+      "promptTokens": 1565,
+      "prefillMs": 439.5
+     },
+     {
+      "turn": 3,
+      "promptTokens": 1588,
+      "prefillMs": 449.4
+     },
+     {
+      "turn": 4,
+      "promptTokens": 1615,
+      "prefillMs": 458.8
+     },
+     {
+      "turn": 5,
+      "promptTokens": 1636,
+      "prefillMs": 464.6
+     },
+     {
+      "turn": 6,
+      "promptTokens": 1663,
+      "prefillMs": 473.5
+     },
+     {
+      "turn": 7,
+      "promptTokens": 1689,
+      "prefillMs": 483.6
+     },
+     {
+      "turn": 8,
+      "promptTokens": 1713,
+      "prefillMs": 494.1
+     },
+     {
+      "turn": 9,
+      "promptTokens": 1741,
+      "prefillMs": 508.0
+     }
+    ],
+    "medianPrefillMsAfterFirst": 464.6
+   },
+   "stable-first": {
+    "turns": [
+     {
+      "turn": 0,
+      "promptTokens": 1513,
+      "prefillMs": 458.2
+     },
+     {
+      "turn": 1,
+      "promptTokens": 1611,
+      "prefillMs": 52.4
+     },
+     {
+      "turn": 2,
+      "promptTokens": 1711,
+      "prefillMs": 54.0
+     },
+     {
+      "turn": 3,
+      "promptTokens": 1809,
+      "prefillMs": 55.7
+     },
+     {
+      "turn": 4,
+      "promptTokens": 1909,
+      "prefillMs": 56.9
+     },
+     {
+      "turn": 5,
+      "promptTokens": 2005,
+      "prefillMs": 56.7
+     },
+     {
+      "turn": 6,
+      "promptTokens": 2103,
+      "prefillMs": 58.3
+     },
+     {
+      "turn": 7,
+      "promptTokens": 2202,
+      "prefillMs": 59.3
+     },
+     {
+      "turn": 8,
+      "promptTokens": 2300,
+      "prefillMs": 60.7
+     },
+     {
+      "turn": 9,
+      "promptTokens": 2401,
+      "prefillMs": 63.4
+     }
+    ],
+    "medianPrefillMsAfterFirst": 56.9
+   }
+  }
+ },
+ "estimate": [
+  {
+   "kind": "prose",
+   "chars": 1775,
+   "estimate": 444,
+   "actual": 349,
+   "charsPerToken": 5.09,
+   "estimateError": 0.272
+  },
+  {
+   "kind": "json",
+   "chars": 2573,
+   "estimate": 644,
+   "actual": 1048,
+   "charsPerToken": 2.46,
+   "estimateError": -0.385
+  },
+  {
+   "kind": "numbers",
+   "chars": 2016,
+   "estimate": 504,
+   "actual": 1187,
+   "charsPerToken": 1.7,
+   "estimateError": -0.575
+  },
+  {
+   "kind": "python",
+   "chars": 2400,
+   "estimate": 600,
+   "actual": 540,
+   "charsPerToken": 4.44,
+   "estimateError": 0.111
+  }
+ ],
+ "depthTable": [
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 1000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 5,
+   "medianPromptTokens": 1031.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 1000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 4,
+   "medianPromptTokens": 1031.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 1000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 4,
+   "medianPromptTokens": 1031.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 1000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 3,
+   "medianPromptTokens": 1031.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 1000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 2,
+   "medianPromptTokens": 1031.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 4000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 5,
+   "medianPromptTokens": 4067.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 4000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 0,
+   "medianPromptTokens": 4067.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 4000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 1,
+   "medianPromptTokens": 4067.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 4000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 2,
+   "medianPromptTokens": 4067.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 4000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 6,
+   "medianPromptTokens": 4067.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 8000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 5,
+   "medianPromptTokens": 8039.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 8000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 2,
+   "medianPromptTokens": 8039.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 8000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 1,
+   "medianPromptTokens": 8039.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 8000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 0,
+   "medianPromptTokens": 8039.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 8000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 3,
+   "medianPromptTokens": 8039.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 16000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 0,
+   "medianPromptTokens": 16051.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 16000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 0,
+   "medianPromptTokens": 16051.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 16000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 0,
+   "medianPromptTokens": 16051.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 16000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 0,
+   "medianPromptTokens": 16051.0
+  },
+  {
+   "model": "qwen2.5:0.5b",
+   "length": 16000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 0,
+   "medianPromptTokens": 16051.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 1000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 1031.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 1000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 7,
+   "medianPromptTokens": 1031.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 1000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 1031.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 1000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 7,
+   "medianPromptTokens": 1031.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 1000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 1031.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 4000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 4067.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 4000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 4,
+   "medianPromptTokens": 4067.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 4000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 5,
+   "medianPromptTokens": 4067.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 4000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 4,
+   "medianPromptTokens": 4067.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 4000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 7,
+   "medianPromptTokens": 4067.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 8000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 8039.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 8000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 5,
+   "medianPromptTokens": 8039.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 8000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 1,
+   "medianPromptTokens": 8039.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 8000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 4,
+   "medianPromptTokens": 8039.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 8000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 4,
+   "medianPromptTokens": 8039.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 16000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 7,
+   "medianPromptTokens": 16051.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 16000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 1,
+   "medianPromptTokens": 16051.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 16000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 2,
+   "medianPromptTokens": 16051.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 16000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 3,
+   "medianPromptTokens": 16051.0
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "length": 16000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 3,
+   "medianPromptTokens": 16051.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 1000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 7,
+   "medianPromptTokens": 1039.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 1000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 6,
+   "medianPromptTokens": 1039.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 1000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 7,
+   "medianPromptTokens": 1039.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 1000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 4,
+   "medianPromptTokens": 1039.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 1000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 7,
+   "medianPromptTokens": 1039.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 4000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 4075.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 4000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 7,
+   "medianPromptTokens": 4075.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 4000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 6,
+   "medianPromptTokens": 4075.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 4000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 6,
+   "medianPromptTokens": 4075.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 4000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 4075.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 8000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 8047.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 8000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 5,
+   "medianPromptTokens": 8047.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 8000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 4,
+   "medianPromptTokens": 8047.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 8000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 6,
+   "medianPromptTokens": 8047.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 8000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 8047.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 16000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 6,
+   "medianPromptTokens": 16059.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 16000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 1,
+   "medianPromptTokens": 16059.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 16000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 1,
+   "medianPromptTokens": 16059.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 16000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 1,
+   "medianPromptTokens": 16059.0
+  },
+  {
+   "model": "qwen3:0.6b",
+   "length": 16000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 4,
+   "medianPromptTokens": 16059.0
+  }
+ ],
+ "limits": [
+  "Small local models at temperature zero; larger models hold longer contexts better, but the ways a context is shortened behave the same way for any model.",
+  "Eight questions per depth cell and ten per compaction strategy: read differences as patterns across cells, not as single-cell results."
+ ]
+}

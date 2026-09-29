@@ -6,13 +6,13 @@
 > — bring your questions, compare experiments and share what you build.
 > **Original source and updates:** [profrodai/sovereign-agent](https://github.com/profrodai/sovereign-agent).
 
-Build Your Always-On AI Agent From Scratch · twenty-chapter edition · 9 September 2026
+Build Your Always-On AI Agent From Scratch · construction edition · 9 September 2026
 
 Study worked implementations and their reasoning after attempting the exercises. Each notebook repeats the required setup and concepts, includes the full exercise context and tests additional cases.
 
 [Set up your environment](profrod-sovereign-agent-solutions-setup.md) · [Download the course as a ZIP](https://github.com/profrodai/profrodai-resources/archive/refs/heads/main.zip)
 
-The edition has twenty chapters. **Each has two ninety-minute units: 40 units and 60 hours of practice.** Every unit uses a supplied runtime and can be studied on its own.
+The edition has twenty-one chapters. **Each has two ninety-minute units: 42 units and 63 hours of practice.** Every unit uses a supplied runtime and can be studied on its own.
 
 | Chapter | Topic | Availability |
 |---|---|---|
@@ -36,6 +36,7 @@ The edition has twenty chapters. **Each has two ninety-minute units: 40 units an
 | 18 | [When a second agent pays: parallelism, errors and bounded delegation](ch18/profrod-sovereign-agent-ch18-bounded-delegation-solutions-guide.md) | Available draft — A and B, 90 minutes each |
 | 19 | [What a model call costs, and a deployment that survives](ch19/profrod-sovereign-agent-ch19-deployment-restoration-solutions-guide.md) | Available draft — A and B, 90 minutes each |
 | 20 | [A whole day: reliability, honest reports and readiness](ch20/profrod-sovereign-agent-ch20-integrated-shop-day-solutions-guide.md) | Available draft — A and B, 90 minutes each |
+| 21 | [Context engineering: a budget for what the model sees](ch21/profrod-sovereign-agent-ch21-context-solutions-guide.md) | Available draft — A and B, 90 minutes each |
 
 ## How to use this asset
 

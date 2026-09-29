@@ -164,6 +164,14 @@
       "path": "ch20/profrod-sovereign-agent-ch20-integrated-shop-day-chapter.md",
       "checkpoint": "checkpoints/profrod_sovereign_agent_ch20_integrated_shop_day_checkpoint.py",
       "status": "DRAFT"
+    },
+    {
+      "number": 21,
+      "lessonId": "context",
+      "title": "Context engineering: a budget for what the model sees",
+      "path": "ch21/profrod-sovereign-agent-ch21-context-chapter.md",
+      "checkpoint": "checkpoints/profrod_sovereign_agent_ch21_context_checkpoint.py",
+      "status": "DRAFT"
     }
   ],
   "edition": "twenty-chapter-construction",

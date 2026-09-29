@@ -31,7 +31,7 @@ Each file below is the completed comparison implementation for one chapter's con
 | 19 | `profrod_sovereign_agent_ch19_inference_economics_learner.py` | Decode ceilings, arithmetic intensity, KV-cache memory, latency, percentiles, Little's law and loop cost |
 | 20 | `profrod_sovereign_agent_ch20_reliability_learner.py` | Series success, per-step reliability, the Wilson interval, and checks of a report's amounts and names |
 
-Each chapter's checkpoint loads its file, so changing a function's essential behavior changes the executable result. The live adapters still use supplied bounded HTTP transport, and later reference checkpoints import other supplied runtime components. See [code ownership](https://profrod.ai/book/code-ownership) and the [construction roadmap](https://profrod.ai/book/construction-roadmap) before treating these files as a finished twenty-chapter agent.
+Each chapter's checkpoint loads its file, so changing a function's essential behavior changes the executable result. The live adapters still use supplied bounded HTTP transport, and later reference checkpoints import other supplied runtime components. See [code ownership](https://profrod.ai/book/code-ownership) and the [construction roadmap](https://profrod.ai/book/construction-roadmap) before treating these files as a finished agent.
 
 ## Keep building with Prof Rod
 

@@ -36,9 +36,9 @@ ROOT = Path(__file__).resolve().parents[1]
 BOOK = ROOT / "book"
 COURSE = ("exercises", "solutions", "educator")
 PLANNED: set[int] = set()
-AVAILABLE = set(range(1, 21)) - PLANNED
+AVAILABLE = set(range(1, 22)) - PLANNED
 EXPECTED = {f"ch{chapter:02d}-{letter}" for chapter in AVAILABLE for letter in "ab"}
-RECEIPT = ROOT / "docs/evidence/book-four-assets/verification-v4.json"
+RECEIPT = ROOT / "docs/evidence/book-four-assets/verification-v5.json"
 LEGACY = runpy.run_path(str(ROOT / "scripts/verify_practical_course_v1.py"))
 
 
@@ -69,14 +69,14 @@ def verify_layout(book: Path = BOOK) -> dict:
     manifest = json.loads(local_file(book, "textbook/BOOK.json").read_text())
     assert manifest["schemaVersion"] == 3
     chapters = manifest["chapters"]
-    assert [row["number"] for row in chapters] == list(range(1, 21)), "chapter coverage drift"
-    assert len({row["lessonId"] for row in chapters}) == 20, "duplicate stable lesson identity"
+    assert [row["number"] for row in chapters] == list(range(1, 22)), "chapter coverage drift"
+    assert len({row["lessonId"] for row in chapters}) == 21, "duplicate stable lesson identity"
     assert {row["number"] for row in chapters if row["status"] == "PLANNED"} == PLANNED
     for asset in COURSE:
         local_file(book, f"{asset}/README.md")
         local_file(book, f"{asset}/{distribution.start_name(asset)}")
         actual = {p.name for p in (book / asset).glob("ch[0-9]*") if p.is_dir()}
-        assert actual == {f"ch{n:02d}" for n in range(1, 21)}, f"{asset}: chapter coverage drift"
+        assert actual == {f"ch{n:02d}" for n in range(1, 22)}, f"{asset}: chapter coverage drift"
     for row in chapters:
         chapter = row["number"]
         prefix = f"ch{chapter:02d}"
@@ -150,7 +150,7 @@ def verify_layout(book: Path = BOOK) -> dict:
             assert "Join the Prof Rod learner community" in source, path
             for url in (distribution.BOOK_URL, distribution.COMMUNITY_URL, distribution.SOURCE_URL):
                 assert url in source, path
-    assert len(notebook_paths(book)) == 80
+    assert len(notebook_paths(book)) == 84
     return manifest
 
 
@@ -244,13 +244,13 @@ def execute_handoff(chapter: int) -> dict:
 def verify_receipt(path: Path = RECEIPT, book: Path = BOOK) -> None:
     verify_layout(book)
     receipt = json.loads(path.read_text())
-    assert receipt["schemaVersion"] == 1 and receipt["edition"] == "four-assets-20-chapters"
+    assert receipt["schemaVersion"] == 1 and receipt["edition"] == "four-assets-21-chapters"
     rows = receipt["notebooks"]
-    assert len(rows) == 80 and {(row["id"], row["asset"]) for row in rows} == {
+    assert len(rows) == 84 and {(row["id"], row["asset"]) for row in rows} == {
         (identity, asset) for identity in EXPECTED for asset in ("exercises", "solutions")
     }, "notebook coverage drift"
     assert {str(p.relative_to(book)) for p in notebook_paths(book)} == {row["notebook"] for row in rows}
-    assert len(receipt["handoffs"]) == 20
+    assert len(receipt["handoffs"]) == 21
     assert {row["chapter"] for row in receipt["handoffs"]} == AVAILABLE
     assert all(row["selectedLearnerHandoff"] == "PASS" for row in receipt["handoffs"])
     for row in rows:
@@ -264,7 +264,7 @@ def verify_receipt(path: Path = RECEIPT, book: Path = BOOK) -> None:
         assert row["coreHoldout"] == ("PASS" if row["asset"] == "solutions" else "NOT_DISTRIBUTED")
         for field in ("notebook", "markdown"):
             assert digest(local_file(book, row[field])) == row[field + "Sha256"], "verified bytes changed"
-    print("COURSE: 40 exercise units, 40 solutions, 20 selected handoffs; exact executed bytes intact.")
+    print("COURSE: 42 exercise units, 42 solutions, 21 selected handoffs; exact executed bytes intact.")
 
 
 def execute(workers: int, *, record: bool = True) -> None:
@@ -274,7 +274,7 @@ def execute(workers: int, *, record: bool = True) -> None:
         handoffs = list(pool.map(execute_handoff, sorted(AVAILABLE)))
     receipt = {
         "schemaVersion": 1,
-        "edition": "four-assets-20-chapters",
+        "edition": "four-assets-21-chapters",
         "created": "2026-09-28",
         "source": "profrodai/sovereign-agent@03b67411133409f6c897461639c704ec27264fa9, re-homed",
         "python": platform.python_version(),
