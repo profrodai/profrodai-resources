@@ -29,7 +29,7 @@ Allocate ninety minutes to each unit; together they make the complete three-hour
 
 ## Prepare and rehearse
 
-For Unit A, use a Python 3.14 kernel with Pydantic 2; for Unit B, Google Colab or any Python 3.12+ kernel. Before class, restart and run each worked notebook on the teaching machine, and check the retained `practical-work/ch19-a` and `ch19-b` folders. Neither core makes a provider request or a network call.
+Both units run on Google Colab or any Python 3.12+ kernel; Unit A also needs Pydantic 2. Before class, restart and run each worked notebook on the teaching machine, and check the retained `practical-work/ch19-a` and `ch19-b` folders. Neither core makes a provider request or a network call.
 
 The prerequisites are dictionaries, functions and loops. For Unit B, ask learners what happens to a model's memory use as a conversation grows. The share who answer "nothing, the model is fixed" tells you how long to spend on attention and the cache before the formula.
 

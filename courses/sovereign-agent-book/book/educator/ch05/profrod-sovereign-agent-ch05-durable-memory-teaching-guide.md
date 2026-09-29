@@ -28,7 +28,7 @@ Allocate ninety minutes to each unit; together they make the complete three-hour
 
 ## Prepare and rehearse
 
-For Unit A, use a Python 3.14 kernel with Pydantic 2; for Unit B, Google Colab or any Python 3.12+ kernel. Before class, restart and run each worked notebook on the teaching machine, and check the retained `practical-work/ch05-a` and `ch05-b` folders. Neither core makes a provider request.
+Both units run on Google Colab or any Python 3.12+ kernel; Unit A also needs Pydantic 2. Before class, restart and run each worked notebook on the teaching machine, and check the retained `practical-work/ch05-a` and `ch05-b` folders. Neither core makes a provider request.
 
 The prerequisites are dictionaries, functions and loops, plus a logarithm for Unit B. Before Unit B, show learners one paraphrase: "At what hour should the supplier's van turn up?" Ask which of Lucy's notes answers it, and how a program could know. The answers tell you whether to spend time on why words are not meanings.
 

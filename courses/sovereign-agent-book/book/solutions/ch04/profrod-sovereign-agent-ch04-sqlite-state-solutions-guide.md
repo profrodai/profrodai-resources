@@ -15,7 +15,7 @@ Retain your own attempt before reading these worked solutions. Explain the reaso
 | A · 90 minutes | [A: durable state store](profrod-sovereign-agent-ch04-a-durable-state-store-solution.ipynb) | [Markdown](profrod-sovereign-agent-ch04-a-durable-state-store-solution.md) | Construct, connect and explain |
 | B · 90 minutes | [B: interrupted migration](profrod-sovereign-agent-ch04-b-interrupted-migration-solution.ipynb) | [Markdown](profrod-sovereign-agent-ch04-b-interrupted-migration-solution.md) | Diagnose, repair and transfer |
 
-Each notebook includes its own setup, first-principles introductions and supplied schema, and needs only Python's standard library. Use Google Colab (Python 3.13) or a local Python 3.12+ Jupyter kernel. No repository checkout, previous notebook kernel or live account is needed. Unit B can use an explicitly selected successful Unit A handoff; an invalid selected file refuses rather than substituting an answer.
+Each notebook includes its own setup, first-principles introductions and supplied schema, and needs only Python's standard library. Use Google Colab (Python 3.12) or a local Python 3.12+ Jupyter kernel. No repository checkout, previous notebook kernel or live account is needed. Unit B can use an explicitly selected successful Unit A handoff; an invalid selected file refuses rather than substituting an answer.
 
 Ninety minutes is the planned work allowance per unit. Actual completion time and understanding require classroom observation.
 

@@ -50,7 +50,9 @@ teaching guides, session plans and student and solution copies for a class are u
 - **In Colab:** nothing to install. Each notebook carries its own runtime; the setup cell asks for
   `pydantic` if Colab lacks it.
 - **Locally:** Python 3.12 or newer with Jupyter and Pydantic 2 for the notebooks. The chapter code
-  (checkpoints, learner modules, experiments) needs Python 3.14 and [uv](https://docs.astral.sh/uv/).
+  (checkpoints, learner modules, experiments) runs with [uv](https://docs.astral.sh/uv/). Chapters built
+  only on the learner's own code also run on Python 3.12, as on Colab; the others still import the
+  supplied package, which needs Python 3.14.
 
 ## Run, verify, reset
 
@@ -64,8 +66,25 @@ make verify   # the layout, the receipt of every notebook's executed bytes, and 
 ```
 
 `make verify-execution` re-runs all 84 notebooks in fresh kernels and every Unit A to Unit B
-handoff, and compares them with the saved receipt; it takes a while. To reset, delete your
-`practical-work/` folders; the notebooks never write anywhere else.
+handoff, and compares them with the saved receipt; it takes a while. It runs them on Python 3.12,
+the version Google Colab runs, one at a time and without the course's own environment, so a
+notebook that only works where the supplied package is installed fails here as it would on Colab.
+To reset, delete your `practical-work/` folders; the notebooks never write anywhere else.
+
+## Colab first
+
+Every notebook in this course, and every notebook added to it, must run on Google Colab:
+
+- it opens itself with an **Open in Colab** badge;
+- it declares no Python but Colab's, demands no newer one, and parses as Python 3.12, including the
+  runtime files it embeds;
+- an embedded runtime registers itself for the notebook's child processes, since Colab installs
+  no course package;
+- its execution is recorded on Python 3.12 (`make record-execution`, which writes the next
+  append-only receipt).
+
+`python3 scripts/check_colab_v1.py` checks the first three with the standard library alone, and the
+repository's pull-request gate runs it, so a notebook that would fail on Colab cannot be merged.
 
 ## Credential and live-API boundary
 

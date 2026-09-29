@@ -15,7 +15,7 @@ Retain your own attempt before reading these worked solutions. Explain the reaso
 | A · 90 minutes | [A: durable memory](profrod-sovereign-agent-ch05-a-durable-memory-solution.ipynb) | [Markdown](profrod-sovereign-agent-ch05-a-durable-memory-solution.md) | Construct, connect and explain |
 | B · 90 minutes | [B: retrieval and recall](profrod-sovereign-agent-ch05-b-retrieval-and-recall-solution.ipynb) | [Markdown](profrod-sovereign-agent-ch05-b-retrieval-and-recall-solution.md) | Derive, evaluate against labeled questions and transfer |
 
-Each notebook includes its own setup, first-principles introductions and supplied teaching runtime. Use a Python 3.14 Jupyter kernel; Unit A also needs Pydantic 2, and Unit B only the standard library. No repository checkout, previous notebook kernel or live account is needed. Unit B can use an explicitly selected successful Unit A handoff; an invalid selected file refuses rather than substituting an answer.
+Each notebook includes its own setup, first-principles introductions and supplied teaching runtime. Open either notebook in Google Colab with its badge (Colab runs Python 3.12), or use a local Python 3.12+ Jupyter kernel; Unit A also needs Pydantic 2, and Unit B only the standard library. No repository checkout, previous notebook kernel or live account is needed. Unit B can use an explicitly selected successful Unit A handoff; an invalid selected file refuses rather than substituting an answer.
 
 Ninety minutes is the planned work allowance per unit, excluding installation. Actual completion time and understanding require classroom observation.
 

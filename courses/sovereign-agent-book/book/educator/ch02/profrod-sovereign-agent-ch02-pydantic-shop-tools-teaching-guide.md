@@ -29,7 +29,7 @@ Allocate ninety minutes to each unit; together they make the complete three-hour
 
 ## Prepare and rehearse
 
-For Unit A, use a Python 3.14 kernel with Pydantic 2; for Unit B, Google Colab or any Python 3.12+ kernel. Before class, restart and run each worked notebook on the teaching machine, and check the retained `practical-work/ch02-a` and `ch02-b` folders. Neither core makes a provider request.
+Both units run on Google Colab or any Python 3.12+ kernel; Unit A also needs Pydantic 2. Before class, restart and run each worked notebook on the teaching machine, and check the retained `practical-work/ch02-a` and `ch02-b` folders. Neither core makes a provider request.
 
 The prerequisites are dictionaries, functions and loops, plus Chapter 1's softmax for Unit B. Before Unit B, ask learners what a JSON schema changes about how a model writes. The share who say "the model checks its answer against the schema" tells you how long to spend on masking one token at a time.
 
