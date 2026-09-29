@@ -22,7 +22,7 @@ Each file below is the completed comparison implementation for one chapter's con
 | 9 | `profrod_sovereign_agent_ch09_latency_learner.py` | A least-squares line, prefill as b n + c n², time to first token and to the whole reply, and conversation prefill with and without a cache |
 | 10 | `profrod_sovereign_agent_ch10_queueing_learner.py` | Service-time moments, utilization, the Pollaczek–Khinchine wait, the rate for a target wait, Poisson arrivals and rescan delay |
 | 11 | `profrod_sovereign_agent_ch11_calibration_learner.py` | The reorder rule, expected calibration error, auto-approval coverage and error, agreement confidence and the approval threshold |
-| 12 | `profrod_sovereign_agent_ch12_retries_learner.py` | Attempts and duplicate effects of retries, capped attempts under timeouts, percentiles and a stable operation key |
+| 12 | `profrod_sovereign_agent_ch12_retries_learner.py` | Attempts and duplicate effects of retries, capped attempts under timeouts, percentiles, a stable operation key, and a proxy that loses a committed order's reply |
 | 13 | `profrod_sovereign_agent_ch13_leases_learner.py` | False expiry from turn lengths, the shortest safe lease, detection delay and the fencing rule |
 | 15 | `profrod_sovereign_agent_ch15_injection_learner.py` | Attempted-action checks, attack success rates with intervals, and spotlighting |
 | 16 | `profrod_sovereign_agent_ch16_evaluation_statistics_learner.py` | Wilson intervals, clustered standard errors, McNemar's test, sample size, pass@k and kappa |

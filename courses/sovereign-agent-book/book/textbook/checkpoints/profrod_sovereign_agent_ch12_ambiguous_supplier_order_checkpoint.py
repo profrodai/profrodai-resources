@@ -3,7 +3,11 @@
 # Join the Prof Rod learner community: https://profrod.ai/community
 # Original source and updates: https://github.com/profrodai/sovereign-agent
 
-"""Chapter 12: an accepted order with a lost response and independent receipts."""
+"""Chapter 12: a supplier commits an order, its reply is lost, and the agent reconciles it.
+
+Every function it calls is the learner's own: Chapter 11's approvals, send check and supplier
+process, and Chapter 12's reply-losing proxy between them.
+"""
 
 import json
 import math
@@ -16,14 +20,19 @@ import time
 from contextlib import contextmanager
 from pathlib import Path
 
-from reference_organizations.store.agent import seed_lucy
-from reference_organizations.store.supplier import SupplierClient
-from sovereign_agent.assistant_orders import SpendingPolicy, approve, execute, propose
-from sovereign_agent.assistant_work import claim, enqueue
-from sovereign_agent.database import Database
-
 BOOK = Path(__file__).resolve().parents[1]
 RETRY = runpy.run_path(str(BOOK / "learner/profrod_sovereign_agent_ch12_retries_learner.py"))
+APPROVAL = runpy.run_path(str(BOOK / "learner/profrod_sovereign_agent_ch11_approval_learner.py"))
+SUPPLIER_FILE = BOOK / "learner/profrod_sovereign_agent_ch11_supplier_learner.py"
+SUPPLIER = runpy.run_path(str(SUPPLIER_FILE))
+open_shop, hold, SpendingPolicy = (
+    APPROVAL["open_shop"],
+    APPROVAL["hold"],
+    APPROVAL["SpendingPolicy"],
+)
+propose, approve, revoke = APPROVAL["propose"], APPROVAL["approve"], APPROVAL["revoke"]
+execute, record_receipt = APPROVAL["execute"], APPROVAL["record_receipt"]
+POLICY = SpendingPolicy(frozenset({"lucy"}), total_cents=2000)
 
 
 def retry_arithmetic():
@@ -78,32 +87,18 @@ def retry_arithmetic():
 
 
 @contextmanager
-def independent_supplier(root):
-    ready = root / "supplier-ready"
-    supplier_path = root / "supplier.sqlite"
-    process = subprocess.Popen(
-        [
-            sys.executable,
-            "-m",
-            "reference_organizations.store.supplier",
-            "--database",
-            str(supplier_path),
-            "--port",
-            "0",
-            "--ready",
-            str(ready),
-            "--drop-first-response",
-        ],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
+def supplier_process(root):
+    """The learner's Chapter 11 supplier in its own process, with its own database."""
+    ready, path = root / "ready", root / "supplier.sqlite"
+    command = [sys.executable, str(SUPPLIER_FILE), "--database", str(path), "--ready", str(ready)]
+    process = subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     try:
         deadline = time.monotonic() + 10
         while not ready.exists() and time.monotonic() < deadline and process.poll() is None:
             time.sleep(0.02)
         if not ready.exists():
-            raise RuntimeError("independent supplier did not become ready")
-        yield SupplierClient("http://127.0.0.1:" + ready.read_text()), supplier_path
+            raise RuntimeError("chapter supplier failed to start")
+        yield "http://127.0.0.1:" + ready.read_text(), path
     finally:
         process.terminate()
         try:
@@ -114,28 +109,78 @@ def independent_supplier(root):
 
 
 def spending(db):
-    row = db.connection.execute(
-        "SELECT reserved_cents,spent_cents FROM assistant_spending WHERE id=1"
-    ).fetchone()
-    return tuple(row)
+    return tuple(
+        db.connection.execute(
+            "SELECT reserved_cents, spent_cents FROM assistant_spending WHERE id=1"
+        ).fetchone()
+    )
 
 
-def experiment(root):
-    with independent_supplier(root) as (supplier, supplier_path):
-        db = Database(root / "agent.sqlite")
+def status(db, identifier):
+    row = db.connection.execute("SELECT status FROM assistant_orders WHERE id=?", (identifier,))
+    return row.fetchone()[0]
+
+
+def approved_order(db, queue, name, target, policy=POLICY):
+    """One claimed, held assignment with one approved six-tub vanilla order."""
+    queue.admit("chapter12:" + name, "lucy", "Replenish vanilla")
+    work = queue.claim("chapter12-" + name)
+    hold(db, work)
+    identifier = propose(db, work, "SKU-VANILLA", 6, target=target)
+    assert propose(db, work, "SKU-VANILLA", 6, target=target) == identifier
+    digest = db.connection.execute(
+        "SELECT digest FROM assistant_orders WHERE id=?", (identifier,)
+    ).fetchone()[0]
+    approve(db, identifier, digest, actor="lucy", policy=policy, expires=time.time() + 600)
+    return work, identifier
+
+
+class CountingSupplier:
+    """In-process supplier fixtures that count every send and lookup.
+
+    fault: "after" commits the order and then loses the reply; "before" loses the request before
+    anything is kept; "lookup" also fails every lookup; "blind" keeps nothing, can look up
+    nothing and promises no idempotency."""
+
+    timeout = 3
+
+    def __init__(self, fault):
+        self.fault, self.identity = fault, "lucy-local:" + fault
+        self.idempotent = fault != "blind"
+        self.kept, self.sends, self.lookups, self.failed = {}, 0, 0, False
+
+    def lookup(self, operation):
+        self.lookups += 1
+        if self.fault == "lookup":
+            raise OSError("lookup unavailable")
+        return self.kept.get(operation)
+
+    def order(self, operation, proposal):
+        self.sends += 1
+        if self.fault == "blind" or (self.fault == "before" and not self.failed):
+            self.failed = True
+            raise TimeoutError("no reply; nothing is known")
+        receipt = self.kept.setdefault(
+            operation, {"operation": operation, "proposal": proposal, "status": "ACCEPTED"}
+        )
+        if self.fault in {"after", "lookup"} and not self.failed:
+            self.failed = True
+            raise TimeoutError("committed, but the reply was lost")
+        return receipt
+
+
+def over_http(root):
+    """The lost reply over real HTTP: supplier process, proxy, and a reopened agent database."""
+    with supplier_process(root) as (upstream, supplier_path):
+        proxy = RETRY["ReplyLosingProxy"](upstream)
+        supplier = SUPPLIER["SupplierClient"](proxy.endpoint)
+        db, queue = open_shop(root / "agent.sqlite")
         try:
-            seed_lucy(db)
-            enqueue(db, "chapter9:morning", "lucy", "Replenish vanilla")
-            work = claim(db, "chapter9-worker")
-            identifier = propose(db, work, "SKU-VANILLA", 6, target=supplier.identity)
-            assert propose(db, work, "SKU-VANILLA", 6, target=supplier.identity) == identifier
-            digest = db.connection.execute(
-                "SELECT digest FROM assistant_orders WHERE id=?", (identifier,)
-            ).fetchone()[0]
-            policy = SpendingPolicy(frozenset({"lucy"}), total_cents=2000)
-            approve(db, identifier, digest, actor="lucy", policy=policy, expires=time.time() + 60)
-            initial = execute(db, work, identifier, supplier, policy=policy)
-            assert initial["status"] == "UNKNOWN"
+            work, identifier = approved_order(db, queue, "http", supplier.identity)
+            initial = execute(db, work, identifier, supplier, policy=POLICY)
+            assert initial == {"status": "UNKNOWN", "operation": identifier}
+            assert status(db, identifier) == "UNKNOWN" and spending(db) == (1500, 0)
+            assert proxy.lost == [f"/orders/{identifier}"]
             print("initial", initial["status"])
             print("reserved and spent", *spending(db))
             with sqlite3.connect(supplier_path) as remote:
@@ -143,28 +188,80 @@ def experiment(root):
             # Reopen the durable ledger while the same ownership claim remains valid.
             # Worker death and replacement are a separate Chapter 13 experiment.
             db.close()
-            db = Database(root / "agent.sqlite")
-            receipt = execute(db, work, identifier, supplier, policy=policy)
-            assert receipt["status"] == "ACCEPTED"
-            assert execute(db, work, identifier, supplier, policy=policy) == receipt
-            status = db.connection.execute(
-                "SELECT status FROM assistant_orders WHERE id=?", (identifier,)
+            db, queue = open_shop(root / "agent.sqlite")
+            receipt = execute(db, work, identifier, supplier, policy=POLICY)
+            assert receipt["status"] == "ACCEPTED" and receipt["operation"] == identifier
+            assert execute(db, work, identifier, supplier, policy=POLICY) == receipt
+            # The same key sent again, straight to the supplier: the stored receipt, no new order.
+            proposal = db.connection.execute(
+                "SELECT proposal FROM assistant_orders WHERE id=?", (identifier,)
             ).fetchone()[0]
-            print("after reconciliation", receipt["status"], status)
+            assert supplier.order(identifier, json.loads(proposal)) == receipt
+            print("after reconciliation", receipt["status"], status(db, identifier))
             print("reserved and spent", *spending(db))
             with sqlite3.connect(supplier_path) as remote:
                 count = remote.execute("SELECT count(*) FROM orders").fetchone()[0]
-                assert count == 1
-                print("supplier orders", count)
-            assert spending(db) == (0, 1500)
+            assert count == 1 and spending(db) == (0, 1500)
+            print("supplier orders", count)
         finally:
             db.close()
+            proxy.close()
+
+
+def in_process(root):
+    """Each kind of silence, counted: what the send check does after it."""
+    db, queue = open_shop(root / "fixtures.sqlite")
+    wide = SpendingPolicy(frozenset({"lucy"}), total_cents=20_000)
+    results = {}
+    for fault in ("after", "before", "lookup", "blind"):
+        supplier = CountingSupplier(fault)
+        work, identifier = approved_order(db, queue, fault, supplier.identity, wide)
+        first = execute(db, work, identifier, supplier, policy=wide)
+        assert first == {"status": "UNKNOWN", "operation": identifier}
+        if fault == "blind":
+            revoke(db, identifier, actor="lucy", policy=wide)
+        second = execute(db, work, identifier, supplier, policy=wide)
+        results[fault] = (
+            second.get("status"),
+            supplier.sends,
+            supplier.lookups,
+            status(db, identifier),
+        )
+        if fault == "after":
+            accepted, accepted_work = second, work
+        if fault == "blind":
+            assert second.get("needs_operator") is True
+    assert results["after"] == ("ACCEPTED", 1, 1, "CONFIRMED"), results
+    assert results["before"] == ("ACCEPTED", 2, 1, "CONFIRMED"), results
+    assert results["lookup"] == ("UNKNOWN", 1, 1, "UNKNOWN"), results
+    assert results["blind"] == ("UNKNOWN", 1, 1, "UNKNOWN"), results
+    print("lost reply: one send, one lookup, confirmed")
+    print("lost request: resent under the same key after an empty lookup, confirmed")
+    print("failed lookup, and a blind supplier after revocation: UNKNOWN, no second send")
+    reserved, spent = spending(db)
+    assert (reserved, spent) == (3000, 3000), (reserved, spent)
+    wrong = json.loads(json.dumps(accepted))
+    wrong["proposal"]["quantity"] = 7
+    try:
+        record_receipt(db, accepted_work, accepted["operation"], wrong)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("mismatched receipt settled an order")
+    assert spending(db) == (3000, 3000)
+    assert record_receipt(db, accepted_work, accepted["operation"], accepted) == accepted
+    assert spending(db) == (3000, 3000)
+    stock = dict(db.connection.execute("SELECT sku, tubs FROM stock").fetchall())
+    assert stock["SKU-VANILLA"] == APPROVAL["CATALOG"]["SKU-VANILLA"]["on_hand"]
+    print("mismatched receipt refused; uncertain reservations held; stock unchanged until delivery")
+    db.close()
 
 
 def main():
     retry_arithmetic()
-    with tempfile.TemporaryDirectory(prefix="lucy-chapter9-") as directory:
-        experiment(Path(directory))
+    with tempfile.TemporaryDirectory(prefix="lucy-chapter12-") as directory:
+        over_http(Path(directory))
+        in_process(Path(directory))
 
 
 if __name__ == "__main__":
