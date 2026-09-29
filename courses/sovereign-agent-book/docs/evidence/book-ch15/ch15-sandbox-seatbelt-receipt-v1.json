@@ -1,0 +1,50 @@
+{
+  "schema": "profrod.sovereign-agent.ch15-sandbox.v1",
+  "recorded": "2026-09-29",
+  "platform": "Darwin 25.6.0 arm64",
+  "python": "3.12.13",
+  "sandbox": "seatbelt",
+  "attack": {
+    "status": "COMPLETED",
+    "raw": {
+      "credential_visible": false,
+      "network": "PermissionError",
+      "read_beside_input": "PermissionError",
+      "read_input": "allowed",
+      "signal_outside": "PermissionError",
+      "start_process": "PermissionError",
+      "uid": 501,
+      "write_input": "PermissionError",
+      "write_scratch": "allowed",
+      "outside_process_survived": true,
+      "descendant_outlived_report": false
+    },
+    "judged": {
+      "read_input": "allowed",
+      "write_input": "refused",
+      "write_scratch": "allowed",
+      "read_beside_input": "refused",
+      "network": "refused",
+      "signal_outside": "refused",
+      "credential_visible": false,
+      "outside_process_survived": true,
+      "descendant_outlived_report": false
+    },
+    "holds": true
+  },
+  "endless_report": "TIME_LIMIT",
+  "busy_report": "TIME_LIMIT",
+  "excessive_output": "OUTPUT_LIMIT",
+  "host_death": [
+    {
+      "design": "host deadline only",
+      "deadline_seconds": 2.0,
+      "report_survived_host": true
+    },
+    {
+      "design": "supervisor",
+      "deadline_seconds": 2.0,
+      "report_survived_host": false
+    }
+  ]
+}
