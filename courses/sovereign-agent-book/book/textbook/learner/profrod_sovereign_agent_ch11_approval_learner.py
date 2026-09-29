@@ -136,7 +136,7 @@ class SpendingPolicy:
             raise ValueError("automatic allowance must fit the total ceiling")
 
 
-def propose(db, assignment, sku: str, quantity: int, *, target: str) -> str:
+def propose(db, assignment, sku: str, quantity: int, *, target: str = "lucy-local") -> str:
     if type(quantity) is not int or not 1 <= quantity <= 1000:
         raise ValueError("positive integral bounded quantity required")
     with db.immediate() as connection:
