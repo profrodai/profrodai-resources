@@ -18,6 +18,11 @@ the freezer count, a stock-market quote beside stock level). Two protocols:
   native   the catalog as function-calling tools; the model may call one, or answer in prose
   choice   the catalog listed in the prompt; the model must return one name (a JSON enum)
 
+With --provider anthropic the same decisions go to Claude through the Messages API: native as
+its tools parameter, choice as a JSON schema in output_config. Tool search still ranks with
+BM25 and the local all-minilm. The receipt records every token and the list-price cost, and the
+run stops at --max-usd.
+
 Then tool search: BM25 (Chapter 5) or all-minilm (Chapter 6) picks the five most relevant of
 the sixty-four tools first, and only those are offered. The receipt keeps every call: the tool
 chosen, prompt tokens and prefill time. Finally, the stdio round trip of the learner's own MCP
@@ -47,8 +52,14 @@ STATS = runpy.run_path(
     str(LEARNER / "profrod_sovereign_agent_ch16_evaluation_statistics_learner.py")
 )
 SERVER = str(LEARNER / "profrod_sovereign_agent_ch14_teaching_server.py")
+CLAUDE = runpy.run_path(
+    str(Path(__file__).with_name("profrod_sovereign_agent_claude_messages_v1.py"))
+)
 OLLAMA = "http://localhost:11434"
 MODELS = ("qwen2.5:0.5b", "qwen2.5:1.5b", "qwen3:0.6b")
+CLAUDE_MODELS = ("claude-haiku-4-5-20251001", "claude-sonnet-5-5")
+# Set by main(): the provider, and the Claude connection that counts tokens and cost.
+RUN: dict = {"provider": "ollama", "claude": None}
 SIZES = (8, 16, 32, 64)
 SEED = 7
 
@@ -282,8 +293,58 @@ def post(path: str, payload: dict) -> dict:
 SYSTEM = "You are the assistant for Lucy's ice cream shop. Use the one tool that fits the request."
 
 
+def claude_ask(model: str, protocol: str, request: str, tools: list[dict]) -> dict:
+    """One decision on Claude: native as the tools parameter, choice as a JSON schema."""
+    extra: dict = {}
+    if protocol == "native":
+        system = SYSTEM
+        extra["tools"] = [
+            {"name": t["name"], "description": t["description"], "input_schema": t["inputSchema"]}
+            for t in tools
+        ]
+    else:
+        listing = "\n".join(f"- {t['name']}: {t['description']}" for t in tools)
+        system = (
+            f"{SYSTEM}\n\nTools:\n{listing}\n\n"
+            'Answer with JSON: {"tool": "<name of the one tool that fits>"}'
+        )
+        schema = {
+            "type": "object",
+            "required": ["tool"],
+            "properties": {"tool": {"type": "string", "enum": [t["name"] for t in tools]}},
+            "additionalProperties": False,
+        }
+        extra["output_config"] = {"format": {"type": "json_schema", "schema": schema}}
+    started = time.perf_counter()
+    reply = RUN["claude"].messages(
+        model,
+        max_tokens=256,
+        system=system,
+        messages=[{"role": "user", "content": request}],
+        **extra,
+    )
+    wall = (time.perf_counter() - started) * 1000
+    if protocol == "native":
+        calls = CLAUDE["tool_calls"](reply)
+        chosen = calls[0]["name"] if calls else None
+    else:
+        try:
+            chosen = json.loads(CLAUDE["text_of"](reply)).get("tool")
+        except ValueError:
+            chosen = None
+    return {
+        "chosen": chosen,
+        "promptTokens": reply.get("usage", {}).get("input_tokens"),
+        "prefillMs": None,
+        "wallMs": round(wall, 1),
+        "stopReason": reply.get("stop_reason"),
+    }
+
+
 def ask(model: str, protocol: str, request: str, tools: list[dict]) -> dict:
     """One decision. Returns the chosen tool (or None), prompt tokens and prefill milliseconds."""
+    if RUN["provider"] == "anthropic":
+        return claude_ask(model, protocol, request, tools)
     payload: dict = {
         "model": model,
         "stream": False,
@@ -348,7 +409,12 @@ def summarize(rows: list[dict]) -> dict:
         "wilson95": [round(low, 3), round(high, 3)],
         "calledAnyTool": round(sum(r["chosen"] is not None for r in rows) / len(rows), 3),
         "medianPromptTokens": statistics.median(r["promptTokens"] or 0 for r in rows),
-        "medianPrefillMs": statistics.median(r["prefillMs"] for r in rows),
+        "medianPrefillMs": (
+            statistics.median(r["prefillMs"] for r in rows)
+            if all(r["prefillMs"] is not None for r in rows)
+            else None
+        ),
+        "medianWallMs": statistics.median(r["wallMs"] for r in rows),
     }
 
 
@@ -377,8 +443,15 @@ def protocol_round_trip(calls: int = 200) -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", required=True)
-    parser.add_argument("--models", nargs="*", default=list(MODELS))
+    parser.add_argument("--models", nargs="*")
+    parser.add_argument("--provider", choices=("ollama", "anthropic"), default="ollama")
+    parser.add_argument("--max-usd", type=float, default=5.0, help="Claude spending ceiling")
     args = parser.parse_args()
+    claude = args.provider == "anthropic"
+    RUN["provider"] = args.provider
+    if claude:
+        RUN["claude"] = CLAUDE["Claude"](max_usd=args.max_usd)
+    args.models = args.models or list(CLAUDE_MODELS if claude else MODELS)
     catalog64 = catalog(64, "confusable", 0)
     by_name = {t["name"]: t for t in SHOP + CONFUSABLE + UNRELATED}
     assert len(by_name) == len(SHOP) + len(CONFUSABLE) + len(UNRELATED) == 88, "duplicate tool name"
@@ -409,16 +482,17 @@ def main() -> None:
     for model in args.models:
         # Start every model cold: a model still loaded from an earlier run keeps those prompts'
         # key-value cache, and a cached prompt reports a prefill of a few milliseconds.
-        post("/api/generate", {"model": model, "keep_alive": 0})
-        post(
-            "/api/chat",
-            {
-                "model": model,
-                "stream": False,
-                "think": False,
-                "messages": [{"role": "user", "content": "hi"}],
-            },
-        )  # load it once
+        if not claude:
+            post("/api/generate", {"model": model, "keep_alive": 0})
+            post(
+                "/api/chat",
+                {
+                    "model": model,
+                    "stream": False,
+                    "think": False,
+                    "messages": [{"role": "user", "content": "hi"}],
+                },
+            )  # load it once
         for protocol in ("native", "choice"):
             conditions = [
                 (size, kind)
@@ -453,7 +527,8 @@ def main() -> None:
                             **result,
                         }
                     )
-            print(model, protocol, "done", flush=True)
+            spent = f" ({RUN['claude'].cost():.2f} USD so far)" if claude else ""
+            print(model, protocol, "done" + spent, flush=True)
 
     table = []
     for model in args.models:
@@ -501,12 +576,28 @@ def main() -> None:
             "Twenty-four requests per condition: differences under about 0.2 are within noise.",
         ],
     }
+    if claude:
+        receipt |= {
+            "provider": "anthropic",
+            "api": f"Messages API, anthropic-version {CLAUDE['VERSION']}",
+            "settings": {m: CLAUDE["SETTINGS"][m] for m in args.models},
+            "coldStart": "no local cache; no request is marked for prompt caching",
+            "temperature": "0 on Haiku 4.5; Sonnet 5.5 accepts no temperature setting",
+            "usage": RUN["claude"].report(),
+            "limits": [
+                "Two Claude models through the API; Sonnet 5.5 runs without a temperature "
+                "setting, so a rerun can differ by a request or two per condition.",
+                "Twenty-four requests per condition: differences under about 0.2 are within "
+                "noise. Wall times include the network and the API's queue.",
+            ],
+        }
+        del receipt["ollama"]
     Path(args.out).write_text(json.dumps(receipt, indent=2) + "\n")
     for row in table:
         print(
             f"{row['model']:14} {row['protocol']:6} {row['offer']:22} acc {row['accuracy']:.3f} "
             f"called {row['calledAnyTool']:.2f} tokens {row['medianPromptTokens']:>6} "
-            f"prefill {row['medianPrefillMs']:>7}ms"
+            f"prefill {str(row['medianPrefillMs']):>7}ms wall {row['medianWallMs']:>7}ms"
         )
 
 

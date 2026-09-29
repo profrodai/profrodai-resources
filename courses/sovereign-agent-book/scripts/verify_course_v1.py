@@ -157,7 +157,7 @@ def verify_layout(book: Path = BOOK) -> dict:
 
 # Chapters whose checkpoint builds only on the standard library, locked dependencies and the
 # learner's own files. The book promises every chapter joins this set; none may leave it.
-FROM_SCRATCH = frozenset({1, 2, 3, 4, 5, 6, 8, 11, 12, 13, 14, 18, 21})
+FROM_SCRATCH = frozenset({1, 2, 3, 4, 5, 6, 8, 11, 12, 13, 14, 16, 18, 21})
 SUPPLIED = ("sovereign_agent", "reference_organizations")
 # Runs a checkpoint as its own script would run, with the supplied packages refused on import,
 # so a file the checkpoint loads indirectly cannot bring them back either.
