@@ -3,162 +3,28 @@
 # Join the Prof Rod learner community: https://profrod.ai/community
 # Original source and updates: https://github.com/profrodai/sovereign-agent
 
-"""Chapter 9: durable private messages, session routing and explicit delivery uncertainty."""
+"""Chapter 9: durable private messages, session routing and explicit delivery uncertainty.
+
+Every function it calls is the learner's own: Chapter 9's channel on Chapter 8's queue, Chapter 7's
+skills and context, Chapter 5's memory, Chapter 4's store, and Chapter 3's loop and transport.
+"""
 
 import argparse
 import json
 import math
 import os
 import runpy
+import sys
 import tempfile
+import types
 from pathlib import Path
 
-from reference_organizations.store.agent import OfflineShopModel, seed_lucy, shop_dispatcher
-from reference_organizations.store.evaluation import CASES, candidate_checks, evaluate
-from sovereign_agent.agent_loop import run_loop
-from sovereign_agent.assistant_context import (
-    activate_skill,
-    context,
-    remember,
-    skill_snapshot,
-    stage_skill,
-)
-from sovereign_agent.assistant_work import assert_current, claim, finish, reserve_model_call
-from sovereign_agent.database import Database
-from sovereign_agent.model_turn import HTTPModel
-from sovereign_agent.telegram_channel import Telegram, deliver_one, poll
-
-PROMPT = "Prepare replenishment drafts from current stock. State USD amounts."
-
-
-def update(identifier, actor=123):
-    return {
-        "update_id": identifier,
-        "message": {
-            "from": {"id": actor, "is_bot": False},
-            "chat": {"id": actor, "type": "private"},
-            "text": PROMPT,
-        },
-    }
-
-
-class OfflineBot:
-    account = "teaching"
-
-    def __init__(self, updates):
-        self.updates = updates
-        self.offsets = []
-        self.sent = []
-        self.lose_next_reply = False
-
-    def call(self, method, data):
-        if method == "getUpdates":
-            self.offsets.append(data["offset"])
-            # Replaying even acknowledged data deliberately challenges local deduplication.
-            return self.updates
-        self.sent.append(data)
-        if self.lose_next_reply:
-            self.lose_next_reply = False
-            raise TimeoutError("accepted remotely but reply lost")
-        return {"message_id": 900 + len(self.sent)}
-
-
-def initialize(path):
-    db = Database(path)
-    seed_lucy(db)
-    if not skill_snapshot(db)[1]:
-        source = (
-            Path(__file__).parents[1]
-            / "skills"
-            / "profrod_sovereign_agent_textbook_opening_check_v1.toml"
-        )
-        candidate = stage_skill(db, source)
-        activate_skill(
-            db,
-            candidate.name,
-            candidate.version,
-            evaluate=lambda skill: candidate_checks(
-                evaluate(OfflineShopModel, skill=skill, cases=CASES[:3])
-            ),
-            required_cases=frozenset(f"{case.name}:0" for case in CASES[:3]),
-        )
-    return db
-
-
-def run_claim(db, current, model):
-    dispatcher = shop_dispatcher(db)
-    messages = context(db, current.session, current.prompt, allowed=dispatcher.allowed)
-    result = run_loop(
-        model,
-        dispatcher,
-        messages,
-        check_current=lambda: assert_current(db.connection, current),
-        reserve_call=lambda: reserve_model_call(db, current, 0),
-    )
-    previous = runpy.run_path(
-        str(Path(__file__).with_name("profrod_sovereign_agent_ch03_agent_loop_checkpoint.py"))
-    )
-    passed = result.status == "COMPLETED" and previous["draft_evidence"](result)
-    finish(db, current, "DONE" if passed else "BLOCKED", result.answer)
-    return passed, result
-
-
-def offline():
-    with tempfile.TemporaryDirectory(prefix="lucy-channel-") as temporary:
-        db = initialize(Path(temporary) / "agent.sqlite")
-        bot = OfflineBot([update(103, actor=999), update(101), update(102)])
-        operators = frozenset({123})
-        ids = poll(db, bot, operators)
-        assert len(ids) == 2
-        print("Accepted private requests:", len(ids))
-        session = "telegram:teaching:123"
-        remember(db, session, "format", "three bullets", "lucy/explicit-message")
-        db.close()
-        db = Database(db.path)
-        print("Duplicate intake after restart:", len(poll(db, bot, operators)))
-        assert bot.offsets == [0, 104]
-        ids = [
-            row[0]
-            for row in db.connection.execute(
-                "SELECT id FROM assistant_work WHERE status='READY' ORDER BY created,rowid"
-            )
-        ]
-        first = claim(db, "phone-worker", identifier=ids[0])
-        assert first is not None
-        second_connection = Database(db.path)
-        competing = claim(second_connection, "second-worker", identifier=ids[1])
-        assert competing is None
-        print("Conflicting session claim:", competing)
-        second_connection.close()
-        passed, result = run_claim(db, first, OfflineShopModel())
-        assert passed and "three bullets" in result.messages[0]["content"]
-        second = claim(db, "phone-worker", identifier=ids[1])
-        assert second is not None
-        assert run_claim(db, second, OfflineShopModel())[0]
-        print("Completed drafts:", 2)
-        bot.lose_next_reply = True
-        print("First delivery:", deliver_one(db, bot, operators))
-        print("Second delivery:", deliver_one(db, bot, operators))
-        db.close()
-        db = Database(db.path)
-        print("Automatic resend:", deliver_one(db, bot, operators))
-        assert len(bot.sent) == 2
-        assert {row[0] for row in db.connection.execute("SELECT delivery FROM assistant_work")} == {
-            "UNKNOWN",
-            "SENT",
-        }
-        receipts = db.connection.execute(
-            "SELECT count(*) FROM events WHERE kind='assistant.channel.sent'"
-        ).fetchone()[0]
-        print("Recorded send receipts:", receipts)
-        orders = db.connection.execute("SELECT count(*) FROM assistant_orders").fetchone()[0]
-        print("Purchases:", orders)
-        assert receipts == 1 and orders == 0
-        db.close()
-    return 0
-
-
 BOOK = Path(__file__).resolve().parents[1]
+CHANNEL = runpy.run_path(str(BOOK / "learner/profrod_sovereign_agent_ch09_messaging_learner.py"))
+open_channel, poll, claim = CHANNEL["open_channel"], CHANNEL["poll"], CHANNEL["claim"]
+run_claim, deliver_one = CHANNEL["run_claim"], CHANNEL["deliver_one"]
+MEMORY, SKILLS, LOOP = CHANNEL["MEMORY"], CHANNEL["SKILLS"], CHANNEL["LOOP"]
+PROMPT = "Prepare replenishment drafts from current stock. State USD amounts."
 LATENCY = runpy.run_path(str(BOOK / "learner/profrod_sovereign_agent_ch09_latency_learner.py"))
 
 
@@ -191,94 +57,345 @@ def latency_arithmetic():
     print("ok   prefill fits recompute; cached turns always prefilled faster than uncached ones")
 
 
+def update(identifier, actor=123, text=PROMPT):
+    return {
+        "update_id": identifier,
+        "message": {
+            "from": {"id": actor, "is_bot": False},
+            "chat": {"id": actor, "type": "private"},
+            "text": text,
+        },
+    }
+
+
+class OfflineBot:
+    account = "teaching"
+
+    def __init__(self, updates):
+        self.updates = updates
+        self.offsets = []
+        self.sent = []
+        self.lose_next_reply = False
+
+    def call(self, method, data):
+        if method == "getUpdates":
+            self.offsets.append(data["offset"])
+            # Replaying even acknowledged data deliberately challenges local deduplication.
+            return self.updates
+        self.sent.append(data)
+        if self.lose_next_reply:
+            self.lose_next_reply = False
+            raise TimeoutError("accepted remotely but reply lost")
+        return {"message_id": 900 + len(self.sent)}
+
+
+def refused(error, action):
+    try:
+        action()
+    except error:
+        return True
+    return False
+
+
+def one(db, sql, *values):
+    return db.connection.execute(sql, values).fetchone()[0]
+
+
+def boundaries(root):
+    """The intake refuses what it cannot vouch for, and rolls back the whole batch when it must."""
+    db, queue = open_channel(root / "boundaries.sqlite", capacity=2)
+    operators = frozenset({123})
+    assert refused(ValueError, lambda: CHANNEL["Telegram"]("not-a-bot-credential"))
+    bot = CHANNEL["Telegram"]("123:fake-teaching-credential")
+    assert bot.account == "123"
+    assert refused(ValueError, lambda: bot.call("deleteWebhook", {}))
+    assert refused(ValueError, lambda: poll(db, queue, OfflineBot([]), frozenset()))
+    assert refused(ValueError, lambda: poll(db, queue, OfflineBot([]), frozenset({0})))
+    ignored = [
+        {
+            "update_id": 1,
+            "message": {"from": {"id": 123}, "chat": {"id": 7, "type": "private"}, "text": PROMPT},
+        },
+        {
+            "update_id": 2,
+            "message": {"from": {"id": 123}, "chat": {"id": 123, "type": "group"}, "text": PROMPT},
+        },
+        {
+            "update_id": 3,
+            "message": {
+                "from": {"id": 123, "is_bot": True},
+                "chat": {"id": 123, "type": "private"},
+                "text": PROMPT,
+            },
+        },
+        {"update_id": 4, "message": {"from": {"id": 123}, "chat": {"id": 123, "type": "private"}}},
+        update(5, actor=999),
+        update(6, text="   "),
+    ]
+    assert poll(db, queue, OfflineBot(ignored), operators) == []
+    assert one(db, "SELECT offset FROM channel_cursor") == 7
+    bad = OfflineBot([update(8), {"update_id": 9, "message": None}])
+    assert refused(ValueError, lambda: poll(db, queue, bad, operators))
+    for batch in ([update(8), "not an update"], [update(8), {"update_id": -1}], {"a": 1}):
+        assert refused(ValueError, lambda b=batch: poll(db, queue, OfflineBot(b), operators))
+    assert (
+        one(db, "SELECT count(*) FROM work") == 0
+        and one(db, "SELECT offset FROM channel_cursor") == 7
+    )
+    assert one(db, "SELECT count(*) FROM channel_leases") == 0
+    first = poll(db, queue, OfflineBot([update(8)]), operators)
+    changed = OfflineBot([update(8, text="Buy everything now.")])
+    assert refused(ValueError, lambda: poll(db, queue, changed, operators))
+    assert one(db, "SELECT text FROM work WHERE work_id = ?", first[0]) == PROMPT
+    with db.immediate() as connection:
+        connection.execute("INSERT INTO channel_leases VALUES ('telegram:teaching', 'other', 9e18)")
+    assert refused(PermissionError, lambda: poll(db, queue, OfflineBot([]), operators))
+    with db.immediate() as connection:
+        connection.execute("DELETE FROM channel_leases")
+    full = poll(db, queue, OfflineBot([update(10), update(11)]), operators)
+    assert one(db, "SELECT state FROM work WHERE work_id = ?", full[-1]) == "finished"
+    assert "queue is full" in one(db, "SELECT body FROM reports WHERE work_id = ?", full[-1])
+    print("Refused: forged chats, groups, bots, empty text, unknown senders and malformed batches")
+    print("Changed replay refused; a full queue answers the sender instead of dropping the request")
+    db.close()
+
+
+def offline():
+    with tempfile.TemporaryDirectory(prefix="lucy-channel-") as temporary:
+        root = Path(temporary)
+        boundaries(root)
+        on_colab(root)
+        db, queue = open_channel(root / "agent.sqlite")
+        CHANNEL["activate_opening_skill"](db)
+        bot = OfflineBot([update(103, actor=999), update(101), update(102)])
+        operators = frozenset({123})
+        ids = poll(db, queue, bot, operators)
+        assert len(ids) == 2
+        print("Accepted private requests:", len(ids))
+        session = "telegram:teaching:123"
+        MEMORY["remember"](db, session, "format", "three bullets", "lucy/explicit-message")
+        db.close()
+        db, queue = open_channel(root / "agent.sqlite")
+        replayed = poll(db, queue, bot, operators)
+        assert replayed == []
+        print("Duplicate intake after restart:", len(replayed))
+        assert bot.offsets == [0, 104]
+        first = claim(db, "phone-worker", work_id=ids[0])
+        assert first is not None and first.session_id == session
+        second_db, _ = open_channel(root / "agent.sqlite")
+        competing = claim(second_db, "second-worker", work_id=ids[1])
+        assert competing is None
+        print("Conflicting session claim:", competing)
+        second_db.close()
+        passed, result = run_claim(db, queue, first, SKILLS["OfflineShopModel"]())
+        assert passed and "three bullets" in result.messages[0]["content"]
+        assert '"opening_check"' in result.messages[0]["content"]
+        second = claim(db, "phone-worker", work_id=ids[1])
+        assert second is not None
+        passed, result = run_claim(db, queue, second, SKILLS["OfflineShopModel"]())
+        assert passed and PROMPT in result.messages[0]["content"]
+        print("Completed drafts:", 2)
+        bot.lose_next_reply = True
+        print("First delivery:", deliver_one(db, bot, operators))
+        print("Second delivery:", deliver_one(db, bot, operators))
+        db.close()
+        db, queue = open_channel(root / "agent.sqlite")
+        print("Automatic resend:", deliver_one(db, bot, operators))
+        assert len(bot.sent) == 2
+        assert [message["chat_id"] for message in bot.sent] == [123, 123]
+        states = [
+            row[0] for row in db.connection.execute("SELECT delivery FROM reports ORDER BY work_id")
+        ]
+        assert states == ["unknown", "confirmed"]
+        receipts = one(db, "SELECT count(*) FROM reports WHERE receipt IS NOT NULL")
+        print("Recorded send receipts:", receipts)
+        assert json.loads(one(db, "SELECT receipt FROM reports WHERE delivery='confirmed'")) == {
+            "message_id": 902
+        }
+        late = poll(db, queue, OfflineBot([update(104)]), operators)
+        assert claim(db, "phone-worker", work_id=late[0]) is not None
+        queue.finish(CHANNEL["Assignment"](late[0], session, PROMPT, "phone-worker"), "Done.")
+        print("Delivery after the allowlist changed:", deliver_one(db, bot, frozenset({456})))
+        assert len(bot.sent) == 2 and deliver_one(db, bot, operators) is None
+        tools = LOOP["shop_tools"]
+        purchase = tools["build_tools"](tools["SHOP"]).invoke(
+            tools["ToolCall"](id="p", name="purchase", arguments={})
+        )
+        assert purchase == {"ok": False, "error": "tool_not_allowed"}
+        print("Purchase tool: refused by the dispatcher")
+        # Claiming a named item takes that item, not the oldest one waiting.
+        assert poll(db, queue, OfflineBot([update(105)]), operators)
+        waiting = poll(db, queue, OfflineBot([update(1, actor=7)]), frozenset({7}))
+        named = claim(db, "phone-worker", work_id=waiting[0])
+        assert named is not None and named.work_id == waiting[0]
+        queue.finish(named, "Done.")
+        # Its report is pending now, but not for another bot account to send.
+        other = OfflineBot([])
+        other.account = "other"
+        assert deliver_one(db, other, frozenset({7})) is None
+
+        class BadReceipt(OfflineBot):
+            def call(self, method, data):
+                super().call(method, data)
+                return {"message_id": "902"}
+
+        assert deliver_one(db, BadReceipt([]), frozenset({7})) == "unknown"
+        db.close()
+    return 0
+
+
+def on_colab(root):
+    """What changes on Colab: secrets from its panel, a bounded serving cell, and a cell or a
+    runtime that stops mid-turn."""
+    secret = CHANNEL["secret"]
+
+    class SecretNotFoundError(Exception):
+        pass
+
+    class NotebookAccessError(Exception):
+        pass
+
+    class TimeoutException(Exception):  # noqa: N818 - Colab's own name
+        pass
+
+    shared = {"SOVEREIGN_AGENT_OPERATORS": "123"}
+
+    def get(name):
+        if name == "SOVEREIGN_AGENT_TELEGRAM_TOKEN":
+            raise NotebookAccessError(name)
+        if name not in shared:
+            raise SecretNotFoundError(name)
+        return shared[name]
+
+    userdata = types.SimpleNamespace(
+        get=get,
+        SecretNotFoundError=SecretNotFoundError,
+        NotebookAccessError=NotebookAccessError,
+        TimeoutException=TimeoutException,
+    )
+    google = types.ModuleType("google")
+    colab = types.ModuleType("google.colab")
+    colab.userdata = userdata
+    google.colab = colab
+    saved = {name: sys.modules.get(name) for name in ("google", "google.colab")}
+    before = os.environ.pop("SOVEREIGN_AGENT_OPERATORS", None)
+    try:
+        assert secret("SOVEREIGN_AGENT_OPERATORS") == ""  # outside Colab: nothing
+        sys.modules.update({"google": google, "google.colab": colab})
+        assert secret("SOVEREIGN_AGENT_OPERATORS") == "123"
+        assert secret("SOVEREIGN_AGENT_TELEGRAM_TOKEN") == ""  # not shared with this notebook
+        assert secret("ANOTHER_NAME") == ""
+        os.environ["SOVEREIGN_AGENT_OPERATORS"] = "456"
+        assert secret("SOVEREIGN_AGENT_OPERATORS") == "456"  # the environment wins
+    finally:
+        os.environ.pop("SOVEREIGN_AGENT_OPERATORS", None)
+        if before is not None:
+            os.environ["SOVEREIGN_AGENT_OPERATORS"] = before
+        for name, module in saved.items():
+            if module is None:
+                sys.modules.pop(name, None)
+            else:
+                sys.modules[name] = module
+    print("Colab secrets: read from its panel; missing or unshared ones are empty, never shown")
+
+    db, queue = open_channel(root / "colab.sqlite")
+    CHANNEL["activate_opening_skill"](db)
+    operators = frozenset({123})
+    bot = OfflineBot([update(201), update(202, actor=999)])
+    served = CHANNEL["serve"](db, queue, bot, operators, SKILLS["OfflineShopModel"], rounds=2)
+    assert served["recovered"] == [] and served["admitted"] == 1
+    assert [row["draft_evidence"] for row in served["ran"]] == [True]
+    assert served["deliveries"] == ["confirmed"] and bot.offsets == [0, 203]
+    assert refused(ValueError, lambda: CHANNEL["serve"](db, queue, bot, operators, None, rounds=0))
+
+    class StoppedCell:
+        def complete(self, *args, **kwargs):
+            raise KeyboardInterrupt
+
+    stopped = OfflineBot([update(203)])
+    assert refused(
+        KeyboardInterrupt,
+        lambda: CHANNEL["serve"](db, queue, stopped, operators, StoppedCell, rounds=1),
+    )
+    body = one(db, "SELECT body FROM reports ORDER BY rowid DESC LIMIT 1")
+    assert "stopped before answering" in body
+    assert one(db, "SELECT count(*) FROM work WHERE state = 'running'") == 0
+    # A lost runtime cannot run any handler. Its turn is still running when the next one starts.
+    lost = poll(db, queue, OfflineBot([update(204)]), operators)
+    assert claim(db, "phone-worker", work_id=lost[0]) is not None
+    # Another worker's turn in another session is not this worker's to end.
+    elsewhere = poll(db, queue, OfflineBot([update(205, actor=7)]), frozenset({7}))
+    assert claim(db, "other-worker", work_id=elsewhere[0]) is not None
+    resumed = CHANNEL["serve"](db, queue, OfflineBot([]), operators, SKILLS["OfflineShopModel"])
+    assert resumed["recovered"] == lost and resumed["deliveries"] == ["confirmed", "confirmed"]
+    running = db.connection.execute("SELECT work_id FROM work WHERE state = 'running'").fetchall()
+    assert [row[0] for row in running] == elsewhere
+    print("Serving cell: answers, then a stopped cell and a lost runtime each leave a report")
+    db.close()
+
+
 def main():
     latency_arithmetic()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--telegram",
         action="store_true",
-        help="use your dedicated test bot and allowlisted private account",
+        help="serve your dedicated test bot and allowlisted private account",
     )
     parser.add_argument(
         "--root", type=Path, help="persistent dedicated test state; required for Telegram"
     )
-    parser.add_argument(
-        "--live", action="store_true", help="use the local HTTP model for Telegram work"
-    )
+    parser.add_argument("--rounds", type=int, default=1, help="poll rounds, about 20 s each")
+    model = parser.add_mutually_exclusive_group()
+    model.add_argument("--live", action="store_true", help="use the local HTTP model")
+    model.add_argument("--claude", metavar="MODEL", help="use Claude, e.g. on Colab")
     parser.add_argument("--model", default="qwen3")
-    parser.add_argument("--transcript", action="store_true")
     args = parser.parse_args()
     if not args.telegram:
-        if args.live:
-            parser.error(
-                "--live requires --telegram here; Chapter 7 supplies the model-only experiment"
-            )
+        if args.live or args.claude:
+            parser.error("a model option requires --telegram; the offline run uses the fixture")
         return offline()
     if args.root is None:
         parser.error("--telegram requires a dedicated persistent --root")
-    token = os.environ.get("SOVEREIGN_AGENT_TELEGRAM_TOKEN", "")
-    actors = os.environ.get("SOVEREIGN_AGENT_OPERATORS", "").split(",")
+    token = CHANNEL["secret"]("SOVEREIGN_AGENT_TELEGRAM_TOKEN")
+    actors = CHANNEL["secret"]("SOVEREIGN_AGENT_OPERATORS").split(",")
     if not token or not all(actor.isdigit() and int(actor) > 0 for actor in actors):
         parser.error(
-            "set the bot credential and positive numeric operator allowlist in your environment"
+            "set the bot credential and positive numeric operator allowlist in your environment "
+            "or, on Colab, in the Secrets panel"
         )
-    bot = Telegram(token)
+    if args.claude:
+        claude = runpy.run_path(
+            str(BOOK / "experiments/profrod_sovereign_agent_claude_messages_v1.py")
+        )
+        client = claude["Claude"](max_usd=1.0)
+
+        def model_factory():
+            return claude["LoopModel"](client, args.claude, LOOP["ModelTurn"], LOOP["ToolCall"])
+
+    elif args.live:
+
+        def model_factory():
+            return LOOP["HTTPModel"](model=args.model, reasoning_effort="none")
+
+    else:
+        model_factory = SKILLS["OfflineShopModel"]
+    args.root.mkdir(parents=True, exist_ok=True)
+    db, queue = open_channel(args.root / "agent.sqlite")
+    CHANNEL["activate_opening_skill"](db)
+    bot = CHANNEL["Telegram"](token)
     operators = frozenset(int(actor) for actor in actors)
-    db = initialize(args.root / "agent.sqlite")
-    ids = poll(db, bot, operators)
-    print("New allowed requests:", len(ids))
-    if not ids:
-        print("No new allowed private text arrived during the bounded poll.")
-    # Read durable work, including requests admitted by a prior process that
-    # stopped before execution. The in-memory poll result is not the queue.
-    queued = db.connection.execute(
-        "SELECT id FROM assistant_work WHERE channel=? AND status='READY' "
-        "ORDER BY created,rowid LIMIT 20",
-        ("telegram:" + bot.account,),
-    ).fetchall()
-    results = []
-    for row in queued:
-        identifier = row[0]
-        current = claim(db, "phone-checkpoint", identifier=identifier)
-        if current is None:
-            continue
-        model = (
-            HTTPModel(model=args.model, reasoning_effort="none")
-            if args.live
-            else OfflineShopModel()
-        )
-        passed, result = run_claim(db, current, model)
-        results.append({"work": identifier, "draft_evidence": passed})
-        if args.transcript:
-            print(json.dumps(result.messages, indent=2))
-    deliveries = []
-    for _ in range(20):
-        delivery = deliver_one(db, bot, operators)
-        if delivery is None:
-            break
-        deliveries.append(delivery)
-    for row in results:
-        row["delivery"] = db.connection.execute(
-            "SELECT delivery FROM assistant_work WHERE id=?", (row["work"],)
-        ).fetchone()[0]
-    print(
-        json.dumps(
-            {
-                "results": results,
-                "outbox_observations": deliveries,
-                "scope": "bounded construction run; inspect the actual reply on your phone",
-            },
-            indent=2,
-        )
-    )
-    db.close()
-    return (
-        0
-        if (results or deliveries)
-        and all(row["draft_evidence"] and row["delivery"] == "SENT" for row in results)
-        and all(value == "SENT" for value in deliveries)
-        else 1
-    )
+    try:
+        summary = CHANNEL["serve"](db, queue, bot, operators, model_factory, rounds=args.rounds)
+    finally:
+        db.close()
+    if args.claude:
+        summary["claude"] = client.report()
+    summary["scope"] = "bounded run; inspect the actual reply on your phone"
+    print(json.dumps(summary, indent=2))
+    ran_well = all(row["draft_evidence"] for row in summary["ran"])
+    delivered = all(value == "confirmed" for value in summary["deliveries"])
+    return 0 if (summary["ran"] or summary["deliveries"]) and ran_well and delivered else 1
 
 
 if __name__ == "__main__":

@@ -163,7 +163,7 @@ def ask(model, messages, seed):
         reply = json.loads(content)
         confidence = min(100, max(0, int(reply["confidence"]))) / 100
         return content, int(reply["quantity"]), confidence, tokens, thought
-    except ValueError, KeyError, TypeError:
+    except (ValueError, KeyError, TypeError):
         return content, None, 0.0, tokens, thought
 
 

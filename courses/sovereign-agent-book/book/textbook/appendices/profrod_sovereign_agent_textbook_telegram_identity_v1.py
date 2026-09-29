@@ -5,10 +5,18 @@
 
 """Discover your private user ID with a one-time setup challenge; never enroll anyone."""
 
-import os
+import runpy
 import secrets
+from pathlib import Path
 
-from sovereign_agent.telegram_channel import Telegram
+# The learner's own Chapter 9 adapter, over their Chapter 3 transport.
+CHANNEL = runpy.run_path(
+    str(
+        Path(__file__).resolve().parents[1]
+        / "learner/profrod_sovereign_agent_ch09_messaging_learner.py"
+    )
+)
+Telegram, secret = CHANNEL["Telegram"], CHANNEL["secret"]
 
 
 def matching_operators(updates, challenge):
@@ -41,9 +49,12 @@ def matching_operators(updates, challenge):
 
 
 def main():
-    token = os.environ.get("SOVEREIGN_AGENT_TELEGRAM_TOKEN", "")
+    token = secret("SOVEREIGN_AGENT_TELEGRAM_TOKEN")
     if not token:
-        raise ValueError("set the dedicated bot credential in your environment first")
+        raise ValueError(
+            "set the dedicated bot credential in your environment, or on Colab in the "
+            "Secrets panel, first"
+        )
     bot = Telegram(token)
     challenge = "lucy-setup-" + secrets.token_urlsafe(18)
     print(

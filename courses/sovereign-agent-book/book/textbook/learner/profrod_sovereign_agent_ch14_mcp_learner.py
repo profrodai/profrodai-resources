@@ -311,7 +311,7 @@ class StdioClient:
         for sig in (signal.SIGTERM, signal.SIGKILL):
             try:
                 os.killpg(self.process.pid, sig)
-            except ProcessLookupError, PermissionError:
+            except (ProcessLookupError, PermissionError):
                 break  # the group is gone (macOS says EPERM for an exited, unreaped leader)
             time.sleep(0.05 if sig == signal.SIGTERM else 0)
         status = self.process.wait(timeout=5)

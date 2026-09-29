@@ -16,12 +16,40 @@ import tempfile
 import time
 from pathlib import Path
 
-from reference_organizations.store.agent import OfflineShopModel
+from reference_organizations.store.agent import OfflineShopModel, seed_lucy
 from reference_organizations.store.assistant import run_once
+from reference_organizations.store.evaluation import CASES, candidate_checks, evaluate
 from reference_organizations.store.stock_conditions import scan, watch
+from sovereign_agent.assistant_context import activate_skill, skill_snapshot, stage_skill
 from sovereign_agent.assistant_work import schedule, tick, unschedule
 from sovereign_agent.database import Database
 from sovereign_agent.model_turn import HTTPModel
+
+PROMPT = "Prepare replenishment drafts from current stock. State USD amounts."
+
+
+def supplied_initialize(path):
+    """The supplied shop with the opening skill active, as Chapter 9 set it up before its
+    rebuild on learner code. Carried verbatim until this chapter is rebuilt."""
+    db = Database(path)
+    seed_lucy(db)
+    if not skill_snapshot(db)[1]:
+        source = (
+            Path(__file__).parents[1]
+            / "skills"
+            / "profrod_sovereign_agent_textbook_opening_check_v1.toml"
+        )
+        candidate = stage_skill(db, source)
+        activate_skill(
+            db,
+            candidate.name,
+            candidate.version,
+            evaluate=lambda skill: candidate_checks(
+                evaluate(OfflineShopModel, skill=skill, cases=CASES[:3])
+            ),
+            required_cases=frozenset(f"{case.name}:0" for case in CASES[:3]),
+        )
+    return db
 
 
 def observed_drafts(messages):
@@ -84,14 +112,7 @@ def main():
     args = parser.parse_args()
     with tempfile.TemporaryDirectory(prefix="lucy-wake-") as temporary:
         root = Path(temporary)
-        previous = runpy.run_path(
-            str(
-                Path(__file__).with_name(
-                    "profrod_sovereign_agent_ch09_telegram_messaging_checkpoint.py"
-                )
-            )
-        )
-        db = previous["initialize"](root / "agent.sqlite")
+        db = supplied_initialize(root / "agent.sqlite")
         model = (
             HTTPModel(model=args.model, reasoning_effort="none")
             if args.live
@@ -99,9 +120,7 @@ def main():
         )
         first_due = time.time() - 39
         observed = first_due + 39
-        schedule(
-            db, "morning", "lucy", previous["PROMPT"], first_due=first_due, interval_seconds=10
-        )
+        schedule(db, "morning", "lucy", PROMPT, first_due=first_due, interval_seconds=10)
         with db.immediate() as connection:
             connection.execute("UPDATE assistant_control SET paused=1")
         assert tick(db, now=observed) == []

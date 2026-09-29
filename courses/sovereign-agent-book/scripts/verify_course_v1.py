@@ -16,6 +16,7 @@ A green gate is not publication or classroom acceptance; ninety minutes is a tea
 from __future__ import annotations
 
 import argparse
+import ast
 import concurrent.futures
 import hashlib
 import json
@@ -157,7 +158,7 @@ def verify_layout(book: Path = BOOK) -> dict:
 
 # Chapters whose checkpoint builds only on the standard library, locked dependencies and the
 # learner's own files. The book promises every chapter joins this set; none may leave it.
-FROM_SCRATCH = frozenset({1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 16, 18, 21})
+FROM_SCRATCH = frozenset({1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 16, 18, 21})
 SUPPLIED = ("sovereign_agent", "reference_organizations")
 # Runs a checkpoint as its own script would run, with the supplied packages refused on import,
 # so a file the checkpoint loads indirectly cannot bring them back either.
@@ -190,9 +191,28 @@ def supplied_imports(chapter: int) -> list[str]:
     ]
 
 
+# Google Colab is where most readers run this code, and its runtime is Python 3.12 (Colab's
+# 2026.07 runtime ships 3.12.13). The course itself runs on 3.14, whose parser accepts syntax
+# 3.12 refuses, so a file that passes here can still fail on Colab before its first line.
+COLAB_PYTHON = (3, 12)
+
+
+def colab_parse_failures() -> list[str]:
+    """Every course Python file a reader may run, parsed as Colab's Python would parse it."""
+    failures = []
+    for path in sorted((BOOK / "textbook").rglob("*.py")):
+        try:
+            ast.parse(path.read_text(), str(path), feature_version=COLAB_PYTHON)
+        except SyntaxError as error:
+            failures.append(f"{path.relative_to(BOOK)}:{error.lineno}: {error.msg}")
+    return failures
+
+
 def verify_code() -> None:
-    """Every draft chapter's checkpoint runs from the course root; the from-scratch chapters run
-    with the supplied packages refused."""
+    """Every course Python file parses on Colab's Python; every draft chapter's checkpoint runs
+    from the course root; the from-scratch chapters run with the supplied packages refused."""
+    failures = colab_parse_failures()
+    assert not failures, "not valid on Colab's Python 3.12:\n" + "\n".join(failures)
     manifest = verify_layout()
     ran, scratch = 0, 0
     for row in manifest["chapters"]:
@@ -212,7 +232,8 @@ def verify_code() -> None:
         ran += 1
     print(
         f"CHAPTER CODE: {ran} checkpoints ran; {scratch} build only on learner code, "
-        f"{ran - scratch} still import the supplied sovereign-agent package."
+        f"{ran - scratch} still import the supplied sovereign-agent package. Every course "
+        f"Python file parses as Python {COLAB_PYTHON[0]}.{COLAB_PYTHON[1]}, Colab's runtime."
     )
 
 
