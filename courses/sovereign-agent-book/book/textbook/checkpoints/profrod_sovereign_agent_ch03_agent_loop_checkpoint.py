@@ -11,6 +11,9 @@ import json
 import math
 import random
 import runpy
+import threading
+import time
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 LEARNER = runpy.run_path(
@@ -24,6 +27,7 @@ HTTPModel, ModelError = LEARNER["HTTPModel"], LEARNER["ModelError"]
 ModelTurn, ToolCall = LEARNER["ModelTurn"], LEARNER["ToolCall"]
 
 SHOP_TOOLS = LEARNER["shop_tools"]
+TRANSPORT = LEARNER["transport"]
 MESSAGES = [
     {
         "role": "system",
@@ -202,6 +206,55 @@ def boundaries():
     )
 
 
+class Routes(BaseHTTPRequestHandler):
+    """A local server with one route per way a model endpoint can misbehave."""
+
+    def log_message(self, *args):
+        pass
+
+    def do_POST(self):
+        self.rfile.read(int(self.headers["Content-Length"]))
+        if self.path == "/slow":
+            time.sleep(3)
+        if self.path == "/redirect":
+            self.send_response(302)
+            self.send_header("Location", "http://127.0.0.1:1/elsewhere")
+            self.end_headers()
+            return
+        body = b"x" * 2_000 if self.path == "/big" else b'{"ok": true}'
+        self.send_response(404 if self.path == "/missing" else 200)
+        self.end_headers()
+        self.wfile.write(body)
+
+
+def transport():
+    """The learner's killable request against a local server: bounded time, size and redirects."""
+    server = ThreadingHTTPServer(("127.0.0.1", 0), Routes)
+    server.daemon_threads = True
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    base = f"http://127.0.0.1:{server.server_port}"
+    request = TRANSPORT["request"]
+
+    def outcome(path, **options):
+        try:
+            return request(base + path, data=b"{}", **options)
+        except (OSError, TimeoutError) as error:
+            return type(error).__name__
+
+    try:
+        ok = outcome("/ok", timeout=10)
+        assert (ok.status, ok.body) == (200, b'{"ok": true}')
+        assert outcome("/missing", timeout=10).status == 404
+        assert outcome("/big", timeout=10, maximum_bytes=1_000) == "OSError"
+        assert outcome("/redirect", timeout=10) == "OSError"
+        started = time.monotonic()
+        assert outcome("/slow", timeout=1) == "TimeoutError"
+        assert time.monotonic() - started < 2.5, "the deadline did not bound the wait"
+    finally:
+        server.shutdown()
+    print("ok   transport: reply, error status, oversized body, redirect refused, deadline kept")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--live", action="store_true")
@@ -210,6 +263,7 @@ def main():
     args = parser.parse_args()
     reliability()
     boundaries()
+    transport()
     model = HTTPModel(model=args.model) if args.live else ReplayModel(opening_turns())
     dispatcher = SHOP_TOOLS["build_tools"](SHOP_TOOLS["SHOP"])
     result = run_loop(model, dispatcher, MESSAGES, limits=Limits())

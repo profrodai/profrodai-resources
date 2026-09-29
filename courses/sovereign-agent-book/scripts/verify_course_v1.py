@@ -20,6 +20,7 @@ import concurrent.futures
 import hashlib
 import json
 import platform
+import re
 import runpy
 import subprocess
 import sys
@@ -173,6 +174,22 @@ runpy.run_path({path!r}, run_name="__main__")
 """
 
 
+def supplied_imports(chapter: int) -> list[str]:
+    """Import lines naming a supplied package, in a chapter's checkpoint and learner files. This
+    catches what the import hook cannot: a supplied import on a path the checkpoint never runs,
+    such as a live-model branch."""
+    textbook = BOOK / "textbook"
+    files = [*textbook.glob(f"checkpoints/*_ch{chapter:02d}_*.py")]
+    files += textbook.glob(f"learner/*_ch{chapter:02d}_*.py")
+    pattern = re.compile(r"^\s*(from|import)\s+(" + "|".join(SUPPLIED) + r")\b")
+    return [
+        f"{path.name}:{number}"
+        for path in files
+        for number, line in enumerate(path.read_text().splitlines(), 1)
+        if pattern.match(line)
+    ]
+
+
 def verify_code() -> None:
     """Every draft chapter's checkpoint runs from the course root; the from-scratch chapters run
     with the supplied packages refused."""
@@ -184,6 +201,8 @@ def verify_code() -> None:
         path = BOOK / "textbook" / row["checkpoint"]
         command = [sys.executable, str(path)]
         if row["number"] in FROM_SCRATCH:
+            found = supplied_imports(row["number"])
+            assert not found, f"chapter {row['number']} imports supplied code: {found}"
             runner = FROM_SCRATCH_RUNNER.format(
                 supplied=set(SUPPLIED), path=str(path), folder=str(path.parent)
             )
