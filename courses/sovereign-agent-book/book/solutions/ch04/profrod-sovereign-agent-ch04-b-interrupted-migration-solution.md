@@ -43,7 +43,7 @@ jupyter:
 
 **Instructor worked edition · 90 minutes of dedicated work · 2026-09-26**
 
-This is the worked edition of Chapter 4, Unit B. It contains complete answers, the instructor explanation and a holdout case the student edition does not show. It runs on Google Colab (Python 3.13) or any local Python 3.12+ kernel, with the standard library only.
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/solutions/ch04/profrod-sovereign-agent-ch04-b-interrupted-migration-solution.ipynb) This is the worked edition of Chapter 4, Unit B. It contains complete answers, the instructor explanation and a holdout case the student edition does not show. It runs on Google Colab (Python 3.12) or any local Python 3.12+ kernel, with the standard library only.
 
 | Minutes | Dedicated work | Saved evidence |
 | --- | --- | --- |
@@ -72,7 +72,7 @@ from pathlib import Path
 
 minimum_python = (3, 12)
 if sys.version_info[:2] < minimum_python:
-    raise RuntimeError("This unit needs Python 3.12 or newer; Google Colab runs Python 3.13.")
+    raise RuntimeError("This unit needs Python 3.12 or newer; Google Colab runs Python 3.12.")
 
 if "COURSE_START_DIRECTORY" not in globals():
     COURSE_START_DIRECTORY = Path.cwd()

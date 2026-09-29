@@ -43,13 +43,13 @@ jupyter:
 
 **Instructor worked edition · 90 minutes of dedicated work · 2026-09-26**
 
-This is the worked edition of Chapter 1, Unit B. It contains:
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/solutions/ch01/profrod-sovereign-agent-ch01-b-misleading-model-comparison-solution.ipynb) This is the worked edition of Chapter 1, Unit B. It contains:
 
 - complete answers;
 - the instructor explanation;
 - holdout cases that the student edition does not show.
 
-Use it after a first attempt, or to rehearse the session. It runs on Google Colab (Python 3.13) or any local Python 3.12+ kernel, using only the standard library.
+Use it after a first attempt, or to rehearse the session. It runs on Google Colab (Python 3.12) or any local Python 3.12+ kernel, using only the standard library.
 
 | Minutes | Dedicated work | Saved evidence |
 | --- | --- | --- |
@@ -81,7 +81,7 @@ from pathlib import Path
 
 minimum_python = (3, 12)
 if sys.version_info[:2] < minimum_python:
-    raise RuntimeError("This unit needs Python 3.12 or newer; Google Colab runs Python 3.13.")
+    raise RuntimeError("This unit needs Python 3.12 or newer; Google Colab runs Python 3.12.")
 
 if "COURSE_START_DIRECTORY" not in globals():
     COURSE_START_DIRECTORY = Path.cwd()

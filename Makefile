@@ -1,10 +1,14 @@
-.PHONY: verify verify-pr install format-check lint test typecheck audit catalog catalog-structure consolidation curriculum curriculum-pr curriculum-contract curriculum-maintenance ci-trust-check imported-courses
+.PHONY: verify verify-pr install format-check lint test typecheck audit catalog catalog-structure consolidation curriculum curriculum-pr curriculum-contract curriculum-maintenance ci-trust-check imported-courses colab
 
 ORDER_API_DIR := courses/agentic-coding-with-cursor/order-api
 
-verify: ci-trust-check format-check lint catalog consolidation curriculum curriculum-contract curriculum-maintenance
+verify: ci-trust-check format-check lint colab catalog consolidation curriculum curriculum-contract curriculum-maintenance
 
-verify-pr: ci-trust-check format-check lint catalog-structure consolidation curriculum-pr curriculum-contract curriculum-maintenance
+verify-pr: ci-trust-check format-check lint colab catalog-structure consolidation curriculum-pr curriculum-contract curriculum-maintenance
+
+# Every notebook and course Python file must run on Google Colab's Python; standard library only.
+colab:
+	python3 courses/sovereign-agent-book/scripts/check_colab_v1.py
 
 install:
 	cd $(ORDER_API_DIR) && npm ci

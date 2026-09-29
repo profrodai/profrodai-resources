@@ -15,7 +15,7 @@ Attempt the student work before consulting the solutions. Untouched exercises in
 | A · 90 minutes | [A: durable work inbox](profrod-sovereign-agent-ch08-a-durable-work-inbox-exercise.ipynb) | [Markdown](profrod-sovereign-agent-ch08-a-durable-work-inbox-exercise.md) | Construct, connect and explain |
 | B · 90 minutes | [B: report outbox and a lost reply](profrod-sovereign-agent-ch08-b-report-outbox-lost-reply-exercise.ipynb) | [Markdown](profrod-sovereign-agent-ch08-b-report-outbox-lost-reply-exercise.md) | Diagnose, repair and transfer |
 
-Each notebook includes its own setup, first-principles introductions and supplied tables, and needs only Python's standard library. Open either notebook in Google Colab with its badge (Colab runs Python 3.13), or use a local Python 3.12+ Jupyter kernel. No repository checkout, previous notebook kernel or live account is needed. Unit B can use an explicitly selected successful Unit A handoff; an invalid selected file refuses rather than substituting an answer.
+Each notebook includes its own setup, first-principles introductions and supplied tables, and needs only Python's standard library. Open either notebook in Google Colab with its badge (Colab runs Python 3.12), or use a local Python 3.12+ Jupyter kernel. No repository checkout, previous notebook kernel or live account is needed. Unit B can use an explicitly selected successful Unit A handoff; an invalid selected file refuses rather than substituting an answer.
 
 Ninety minutes is the planned work allowance per unit. Actual completion time and understanding require classroom observation.
 

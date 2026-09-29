@@ -83,7 +83,7 @@ from pathlib import Path
 
 minimum_python = (3, 12)
 if sys.version_info[:2] < minimum_python:
-    raise RuntimeError("This unit needs Python 3.12 or newer; Google Colab runs Python 3.13.")
+    raise RuntimeError("This unit needs Python 3.12 or newer; Google Colab runs Python 3.12.")
 
 if "COURSE_START_DIRECTORY" not in globals():
     COURSE_START_DIRECTORY = Path.cwd()

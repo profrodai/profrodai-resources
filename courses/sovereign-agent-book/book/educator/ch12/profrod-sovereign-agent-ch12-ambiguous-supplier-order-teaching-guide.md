@@ -20,7 +20,7 @@ Record that provenance; a reference start is useful study, not evidence of earli
 
 ## Prepare and rehearse
 
-Use a Python 3.14 kernel with Pydantic 2. Restart and run the worked notebook on the teaching
+Use Google Colab or a Python 3.12+ kernel with Pydantic 2. Restart and run the worked notebook on the teaching
 machine before class. Check the retained output folder and selected input provenance. The notebook
 contains the reviewed source files and makes no installation or provider request in its core.
 Distribute the local student notebook and Markdown files. The local solutions folder adds answers and holdouts; public answers are

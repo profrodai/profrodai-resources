@@ -43,7 +43,7 @@ jupyter:
 
 **Student edition · 90 minutes of dedicated work · 2026-09-26**
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch19/profrod-sovereign-agent-ch19-b-inference-planning-exercise.ipynb) Runs on Google Colab as it ships today (Python 3.13), or on any local Python 3.12+ kernel. It needs nothing beyond Python's standard library, and it makes no network call: the measurements it uses were recorded by the chapter's experiment and are embedded below.
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch19/profrod-sovereign-agent-ch19-b-inference-planning-exercise.ipynb) Runs on Google Colab as it ships today (Python 3.12), or on any local Python 3.12+ kernel. It needs nothing beyond Python's standard library, and it makes no network call: the measurements it uses were recorded by the chapter's experiment and are embedded below.
 
 This is the second of Chapter 19's two practical units. Unit A made the service's records survive a restore. This unit plans the service's model: how much memory a context costs, and how that memory slows every step.
 
@@ -89,7 +89,7 @@ from pathlib import Path
 
 minimum_python = (3, 12)
 if sys.version_info[:2] < minimum_python:
-    raise RuntimeError("This unit needs Python 3.12 or newer; Google Colab runs Python 3.13.")
+    raise RuntimeError("This unit needs Python 3.12 or newer; Google Colab runs Python 3.12.")
 
 if "COURSE_START_DIRECTORY" not in globals():
     COURSE_START_DIRECTORY = Path.cwd()

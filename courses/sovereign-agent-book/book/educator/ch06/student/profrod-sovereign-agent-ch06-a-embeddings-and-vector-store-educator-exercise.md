@@ -43,7 +43,7 @@ jupyter:
 
 **Student edition · 90 minutes of dedicated work · 2026-09-27**
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch06/profrod-sovereign-agent-ch06-a-embeddings-and-vector-store-exercise.ipynb) Runs on Google Colab as it ships today (Python 3.13), or on any local Python 3.12+ kernel. It needs nothing beyond Python's standard library, and no model or key.
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch06/profrod-sovereign-agent-ch06-a-embeddings-and-vector-store-exercise.ipynb) Runs on Google Colab as it ships today (Python 3.12), or on any local Python 3.12+ kernel. It needs nothing beyond Python's standard library, and no model or key.
 
 This is the first of Chapter 6's two practical units, each a complete ninety-minute session. It grew out of the vector-databases lab first taught live in the ITAM class of September 24, 2026.
 
@@ -95,7 +95,7 @@ from pathlib import Path
 
 minimum_python = (3, 12)
 if sys.version_info[:2] < minimum_python:
-    raise RuntimeError("This unit needs Python 3.12 or newer; Google Colab runs Python 3.13.")
+    raise RuntimeError("This unit needs Python 3.12 or newer; Google Colab runs Python 3.12.")
 
 if "COURSE_START_DIRECTORY" not in globals():
     COURSE_START_DIRECTORY = Path.cwd()

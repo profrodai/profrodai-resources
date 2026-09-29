@@ -15,7 +15,7 @@ Attempt the student work before consulting the solutions. Untouched exercises in
 | A · 90 minutes | [A: softmax and a sampler](profrod-sovereign-agent-ch01-a-softmax-and-sampling-exercise.ipynb) | [Markdown](profrod-sovereign-agent-ch01-a-softmax-and-sampling-exercise.md) | Construct, connect and explain |
 | B · 90 minutes | [B: a misleading model comparison](profrod-sovereign-agent-ch01-b-misleading-model-comparison-exercise.ipynb) | [Markdown](profrod-sovereign-agent-ch01-b-misleading-model-comparison-exercise.md) | Diagnose, repair and transfer |
 
-Each notebook includes its own setup, first-principles introductions and a supplied corpus, tokenizer and model, and needs only Python's standard library. Open either notebook in Google Colab with its badge (Colab runs Python 3.13), or use a local Python 3.12+ Jupyter kernel. No repository checkout, previous notebook kernel or live account is needed. Unit B can use an explicitly selected successful Unit A handoff; an invalid selected file refuses rather than substituting an answer.
+Each notebook includes its own setup, first-principles introductions and a supplied corpus, tokenizer and model, and needs only Python's standard library. Open either notebook in Google Colab with its badge (Colab runs Python 3.12), or use a local Python 3.12+ Jupyter kernel. No repository checkout, previous notebook kernel or live account is needed. Unit B can use an explicitly selected successful Unit A handoff; an invalid selected file refuses rather than substituting an answer.
 
 Ninety minutes is the planned work allowance per unit. Actual completion time and understanding require classroom observation.
 

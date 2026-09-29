@@ -15,7 +15,7 @@ Retain your own attempt before reading these worked solutions. Explain the reaso
 | A · 90 minutes | [A: pydantic shop tools](profrod-sovereign-agent-ch02-a-pydantic-shop-tools-solution.ipynb) | [Markdown](profrod-sovereign-agent-ch02-a-pydantic-shop-tools-solution.md) | Construct, connect and explain |
 | B · 90 minutes | [B: constrained decoding](profrod-sovereign-agent-ch02-b-constrained-decoding-solution.ipynb) | [Markdown](profrod-sovereign-agent-ch02-b-constrained-decoding-solution.md) | Derive, check against simulation and transfer |
 
-Each notebook includes its own setup, first-principles introductions and supplied teaching runtime. Use a Python 3.14 Jupyter kernel; Unit A also needs Pydantic 2, and Unit B only the standard library. No repository checkout, previous notebook kernel or live account is needed. Unit B can use an explicitly selected successful Unit A handoff; an invalid selected file refuses rather than substituting an answer.
+Each notebook includes its own setup, first-principles introductions and supplied teaching runtime. Open either notebook in Google Colab with its badge (Colab runs Python 3.12), or use a local Python 3.12+ Jupyter kernel; Unit A also needs Pydantic 2, and Unit B only the standard library. No repository checkout, previous notebook kernel or live account is needed. Unit B can use an explicitly selected successful Unit A handoff; an invalid selected file refuses rather than substituting an answer.
 
 Ninety minutes is the planned work allowance per unit, excluding installation. Actual completion time and understanding require classroom observation.
 

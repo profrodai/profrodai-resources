@@ -43,7 +43,7 @@ jupyter:
 
 **Student edition · 90 minutes of dedicated work · 2026-09-26**
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch04/profrod-sovereign-agent-ch04-a-durable-state-store-exercise.ipynb) Runs on Google Colab as it ships today (Python 3.13), or on any local Python 3.12+ kernel. It needs nothing beyond Python's standard library.
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch04/profrod-sovereign-agent-ch04-a-durable-state-store-exercise.ipynb) Runs on Google Colab as it ships today (Python 3.12), or on any local Python 3.12+ kernel. It needs nothing beyond Python's standard library.
 
 This is one of two practical units for Chapter 4. Unit A constructs the store and connects it to a day of Lucy's shop; Unit B reproduces an interrupted schema change, repairs it and transfers the rule. Each is a complete ninety-minute session. Basic Python variables, conditions, loops, functions, lists and dictionaries are the starting knowledge. SQLite, transactions and context managers are introduced below before the main task.
 
@@ -84,7 +84,7 @@ from pathlib import Path
 
 minimum_python = (3, 12)
 if sys.version_info[:2] < minimum_python:
-    raise RuntimeError("This unit needs Python 3.12 or newer; Google Colab runs Python 3.13.")
+    raise RuntimeError("This unit needs Python 3.12 or newer; Google Colab runs Python 3.12.")
 
 if "COURSE_START_DIRECTORY" not in globals():
     COURSE_START_DIRECTORY = Path.cwd()

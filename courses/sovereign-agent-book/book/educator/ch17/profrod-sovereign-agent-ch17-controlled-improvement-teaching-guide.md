@@ -29,7 +29,7 @@ Allocate ninety minutes to each unit; together they make the complete three-hour
 
 ## Prepare and rehearse
 
-For Unit A, use a Python 3.14 kernel with Pydantic 2; for Unit B, Google Colab or any Python 3.12+ kernel. Before class, restart and run each worked notebook on the teaching machine, and check the retained `practical-work/ch17-a` and `ch17-b` folders. Neither core makes a provider request.
+Both units run on Google Colab or any Python 3.12+ kernel; Unit A also needs Pydantic 2. Before class, restart and run each worked notebook on the teaching machine, and check the retained `practical-work/ch17-a` and `ch17-b` folders. Neither core makes a provider request.
 
 The prerequisites are dictionaries, functions and loops, plus Chapter 16's standard error for Unit B. Before Unit B, ask learners what score they would expect from the best of sixteen coin-flipping candidates. The share who answer "0.5" tells you how long to spend on selection as a maximum.
 

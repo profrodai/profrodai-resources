@@ -22,7 +22,7 @@ Allocate ninety minutes to each unit; together they make the complete three-hour
 
 ## Prepare and rehearse
 
-For Unit A, use a Python 3.14 kernel with Pydantic 2; for Unit B, Google Colab or any Python 3.12+ kernel. Before class, restart and run each worked notebook on the teaching machine, and check the retained `practical-work/ch03-a` and `ch03-b` folders. Neither core makes a provider request.
+Both units run on Google Colab or any Python 3.12+ kernel; Unit A also needs Pydantic 2. Before class, restart and run each worked notebook on the teaching machine, and check the retained `practical-work/ch03-a` and `ch03-b` folders. Neither core makes a provider request.
 
 The prerequisites are dictionaries, functions and loops. Unit B adds two facts about probability: the probabilities of disjoint events add, and those of independent events multiply. Before Unit B, ask learners to compute $0.95^{20}$ with a calculator and say what it means. Then ask what changes if an error can be repaired on the next step. The share who answer the second question in terms of states rather than retries tells you how long to spend on the Markov chain.
 
