@@ -32,6 +32,7 @@ TOPICS = {
     18: "bounded-delegation",
     19: "deployment-restoration",
     20: "integrated-shop-day",
+    21: "context",
 }
 UNIT_TOPICS = {
     1: ("softmax-and-sampling", "misleading-model-comparison"),
@@ -54,6 +55,7 @@ UNIT_TOPICS = {
     18: ("bounded-delegation", "delegation-repair-transfer"),
     19: ("deployment-restoration", "inference-planning"),
     20: ("integrated-day-acceptance", "acceptance-repair-transfer"),
+    21: ("context-budget-compaction", "context-repair-transfer"),
 }
 
 

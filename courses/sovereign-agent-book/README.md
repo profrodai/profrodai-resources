@@ -1,6 +1,6 @@
 # Build Your Always-On AI Agent From Scratch: the course
 
-Status: imported · 40 ninety-minute units across the book's 20 chapters.
+Status: imported · 42 ninety-minute units across the book's 21 chapters.
 
 This is the practice half of Prof Rod's book **Build Your Always-On AI Agent From Scratch**. You
 read each chapter on [profrod.ai/book](https://profrod.ai/book), then build what it explains here,
@@ -39,6 +39,7 @@ report you can check. Solutions are separate, so you can try first.
 | [18. When a second agent pays: parallelism, errors and bounded delegation](https://profrod.ai/book/ch18-delegation) | Construct bounded delegation ([notebook](book/exercises/ch18/profrod-sovereign-agent-ch18-a-bounded-delegation-exercise.ipynb) · [Colab](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch18/profrod-sovereign-agent-ch18-a-bounded-delegation-exercise.ipynb)) | Break, repair and transfer bounded delegation ([notebook](book/exercises/ch18/profrod-sovereign-agent-ch18-b-delegation-repair-transfer-exercise.ipynb) · [Colab](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch18/profrod-sovereign-agent-ch18-b-delegation-repair-transfer-exercise.ipynb)) |
 | [19. What a model call costs, and a deployment that survives](https://profrod.ai/book/ch19-operation) | Construct operating and restoring ([notebook](book/exercises/ch19/profrod-sovereign-agent-ch19-a-deployment-restoration-exercise.ipynb) · [Colab](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch19/profrod-sovereign-agent-ch19-a-deployment-restoration-exercise.ipynb)) | Plan memory and latency from the architecture ([notebook](book/exercises/ch19/profrod-sovereign-agent-ch19-b-inference-planning-exercise.ipynb) · [Colab](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch19/profrod-sovereign-agent-ch19-b-inference-planning-exercise.ipynb)) |
 | [20. A whole day: reliability, honest reports and readiness](https://profrod.ai/book/ch20-acceptance) | Construct acceptance ([notebook](book/exercises/ch20/profrod-sovereign-agent-ch20-a-integrated-day-acceptance-exercise.ipynb) · [Colab](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch20/profrod-sovereign-agent-ch20-a-integrated-day-acceptance-exercise.ipynb)) | Break, repair and transfer acceptance ([notebook](book/exercises/ch20/profrod-sovereign-agent-ch20-b-acceptance-repair-transfer-exercise.ipynb) · [Colab](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch20/profrod-sovereign-agent-ch20-b-acceptance-repair-transfer-exercise.ipynb)) |
+| [21. Context engineering: a budget for what the model sees](https://profrod.ai/book/ch21-context) | Budget and compact Lucy's context ([notebook](book/exercises/ch21/profrod-sovereign-agent-ch21-a-context-budget-compaction-exercise.ipynb) · [Colab](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch21/profrod-sovereign-agent-ch21-a-context-budget-compaction-exercise.ipynb)) | Break the context, then repair and transfer it ([notebook](book/exercises/ch21/profrod-sovereign-agent-ch21-b-context-repair-transfer-exercise.ipynb) · [Colab](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch21/profrod-sovereign-agent-ch21-b-context-repair-transfer-exercise.ipynb)) |
 
 The same notebooks, with worked answers, are under [`book/solutions/`](book/solutions/). The
 teaching guides, session plans and student and solution copies for a class are under
@@ -62,7 +63,7 @@ make test     # every chapter checkpoint
 make verify   # the layout, the receipt of every notebook's executed bytes, and the checkpoints
 ```
 
-`make verify-execution` re-runs all 80 notebooks in fresh kernels and every Unit A to Unit B
+`make verify-execution` re-runs all 84 notebooks in fresh kernels and every Unit A to Unit B
 handoff, and compares them with the saved receipt; it takes a while. To reset, delete your
 `practical-work/` folders; the notebooks never write anywhere else.
 

@@ -32,6 +32,11 @@ From that commit, with its relative layout kept so every path the code computes 
   solutions and educator copies, a learner file, a scripted teaching server, a checkpoint and an
   experiment with its receipt in `docs/evidence/book-ch14/`. All 80 notebooks and 20 handoffs were
   executed again; the receipt is `docs/evidence/book-four-assets/verification-v4.json`.
+- 2026-09-29: Chapter 21 (context engineering) was written here: two units, their solutions and
+  educator copies, a learner file, a checkpoint and an experiment with its receipt in
+  `docs/evidence/book-ch21/`. The edition's reader-facing label became "construction edition",
+  so it no longer counts chapters. All 84 notebooks and 21 handoffs were executed again; the
+  receipt is `docs/evidence/book-four-assets/verification-v5.json`.
 
 ## License
 
