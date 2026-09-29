@@ -10,6 +10,10 @@ reply arrives. The caller cannot tell the two apart. This file computes, with th
 only, how many attempts and how many duplicate effects a "retry until a reply arrives" policy
 makes, how a timeout turns slow successes into lost replies, and the stable operation key that
 lets the receiving system recognize a retry. Chapter 12 derives each and measures them.
+
+It also holds Part B's fault: a proxy between Lucy's agent and the Chapter 11 supplier that loses
+the reply to each operation's first order after the supplier has committed it. The fault sits in
+the network, where a lost reply happens, so the supplier and the agent stay the learner's own.
 """
 
 from __future__ import annotations
@@ -17,8 +21,12 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import threading
 import uuid
 from collections.abc import Sequence
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from urllib.error import HTTPError
+from urllib.request import Request, urlopen
 
 
 def expected_attempts(lost_before: float, lost_after: float) -> float:
@@ -62,3 +70,62 @@ def operation_key(work_id: str, target: str, proposal: dict[str, object]) -> str
     encoded = json.dumps(proposal, sort_keys=True, separators=(",", ":"))
     digest = hashlib.sha256((target + "\n" + encoded).encode()).hexdigest()
     return uuid.uuid5(uuid.NAMESPACE_URL, work_id + ":" + digest).hex
+
+
+class ReplyLosingProxy:
+    """Forward every request to the supplier, and lose the reply to each operation's first
+    order once the supplier has answered it: the order is committed, and the agent hears nothing.
+    Lookups and repeated orders pass through untouched."""
+
+    def __init__(self, upstream: str) -> None:
+        self.upstream = upstream.rstrip("/")
+        self.lost: list[str] = []
+        proxy = self
+
+        class Handler(BaseHTTPRequestHandler):
+            def log_message(self, format, *args):
+                pass
+
+            def forward(self, data):
+                request = Request(
+                    proxy.upstream + self.path,
+                    data=data,
+                    headers={"Content-Type": "application/json"},
+                    method=self.command,
+                )
+                try:
+                    with urlopen(request, timeout=10) as response:
+                        return response.status, response.read()
+                except HTTPError as error:
+                    return error.code, error.read()
+
+            def answer(self, status, body):
+                self.send_response(status)
+                self.send_header("Content-Type", "application/json")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+
+            def do_GET(self):  # noqa: N802
+                self.answer(*self.forward(None))
+
+            def do_POST(self):  # noqa: N802
+                data = self.rfile.read(int(self.headers.get("Content-Length", "0")))
+                status, body = self.forward(data)
+                if status == 200 and self.path not in proxy.lost:
+                    proxy.lost.append(self.path)
+                    self.close_connection = True  # committed upstream; the reply never arrives
+                    return
+                self.answer(status, body)
+
+        self.server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
+        self.thread.start()
+
+    @property
+    def endpoint(self) -> str:
+        return f"http://127.0.0.1:{self.server.server_port}"
+
+    def close(self) -> None:
+        self.server.shutdown()
+        self.server.server_close()

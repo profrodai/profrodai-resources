@@ -17,6 +17,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from contextlib import contextmanager
 from pathlib import Path
 
 from reference_organizations.store.agent import OfflineShopModel, seed_lucy
@@ -113,11 +114,47 @@ def cli(root, *arguments):
     )
 
 
-def day(root, checkpoint_dir):
-    supplier_context = runpy.run_path(
-        str(checkpoint_dir / "profrod_sovereign_agent_ch12_ambiguous_supplier_order_checkpoint.py")
-    )["independent_supplier"]
-    with supplier_context(root) as (supplier, supplier_path):
+@contextmanager
+def supplied_independent_supplier(root):
+    """The supplied supplier that drops its first reply, until this chapter is rebuilt.
+
+    Chapter 12 now loses the reply with a learner proxy in front of the learner's supplier."""
+    ready = root / "supplier-ready"
+    supplier_path = root / "supplier.sqlite"
+    process = subprocess.Popen(
+        [
+            sys.executable,
+            "-m",
+            "reference_organizations.store.supplier",
+            "--database",
+            str(supplier_path),
+            "--port",
+            "0",
+            "--ready",
+            str(ready),
+            "--drop-first-response",
+        ],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    try:
+        deadline = time.monotonic() + 10
+        while not ready.exists() and time.monotonic() < deadline and process.poll() is None:
+            time.sleep(0.02)
+        if not ready.exists():
+            raise RuntimeError("independent supplier did not become ready")
+        yield SupplierClient("http://127.0.0.1:" + ready.read_text()), supplier_path
+    finally:
+        process.terminate()
+        try:
+            process.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            process.kill()
+            process.wait(timeout=5)
+
+
+def day(root):
+    with supplied_independent_supplier(root) as (supplier, supplier_path):
         db = Database(root / "agent.sqlite")
         research = worker = None
         try:
@@ -374,17 +411,12 @@ def main():
         child(args.worker, args.supplier, args.work, args.order)
         return
     reliability_arithmetic()
-    checkpoint_dir = Path(__file__).resolve().parent
-    if not (
-        checkpoint_dir / "profrod_sovereign_agent_ch12_ambiguous_supplier_order_checkpoint.py"
-    ).exists():
-        checkpoint_dir = Path("book/textbook/checkpoints")
     if args.output:
         args.output.mkdir(mode=0o700, parents=True, exist_ok=False)
-        day(args.output.resolve(), checkpoint_dir)
+        day(args.output.resolve())
     else:
         with tempfile.TemporaryDirectory(prefix="lucy-day-") as temporary:
-            day(Path(temporary), checkpoint_dir)
+            day(Path(temporary))
 
 
 if __name__ == "__main__":
