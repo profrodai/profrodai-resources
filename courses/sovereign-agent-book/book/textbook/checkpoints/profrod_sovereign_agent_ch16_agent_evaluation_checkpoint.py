@@ -16,18 +16,15 @@ import tempfile
 import tomllib
 from pathlib import Path
 
-from reference_organizations.store.agent import OfflineShopModel
-from reference_organizations.store.evaluation import CASES, evaluate
-from reference_organizations.store.improvement import save_report
-from sovereign_agent.assistant_context import Skill
-from sovereign_agent.model_turn import HTTPModel, ModelTurn, ToolCall
-
+BOOK = Path(__file__).resolve().parents[1]
 LEARNER = runpy.run_path(
-    str(
-        Path(__file__).resolve().parents[1]
-        / "learner/profrod_sovereign_agent_ch16_evaluation_statistics_learner.py"
-    )
+    str(BOOK / "learner/profrod_sovereign_agent_ch16_evaluation_statistics_learner.py")
 )
+HARNESS = runpy.run_path(str(BOOK / "learner/profrod_sovereign_agent_ch16_harness_learner.py"))
+OfflineShopModel, CASES = HARNESS["OfflineShopModel"], HARNESS["CASES"]
+evaluate, save_report, Skill = HARNESS["evaluate"], HARNESS["save_report"], HARNESS["Skill"]
+LOOP = runpy.run_path(str(BOOK / "learner/profrod_sovereign_agent_ch03_agent_loop_learner.py"))
+HTTPModel, ModelTurn, ToolCall = LOOP["HTTPModel"], LOOP["ModelTurn"], LOOP["ToolCall"]
 
 
 def statistics():
@@ -118,6 +115,47 @@ class WrongAmount(OfflineShopModel):
         )
 
 
+class Scripted:
+    """Authored turns for the opening case, each fixture failing exactly one named check."""
+
+    turns: tuple = ()
+
+    def __init__(self):
+        self.remaining = iter(self.turns)
+
+    def complete(self, *args, **kwargs):
+        return next(self.remaining)
+
+
+def stock_turn(call_id="stock"):
+    return ModelTurn(calls=(ToolCall(id=call_id, name="list_stock", arguments={}),))
+
+
+def draft(call_id, sku, quantity):
+    return ToolCall(id=call_id, name="draft_order", arguments={"sku": sku, "quantity": quantity})
+
+
+class SkipsADraft(Scripted):
+    """Grounded, allowed, error-free and in USD, but one required draft is missing."""
+
+    turns = (
+        stock_turn(),
+        ModelTurn(calls=(draft("d-v", "V", 6),)),
+        ModelTurn("V: 6 units, 1500 cents USD. No purchases made."),
+    )
+
+
+class FailedToolCall(Scripted):
+    """Right drafts and answer, but one tool call failed on the way."""
+
+    turns = (
+        ModelTurn(calls=(ToolCall(id="probe", name="supplier", arguments={"sku": "NOPE"}),)),
+        stock_turn(),
+        ModelTurn(calls=(draft("d-v", "V", 6), draft("d-s", "S", 4))),
+        ModelTurn("V: 6 units, 1500 cents USD; S: 4 units, 1100 cents USD. No purchases made."),
+    )
+
+
 class ForbiddenRequest:
     def complete(self, messages, *args, **kwargs):
         if not any(m["role"] == "tool" for m in messages):
@@ -138,6 +176,10 @@ def main():
     assert all(report["acceptance"]["status"] == "REJECTED" for report in failures)
     assert failures[2]["cases"][0]["checks"]["no_purchases"]
     print("Fluent, wrong-currency and forbidden-request fixtures:", "REJECTED")
+    for fixture, check in ((SkipsADraft, "quantities"), (FailedToolCall, "no_tool_errors")):
+        checks = evaluate(fixture, cases=(CASES[0],))["cases"][0]["checks"]
+        assert [name for name, ok in checks.items() if not ok] == [check], (fixture, checks)
+    print("Missing draft and failed tool call each fail exactly their check:", "REJECTED")
     blind = evaluate(WrongAmount, cases=(CASES[0],))
     assert blind["passed"] and "999999 cents USD" in blind["cases"][0]["answer"]
     assert blind["acceptance"]["status"] == "REVIEW_REQUIRED"
