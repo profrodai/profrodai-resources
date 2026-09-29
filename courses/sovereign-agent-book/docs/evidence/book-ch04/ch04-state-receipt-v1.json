@@ -1,0 +1,137 @@
+{
+  "experiment": "profrod-sovereign-agent-ch04-state-v1",
+  "ranAt": "2026-09-29T02:49:45+00:00",
+  "environment": {
+    "os": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "python": "3.14.3",
+    "sqlite": "3.50.4",
+    "cpu_count": 12
+  },
+  "crash": {
+    "inside_transaction": {
+      "exit_code": 17,
+      "stock": {
+        "vanilla": 2
+      },
+      "events": [
+        "e1"
+      ],
+      "invariant_holds": true
+    },
+    "without_transaction": {
+      "exit_code": 17,
+      "stock": {
+        "vanilla": 2
+      },
+      "events": [
+        "e1",
+        "e2"
+      ],
+      "invariant_holds": false
+    }
+  },
+  "contention": [
+    {
+      "hold_ms": 10,
+      "period_ms": 100,
+      "busy_timeout_s": 0.0,
+      "attempts": 300,
+      "refused": 33,
+      "refused_rate": 0.11,
+      "refused_rate_95": [
+        0.0794,
+        0.1505
+      ],
+      "predicted_refused_rate": 0.1,
+      "prediction_inside_interval": true,
+      "mean_wait_ms": 0.02,
+      "predicted_mean_wait_ms": null,
+      "predicted_mean_wait_stepped_ms": null
+    },
+    {
+      "hold_ms": 30,
+      "period_ms": 100,
+      "busy_timeout_s": 0.0,
+      "attempts": 300,
+      "refused": 84,
+      "refused_rate": 0.28,
+      "refused_rate_95": [
+        0.2322,
+        0.3333
+      ],
+      "predicted_refused_rate": 0.3,
+      "prediction_inside_interval": true,
+      "mean_wait_ms": 0.037,
+      "predicted_mean_wait_ms": null,
+      "predicted_mean_wait_stepped_ms": null
+    },
+    {
+      "hold_ms": 50,
+      "period_ms": 100,
+      "busy_timeout_s": 0.0,
+      "attempts": 300,
+      "refused": 154,
+      "refused_rate": 0.5133333333333333,
+      "refused_rate_95": [
+        0.457,
+        0.5694
+      ],
+      "predicted_refused_rate": 0.5,
+      "prediction_inside_interval": true,
+      "mean_wait_ms": 0.061,
+      "predicted_mean_wait_ms": null,
+      "predicted_mean_wait_stepped_ms": null
+    },
+    {
+      "hold_ms": 10,
+      "period_ms": 100,
+      "busy_timeout_s": 1.0,
+      "attempts": 300,
+      "refused": 0,
+      "refused_rate": 0.0,
+      "refused_rate_95": [
+        0.0,
+        0.0126
+      ],
+      "predicted_refused_rate": 0.0,
+      "prediction_inside_interval": true,
+      "mean_wait_ms": 1.632,
+      "predicted_mean_wait_ms": 0.5,
+      "predicted_mean_wait_stepped_ms": 0.83
+    },
+    {
+      "hold_ms": 30,
+      "period_ms": 100,
+      "busy_timeout_s": 1.0,
+      "attempts": 300,
+      "refused": 0,
+      "refused_rate": 0.0,
+      "refused_rate_95": [
+        0.0,
+        0.0126
+      ],
+      "predicted_refused_rate": 0.0,
+      "prediction_inside_interval": true,
+      "mean_wait_ms": 8.919,
+      "predicted_mean_wait_ms": 4.5,
+      "predicted_mean_wait_stepped_ms": 6.23
+    },
+    {
+      "hold_ms": 50,
+      "period_ms": 100,
+      "busy_timeout_s": 1.0,
+      "attempts": 300,
+      "refused": 0,
+      "refused_rate": 0.0,
+      "refused_rate_95": [
+        0.0,
+        0.0126
+      ],
+      "predicted_refused_rate": 0.0,
+      "prediction_inside_interval": true,
+      "mean_wait_ms": 21.724,
+      "predicted_mean_wait_ms": 12.5,
+      "predicted_mean_wait_stepped_ms": 16.23
+    }
+  ]
+}

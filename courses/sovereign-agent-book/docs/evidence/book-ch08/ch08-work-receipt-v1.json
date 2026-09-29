@@ -1,0 +1,92 @@
+{
+  "experiment": "profrod-sovereign-agent-ch08-work-v1",
+  "ranAt": "2026-09-29T02:52:30+00:00",
+  "environment": {
+    "os": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "python": "3.14.3",
+    "sqlite": "3.50.4"
+  },
+  "delivery": {
+    "lost_before": 0.02,
+    "reply_lost": 0.05,
+    "rows": [
+      {
+        "policy": "never resend",
+        "reports": 100000,
+        "delivered": 0.98024,
+        "copies": 0.98024,
+        "at_least_two": 0.0,
+        "predicted": {
+          "delivered": 0.98,
+          "copies": 0.98,
+          "at_least_two": 0.0
+        }
+      },
+      {
+        "policy": "retry up to 3",
+        "reports": 100000,
+        "delivered": 0.99999,
+        "copies": 1.0524,
+        "at_least_two": 0.04977,
+        "predicted": {
+          "delivered": 0.999992,
+          "copies": 1.0522857799999998,
+          "at_least_two": 0.04994080000000001
+        }
+      },
+      {
+        "policy": "retry up to 3, receiver drops repeats",
+        "reports": 100000,
+        "delivered": 0.99999,
+        "copies": 0.99999,
+        "at_least_two": 0.0,
+        "predicted": {
+          "delivered": 0.999992,
+          "copies": 0.999992,
+          "at_least_two": 0.0
+        }
+      }
+    ]
+  },
+  "little": [
+    {
+      "ticks": 4000,
+      "arrival_per_tick": 0.2,
+      "service_ticks": 3,
+      "capacity": 1000,
+      "accepted": 826,
+      "refused": 0,
+      "lambda_accepted": 0.2065,
+      "L_measured": 0.9435,
+      "W_measured": 4.569,
+      "lambda_times_W": 0.9435,
+      "utilization": 0.6
+    },
+    {
+      "ticks": 4000,
+      "arrival_per_tick": 0.3,
+      "service_ticks": 3,
+      "capacity": 1000,
+      "accepted": 1253,
+      "refused": 0,
+      "lambda_accepted": 0.31325,
+      "L_measured": 5.1185,
+      "W_measured": 16.3688,
+      "lambda_times_W": 5.1275,
+      "utilization": 0.9
+    },
+    {
+      "ticks": 4000,
+      "arrival_per_tick": 0.3,
+      "service_ticks": 3,
+      "capacity": 3,
+      "accepted": 1117,
+      "refused": 136,
+      "lambda_accepted": 0.27925,
+      "L_measured": 1.45,
+      "W_measured": 5.1928,
+      "lambda_times_W": 1.4501,
+      "utilization": 0.9
+    }
+  ]
+}
