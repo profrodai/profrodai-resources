@@ -1,0 +1,184 @@
+{
+  "schema": "profrod.sovereign-agent.ch10-unattended-claude.v1",
+  "experiment": "The Chapter 10 checkpoint with --claude MODEL --transcript: the parent runs the morning brief and the first stock episode; the learner's serve process, started with no prompt, finds the evening job and the second episode and runs them.",
+  "recorded": "2026-09-29",
+  "python": "3.12.13",
+  "command": "python book/textbook/checkpoints/profrod_sovereign_agent_ch10_schedules_stock_events_checkpoint.py --claude MODEL --transcript",
+  "prices": "USD per million tokens, platform.claude.com pricing page, 2026-09-29",
+  "note": "Transcripts of the evening brief are not printed by --transcript; its report is checked by the checkpoint. Model ids, token counts and list-price cost only; no credential.",
+  "models": {
+    "claude-haiku-4-5-20251001": {
+      "checks": [
+        "ok   Pollaczek-Khinchine, its exponential case and the rate for a target wait",
+        "ok   pilot moments and mean waits recompute; one job served at a time, in order",
+        "ok   routes, job identities, intervals and due times are validated at registration",
+        "ok   one immutable condition per product; unknown products refused",
+        "ok   a full queue defers the job once and leaves the condition armed; nothing stored",
+        "ok   with capacity back, one current occurrence is admitted and five coalesced",
+        "ok   a vanilla subject sees and drafts vanilla only; no tool can purchase",
+        "ok   reports use the latest valid draft per product; narration and bad amounts refused",
+        "Pause preserved due job: True",
+        "Coalesced missed runs: 3",
+        "Morning draft evidence: PASS",
+        "First stock episode: PASS",
+        "Unattended second episode: PASS",
+        "Interrupted turn reported: True",
+        "Unattended scheduled brief: PASS",
+        "Persisted draft amount: $17.50 USD",
+        "Duplicate episode work: 0",
+        "Purchases: 0",
+        "Worker stopped cleanly: True"
+      ],
+      "passed": true,
+      "turns": {
+        "morning": {
+          "process": "parent",
+          "tools_called": [
+            "list_stock",
+            "supplier",
+            "supplier",
+            "draft_order",
+            "draft_order"
+          ],
+          "report": "Draft estimates:\n- \"SKU-STRAWBERRY\": 4 tubs, $11.00 USD.\n- \"SKU-VANILLA\": 6 tubs, $15.00 USD.\nTotal: $26.00 USD.",
+          "model_narration": "**Replenishment Brief Complete**\n\n| Product | SKU | Quantity | Unit Cost | Total USD |\n|---------|-----|----------|-----------|-----------|\n| Strawberry | SKU-STRAWBERRY | 4 | $2.75 | $11.00 |\n| Vanilla | SKU-VANILLA | 6 | $2.50 | $15.00 |\n\n**Summary:**\n- **Chocolate** (SKU-CHOCOLATE): No replenishment needed (on hand: 12, reorder point: 6)\n- **Total draft value: $26.00 USD**\n\nBoth drafts are ready. These are calculations only—no purchases have been made.",
+          "narration_states_report_total": true
+        },
+        "first_episode": {
+          "process": "parent",
+          "tools_called": [
+            "list_stock",
+            "draft_order",
+            "supplier"
+          ],
+          "report": "Draft estimates:\n- \"SKU-VANILLA\": 6 tubs, $15.00 USD.\nTotal: $15.00 USD.",
+          "model_narration": "**Replenishment Draft Summary:**\n\n- **SKU-VANILLA** (Vanilla): 6 tubs\n  - Unit cost: $2.50 USD\n  - **Total: $15.00 USD**\n\nThe draft has been created and is ready for review. Current stock is 2 tubs on hand with a reorder point of 8, so 6 tubs are needed to reach the target level.",
+          "narration_states_report_total": true
+        },
+        "unattended_episode": {
+          "process": "child",
+          "tools_called": [
+            "list_stock",
+            "draft_order",
+            "supplier"
+          ],
+          "report": "Draft estimates:\n- \"SKU-VANILLA\": 7 tubs, $17.50 USD.\nTotal: $17.50 USD.",
+          "model_narration": "**Replenishment Draft Summary:**\n\n- **SKU-VANILLA**: 7 tubs @ $2.50 USD per unit\n- **Total: $17.50 USD**\n\nThe draft has been created successfully. Current stock shows 1 tub on hand with a reorder point of 8, requiring 7 units to meet the target level.",
+          "narration_states_report_total": true
+        }
+      },
+      "claude": {
+        "parent": {
+          "requests": 7,
+          "usage": {
+            "input_tokens": 9832,
+            "output_tokens": 788,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "costUsd": 0.0138
+        },
+        "child": {
+          "requests": 6,
+          "usage": {
+            "input_tokens": 9660,
+            "output_tokens": 722,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "costUsd": 0.0133
+        }
+      },
+      "costUsd": 0.0271,
+      "settings": {
+        "temperature": 0
+      }
+    },
+    "claude-sonnet-5-5": {
+      "checks": [
+        "ok   Pollaczek-Khinchine, its exponential case and the rate for a target wait",
+        "ok   pilot moments and mean waits recompute; one job served at a time, in order",
+        "ok   routes, job identities, intervals and due times are validated at registration",
+        "ok   one immutable condition per product; unknown products refused",
+        "ok   a full queue defers the job once and leaves the condition armed; nothing stored",
+        "ok   with capacity back, one current occurrence is admitted and five coalesced",
+        "ok   a vanilla subject sees and drafts vanilla only; no tool can purchase",
+        "ok   reports use the latest valid draft per product; narration and bad amounts refused",
+        "Pause preserved due job: True",
+        "Coalesced missed runs: 3",
+        "Morning draft evidence: PASS",
+        "First stock episode: PASS",
+        "Unattended second episode: PASS",
+        "Interrupted turn reported: True",
+        "Unattended scheduled brief: PASS",
+        "Persisted draft amount: $17.50 USD",
+        "Duplicate episode work: 0",
+        "Purchases: 0",
+        "Worker stopped cleanly: True"
+      ],
+      "passed": true,
+      "turns": {
+        "morning": {
+          "process": "parent",
+          "tools_called": [
+            "list_stock",
+            "draft_order",
+            "draft_order"
+          ],
+          "report": "Draft estimates:\n- \"SKU-STRAWBERRY\": 4 tubs, $11.00 USD.\n- \"SKU-VANILLA\": 6 tubs, $15.00 USD.\nTotal: $26.00 USD.",
+          "model_narration": "Both drafts were created. Nothing has been purchased.\n\n| SKU | Product | Quantity | Unit cost | Total |\n|---|---|---|---|---|\n| SKU-STRAWBERRY | Strawberry | 4 | $2.75 | $11.00 |\n| SKU-VANILLA | Vanilla | 6 | $2.50 | $15.00 |\n\n**Combined total of the drafts: $26.00 USD**\n\nChocolate has 12 on hand against a reorder point of 6, so it needs nothing and I didn't draft it. Both drafts are with supplier lucy-local. To buy, you'd need to place the orders separately.",
+          "narration_states_report_total": true
+        },
+        "first_episode": {
+          "process": "parent",
+          "tools_called": [
+            "list_stock",
+            "draft_order"
+          ],
+          "report": "Draft estimates:\n- \"SKU-VANILLA\": 6 tubs, $15.00 USD.\nTotal: $15.00 USD.",
+          "model_narration": "**Replenishment draft for SKU-VANILLA (Vanilla)**\n\n- Current stock: 2 on hand (reorder point 8)\n- Needed: 6 tubs\n- Unit cost: $2.50 USD\n- **Draft total: $15.00 USD** (6 × $2.50)\n- Supplier: lucy-local\n- Status: DRAFT\n\nThis is only a draft. No purchase has been made, and there is no purchase receipt.",
+          "narration_states_report_total": true
+        },
+        "unattended_episode": {
+          "process": "child",
+          "tools_called": [
+            "list_stock",
+            "draft_order"
+          ],
+          "report": "Draft estimates:\n- \"SKU-VANILLA\": 7 tubs, $17.50 USD.\nTotal: $17.50 USD.",
+          "model_narration": "**Replenishment draft for SKU-VANILLA**\n\n- Stock: 1 on hand, reorder point 8, so 7 tubs are needed.\n- Draft: 7 tubs at $2.50 USD each, for a total of **$17.50 USD**.\n- Status: DRAFT. Nothing has been purchased, and no order receipt exists.\n\nThe 7-tub quantity comes from today's stock read. The earlier drafts of 6 tubs ($15.00) were based on older stock levels.",
+          "narration_states_report_total": true
+        }
+      },
+      "claude": {
+        "parent": {
+          "requests": 6,
+          "usage": {
+            "input_tokens": 8178,
+            "output_tokens": 743,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "costUsd": 0.0238
+        },
+        "child": {
+          "requests": 6,
+          "usage": {
+            "input_tokens": 10059,
+            "output_tokens": 773,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "costUsd": 0.0278
+        }
+      },
+      "costUsd": 0.0516,
+      "settings": {
+        "thinking": {
+          "type": "between_tools"
+        }
+      }
+    }
+  },
+  "costUsd": 0.0787
+}
