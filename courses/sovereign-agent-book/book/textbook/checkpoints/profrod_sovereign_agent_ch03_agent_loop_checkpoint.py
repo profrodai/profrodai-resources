@@ -255,6 +255,52 @@ def transport():
     print("ok   transport: reply, error status, oversized body, redirect refused, deadline kept")
 
 
+def measured():
+    """Every reliability receipt's rates recomputed from its retained runs; Claude's cost from
+    its tokens and the client's prices."""
+    evidence = Path(__file__).resolve().parents[3] / "docs/evidence/book-ch03"
+    prices = runpy.run_path(
+        str(
+            Path(__file__).resolve().parents[1]
+            / "experiments/profrod_sovereign_agent_claude_messages_v1.py"
+        )
+    )["PRICES"]
+    spent = 0.0
+    for path in sorted(evidence.glob("ch03-reliability-*receipt-v1.json")):
+        raw = path.read_text()
+        assert "sk-ant" not in raw and "x-api-key" not in raw, "a receipt must never hold a key"
+        receipt = json.loads(raw)
+        tables = [(row, False) for row in receipt.get("by_length", [])]
+        tables += [(row, True) for row in receipt.get("with_add_tool", [])]
+        for row, with_add in tables:
+            runs = [
+                r
+                for r in receipt["runs"]
+                if r["n"] == row["n"] and r.get("arithmetic_tool", False) == with_add
+            ]
+            assert round(sum(r["success"] for r in runs) / len(runs), 3) == row["task_success"]
+            steps = sum(r["steps_done"] for r in runs) / (row["n"] * len(runs))
+            assert round(steps, 3) == row["per_step_success"]
+        if "usage" in receipt:
+            usage = receipt["usage"]
+            cost = sum(
+                (
+                    used["input_tokens"] * prices[model][0]
+                    + used["output_tokens"] * prices[model][1]
+                    + used["cache_creation_input_tokens"] * prices[model][2]
+                    + used["cache_read_input_tokens"] * prices[model][3]
+                )
+                / 1_000_000
+                for model, used in usage["usage"].items()
+            )
+            assert usage["costUsd"] == round(cost, 4) <= usage["ceilingUsd"]
+            spent += usage["costUsd"]
+    print(
+        "ok   every reliability receipt recomputes from its runs;"
+        f" the Claude runs cost {spent:.2f} USD at list price"
+    )
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--live", action="store_true")
@@ -262,6 +308,7 @@ def main():
     parser.add_argument("--transcript", action="store_true")
     args = parser.parse_args()
     reliability()
+    measured()
     boundaries()
     transport()
     model = HTTPModel(model=args.model) if args.live else ReplayModel(opening_turns())

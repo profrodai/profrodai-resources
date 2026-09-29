@@ -17,6 +17,11 @@ and fits log(task success) = n log p + log a, where p is per-step reliability an
 reliability of the final answer step, to test whether success compounds as p ** n.
 Then, at n = 4 and temperature 0.8, it retries each failed instance up to four times and compares
 success within k attempts with independent retries and with a "hard fraction" model.
+
+With --provider anthropic the same tasks run on Claude through the learner's own loop, with the
+Messages API behind Chapter 3's model interface. Haiku 4.5 runs at the experiment's temperatures;
+Sonnet 5.5 accepts no temperature setting, so its first attempts and retries sample alike. The
+receipt records every token and the list-price cost, and the run stops at --max-usd.
 """
 
 from __future__ import annotations
@@ -37,6 +42,11 @@ LOOP = runpy.run_path(
     str(ROOT / "book/textbook/learner/profrod_sovereign_agent_ch03_agent_loop_learner.py")
 )
 run_loop, HTTPModel, Limits = LOOP["run_loop"], LOOP["HTTPModel"], LOOP["Limits"]
+CLAUDE = runpy.run_path(
+    str(Path(__file__).with_name("profrod_sovereign_agent_claude_messages_v1.py"))
+)
+# Set by main(): the provider, and the Claude connection that counts tokens and cost.
+RUN: dict = {"provider": "ollama", "claude": None}
 SKUS = [
     "SKU-VANILLA",
     "SKU-CHOCOLATE",
@@ -50,6 +60,14 @@ SKUS = [
     "SKU-COCONUT",
     "SKU-BANANA",
     "SKU-CHERRY",
+]
+# Only tasks longer than twelve steps draw from these, so shorter tasks keep their inputs.
+MORE_SKUS = [
+    "SKU-" + flavor
+    for flavor in (
+        "BLUEBERRY RASPBERRY PEACH APRICOT HAZELNUT ALMOND MAPLE CINNAMON GINGER HONEY LIME "
+        "ORANGE PLUM FIG MATCHA TOFFEE COOKIE BROWNIE RUMRAISIN BUTTERPECAN"
+    ).split()
 ]
 
 
@@ -118,8 +136,8 @@ class StockTool:
 
 
 def transport_at(temperature, seed):
-    """Send the learner's request with a chosen temperature and seed."""
-    from sovereign_agent.http_transport import request
+    """Send the learner's request with a chosen temperature and seed, over their transport."""
+    request = LOOP["transport"]["request"]
 
     def send(url, *, data, headers, timeout):
         payload = json.loads(data)
@@ -132,8 +150,9 @@ def transport_at(temperature, seed):
 
 def run_task(model, n, instance, temperature=0.0, attempt=0, arithmetic=False):
     rng = random.Random(1000 * n + instance)
-    stock = {sku: rng.randint(0, 20) for sku in SKUS}
-    wanted = rng.sample(SKUS, n)
+    products = SKUS if n <= len(SKUS) else SKUS + MORE_SKUS
+    stock = {sku: rng.randint(0, 20) for sku in products}
+    wanted = rng.sample(products, n)
     tool = StockTool(stock, arithmetic)
     messages = [
         {
@@ -149,8 +168,19 @@ def run_task(model, n, instance, temperature=0.0, attempt=0, arithmetic=False):
             + ". Then reply with only the total number of tubs across them, as an integer.",
         },
     ]
+    if RUN["provider"] == "anthropic":
+        takes_temperature = "temperature" in CLAUDE["SETTINGS"][model]
+        sampling = {"temperature": temperature} if takes_temperature else {}
+        # Each turn repeats the last one's prefix: cache it, so a long task is not paid in full
+        # on every step.
+        sampling["cache_control"] = {"type": "ephemeral"}
+        turn, call = LOOP["ModelTurn"], LOOP["ToolCall"]
+        chosen = CLAUDE["LoopModel"](RUN["claude"], model, turn, call, **sampling)
+    else:
+        send = transport_at(temperature, 7919 * attempt + instance)
+        chosen = HTTPModel(model=model, request=send)
     result = run_loop(
-        HTTPModel(model=model, request=transport_at(temperature, 7919 * attempt + instance)),
+        chosen,
         tool,
         messages,
         limits=Limits(model_calls=n + 3, tool_calls=2 * n + 4, seconds=120),
@@ -197,17 +227,43 @@ def fit_log_linear(points):
     return {"p": round(math.exp(slope), 4), "a": round(math.exp(intercept), 4)}
 
 
+def write(receipt, args):
+    """Add the Claude usage when there is one, then write and print the receipt."""
+    if RUN["provider"] == "anthropic":
+        receipt |= {
+            "provider": "anthropic",
+            "api": f"Messages API, anthropic-version {CLAUDE['VERSION']}",
+            "settings": CLAUDE["SETTINGS"][args.model],
+            "usage": RUN["claude"].report(),
+        }
+    args.out.write_text(json.dumps(receipt, indent=2) + "\n")
+    json.dump({k: v for k, v in receipt.items() if k != "runs"}, sys.stdout, indent=2)
+    print()
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--model", default="qwen2.5:1.5b")
     parser.add_argument("--instances", type=int, default=25)
+    parser.add_argument("--lengths", nargs="+", type=int, default=[1, 2, 4, 8])
+    parser.add_argument("--add-lengths", nargs="+", type=int, default=[4, 8])
+    parser.add_argument(
+        "--parts",
+        choices=("all", "add"),
+        default="all",
+        help="add: run only the tasks with the add tool, into their own receipt",
+    )
+    parser.add_argument("--provider", choices=("ollama", "anthropic"), default="ollama")
+    parser.add_argument("--max-usd", type=float, default=6.0, help="Claude spending ceiling")
     args = parser.parse_args()
+    if args.provider == "anthropic":
+        RUN.update(provider="anthropic", claude=CLAUDE["Claude"](max_usd=args.max_usd))
     started = time.time()
 
     by_length = []
     runs = []
-    for n in (1, 2, 4, 8):
+    for n in args.lengths if args.parts == "all" else []:
         rows = [run_task(args.model, n, i) for i in range(args.instances)]
         runs.extend(rows)
         successes = sum(r["success"] for r in rows)
@@ -231,7 +287,7 @@ def main():
         )
         print(json.dumps(by_length[-1]), flush=True)
     with_add = []
-    for n in (4, 8):
+    for n in args.add_lengths:
         rows = [run_task(args.model, n, i, arithmetic=True) for i in range(args.instances)]
         runs.extend(rows)
         successes = sum(r["success"] for r in rows)
@@ -244,6 +300,24 @@ def main():
             }
         )
         print(json.dumps({"with_add_tool": with_add[-1]}), flush=True)
+    if args.parts == "add":
+        write(
+            {
+                "schema": 1,
+                "experiment": "ch03-reliability-v1",
+                "part": "the tasks with the add tool only",
+                "recorded": time.strftime("%Y-%m-%d"),
+                "python": platform.python_version(),
+                "platform": f"{platform.system()} {platform.release()} ({platform.machine()})",
+                "model": args.model,
+                "instances_per_length": args.instances,
+                "with_add_tool": with_add,
+                "seconds": round(time.time() - started, 1),
+                "runs": runs,
+            },
+            args,
+        )
+        return
     fit = fit_log_linear([(row["n"], row["task_success"]) for row in by_length])
     predictions = None
     if fit:
@@ -303,9 +377,7 @@ def main():
         "seconds": round(time.time() - started, 1),
         "runs": runs,
     }
-    args.out.write_text(json.dumps(receipt, indent=2) + "\n")
-    json.dump({k: v for k, v in receipt.items() if k != "runs"}, sys.stdout, indent=2)
-    print()
+    write(receipt, args)
 
 
 if __name__ == "__main__":

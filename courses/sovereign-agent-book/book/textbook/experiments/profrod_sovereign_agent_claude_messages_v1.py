@@ -181,3 +181,75 @@ def text_of(reply: dict) -> str:
 
 def tool_calls(reply: dict) -> list[dict]:
     return [block for block in reply.get("content", []) if block.get("type") == "tool_use"]
+
+
+def as_claude_tool(schema: dict) -> dict:
+    """A function-calling tool schema, as Chapter 2 builds them, in the Messages API's shape."""
+    function = schema["function"]
+    return {
+        "name": function["name"],
+        "description": function.get("description", ""),
+        "input_schema": function.get("parameters", {"type": "object", "properties": {}}),
+    }
+
+
+def loop_transcript(messages: list[dict]) -> tuple[str, list[dict]]:
+    """Chapter 3's transcript in the Messages API's shape: tool calls become tool_use blocks, and
+    tool observations become tool_result blocks in the next user turn."""
+    system, turns = [], []
+
+    def add(role: str, blocks: list[dict]) -> None:
+        if turns and turns[-1]["role"] == role:
+            turns[-1]["content"].extend(blocks)
+        else:
+            turns.append({"role": role, "content": blocks})
+
+    for message in messages:
+        role, content = message["role"], message.get("content") or ""
+        if role == "system":
+            system.append(content)
+        elif role == "tool":
+            result = {"type": "tool_result", "tool_use_id": message["tool_call_id"]}
+            add("user", [{**result, "content": content}])
+        elif role == "assistant":
+            blocks = [{"type": "text", "text": content}] if content.strip() else []
+            for call in message.get("tool_calls", []):
+                function = call["function"]
+                blocks.append(
+                    {
+                        "type": "tool_use",
+                        "id": call["id"],
+                        "name": function["name"],
+                        "input": json.loads(function["arguments"]),
+                    }
+                )
+            add("assistant", blocks)
+        else:
+            add("user", [{"type": "text", "text": content}])
+    return "\n\n".join(system), turns
+
+
+class LoopModel:
+    """Claude behind Chapter 3's model interface: complete() returns the learner's ModelTurn."""
+
+    def __init__(self, client: Claude, model: str, turn, call, **request):
+        self.client, self.model, self.turn, self.call = client, model, turn, call
+        self.request = request
+
+    def complete(self, messages, tools, *, timeout, max_output_tokens):
+        system, turns = loop_transcript(messages)
+        extra = dict(self.request)
+        if system:
+            extra["system"] = system
+        reply = self.client.messages(
+            self.model,
+            max_tokens=max_output_tokens,
+            messages=turns,
+            tools=[as_claude_tool(tool) for tool in tools],
+            **extra,
+        )
+        calls = tuple(
+            self.call(id=block["id"], name=block["name"], arguments=block["input"])
+            for block in tool_calls(reply)
+        )
+        return self.turn(text_of(reply), calls, reply.get("usage", {}).get("output_tokens", 0))
