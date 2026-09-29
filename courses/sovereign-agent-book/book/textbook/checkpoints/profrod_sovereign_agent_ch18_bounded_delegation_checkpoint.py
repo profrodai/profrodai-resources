@@ -15,6 +15,7 @@ import math
 import os
 import runpy
 import sqlite3
+import statistics
 import subprocess
 import sys
 import tempfile
@@ -26,6 +27,10 @@ DELEGATION = runpy.run_path(
     str(BOOK / "learner/profrod_sovereign_agent_ch18_delegation_learner.py")
 )
 LOOP, WORKER = DELEGATION["LOOP"], DELEGATION["WORKER"]
+EXPERIMENT = runpy.run_path(
+    str(BOOK / "experiments/profrod_sovereign_agent_textbook_ch18_delegation_v1.py")
+)
+CLAUDE = EXPERIMENT["CLAUDE"]
 open_delegation_shop, Inquiry, quote = (
     DELEGATION["open_delegation_shop"],
     DELEGATION["Inquiry"],
@@ -115,6 +120,69 @@ def delegation_arithmetic():
         joint = sum(all(correct[q][s] for q in task["questions"]) for s in range(10)) / 10
         assert joint == task["measured"]
     print("ok   accuracies and composed successes recompute from the retained answers")
+
+
+def claude_cost(usage):
+    """List-price cost from token counts, with the Claude client's own price table."""
+    prices = CLAUDE["PRICES"]
+    total = 0.0
+    for model, used in usage["usage"].items():
+        price_in, price_out, price_write, price_read = prices[model]
+        total += (
+            used["input_tokens"] * price_in
+            + used["output_tokens"] * price_out
+            + used["cache_creation_input_tokens"] * price_write
+            + used["cache_read_input_tokens"] * price_read
+        ) / 1_000_000
+    return round(total, 4)
+
+
+def measured_on_claude():
+    """The Claude receipt's tables recompute from its rows, and its cost from its tokens."""
+    evidence = BOOK.parents[1] / "docs/evidence/book-ch18"
+    raw = (evidence / "ch18-delegation-claude-receipt-v1.json").read_text()
+    assert "sk-ant" not in raw and "x-api-key" not in raw, "a receipt must never hold a key"
+    receipt = json.loads(raw)
+    for model, measured in receipt["models"].items():
+        rows = measured["parallelism"]["rows"]
+        speedup = statistics.median(r["sequential_seconds"] / r["parallel_seconds"] for r in rows)
+        assert measured["parallelism"]["median_speedup"] == round(speedup, 3)
+        fraction = (1 - 1 / speedup) / (1 - 1 / 4)
+        assert measured["parallelism"]["implied_parallel_fraction"] == round(fraction, 3)
+        correct = [[False] * 10 for _ in range(12)]
+        for run in receipt["runs"]:
+            if run["model"] == model:
+                correct[run["question"]][run["sample"]] = run["correct"]
+        sampling = measured["sampling"]
+        assert sampling["accuracy"] == [round(sum(row) / 10, 2) for row in correct]
+        for task in sampling["composed"]:
+            joint = sum(all(correct[q][s] for q in task["questions"]) for s in range(10)) / 10
+            assert joint == task["measured"]
+        for vote in sampling["votes"]:
+            row = correct[vote["question"]]
+            majority = sum(sum(row[i : i + 3]) >= 2 for i in (0, 3, 6)) / 3
+            assert vote["measured_majority_of_3"] == round(majority, 3)
+        research = measured["research"]
+        summary = measured["research_summary"]
+        assert summary["inquiries"] == len(research) == 24
+        assert summary["verified"] == sum(r["passed"] for r in research)
+        assert summary["answer_states_total"] == sum(r["answer_states_total"] for r in research)
+        for row in research:
+            expected = quote(Inquiry(sku=row["sku"], guests=row["guests"]))["total_cents"]
+            assert row["answer_states_total"] == EXPERIMENT["states_total"](row["answer"], expected)
+            assert row["passed"] == (row["status"] == "DONE")
+        probe = measured["schema_probe"]
+        assert measured["schema_summary"] == {
+            "inquiries": len(probe),
+            "called": sum(r["called"] for r in probe),
+            "refused_by_strict_dispatch": sum(any(bool(a) for a in r["arguments"]) for r in probe),
+        }
+    usage = receipt["usage"]
+    assert usage["costUsd"] == claude_cost(usage) <= usage["ceilingUsd"]
+    print(
+        "ok   the Claude receipt's tables recompute from its rows; "
+        f"the run cost {usage['costUsd']:.2f} USD at list price"
+    )
 
 
 def boundaries():
@@ -471,6 +539,7 @@ def stop_and_allowance(root):
 
 def main():
     delegation_arithmetic()
+    measured_on_claude()
     boundaries()
     with tempfile.TemporaryDirectory(prefix="lucy-delegation-") as temporary:
         root = Path(temporary)

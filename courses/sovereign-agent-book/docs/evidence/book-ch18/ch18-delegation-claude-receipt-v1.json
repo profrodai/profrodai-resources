@@ -1,0 +1,3398 @@
+{
+  "schema": 1,
+  "experiment": "ch18-delegation-claude-v1",
+  "recorded": "2026-09-29",
+  "python": "3.14.3",
+  "platform": "Darwin 25.6.0 (arm64)",
+  "api": "Messages API, anthropic-version 2023-06-01",
+  "models": {
+    "claude-haiku-4-5-20251001": {
+      "parallelism": {
+        "subagents": 4,
+        "rows": [
+          {
+            "sequential_seconds": 2.745,
+            "parallel_seconds": 1.23
+          },
+          {
+            "sequential_seconds": 2.71,
+            "parallel_seconds": 0.72
+          },
+          {
+            "sequential_seconds": 2.772,
+            "parallel_seconds": 0.801
+          }
+        ],
+        "median_speedup": 3.461,
+        "implied_parallel_fraction": 0.948,
+        "amdahl_if_fully_parallel": 4.0
+      },
+      "sampling": {
+        "accuracy": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "composed": [
+          {
+            "questions": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "predicted_product": 1.0,
+            "measured": 1.0
+          },
+          {
+            "questions": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "predicted_product": 1.0,
+            "measured": 1.0
+          },
+          {
+            "questions": [
+              8,
+              9,
+              10,
+              11
+            ],
+            "predicted_product": 1.0,
+            "measured": 1.0
+          }
+        ],
+        "votes": [
+          {
+            "question": 0,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 1,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 2,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 3,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 4,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 5,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 6,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 7,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 8,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 9,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 10,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 11,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          }
+        ]
+      },
+      "research": [
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 1,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1501,
+            "output_tokens": 212,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002561,
+          "seconds": 3.166,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-VANILLA\n- **Guests:** 1\n- **Portions per Tub:** 10\n- **Tubs Needed:** 1\n- **Total Cost:** $5.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. The quote shows that for 1 guest, you'll need 1 tub of the vanilla catering option, which will cost $5.00.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 9,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1501,
+            "output_tokens": 209,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002546,
+          "seconds": 3.021,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-VANILLA\n- **Number of Guests:** 9\n- **Portions per Tub:** 10\n- **Tubs Required:** 1\n- **Total Cost:** $5.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. For 9 guests, you'll need 1 tub of the vanilla catering option, which will cost $5.00.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 10,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1501,
+            "output_tokens": 200,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002501,
+          "seconds": 2.474,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-VANILLA\n- **Number of Guests:** 10\n- **Portions per Tub:** 10\n- **Tubs Required:** 1\n- **Total Cost:** $5.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. To proceed with an actual order, you would need to take additional steps through your catering service.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 11,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1502,
+            "output_tokens": 200,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002502,
+          "seconds": 2.491,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-VANILLA\n- **Number of Guests:** 11\n- **Portions per Tub:** 10\n- **Tubs Required:** 2\n- **Total Cost:** $10.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. To proceed with an actual order, you would need to take additional steps through your catering service.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 41,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1502,
+            "output_tokens": 205,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002527,
+          "seconds": 3.039,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-VANILLA\n- **Number of Guests:** 41\n- **Portions per Tub:** 10\n- **Tubs Required:** 5\n- **Total Cost:** $25.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis draft quote is read-only and no stock has been reserved. To proceed with an actual order, you would need to take additional steps through your catering service.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 99,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1502,
+            "output_tokens": 200,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002502,
+          "seconds": 2.651,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-VANILLA\n- **Number of Guests:** 99\n- **Portions per Tub:** 10\n- **Tubs Required:** 10\n- **Total Cost:** $50.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. To proceed with an actual order, you would need to take additional steps through your catering service.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 150,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1502,
+            "output_tokens": 201,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002507,
+          "seconds": 2.946,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-VANILLA\n- **Number of Guests:** 150\n- **Portions per Tub:** 10\n- **Tubs Required:** 15\n- **Total Cost:** $75.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. To proceed with an actual order, you would need to take additional steps through your catering service provider.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 200,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1502,
+            "output_tokens": 214,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002572,
+          "seconds": 2.549,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-VANILLA\n- **Number of Guests:** 200\n- **Portions per Tub:** 10\n- **Tubs Required:** 20\n- **Total Cost:** $100.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. The quote shows that you'll need 20 tubs of the vanilla catering option to serve 200 guests at a total cost of $100.00.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 1,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1501,
+            "output_tokens": 211,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002556,
+          "seconds": 2.64,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-CHOCOLATE\n- **Guests:** 1\n- **Portions per Tub:** 10\n- **Tubs Required:** 1\n- **Total Cost:** $5.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. The quote shows that for 1 guest, you'll need 1 tub of the chocolate catering item, which will cost $5.00.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 9,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1501,
+            "output_tokens": 209,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002546,
+          "seconds": 2.804,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-CHOCOLATE\n- **Number of Guests:** 9\n- **Portions per Tub:** 10\n- **Tubs Required:** 1\n- **Total Cost:** $5.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. For 9 guests, you'll need 1 tub of the chocolate catering option, which will provide sufficient portions for everyone.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 10,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1501,
+            "output_tokens": 192,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002461,
+          "seconds": 2.388,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-CHOCOLATE\n- **Guests:** 10\n- **Portions per Tub:** 10\n- **Tubs Required:** 1\n- **Total Cost:** $5.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. The stock has not been reserved, and no supplies have been purchased.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 11,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1502,
+            "output_tokens": 200,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002502,
+          "seconds": 2.97,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-CHOCOLATE\n- **Number of Guests:** 11\n- **Portions per Tub:** 10\n- **Tubs Required:** 2\n- **Total Cost:** $10.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. To proceed with an actual order, you would need to take additional steps through your catering service.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 41,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1502,
+            "output_tokens": 203,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002517,
+          "seconds": 2.621,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-CHOCOLATE\n- **Guests:** 41\n- **Portions per Tub:** 10\n- **Tubs Required:** 5\n- **Total Cost:** $25.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis draft quote is read-only and no stock has been reserved. To proceed with an actual order, you would need to take additional steps through your catering service.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 99,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1502,
+            "output_tokens": 198,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002492,
+          "seconds": 2.44,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-CHOCOLATE\n- **Guests:** 99\n- **Portions per Tub:** 10\n- **Tubs Required:** 10\n- **Total Cost:** $50.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. To proceed with an actual order, you would need to take additional steps through your catering service.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 150,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1502,
+            "output_tokens": 201,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002507,
+          "seconds": 2.561,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-CHOCOLATE\n- **Number of Guests:** 150\n- **Portions per Tub:** 10\n- **Tubs Required:** 15\n- **Total Cost:** $75.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. To proceed with an actual order, you would need to take additional steps through your catering service provider.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 200,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1502,
+            "output_tokens": 198,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002492,
+          "seconds": 2.463,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-CHOCOLATE\n- **Guests:** 200\n- **Portions per Tub:** 10\n- **Tubs Required:** 20\n- **Total Cost:** $100.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. To proceed with an actual order, you would need to take additional steps through your catering service.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 1,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1505,
+            "output_tokens": 193,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.00247,
+          "seconds": 2.899,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-STRAWBERRY\n- **Guests:** 1\n- **Portions per Tub:** 10\n- **Tubs Required:** 1\n- **Total Cost:** $5.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. No stock has been reserved, and no purchase has been made.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 9,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1505,
+            "output_tokens": 216,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002585,
+          "seconds": 3.103,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-STRAWBERRY\n- **Guests:** 9\n- **Portions per Tub:** 10\n- **Tubs Needed:** 1\n- **Total Cost:** $5.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. The quote shows that for 9 guests, you'll need 1 tub of the strawberry catering item at a total cost of $5.00.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 10,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1505,
+            "output_tokens": 194,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002475,
+          "seconds": 2.359,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-STRAWBERRY\n- **Guests:** 10\n- **Portions per Tub:** 10\n- **Tubs Required:** 1\n- **Total Cost:** $5.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. The stock has not been reserved, and no supplies have been purchased.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 11,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1506,
+            "output_tokens": 200,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002506,
+          "seconds": 2.384,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-STRAWBERRY\n- **Guests:** 11\n- **Portions per Tub:** 10\n- **Tubs Required:** 2\n- **Total Cost:** $10.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. To proceed with an actual order, you would need to take additional steps through your catering service.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 41,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1506,
+            "output_tokens": 207,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002541,
+          "seconds": 3.024,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-STRAWBERRY\n- **Number of Guests:** 41\n- **Portions per Tub:** 10\n- **Tubs Required:** 5\n- **Total Cost:** $25.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis draft quote is read-only and no stock has been reserved. To proceed with an actual order, you would need to take additional steps through your catering service.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 99,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1506,
+            "output_tokens": 200,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002506,
+          "seconds": 2.497,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-STRAWBERRY\n- **Guests:** 99\n- **Portions per Tub:** 10\n- **Tubs Required:** 10\n- **Total Cost:** $50.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. To proceed with an actual order, you would need to take additional steps through your catering service.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 150,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1506,
+            "output_tokens": 194,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002476,
+          "seconds": 2.414,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-STRAWBERRY\n- **Number of Guests:** 150\n- **Portions per Tub:** 10\n- **Tubs Required:** 15\n- **Total Cost:** $75.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis draft quote is ready for your review. Please note that no stock has been reserved at this time.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 200,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1506,
+            "output_tokens": 203,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.002521,
+          "seconds": 2.609,
+          "answer": "Perfect! Here's your catering draft quote:\n\n**Catering Draft Quote**\n- **SKU:** SKU-STRAWBERRY\n- **Number of Guests:** 200\n- **Portions per Tub:** 10\n- **Tubs Required:** 20\n- **Total Cost:** $100.00 USD\n- **Status:** DRAFT_QUOTE\n- **Stock Reserved:** No\n\nThis is a read-only draft quote. To proceed with an actual order, you would need to take additional steps through your catering service provider.",
+          "answer_states_total": true
+        }
+      ],
+      "schema_probe": [
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 1,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 9,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 10,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 11,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 41,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 99,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 150,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 200,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 1,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 9,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 10,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 11,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 41,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 99,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 150,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 200,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 1,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 9,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 10,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 11,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 41,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 99,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 150,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 200,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        }
+      ],
+      "research_summary": {
+        "inquiries": 24,
+        "verified": 24,
+        "statuses": {
+          "DONE": 24
+        },
+        "mean_model_calls": 2,
+        "mean_seconds": 2.688,
+        "median_seconds": 2.615,
+        "cost_usd_total": 0.0604,
+        "answer_states_total": 24
+      },
+      "schema_summary": {
+        "inquiries": 24,
+        "called": 24,
+        "refused_by_strict_dispatch": 0
+      }
+    },
+    "claude-sonnet-5-5": {
+      "parallelism": {
+        "subagents": 4,
+        "rows": [
+          {
+            "sequential_seconds": 6.451,
+            "parallel_seconds": 5.084
+          },
+          {
+            "sequential_seconds": 7.565,
+            "parallel_seconds": 2.216
+          },
+          {
+            "sequential_seconds": 8.786,
+            "parallel_seconds": 1.795
+          }
+        ],
+        "median_speedup": 3.414,
+        "implied_parallel_fraction": 0.943,
+        "amdahl_if_fully_parallel": 4.0
+      },
+      "sampling": {
+        "accuracy": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "composed": [
+          {
+            "questions": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "predicted_product": 1.0,
+            "measured": 1.0
+          },
+          {
+            "questions": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "predicted_product": 1.0,
+            "measured": 1.0
+          },
+          {
+            "questions": [
+              8,
+              9,
+              10,
+              11
+            ],
+            "predicted_product": 1.0,
+            "measured": 1.0
+          }
+        ],
+        "votes": [
+          {
+            "question": 0,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 1,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 2,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 3,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 4,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 5,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 6,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 7,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 8,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 9,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 10,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          },
+          {
+            "question": 11,
+            "single_accuracy": 1.0,
+            "predicted_majority_of_3": 1.0,
+            "measured_majority_of_3": 1.0
+          }
+        ]
+      },
+      "research": [
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 1,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1242,
+            "output_tokens": 312,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.005604,
+          "seconds": 4.758,
+          "answer": "Here is the draft catering quote:\n\n| Field | Value |\n|---|---|\n| SKU | SKU-VANILLA |\n| Guests | 1 |\n| Portions per tub | 10 |\n| Tubs needed | 1 |\n| **Total** | **$5.00 USD** |\n| Status | DRAFT_QUOTE |\n| Stock reserved | No |\n\nThis is a read-only draft. No stock has been reserved and no supplies have been purchased. One tub covers 10 portions, so a single guest uses only a fraction of it. If the guest count goes up, I can re-run the quote, and up to 10 guests would still fit in one tub.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 9,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1240,
+            "output_tokens": 310,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.00558,
+          "seconds": 4.448,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| **SKU** | SKU-VANILLA |\n| **Guests** | 9 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 1 |\n| **Total** | **$5.00 USD** |\n| **Status** | DRAFT_QUOTE |\n\nOne tub covers all 9 guests, with 1 portion left over. This is a read-only draft, so no stock has been reserved (`stock_reserved: false`) and no purchases have been made. Reserving stock or buying supplies would have to be done separately, since I can't do either from here.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 10,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1243,
+            "output_tokens": 264,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.005126,
+          "seconds": 5.405,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| SKU | SKU-VANILLA |\n| Guests | 10 |\n| Portions per tub | 10 |\n| Tubs needed | 1 |\n| **Total** | **$5.00 USD** |\n| Status | DRAFT_QUOTE |\n\nNo stock has been reserved, and no purchases have been made. The quote is read-only. If you want to change the guest count or try another SKU, I can run a new quote.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 11,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1244,
+            "output_tokens": 330,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.005788,
+          "seconds": 4.813,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| **SKU** | SKU-VANILLA |\n| **Guests** | 11 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 2 |\n| **Total** | $10.00 USD |\n| **Status** | DRAFT_QUOTE |\n| **Stock reserved** | No |\n\nEleven guests need 2 tubs, since each tub covers 10 portions. That leaves 9 spare portions.\n\nThis is a read-only draft. No stock has been reserved and no supplies have been purchased. Reserving stock or placing an order would have to be done separately, because I can't do either from here.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 41,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1244,
+            "output_tokens": 338,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.005868,
+          "seconds": 4.691,
+          "answer": "Here is the draft catering quote:\n\n| Item | Details |\n|---|---|\n| **SKU** | SKU-VANILLA |\n| **Guests** | 41 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 5 |\n| **Total** | **$25.00 USD** |\n| **Status** | DRAFT_QUOTE |\n| **Stock reserved** | No |\n\n41 guests at 10 portions per tub needs 5 tubs, which covers up to 50 portions (9 spare). This is a read-only draft, so no stock has been reserved and no supplies have been purchased. If you'd like to go ahead, the reservation and purchasing would need to be done separately, as I can't do either.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 99,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1239,
+            "output_tokens": 355,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.006028,
+          "seconds": 4.783,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| **SKU** | SKU-VANILLA |\n| **Guests** | 99 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 10 |\n| **Total** | **$50.00 USD** (5,000 cents) |\n| **Status** | DRAFT_QUOTE |\n| **Stock reserved** | No |\n\n- 99 guests at 10 portions per tub comes to 10 tubs, rounded up. That leaves 1 spare portion.\n- This is a read-only draft. No stock has been reserved and no supplies have been purchased. I can't do either from here, so those would need to be handled separately.\n\nI can run the quote again with a different guest count or SKU if you'd like.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 150,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1244,
+            "output_tokens": 324,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.005728,
+          "seconds": 4.823,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| SKU | SKU-VANILLA |\n| Guests | 150 |\n| Portions per tub | 10 |\n| Tubs needed | 15 |\n| **Total** | **$75.00 USD** |\n| Status | DRAFT_QUOTE |\n\nThis is a read-only draft. No stock has been reserved (`stock_reserved: false`), and I haven't purchased any supplies. Reserving stock or ordering would need to be done separately, since I can't do either from here.\n\nThe quote assumes one portion per guest. If you want a buffer for extra servings, I can run another quote with a higher guest count.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 200,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1241,
+            "output_tokens": 309,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.005572,
+          "seconds": 4.352,
+          "answer": "Here is the draft catering quote for 200 guests.\n\n| Item | Details |\n|---|---|\n| SKU | SKU-VANILLA |\n| Guests | 200 |\n| Portions per tub | 10 |\n| Tubs needed | 20 |\n| **Total** | **$100.00 USD** |\n| Status | DRAFT_QUOTE |\n\nThis is a read-only draft. No stock has been reserved (`stock_reserved: false`), and I haven't purchased any supplies. The total works out to $5.00 per tub, or $0.50 per guest.\n\nI can run the same calculation for a different guest count or SKU if you want to compare options.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 1,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1252,
+            "output_tokens": 318,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.005684,
+          "seconds": 4.244,
+          "answer": "Here is the draft catering quote:\n\n| Field | Detail |\n|---|---|\n| **SKU** | SKU-CHOCOLATE |\n| **Guests** | 1 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 1 |\n| **Total** | $5.00 USD |\n| **Status** | Draft quote |\n| **Stock reserved** | No |\n\nOne tub covers 10 portions, so a single guest needs one tub and the other 9 portions would go unused. This is a read-only draft. I can't reserve stock or place orders, so nothing has been held or purchased.\n\nIf you have a larger guest count, I can run another quote.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 9,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1252,
+            "output_tokens": 302,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.005524,
+          "seconds": 4.776,
+          "answer": "Here is the draft quote for your catering request.\n\n| Item | Detail |\n|---|---|\n| **SKU** | SKU-CHOCOLATE |\n| **Guests** | 9 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 1 |\n| **Total** | **$5.00 USD** |\n| **Status** | Draft quote |\n\nOne tub covers all 9 guests, with one portion left over. This is a read-only draft, so no stock has been reserved and no purchase has been made. If you'd like to go ahead, the reservation would need to be done separately, since I can't do it from here.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 10,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1255,
+            "output_tokens": 317,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.00568,
+          "seconds": 4.713,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| **SKU** | SKU-CHOCOLATE |\n| **Guests** | 10 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 1 |\n| **Total** | **$5.00 USD** |\n| **Status** | Draft quote |\n\nThis is a read-only draft. No stock has been reserved, and no supplies have been purchased. If you want to proceed, the reservation and purchasing steps would need to be done separately, since I can't do them from here.\n\nI can also run quotes for other SKUs or different guest counts if you want to compare options.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 11,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1265,
+            "output_tokens": 360,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.00613,
+          "seconds": 4.5,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| **SKU** | SKU-CHOCOLATE |\n| **Guests** | 11 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 2 |\n| **Total** | **$10.00 USD** |\n| **Status** | DRAFT_QUOTE |\n\nBecause each tub serves 10 and you have 11 guests, the quote needs 2 tubs. That leaves 9 spare portions, so you could add up to 9 more guests at no extra cost. This is a read-only draft, so no stock has been reserved (`stock_reserved: false`). I can't reserve stock or buy supplies from here, so those steps would need to be done separately.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 41,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1253,
+            "output_tokens": 323,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.005736,
+          "seconds": 6.548,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| SKU | SKU-CHOCOLATE |\n| Guests | 41 |\n| Portions per tub | 10 |\n| Tubs needed | 5 |\n| **Total** | **$25.00 USD** |\n| Status | DRAFT_QUOTE |\n\nFive tubs cover 50 portions, so 41 guests are covered with 9 portions to spare. This is a read-only draft, and no stock has been reserved. I can't reserve stock or buy supplies, so those steps would have to be handled separately.\n\nI can run quotes for other SKUs or guest counts if you'd like to compare.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 99,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1253,
+            "output_tokens": 313,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.005636,
+          "seconds": 4.787,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| **SKU** | SKU-CHOCOLATE |\n| **Guests** | 99 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 10 |\n| **Total** | **$50.00 USD** |\n| **Status** | DRAFT_QUOTE |\n\nTen tubs give 100 portions, which covers all 99 guests with one spare. No stock has been reserved. This is a read-only draft, and I can't reserve stock or buy supplies from here.\n\nI can run the quote again with a different guest count or SKU if you need one.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 150,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1253,
+            "output_tokens": 326,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.005766,
+          "seconds": 5.348,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| **SKU** | SKU-CHOCOLATE |\n| **Guests** | 150 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 15 |\n| **Total** | **$75.00 USD** (7,500 cents) |\n| **Status** | DRAFT_QUOTE |\n\nThis is a read-only draft. No stock has been reserved (`stock_reserved: false`), and I can't reserve stock or purchase supplies. If you want to go ahead, that would have to be done separately.\n\nI can run quotes for other SKUs or guest counts if you'd like to compare.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 200,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1260,
+            "output_tokens": 390,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.00642,
+          "seconds": 5.291,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| **SKU** | SKU-CHOCOLATE |\n| **Guests** | 200 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 20 |\n| **Total** | $100.00 USD (10,000 cents) |\n| **Status** | DRAFT_QUOTE |\n\nThis is a read-only draft, and **no stock has been reserved** (`stock_reserved: false`). I can't reserve stock or purchase supplies, so those steps would need to be handled separately.\n\nThe quote assumes 1 portion per guest, so 200 guests need 20 tubs at 10 portions each. That works out to $5.00 per tub, or $0.50 per guest. If you'd like a buffer for extra servings, I can run another quote with a higher guest count.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 1,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1255,
+            "output_tokens": 325,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.00576,
+          "seconds": 4.308,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| **SKU** | SKU-STRAWBERRY |\n| **Guests** | 1 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 1 |\n| **Total** | $5.00 USD |\n| **Status** | DRAFT_QUOTE |\n| **Stock reserved** | No |\n\nOne tub covers up to 10 portions, so a single guest still needs one full tub. The quote is read-only: no stock has been reserved and no supplies have been purchased. If you'd like a quote for a different guest count or another SKU, send me the values and I'll run it.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 9,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1253,
+            "output_tokens": 303,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.005536,
+          "seconds": 4.67,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| **SKU** | SKU-STRAWBERRY |\n| **Guests** | 9 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 1 |\n| **Total** | **$5.00 USD** |\n| **Status** | DRAFT_QUOTE |\n\nOne tub covers all 9 guests, with one portion left over. This is a read-only draft, so no stock has been reserved (`stock_reserved: false`). I can't reserve stock or buy supplies, so that would have to be handled separately.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 10,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1254,
+            "output_tokens": 288,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.005388,
+          "seconds": 4.398,
+          "answer": "Here is the draft catering quote:\n\n| Item | Details |\n|---|---|\n| **SKU** | SKU-STRAWBERRY |\n| **Guests** | 10 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 1 |\n| **Total** | $5.00 USD |\n| **Status** | DRAFT_QUOTE |\n\nThis is a read-only draft. No stock has been reserved (`stock_reserved: false`), and I can't reserve stock or purchase supplies. If the guest count changes, I can run a new quote.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 11,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1256,
+            "output_tokens": 342,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.005932,
+          "seconds": 4.621,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| SKU | SKU-STRAWBERRY |\n| Guests | 11 |\n| Portions per tub | 10 |\n| Tubs needed | 2 |\n| **Total** | **$10.00 USD** |\n| Status | DRAFT_QUOTE |\n\nWith 11 guests and 10 portions per tub, you need 2 tubs, which leaves 9 spare portions. If you can bring the guest count down to 10, one tub would cover it.\n\nThis is a read-only draft, so no stock has been reserved (`stock_reserved: false`). I can't reserve stock or purchase supplies, so someone else would need to do that to confirm the order.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 41,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1253,
+            "output_tokens": 316,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.005666,
+          "seconds": 4.996,
+          "answer": "I've prepared the draft quote for SKU-STRAWBERRY.\n\n| Item | Detail |\n|---|---|\n| **SKU** | SKU-STRAWBERRY |\n| **Guests** | 41 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 5 |\n| **Total** | **$25.00 USD** |\n| **Status** | DRAFT_QUOTE |\n\nFive tubs cover 50 portions, which leaves 9 spare over the 41 guests. No stock has been reserved, so this is a read-only draft. I can't reserve stock or buy supplies, so those steps would need to be done separately.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 99,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1253,
+            "output_tokens": 386,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.006366,
+          "seconds": 4.952,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| **SKU** | SKU-STRAWBERRY |\n| **Guests** | 99 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 10 |\n| **Total** | **$50.00 USD** |\n| **Status** | DRAFT_QUOTE |\n\n- 99 guests at 10 portions per tub comes to 9.9 tubs, so the quote rounds up to 10 tubs. That leaves 1 spare portion.\n- This is a read-only draft. No stock has been reserved (`stock_reserved: false`), and I can't reserve stock or purchase supplies from here.\n\nTo confirm the order, someone with reservation or purchasing access would need to take that step. I can also run quotes for other SKUs or guest counts if you'd like to compare.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 150,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1255,
+            "output_tokens": 365,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.00616,
+          "seconds": 5.354,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| **SKU** | SKU-STRAWBERRY |\n| **Guests** | 150 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 15 |\n| **Total** | **$75.00 USD** (7,500 cents) |\n| **Status** | DRAFT_QUOTE |\n\n**Notes:**\n- This is a read-only draft. No stock has been reserved (`stock_reserved: false`).\n- The quote assumes one portion per guest, which works out to 15 tubs at 10 portions each.\n- I can't reserve stock or buy supplies, so those steps would need to be handled separately.\n\nIf you want to compare another guest count or SKU, send it over and I'll run another draft.",
+          "answer_states_total": true
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 200,
+          "status": "DONE",
+          "passed": true,
+          "loop_status": "COMPLETED",
+          "model_calls": 2,
+          "tool_calls": 1,
+          "tokens": {
+            "input_tokens": 1265,
+            "output_tokens": 306,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "cost_usd": 0.00559,
+          "seconds": 4.478,
+          "answer": "Here is the draft catering quote:\n\n| Item | Detail |\n|---|---|\n| **SKU** | SKU-STRAWBERRY |\n| **Guests** | 200 |\n| **Portions per tub** | 10 |\n| **Tubs needed** | 20 |\n| **Total** | $100.00 USD |\n| **Status** | DRAFT_QUOTE |\n| **Stock reserved** | No |\n\nThis is a read-only draft. No stock has been reserved and no supplies have been purchased. To confirm the order, the reservation would need to be made separately, since I can't do that from here.",
+          "answer_states_total": true
+        }
+      ],
+      "schema_probe": [
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 1,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 9,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 10,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 11,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 41,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 99,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 150,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-VANILLA",
+          "guests": 200,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 1,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 9,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 10,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 11,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 41,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 99,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 150,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-CHOCOLATE",
+          "guests": 200,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 1,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 9,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 10,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 11,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 41,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 99,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 150,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        },
+        {
+          "sku": "SKU-STRAWBERRY",
+          "guests": 200,
+          "called": true,
+          "arguments": [
+            {}
+          ],
+          "refused_by_strict_dispatch": false
+        }
+      ],
+      "research_summary": {
+        "inquiries": 24,
+        "verified": 24,
+        "statuses": {
+          "DONE": 24
+        },
+        "mean_model_calls": 2,
+        "mean_seconds": 4.836,
+        "median_seconds": 4.767,
+        "cost_usd_total": 0.1383,
+        "answer_states_total": 24
+      },
+      "schema_summary": {
+        "inquiries": 24,
+        "called": 24,
+        "refused_by_strict_dispatch": 0
+      }
+    }
+  },
+  "runs": [
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 0,
+      "sample": 0,
+      "answer": "Deliveries should arrive in the afternoon because Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 0,
+      "sample": 1,
+      "answer": "Deliveries should arrive in the afternoon because Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 0,
+      "sample": 2,
+      "answer": "Deliveries should arrive in the afternoon, because Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 0,
+      "sample": 3,
+      "answer": "Deliveries should arrive in the afternoon because Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 0,
+      "sample": 4,
+      "answer": "Deliveries should arrive in the afternoon because Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 0,
+      "sample": 5,
+      "answer": "Deliveries should arrive in the afternoon, as Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 0,
+      "sample": 6,
+      "answer": "Deliveries should arrive in the afternoon because Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 0,
+      "sample": 7,
+      "answer": "Deliveries should arrive in the afternoon, because Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 0,
+      "sample": 8,
+      "answer": "Deliveries should arrive in the afternoon because Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 0,
+      "sample": 9,
+      "answer": "Deliveries should arrive in the afternoon because Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 1,
+      "sample": 0,
+      "answer": "Priya is the sales contact at Hartwell Dairy.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 1,
+      "sample": 1,
+      "answer": "Priya is the sales contact at Hartwell Dairy.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 1,
+      "sample": 2,
+      "answer": "Priya is the sales contact at Hartwell Dairy.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 1,
+      "sample": 3,
+      "answer": "Priya is the sales contact at Hartwell Dairy.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 1,
+      "sample": 4,
+      "answer": "Priya is the sales contact at Hartwell Dairy.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 1,
+      "sample": 5,
+      "answer": "Priya is the sales contact at Hartwell Dairy.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 1,
+      "sample": 6,
+      "answer": "Priya is the sales contact at Hartwell Dairy.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 1,
+      "sample": 7,
+      "answer": "Priya is the sales contact at Hartwell Dairy.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 1,
+      "sample": 8,
+      "answer": "Priya is the sales contact at Hartwell Dairy.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 1,
+      "sample": 9,
+      "answer": "Priya is the sales contact at Hartwell Dairy.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 2,
+      "sample": 0,
+      "answer": "A tub of strawberry costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 2,
+      "sample": 1,
+      "answer": "A tub of strawberry costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 2,
+      "sample": 2,
+      "answer": "A tub of strawberry costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 2,
+      "sample": 3,
+      "answer": "A tub of strawberry costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 2,
+      "sample": 4,
+      "answer": "A tub of strawberry costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 2,
+      "sample": 5,
+      "answer": "A tub of strawberry costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 2,
+      "sample": 6,
+      "answer": "A tub of strawberry costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 2,
+      "sample": 7,
+      "answer": "A tub of strawberry costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 2,
+      "sample": 8,
+      "answer": "A tub of strawberry costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 2,
+      "sample": 9,
+      "answer": "A tub of strawberry costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 3,
+      "sample": 0,
+      "answer": "The freezer can hold at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 3,
+      "sample": 1,
+      "answer": "The freezer can hold at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 3,
+      "sample": 2,
+      "answer": "The freezer can hold at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 3,
+      "sample": 3,
+      "answer": "The freezer can hold at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 3,
+      "sample": 4,
+      "answer": "The freezer can hold at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 3,
+      "sample": 5,
+      "answer": "The freezer can hold at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 3,
+      "sample": 6,
+      "answer": "The freezer can hold at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 3,
+      "sample": 7,
+      "answer": "The freezer can hold at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 3,
+      "sample": 8,
+      "answer": "The freezer holds at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 3,
+      "sample": 9,
+      "answer": "The freezer can hold at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 4,
+      "sample": 0,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 4,
+      "sample": 1,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 4,
+      "sample": 2,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 4,
+      "sample": 3,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 4,
+      "sample": 4,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 4,
+      "sample": 5,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 4,
+      "sample": 6,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 4,
+      "sample": 7,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 4,
+      "sample": 8,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 4,
+      "sample": 9,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 5,
+      "sample": 0,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 5,
+      "sample": 1,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 5,
+      "sample": 2,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 5,
+      "sample": 3,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 5,
+      "sample": 4,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 5,
+      "sample": 5,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 5,
+      "sample": 6,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 5,
+      "sample": 7,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 5,
+      "sample": 8,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 5,
+      "sample": 9,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 6,
+      "sample": 0,
+      "answer": "Lucy must approve any order above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 6,
+      "sample": 1,
+      "answer": "Lucy must approve orders above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 6,
+      "sample": 2,
+      "answer": "Lucy must approve any order above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 6,
+      "sample": 3,
+      "answer": "Lucy must approve orders above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 6,
+      "sample": 4,
+      "answer": "Lucy must approve every order above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 6,
+      "sample": 5,
+      "answer": "Lucy must approve orders above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 6,
+      "sample": 6,
+      "answer": "Lucy must approve orders above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 6,
+      "sample": 7,
+      "answer": "Lucy must approve orders above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 6,
+      "sample": 8,
+      "answer": "Lucy must approve orders above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 6,
+      "sample": 9,
+      "answer": "Lucy must approve orders above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 7,
+      "sample": 0,
+      "answer": "Meadow Farm delivers on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 7,
+      "sample": 1,
+      "answer": "Meadow Farm delivers on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 7,
+      "sample": 2,
+      "answer": "Meadow Farm delivers on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 7,
+      "sample": 3,
+      "answer": "Meadow Farm delivers on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 7,
+      "sample": 4,
+      "answer": "Meadow Farm delivers on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 7,
+      "sample": 5,
+      "answer": "Meadow Farm delivers on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 7,
+      "sample": 6,
+      "answer": "Meadow Farm delivers on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 7,
+      "sample": 7,
+      "answer": "Meadow Farm delivers on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 7,
+      "sample": 8,
+      "answer": "Meadow Farm delivers on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 7,
+      "sample": 9,
+      "answer": "Meadow Farm delivers on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 8,
+      "sample": 0,
+      "answer": "The minimum order at Cocoa Works is ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 8,
+      "sample": 1,
+      "answer": "The minimum order at Cocoa Works is ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 8,
+      "sample": 2,
+      "answer": "The minimum order at Cocoa Works is ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 8,
+      "sample": 3,
+      "answer": "The minimum order at Cocoa Works is ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 8,
+      "sample": 4,
+      "answer": "The minimum order at Cocoa Works is ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 8,
+      "sample": 5,
+      "answer": "The minimum order at Cocoa Works is ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 8,
+      "sample": 6,
+      "answer": "The minimum order at Cocoa Works is ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 8,
+      "sample": 7,
+      "answer": "The minimum order at Cocoa Works is ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 8,
+      "sample": 8,
+      "answer": "The minimum order at Cocoa Works is ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 8,
+      "sample": 9,
+      "answer": "The minimum order at Cocoa Works is ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 9,
+      "sample": 0,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 9,
+      "sample": 1,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 9,
+      "sample": 2,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 9,
+      "sample": 3,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 9,
+      "sample": 4,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 9,
+      "sample": 5,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 9,
+      "sample": 6,
+      "answer": "The morning brief arrives at Lucy's phone at eight o'clock.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 9,
+      "sample": 7,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 9,
+      "sample": 8,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 9,
+      "sample": 9,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 10,
+      "sample": 0,
+      "answer": "Tom is allergic to nuts, so pistachio is not stocked.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 10,
+      "sample": 1,
+      "answer": "Tom is allergic to nuts, so pistachio is not stocked.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 10,
+      "sample": 2,
+      "answer": "Tom is allergic to nuts, so pistachio is not stocked.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 10,
+      "sample": 3,
+      "answer": "Tom is allergic to nuts, so pistachio is not stocked.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 10,
+      "sample": 4,
+      "answer": "Tom is allergic to nuts, so pistachio is not stocked.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 10,
+      "sample": 5,
+      "answer": "Tom is allergic to nuts, so pistachio is not stocked.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 10,
+      "sample": 6,
+      "answer": "Tom is allergic to nuts, so pistachio is not stocked.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 10,
+      "sample": 7,
+      "answer": "Tom is allergic to nuts, so pistachio is not stocked.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 10,
+      "sample": 8,
+      "answer": "Tom is allergic to nuts, so pistachio is not stocked.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 10,
+      "sample": 9,
+      "answer": "Tom is allergic to nuts, so pistachio is not stocked.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 11,
+      "sample": 0,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first of each month.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 11,
+      "sample": 1,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 11,
+      "sample": 2,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first of each month.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 11,
+      "sample": 3,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 11,
+      "sample": 4,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 11,
+      "sample": 5,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 11,
+      "sample": 6,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 11,
+      "sample": 7,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 11,
+      "sample": 8,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "question": 11,
+      "sample": 9,
+      "answer": "Marcus receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 0,
+      "sample": 0,
+      "answer": "Deliveries should arrive in the afternoon, since Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 0,
+      "sample": 1,
+      "answer": "Deliveries should arrive in the afternoon, since Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 0,
+      "sample": 2,
+      "answer": "Deliveries should arrive in the afternoon, since Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 0,
+      "sample": 3,
+      "answer": "Deliveries should arrive in the afternoon, since Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 0,
+      "sample": 4,
+      "answer": "Deliveries should arrive in the afternoon, since Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 0,
+      "sample": 5,
+      "answer": "Deliveries should arrive in the afternoon, since Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 0,
+      "sample": 6,
+      "answer": "Deliveries should arrive in the afternoon, since Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 0,
+      "sample": 7,
+      "answer": "Deliveries should arrive in the afternoon, since Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 0,
+      "sample": 8,
+      "answer": "Deliveries should arrive in the afternoon, since Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 0,
+      "sample": 9,
+      "answer": "Deliveries should arrive in the afternoon, since Lucy opens the shop alone in the morning.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 1,
+      "sample": 0,
+      "answer": "The sales contact at Hartwell Dairy is Priya.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 1,
+      "sample": 1,
+      "answer": "The sales contact at Hartwell Dairy is Priya.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 1,
+      "sample": 2,
+      "answer": "The sales contact at Hartwell Dairy is Priya.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 1,
+      "sample": 3,
+      "answer": "The sales contact at Hartwell Dairy is Priya.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 1,
+      "sample": 4,
+      "answer": "Priya is the sales contact at Hartwell Dairy.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 1,
+      "sample": 5,
+      "answer": "The sales contact at Hartwell Dairy is Priya.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 1,
+      "sample": 6,
+      "answer": "Priya is the sales contact at Hartwell Dairy.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 1,
+      "sample": 7,
+      "answer": "Priya is the sales contact at Hartwell Dairy.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 1,
+      "sample": 8,
+      "answer": "The sales contact at Hartwell Dairy is Priya.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 1,
+      "sample": 9,
+      "answer": "The sales contact at Hartwell Dairy is Priya.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 2,
+      "sample": 0,
+      "answer": "A tub of strawberry from Meadow Farm costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 2,
+      "sample": 1,
+      "answer": "A tub of strawberry from Meadow Farm costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 2,
+      "sample": 2,
+      "answer": "A tub of strawberry from Meadow Farm costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 2,
+      "sample": 3,
+      "answer": "A tub of strawberry from Meadow Farm costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 2,
+      "sample": 4,
+      "answer": "A tub of strawberry from Meadow Farm costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 2,
+      "sample": 5,
+      "answer": "A tub of strawberry from Meadow Farm costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 2,
+      "sample": 6,
+      "answer": "A tub of strawberry from Meadow Farm costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 2,
+      "sample": 7,
+      "answer": "A tub of strawberry from Meadow Farm costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 2,
+      "sample": 8,
+      "answer": "A tub of strawberry from Meadow Farm costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 2,
+      "sample": 9,
+      "answer": "A tub of strawberry from Meadow Farm costs 275 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 3,
+      "sample": 0,
+      "answer": "The freezer holds at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 3,
+      "sample": 1,
+      "answer": "The freezer holds at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 3,
+      "sample": 2,
+      "answer": "The freezer holds at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 3,
+      "sample": 3,
+      "answer": "The freezer holds at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 3,
+      "sample": 4,
+      "answer": "The freezer holds at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 3,
+      "sample": 5,
+      "answer": "The freezer holds at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 3,
+      "sample": 6,
+      "answer": "The freezer holds at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 3,
+      "sample": 7,
+      "answer": "The freezer holds at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 3,
+      "sample": 8,
+      "answer": "The freezer holds at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 3,
+      "sample": 9,
+      "answer": "The freezer holds at most forty tubs in total.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 4,
+      "sample": 0,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 4,
+      "sample": 1,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 4,
+      "sample": 2,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 4,
+      "sample": 3,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 4,
+      "sample": 4,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 4,
+      "sample": 5,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 4,
+      "sample": 6,
+      "answer": "On Saturdays the shop opens at ten (and closes at four).",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 4,
+      "sample": 7,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 4,
+      "sample": 8,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 4,
+      "sample": 9,
+      "answer": "The shop opens at ten on Saturdays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 5,
+      "sample": 0,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 5,
+      "sample": 1,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 5,
+      "sample": 2,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 5,
+      "sample": 3,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 5,
+      "sample": 4,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 5,
+      "sample": 5,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 5,
+      "sample": 6,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 5,
+      "sample": 7,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 5,
+      "sample": 8,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 5,
+      "sample": 9,
+      "answer": "The reorder point for chocolate is six tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 6,
+      "sample": 0,
+      "answer": "Lucy must personally approve every order above 2000 cents.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 6,
+      "sample": 1,
+      "answer": "Lucy must approve every order above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 6,
+      "sample": 2,
+      "answer": "Lucy approves every order above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 6,
+      "sample": 3,
+      "answer": "Lucy must approve every order above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 6,
+      "sample": 4,
+      "answer": "Lucy must approve any order above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 6,
+      "sample": 5,
+      "answer": "Lucy approves every order above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 6,
+      "sample": 6,
+      "answer": "Lucy must approve every order above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 6,
+      "sample": 7,
+      "answer": "Lucy approves every order above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 6,
+      "sample": 8,
+      "answer": "Lucy must approve any order above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 6,
+      "sample": 9,
+      "answer": "Lucy must approve any order above 2000 cents herself.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 7,
+      "sample": 0,
+      "answer": "Meadow Farm delivers only on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 7,
+      "sample": 1,
+      "answer": "Meadow Farm delivers only on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 7,
+      "sample": 2,
+      "answer": "Meadow Farm delivers only on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 7,
+      "sample": 3,
+      "answer": "Meadow Farm delivers only on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 7,
+      "sample": 4,
+      "answer": "Meadow Farm delivers only on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 7,
+      "sample": 5,
+      "answer": "Meadow Farm delivers only on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 7,
+      "sample": 6,
+      "answer": "Meadow Farm delivers only on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 7,
+      "sample": 7,
+      "answer": "Meadow Farm delivers only on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 7,
+      "sample": 8,
+      "answer": "Meadow Farm delivers only on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 7,
+      "sample": 9,
+      "answer": "Meadow Farm delivers only on Tuesdays and Fridays.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 8,
+      "sample": 0,
+      "answer": "Cocoa Works has a minimum order of ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 8,
+      "sample": 1,
+      "answer": "Cocoa Works has a minimum order of ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 8,
+      "sample": 2,
+      "answer": "Cocoa Works has a minimum order of ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 8,
+      "sample": 3,
+      "answer": "Cocoa Works has a minimum order of ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 8,
+      "sample": 4,
+      "answer": "Cocoa Works has a minimum order of ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 8,
+      "sample": 5,
+      "answer": "Cocoa Works has a minimum order of ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 8,
+      "sample": 6,
+      "answer": "Cocoa Works has a minimum order of ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 8,
+      "sample": 7,
+      "answer": "Cocoa Works has a minimum order of ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 8,
+      "sample": 8,
+      "answer": "Cocoa Works has a minimum order of ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 8,
+      "sample": 9,
+      "answer": "Cocoa Works has a minimum order of ten tubs.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 9,
+      "sample": 0,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 9,
+      "sample": 1,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 9,
+      "sample": 2,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 9,
+      "sample": 3,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 9,
+      "sample": 4,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 9,
+      "sample": 5,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 9,
+      "sample": 6,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 9,
+      "sample": 7,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 9,
+      "sample": 8,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 9,
+      "sample": 9,
+      "answer": "The morning brief goes to Lucy's phone at eight.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 10,
+      "sample": 0,
+      "answer": "Pistachio isn't stocked because Tom, who works in the shop on Saturdays, is allergic to nuts.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 10,
+      "sample": 1,
+      "answer": "Pistachio isn't stocked because Tom, who works Saturdays, is allergic to nuts.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 10,
+      "sample": 2,
+      "answer": "Pistachio isn't stocked because Tom, who works Saturdays, is allergic to nuts.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 10,
+      "sample": 3,
+      "answer": "Pistachio isn't stocked because Tom, who works Saturdays, is allergic to nuts.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 10,
+      "sample": 4,
+      "answer": "Pistachio isn't stocked because Tom, who works Saturdays, is allergic to nuts.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 10,
+      "sample": 5,
+      "answer": "Pistachio isn't stocked because Tom, who works Saturdays, is allergic to nuts.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 10,
+      "sample": 6,
+      "answer": "Pistachio isn't stocked because Tom, who works Saturdays, is allergic to nuts.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 10,
+      "sample": 7,
+      "answer": "Pistachio isn't stocked because Tom, who works Saturdays, is allergic to nuts.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 10,
+      "sample": 8,
+      "answer": "Pistachio isn't stocked because Tom, who works Saturdays, is allergic to nuts (it was tried once in 2024 and removed after he joined).",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 10,
+      "sample": 9,
+      "answer": "Tom, who works Saturdays, is allergic to nuts, so pistachio isn't stocked.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 11,
+      "sample": 0,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 11,
+      "sample": 1,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 11,
+      "sample": 2,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 11,
+      "sample": 3,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 11,
+      "sample": 4,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 11,
+      "sample": 5,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 11,
+      "sample": 6,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 11,
+      "sample": 7,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 11,
+      "sample": 8,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "question": 11,
+      "sample": 9,
+      "answer": "Marcus, the accountant, receives the monthly spending report on the first.",
+      "correct": true
+    }
+  ],
+  "seconds": 634.2,
+  "usage": {
+    "provider": "anthropic",
+    "requests": 434,
+    "usage": {
+      "claude-haiku-4-5-20251001": {
+        "input_tokens": 149869,
+        "output_tokens": 8303,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "claude-sonnet-5-5": {
+        "input_tokens": 185585,
+        "output_tokens": 12448,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "costUsd": 0.687,
+    "prices": "USD per million tokens, platform.claude.com pricing page, 2026-09-29",
+    "settings": {
+      "claude-haiku-4-5-20251001": {
+        "temperature": 0
+      },
+      "claude-sonnet-5-5": {
+        "thinking": {
+          "type": "between_tools"
+        }
+      }
+    },
+    "ceilingUsd": 4.0
+  }
+}
