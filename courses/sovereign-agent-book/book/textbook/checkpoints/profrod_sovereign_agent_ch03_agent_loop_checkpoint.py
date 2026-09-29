@@ -133,6 +133,75 @@ def reliability():
     print("ok   the budget formula gives the smallest budget reaching 99%")
 
 
+class CountingTools:
+    """The shop's dispatcher, counting what the loop actually invokes."""
+
+    def __init__(self):
+        self.inner = SHOP_TOOLS["build_tools"](SHOP_TOOLS["SHOP"])
+        self.invoked = []
+
+    def schemas(self):
+        return self.inner.schemas()
+
+    def invoke(self, call):
+        self.invoked.append(call.id)
+        return self.inner.invoke(call)
+
+
+def boundaries():
+    """The loop's limits, each checked against the learner's run_loop with authored turns."""
+
+    def run(turns, **limits):
+        tools = CountingTools()
+        return run_loop(ReplayModel(turns), tools, MESSAGES, limits=Limits(**limits)), tools
+
+    stock = ToolCall(id="stock-1", name="list_stock", arguments={})
+    before = json.dumps(MESSAGES)
+
+    # A reply that arrives after the deadline is discarded, and none of its calls run.
+    now = [0.0]
+
+    class LateModel:
+        def complete(self, messages, tools, *, timeout, max_output_tokens):
+            messages.append({"role": "user", "content": "the model edits its copy"})
+            now[0] += 61
+            return ModelTurn(calls=(stock,))
+
+    tools = CountingTools()
+    late = run_loop(LateModel(), tools, MESSAGES, limits=Limits(), clock=lambda: now[0])
+    assert late.status == "TIME_LIMIT" and tools.invoked == [] and len(late.messages) == 2
+
+    again = ModelTurn(calls=(stock,))
+    result, tools = run([ModelTurn(calls=(stock,)), again])
+    assert result.status == "REPEATED_CALL_ID" and tools.invoked == ["stock-1"]
+    result, tools = run([ModelTurn(calls=(stock, stock))])
+    assert result.status == "REPEATED_CALL_ID" and tools.invoked == []
+
+    # A five-cent budget admits one three-cent call, then refuses the next before sending it.
+    second = ToolCall(id="stock-2", name="list_stock", arguments={})
+    turns = [ModelTurn(calls=(stock,)), ModelTurn(calls=(second,))]
+    result, _ = run(turns, estimated_call_cents=3, model_budget_cents=5)
+    assert result.status == "MODEL_COST_LIMIT" and result.model_calls == 1
+
+    three = tuple(ToolCall(id=f"s{i}", name="list_stock", arguments={}) for i in range(3))
+    result, tools = run([ModelTurn(calls=three)], tool_calls=2)
+    assert result.status == "TOOL_LIMIT" and tools.invoked == []
+
+    result, _ = run([ModelTurn(content="done", output_tokens=2_000)])
+    assert result.status == "INVALID_USAGE"
+    result, _ = run([ModelTurn(content="   ")])
+    assert result.status == "EMPTY_REPLY"
+    result, _ = run([])
+    assert result.status == "MODEL_FAILED"
+    result, _ = run([ModelTurn(calls=(stock,))] * 3, model_calls=1)
+    assert result.status == "MODEL_CALL_LIMIT"
+    assert json.dumps(MESSAGES) == before, "the loop changed the caller's messages"
+    print(
+        "ok   boundaries: late reply, repeated ids, cost and tool limits before sending, "
+        "bad usage, empty reply, model failure, call limit; caller's messages unchanged"
+    )
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--live", action="store_true")
@@ -140,6 +209,7 @@ def main():
     parser.add_argument("--transcript", action="store_true")
     args = parser.parse_args()
     reliability()
+    boundaries()
     model = HTTPModel(model=args.model) if args.live else ReplayModel(opening_turns())
     dispatcher = SHOP_TOOLS["build_tools"](SHOP_TOOLS["SHOP"])
     result = run_loop(model, dispatcher, MESSAGES, limits=Limits())
