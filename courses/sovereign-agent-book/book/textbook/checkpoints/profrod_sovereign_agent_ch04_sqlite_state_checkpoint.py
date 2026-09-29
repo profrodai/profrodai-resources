@@ -10,6 +10,8 @@ methods. The last example is a negative control: a store that swallows the injec
 must be caught by the same observer.
 """
 
+import json
+import math
 import runpy
 import sqlite3
 import tempfile
@@ -168,7 +170,39 @@ def main() -> None:
             seen["stock"] != seen["sums"],
         )
 
+    measured_contention()
     print("Chapter 4 checkpoint: durable state holds across reopen, failure, replay and version.")
+
+
+def measured_contention() -> None:
+    """The experiment's receipt: each rate and interval recomputed, each prediction rechecked."""
+    receipt = json.loads(
+        (
+            Path(__file__).resolve().parents[3]
+            / "docs/evidence/book-ch04/ch04-state-receipt-v1.json"
+        ).read_text()
+    )
+    crash = receipt["crash"]
+    check(
+        "receipt: the crash inside a transaction kept the invariant, and outside it did not",
+        crash["inside_transaction"]["invariant_holds"]
+        and not crash["without_transaction"]["invariant_holds"],
+    )
+    for row in receipt["contention"]:
+        n, refused = row["attempts"], row["refused"]
+        z, p = 1.96, refused / n
+        center = (p + z * z / (2 * n)) / (1 + z * z / n)
+        half = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / (1 + z * z / n)
+        interval = [round(max(0.0, center - half), 4), round(min(1.0, center + half), 4)]
+        predicted = min(row["hold_ms"] / row["period_ms"], 1.0) if row["busy_timeout_s"] == 0 else 0
+        inside = interval[0] <= predicted <= interval[1]
+        check(
+            f"receipt: h={row['hold_ms']} ms, timeout {row['busy_timeout_s']} s recomputes",
+            row["refused_rate"] == p
+            and row["refused_rate_95"] == interval
+            and row["predicted_refused_rate"] == predicted
+            and row["prediction_inside_interval"] == inside,
+        )
 
 
 if __name__ == "__main__":

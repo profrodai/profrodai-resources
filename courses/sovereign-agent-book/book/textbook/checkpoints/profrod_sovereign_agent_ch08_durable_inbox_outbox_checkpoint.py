@@ -10,6 +10,7 @@ learner's loop produced it. An independent reader checks every expectation. The 
 negative control: a finish that forgets the report must be caught.
 """
 
+import json
 import runpy
 import sqlite3
 import tempfile
@@ -169,9 +170,43 @@ def main():
             seen["finished_without_report"] == 1,
         )
 
+    measured_work()
     print(
         "Chapter 8 checkpoint: work is admitted once, finished with its report, and sent honestly."
     )
+
+
+def measured_work():
+    """The experiment's receipt: the delivery models and Little's law, rechecked from its rows."""
+    receipt = json.loads(
+        (
+            Path(__file__).resolve().parents[3]
+            / "docs/evidence/book-ch08/ch08-work-receipt-v1.json"
+        ).read_text()
+    )
+    lost, reply = receipt["delivery"]["lost_before"], receipt["delivery"]["reply_lost"]
+    rows = {row["policy"]: row for row in receipt["delivery"]["rows"]}
+    check(
+        "receipt: never resending delivers 1 - l, one copy each",
+        abs(rows["never resend"]["predicted"]["delivered"] - (1 - lost)) < 1e-12,
+    )
+    check(
+        "receipt: three sends deliver 1 - l^3; the receiver's dedup removes every extra copy",
+        abs(rows["retry up to 3"]["predicted"]["delivered"] - (1 - lost**3)) < 1e-9
+        and rows["retry up to 3, receiver drops repeats"]["at_least_two"] == 0
+        and reply > 0,
+    )
+    for row in rows.values():
+        check(
+            f"receipt: {row['policy']} measured within 0.005 of the model",
+            all(abs(row[k] - row["predicted"][k]) < 0.005 for k in ("delivered", "copies")),
+        )
+    for row in receipt["little"]:
+        check(
+            f"receipt: Little's law, lambda {row['arrival_per_tick']}, capacity {row['capacity']}",
+            row["lambda_times_W"] == round(row["lambda_accepted"] * row["W_measured"], 4)
+            and abs(row["L_measured"] - row["lambda_times_W"]) <= 0.02 * row["lambda_times_W"],
+        )
 
 
 if __name__ == "__main__":
