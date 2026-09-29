@@ -12,23 +12,15 @@ import statistics
 import tempfile
 from pathlib import Path
 
-from reference_organizations.store.agent import OfflineShopModel, seed_lucy, shop_dispatcher
-from reference_organizations.store.evaluation import CASES, candidate_checks, evaluate
-from sovereign_agent.agent_loop import run_loop
-from sovereign_agent.assistant_context import (
-    activate_skill,
-    context,
-    remember,
-    skill_snapshot,
-    stage_skill,
-)
-from sovereign_agent.database import Database
-from sovereign_agent.model_turn import HTTPModel
-
 BOOK = Path(__file__).resolve().parents[1]
 SENSITIVITY = runpy.run_path(
     str(BOOK / "learner/profrod_sovereign_agent_ch07_prompt_sensitivity_learner.py")
 )
+SKILLS = runpy.run_path(str(BOOK / "learner/profrod_sovereign_agent_ch07_skills_learner.py"))
+MEMORY, LOOP = SKILLS["MEMORY"], SKILLS["LOOP"]
+TOOLS = LOOP["shop_tools"]
+ModelTurn, ToolCall, Replay = LOOP["ModelTurn"], LOOP["ToolCall"], LOOP["ReplayModel"]
+SOURCE = BOOK / "skills/profrod_sovereign_agent_textbook_opening_check_v1.toml"
 
 
 def prompt_sensitivity():
@@ -57,6 +49,156 @@ def prompt_sensitivity():
     print("ok   every prompt's accuracy recomputes from the retained answers")
 
 
+def refused(error, action):
+    try:
+        action()
+    except error:
+        return True
+    return False
+
+
+def admission(root):
+    """Bounded reads, strict records and immutable versions, refused before anything is stored."""
+    read_skill, skill_model = SKILLS["read_skill"], SKILLS["Skill"]
+    bounded = root / "bounded.toml"
+    bounded.write_bytes(b"x" * 16_384)
+    assert len(read_skill(bounded)) == 16_384
+    bounded.write_bytes(b"x" * 16_385)
+    assert refused(ValueError, lambda: read_skill(bounded))
+    link = root / "link.toml"
+    link.symlink_to(SOURCE.resolve())
+    assert refused(ValueError, lambda: read_skill(link))
+    assert refused(ValueError, lambda: skill_model.model_validate({"name": "x", "version": "1"}))
+    db = SKILLS["open_skills"](root / "admission.sqlite")
+    SKILLS["stage_skill"](db, SOURCE)
+    SKILLS["stage_skill"](db, SOURCE)
+    changed = root / "changed.toml"
+    changed.write_text('name="opening_check"\nversion="1"\ninstructions="Summarize stock only"\n')
+    assert refused(ValueError, lambda: SKILLS["stage_skill"](db, changed))
+    row = db.connection.execute("SELECT count(*), sum(active) FROM assistant_skills").fetchone()
+    assert tuple(row) == (1, 0)
+    print("Bounded read, strict record and immutable version: refusals before storage")
+    db.close()
+
+
+def judged(root):
+    """The evaluator judges tool observations, so a near miss fails its case."""
+    stock = ModelTurn(calls=(ToolCall(id="s", name="list_stock", arguments={}),))
+
+    def draft(identifier, sku, quantity):
+        arguments = {"sku": sku, "quantity": quantity}
+        return ToolCall(id=identifier, name="draft_order", arguments=arguments)
+
+    skill = SKILLS["load_skill"](SOURCE)
+    wrong_opening = {
+        "only vanilla": [stock, ModelTurn(calls=(draft("v", "V", 6),)), ModelTurn("V 6, USD")],
+        "prose only": [stock, ModelTurn("Vanilla 6 and strawberry 4 tubs, USD")],
+        "refused then right": [
+            stock,
+            ModelTurn(calls=(draft("x", "V", 5),)),
+            ModelTurn(calls=(draft("v", "V", 6), draft("strawberry", "S", 4))),
+            ModelTurn("V 6 and S 4, USD"),
+        ],
+    }
+    for turns in wrong_opening.values():
+        models = iter([Replay(turns), SKILLS["OfflineShopModel"](), SKILLS["OfflineShopModel"]()])
+        results = SKILLS["evaluate_opening"](lambda models=models: next(models), skill)
+        assert results == {"opening": False, "at_threshold": True, "reserved_stock": True}
+    tools = SKILLS["case_tools"](SKILLS["OPENING_CASES"][0])
+    assert tools.invoke(draft("q", "V", 5)) == {"ok": False, "error": "tool_failed"}
+    print("Evaluator fails a partial draft, prose without drafts and a refused tool call")
+
+
+def activation(root, model_factory):
+    """Evaluation gates activation; a stale baseline or a missing case refuses it."""
+    activate, snapshot = SKILLS["activate_skill"], SKILLS["skill_snapshot"]
+    required = frozenset(case.name for case in SKILLS["OPENING_CASES"])
+    path = root / "agent.sqlite"
+    db = SKILLS["open_skills"](path)
+    MEMORY["remember"](db, "lucy", "format", "three bullets", "lucy/message/3")
+    candidate = SKILLS["stage_skill"](db, SOURCE)
+    print("Active before evaluation:", len(snapshot(db)[1]))
+    assert refused(
+        ValueError,
+        lambda: activate(
+            db, "opening_check", "1", evaluate=lambda s: {"opening": True}, required_cases=required
+        ),
+    )
+    assert refused(
+        ValueError,
+        lambda: activate(
+            db,
+            "opening_check",
+            "1",
+            evaluate=lambda s: dict.fromkeys(required, 1),
+            required_cases=required,
+        ),
+    )
+    assert refused(
+        ValueError, lambda: activate(db, "missing", "1", evaluate=dict, required_cases=required)
+    )
+    assert refused(
+        ValueError,
+        lambda: activate(
+            db, "opening_check", "1", evaluate=lambda s: {}, required_cases=frozenset()
+        ),
+    )
+    reports = []
+
+    def check(skill):
+        reports.append(SKILLS["evaluate_opening"](model_factory, skill))
+        return reports[-1]
+
+    stale = snapshot(db)[0]
+    reporting = root / "reporting.toml"
+    reporting.write_text('name="reporting"\nversion="1"\ninstructions="Use short headings"\n')
+    SKILLS["stage_skill"](db, reporting)
+    activate(
+        db,
+        "reporting",
+        "1",
+        evaluate=lambda s: {"probe": True},
+        required_cases=frozenset({"probe"}),
+    )
+    assert refused(
+        PermissionError,
+        lambda: activate(
+            db,
+            candidate.name,
+            candidate.version,
+            evaluate=check,
+            required_cases=required,
+            expected_state=stale,
+        ),
+    )
+    try:
+        activate(db, candidate.name, candidate.version, evaluate=check, required_cases=required)
+    except ValueError:
+        print("Candidate activation: REFUSED", json.dumps(reports[-1]))
+        db.close()
+        return None
+    print("Candidate cases:", len(reports[-1]), all(reports[-1].values()))
+    second = root / "reporting-2.toml"
+    second.write_text('name="reporting"\nversion="2"\ninstructions="Use one heading"\n')
+    SKILLS["stage_skill"](db, second)
+    activate(
+        db,
+        "reporting",
+        "2",
+        evaluate=lambda s: {"probe": True},
+        required_cases=frozenset({"probe"}),
+    )
+    activate(
+        db,
+        "reporting",
+        "1",
+        evaluate=lambda s: {"probe": True},
+        required_cases=frozenset({"probe"}),
+    )
+    db.close()
+    return path
+
+
 def main():
     prompt_sensitivity()
     parser = argparse.ArgumentParser(description=__doc__)
@@ -65,67 +207,45 @@ def main():
     parser.add_argument("--transcript", action="store_true")
     args = parser.parse_args()
     model_factory = (
-        (lambda: HTTPModel(model=args.model, reasoning_effort="none"))
+        (lambda: LOOP["HTTPModel"](model=args.model, reasoning_effort="none"))
         if args.live
-        else OfflineShopModel
+        else SKILLS["OfflineShopModel"]
     )
     with tempfile.TemporaryDirectory(prefix="lucy-skills-") as temporary:
-        path = Path(temporary) / "agent.sqlite"
-        db = Database(path)
-        seed_lucy(db)
-        remember(db, "lucy", "format", "three bullets", "lucy/message/3")
-        source = (
-            Path(__file__).parents[1]
-            / "skills"
-            / "profrod_sovereign_agent_textbook_opening_check_v1.toml"
-        )
-        candidate = stage_skill(db, source)
-        print("Active before evaluation:", len(skill_snapshot(db)[1]))
-        reports = []
-
-        def check(skill):
-            report = evaluate(model_factory, skill=skill, cases=CASES[:3])
-            reports.append(report)
-            return candidate_checks(report)
-
-        try:
-            activate_skill(
-                db,
-                candidate.name,
-                candidate.version,
-                evaluate=check,
-                required_cases=frozenset(f"{case.name}:0" for case in CASES[:3]),
-            )
-        except ValueError:
-            if args.transcript:
-                print(json.dumps({"evaluations": reports}, indent=2))
-            print("Candidate activation: REFUSED")
-            db.close()
+        root = Path(temporary)
+        admission(root)
+        judged(root)
+        path = activation(root, model_factory)
+        if path is None:
             return 1
-        print("Candidate cases:", len(reports[0]["cases"]), reports[0]["passed"])
-        db.close()
-        db = Database(path)
-        print("Active after reopening:", skill_snapshot(db)[1][0].version)
-        dispatcher = shop_dispatcher(db)
-        previous = runpy.run_path(
-            str(Path(__file__).with_name("profrod_sovereign_agent_ch03_agent_loop_checkpoint.py"))
-        )
-        prompt = previous["MESSAGES"][1]["content"]
+        db = SKILLS["open_skills"](path)
+        active = [(s.name, s.version) for s in SKILLS["skill_snapshot"](db)[1]]
+        assert active == [("opening_check", "1"), ("reporting", "1")]
+        print("Active after reopening:", active)
+        dispatcher = TOOLS["build_tools"](TOOLS["SHOP"])
+        prompt = LOOP["messages"][1]["content"]
+        context = SKILLS["context"]
         denied = context(db, "lucy", prompt, allowed=frozenset({"list_stock"}))
-        assert "skill_guidance" not in denied[0]["content"]
+        # The reporting skill needs no tools, so it stays; the opening procedure does not.
+        assert '"opening_check"' not in denied[0]["content"]
+        assert '"reporting"' in denied[0]["content"]
+        assert "three bullets" in denied[0]["content"]
         print("Missing required tool excludes skill:", True)
+        tight = context(db, "lucy", prompt, allowed=dispatcher.allowed, byte_budget=256)
+        assert '"opening_check"' not in tight[0]["content"]
         messages = context(db, "lucy", prompt, allowed=dispatcher.allowed)
-        assert "skill_guidance" in messages[0]["content"]
+        assert '"opening_check"' in messages[0]["content"]
         assert "three bullets" in messages[0]["content"]
-        result = run_loop(model_factory(), dispatcher, messages)
-        passed = result.status == "COMPLETED" and previous["draft_evidence"](result)
+        purchase = dispatcher.invoke(TOOLS["ToolCall"](id="p", name="purchase", arguments={}))
+        assert purchase == {"ok": False, "error": "tool_not_allowed"}
+        result = LOOP["run_loop"](model_factory(), dispatcher, messages)
+        passed = result.status == "COMPLETED" and LOOP["draft_evidence"](result)
         print("Draft evidence:", "PASS" if passed else "FAIL")
-        orders = db.connection.execute("SELECT count(*) FROM assistant_orders").fetchone()[0]
-        print("Purchases:", orders)
+        print("Purchase tool: refused by the dispatcher")
         if args.transcript:
-            print(json.dumps({"evaluations": reports, "transcript": result.messages}, indent=2))
+            print(json.dumps({"transcript": result.messages}, indent=2))
         db.close()
-        return 0 if passed and orders == 0 else 1
+        return 0 if passed else 1
 
 
 if __name__ == "__main__":
