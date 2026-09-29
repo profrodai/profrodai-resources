@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import json
 import os
+import threading
 import time
 from pathlib import Path
 from urllib.error import HTTPError, URLError
@@ -79,6 +80,8 @@ class Claude:
         self.usage: dict[str, dict[str, int]] = {}
         self.requests = 0
         self._key = api_key()
+        # Experiments that time parallel requests share one client across threads.
+        self._lock = threading.Lock()
 
     def cost(self) -> float:
         total = 0.0
@@ -137,19 +140,20 @@ class Claude:
         if self.cost() >= self.max_usd:
             raise BudgetExceededError(f"spent {self.cost():.2f} of {self.max_usd:.2f} USD")
         reply = self._post("/v1/messages", {"model": model, **SETTINGS[model], **request})
-        self.requests += 1
-        used = self.usage.setdefault(
-            model,
-            {
-                "input_tokens": 0,
-                "output_tokens": 0,
-                "cache_creation_input_tokens": 0,
-                "cache_read_input_tokens": 0,
-            },
-        )
-        for field, value in reply.get("usage", {}).items():
-            if field in used and isinstance(value, int):
-                used[field] += value
+        with self._lock:
+            self.requests += 1
+            used = self.usage.setdefault(
+                model,
+                {
+                    "input_tokens": 0,
+                    "output_tokens": 0,
+                    "cache_creation_input_tokens": 0,
+                    "cache_read_input_tokens": 0,
+                },
+            )
+            for field, value in reply.get("usage", {}).items():
+                if field in used and isinstance(value, int):
+                    used[field] += value
         return reply
 
     def count_tokens(self, model: str, **request) -> int:
