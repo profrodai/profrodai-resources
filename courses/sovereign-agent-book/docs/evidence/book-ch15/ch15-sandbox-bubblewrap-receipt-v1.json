@@ -1,0 +1,50 @@
+{
+  "schema": "profrod.sovereign-agent.ch15-sandbox.v1",
+  "recorded": "2026-09-29",
+  "platform": "Linux 7.0.0-28-generic aarch64",
+  "python": "3.12.14",
+  "sandbox": "bubblewrap",
+  "attack": {
+    "status": "COMPLETED",
+    "raw": {
+      "credential_visible": false,
+      "network": "OSError",
+      "read_beside_input": "FileNotFoundError",
+      "read_input": "allowed",
+      "signal_outside": "ProcessLookupError",
+      "start_process": "allowed",
+      "uid": 65534,
+      "write_input": "PermissionError",
+      "write_scratch": "allowed",
+      "outside_process_survived": true,
+      "descendant_outlived_report": false
+    },
+    "judged": {
+      "read_input": "allowed",
+      "write_input": "refused",
+      "write_scratch": "allowed",
+      "read_beside_input": "refused",
+      "network": "refused",
+      "signal_outside": "refused",
+      "credential_visible": false,
+      "outside_process_survived": true,
+      "descendant_outlived_report": false
+    },
+    "holds": true
+  },
+  "endless_report": "TIME_LIMIT",
+  "busy_report": "TIME_LIMIT",
+  "excessive_output": "OUTPUT_LIMIT",
+  "host_death": [
+    {
+      "design": "host deadline only",
+      "deadline_seconds": 2.0,
+      "report_survived_host": false
+    },
+    {
+      "design": "supervisor",
+      "deadline_seconds": 2.0,
+      "report_survived_host": false
+    }
+  ]
+}
