@@ -3,7 +3,11 @@
 # Join the Prof Rod learner community: https://profrod.ai/community
 # Original source and updates: https://github.com/profrodai/sovereign-agent
 
-"""Prove candidate guidance is evaluated before activation and rollback."""
+"""Chapter 17: evaluated procedure changes, preserved reports, rollback and stale guards.
+
+Every function it calls is the learner's own: Chapter 17's change operation on Chapter 16's
+harness and Chapter 7's skills, and the chapters beneath them.
+"""
 
 import hashlib
 import json
@@ -14,30 +18,25 @@ import tempfile
 import tomllib
 from pathlib import Path
 
-from reference_organizations.store.agent import OfflineShopModel
-from reference_organizations.store.improvement import change_skill
-from sovereign_agent.assistant_context import skill_snapshot, stage_skill
-from sovereign_agent.database import Database
-from sovereign_agent.events import append_event
-from sovereign_agent.model_turn import ModelTurn
-
-
-class FollowsCandidate(OfflineShopModel):
-    """A deterministic policy fixture, not a measure of language-model quality."""
-
-    def complete(self, messages, *args, **kwargs):
-        turn = super().complete(messages, *args, **kwargs)
-        if "Report every amount in euros." in messages[0]["content"]:
-            return ModelTurn(
-                turn.content.replace("cents USD", "euros"), turn.calls, turn.output_tokens
-            )
-        return turn
-
-
 BOOK = Path(__file__).resolve().parents[1]
 OPTIMIZATION = runpy.run_path(
     str(BOOK / "learner/profrod_sovereign_agent_ch17_optimization_learner.py")
 )
+IMPROVE = runpy.run_path(str(BOOK / "learner/profrod_sovereign_agent_ch17_improvement_learner.py"))
+SKILLS, HARNESS = IMPROVE["SKILLS"], IMPROVE["HARNESS"]
+FollowsCandidate, change_skill = IMPROVE["FollowsCandidate"], IMPROVE["change_skill"]
+
+
+def active(db):
+    return [(s.name, s.version) for s in SKILLS["skill_snapshot"](db)[1]]
+
+
+def refused(error, action):
+    try:
+        action()
+    except error:
+        return True
+    return False
 
 
 def optimization():
@@ -72,77 +71,111 @@ def optimization():
     print("ok   the receipt's offline section recomputes exactly; the BT fit is a stationary point")
 
 
+def claude_receipt():
+    """The recorded Claude runs of the change operation: dispositions follow from the named
+    checks, the counts and the stricter recount recompute from the retained answers, and the
+    cost from the token counts."""
+    lab = runpy.run_path(
+        str(BOOK / "experiments/profrod_sovereign_agent_textbook_ch17_change_claude_v1.py")
+    )
+    receipt = json.loads(
+        (BOOK.parents[1] / "docs/evidence/book-ch17/ch17-change-claude-receipt-v1.json").read_text()
+    )
+    for versions in receipt["models"].values():
+        for run in versions.values():
+            assert run["cases_passed"] == run["cases"] - len(run["failed_checks"])
+            assert (run["status"] == "ACTIVATED") == (run["cases_passed"] == run["cases"])
+            assert run["answers_mentioning_euros"] == sum(
+                bool(lab["EUROS"].search(answer)) for answer in run["answers"].values()
+            )
+            assert run["answer_words"] == {c: lab["words"](a) for c, a in run["answers"].items()}
+    assert receipt["stricter_currency_check"]["cases_passing"] == lab["stricter"](receipt["models"])
+    haiku, sonnet = (
+        receipt["models"]["claude-haiku-4-5-20251001"],
+        receipt["models"]["claude-sonnet-5-5"],
+    )
+    assert haiku["2"]["status"] == "ACTIVATED" and haiku["2"]["answers_mentioning_euros"] == 0
+    assert sonnet["2"]["status"] == "REJECTED" and sonnet["2"]["answers_mentioning_euros"] == 8
+    prices = runpy.run_path(
+        str(BOOK / "experiments/profrod_sovereign_agent_claude_messages_v1.py")
+    )["PRICES"]
+    usage = receipt["claude"]
+    cost = sum(
+        (
+            used["input_tokens"] * prices[model][0]
+            + used["output_tokens"] * prices[model][1]
+            + used["cache_creation_input_tokens"] * prices[model][2]
+            + used["cache_read_input_tokens"] * prices[model][3]
+        )
+        / 1_000_000
+        for model, used in usage["usage"].items()
+    )
+    assert usage["costUsd"] == round(cost, 4) <= usage["ceilingUsd"]
+    print(
+        "ok   on Claude, Haiku activated the euros guidance it ignored; Sonnet's rejection came from"
+        f" explaining it; {usage['costUsd']:.2f} USD"
+    )
+
+
 def main():
     optimization()
+    claude_receipt()
     original = tomllib.loads(
-        (
-            Path(__file__).parents[1]
-            / "skills"
-            / "profrod_sovereign_agent_textbook_opening_check_v1.toml"
-        ).read_text()
+        (BOOK / "skills/profrod_sovereign_agent_textbook_opening_check_v1.toml").read_text()
     )
+    name = original["name"]
     with tempfile.TemporaryDirectory(prefix="lucy-improvement-") as temporary:
         root = Path(temporary)
-        db = Database(root / "agent.sqlite")
+        db = SKILLS["open_skills"](root / "agent.sqlite")
         reports = root / "reports"
 
-        def stage(version, instructions, name=original["name"]):
-            path = root / f"{name}-{version}.toml"
-            assert not path.exists()
-            path.write_text(
-                "name="
-                + json.dumps(name)
-                + "\nversion="
-                + json.dumps(version)
-                + "\ninstructions="
-                + json.dumps(instructions)
-                + "\nrequires="
-                + json.dumps(original["requires"])
-                + "\n"
+        def propose(version, instructions, skill=name):
+            return IMPROVE["propose_skill"](
+                db,
+                root,
+                name=skill,
+                version=version,
+                instructions=instructions,
+                requires=original["requires"],
+                feedback_source="fixture/lucy/brief-1",
+                request="Keep amounts in USD and make the closing sentence concise.",
             )
-            skill = stage_skill(db, path)
-            with db.immediate():
-                append_event(
-                    db,
-                    "assistant.skill.proposed",
-                    {
-                        "name": skill.name,
-                        "version": skill.version,
-                        "candidate_sha256": hashlib.sha256(
-                            skill.model_dump_json().encode()
-                        ).hexdigest(),
-                        "feedback_source": "fixture/lucy/brief-1",
-                        "request": "Keep amounts in USD and make the closing sentence concise.",
-                        "scope": "Operator-staged test proposal; does not grant tool authority.",
-                    },
-                )
-            return skill
 
-        stage("1", original["instructions"])
-        assert (
-            change_skill(db, original["name"], "1", FollowsCandidate, reports)["status"]
-            == "ACTIVATED"
+        propose("1", original["instructions"])
+        assert active(db) == []
+        assert refused(FileExistsError, lambda: propose("1", original["instructions"]))
+        assert refused(ValueError, lambda: change_skill(db, name, "9", FollowsCandidate, reports))
+        assert refused(
+            ValueError,
+            lambda: change_skill(db, name, "1", FollowsCandidate, reports, rollback=True),
         )
-        stage("2", original["instructions"] + "\nReport every amount in euros.")
-        bad = change_skill(db, original["name"], "2", FollowsCandidate, reports)
-        assert bad["status"] == "REJECTED"
-        assert skill_snapshot(db)[1][0].version == "1"
-        print(
-            "Regressing guidance:",
-            bad["status"],
-            "active version",
-            skill_snapshot(db)[1][0].version,
+        print("ok   proposals stage inactive; unstaged or never-activated versions are refused")
+        initial = change_skill(db, name, "1", FollowsCandidate, reports)
+        assert initial["status"] == "ACTIVATED" and active(db) == [(name, "1")]
+        propose("2", original["instructions"] + "\nReport every amount in euros.")
+        bad = change_skill(db, name, "2", FollowsCandidate, reports)
+        report = json.loads(Path(bad["report"]).read_text())
+        failures = sum(not row["checks"]["currency_labels"] for row in report["cases"])
+        assert bad["status"] == "REJECTED" and failures == 6 and active(db) == [(name, "1")]
+        assert all(
+            row["checks"]["quantities"] for row in report["cases"]
+        )  # only the currency changed
+        print("Regressing guidance:", bad["status"], "currency failures", failures)
+        # A rejected version was never activated, so it cannot be "rolled back" to.
+        assert refused(
+            ValueError,
+            lambda: change_skill(db, name, "2", FollowsCandidate, reports, rollback=True),
         )
-        stage("3", original["instructions"] + "\nKeep the closing sentence concise.")
-        good = change_skill(db, original["name"], "3", FollowsCandidate, reports)
-        assert good["status"] == "ACTIVATED"
+        propose("3", original["instructions"] + "\nKeep the closing sentence concise.")
+        good = change_skill(db, name, "3", FollowsCandidate, reports)
+        assert good["status"] == "ACTIVATED" and active(db) == [(name, "3")]
         print("Passing candidate:", good["status"])
-        rolled = change_skill(db, original["name"], "1", FollowsCandidate, reports, rollback=True)
-        assert rolled["status"] == "ROLLED_BACK"
+        rolled = change_skill(db, name, "1", FollowsCandidate, reports, rollback=True)
+        assert rolled["status"] == "ROLLED_BACK" and active(db) == [(name, "1")]
         print("Earlier activated version:", rolled["status"])
-        stage("4", original["instructions"] + "\nRetain source names in explanations.")
-        stage("1", "Keep reports concise.", name="reporting")
-        other = Database(db.path)
+        propose("4", original["instructions"] + "\nRetain source names in explanations.")
+        propose("1", "Keep reports concise.", skill="reporting")
+        other = SKILLS["open_skills"](root / "agent.sqlite")
 
         class ConcurrentChange(FollowsCandidate):
             changed = False
@@ -150,40 +183,48 @@ def main():
             def complete(self, *args, **kwargs):
                 if not ConcurrentChange.changed:
                     ConcurrentChange.changed = True
-                    assert (
-                        change_skill(other, "reporting", "1", FollowsCandidate, reports)["status"]
-                        == "ACTIVATED"
-                    )
+                    result = change_skill(other, "reporting", "1", FollowsCandidate, reports)
+                    assert result["status"] == "ACTIVATED"
                 return super().complete(*args, **kwargs)
 
-        stale = change_skill(db, original["name"], "4", ConcurrentChange, reports)
+        stale = change_skill(db, name, "4", ConcurrentChange, reports)
         assert stale["status"] == "STALE" and stale["passed"]
         print("Configuration changes during evaluation:", stale["status"])
-        assert [(s.name, s.version) for s in skill_snapshot(db)[1]] == [
-            (original["name"], "1"),
-            ("reporting", "1"),
-        ]
-        for result in (bad, good, rolled, stale):
+        assert active(db) == [(name, "1"), ("reporting", "1")]
+        results = (initial, bad, good, rolled, stale)
+        for result in results:
             raw = Path(result["report"]).read_bytes()
             assert hashlib.sha256(raw).hexdigest() == result["sha256"]
             assert json.loads(raw)["acceptance"]["status"] in {"REVIEW_REQUIRED", "REJECTED"}
-        print(
-            "Retained version rows:",
-            db.connection.execute("SELECT count(*) FROM assistant_skills").fetchone()[0],
-        )
-        print("Retained evaluation reports:", len(list(reports.glob("*.json"))))
-        proposals = db.connection.execute(
-            "SELECT count(*) FROM events WHERE kind='assistant.skill.proposed'"
-        ).fetchone()[0]
-        assert proposals == 5
-        print("Proposals retain feedback provenance:", proposals)
-        other.close()
-        db.close()
-        reopened = Database(root / "agent.sqlite")
-        assert [(s.name, s.version) for s in skill_snapshot(reopened)[1]] == [
-            (original["name"], "1"),
+        rows = db.connection.execute("SELECT count(*) FROM assistant_skills").fetchone()[0]
+        assert rows == 5
+        print("Retained version rows:", rows)
+        saved = len(list(reports.glob("*.json")))
+        assert saved == 6  # five here, and the reporting activation during the race
+        print("Retained evaluation reports:", saved)
+        # The reporting skill was evaluated with the active opening procedure beside it.
+        race = [
+            json.loads(path.read_text())
+            for path in reports.glob("*.json")
+            if json.loads(path.read_text())["candidate"]["name"] == "reporting"
+        ]
+        assert [(s["name"], s["version"]) for s in race[0]["skills"]] == [
+            (name, "1"),
             ("reporting", "1"),
         ]
+        events = {
+            kind: count
+            for kind, count in db.connection.execute(
+                "SELECT kind, count(*) FROM memory_events GROUP BY kind"
+            )
+        }
+        assert events["skill.proposed"] == 5 and events["skill.evaluated"] == 6
+        assert events["assistant.skill.activated"] == 4
+        print("Proposals retain feedback provenance:", events["skill.proposed"])
+        other.close()
+        db.close()
+        reopened = SKILLS["open_skills"](root / "agent.sqlite")
+        assert active(reopened) == [(name, "1"), ("reporting", "1")]
         print("Active configuration survives reopen:", True)
         reopened.close()
 
