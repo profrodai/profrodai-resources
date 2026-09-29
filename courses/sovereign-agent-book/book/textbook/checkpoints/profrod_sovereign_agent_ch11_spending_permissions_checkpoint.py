@@ -3,7 +3,11 @@
 # Join the Prof Rod learner community: https://profrod.ai/community
 # Original source and updates: https://github.com/profrodai/sovereign-agent
 
-"""Chapter 11: exact approval survives restart, while obsolete authority cannot send."""
+"""Chapter 11: exact approval survives restart, while obsolete authority cannot send.
+
+The approval code, the store, the queue and the supplier are all the learner's own: Chapter 11's
+learner files on Chapter 4's store, Chapter 8's queue and Chapter 3's transport.
+"""
 
 import json
 import runpy
@@ -15,38 +19,29 @@ import time
 from contextlib import contextmanager
 from pathlib import Path
 
-from reference_organizations.store.agent import seed_lucy
-from reference_organizations.store.supplier import SupplierClient
-from sovereign_agent.assistant_orders import SpendingPolicy, approve, execute, propose, revoke
-from sovereign_agent.assistant_work import claim, enqueue, finish
-from sovereign_agent.database import Database
+BOOK = Path(__file__).resolve().parents[1]
+APPROVAL = runpy.run_path(str(BOOK / "learner/profrod_sovereign_agent_ch11_approval_learner.py"))
+SUPPLIER_FILE = BOOK / "learner/profrod_sovereign_agent_ch11_supplier_learner.py"
+SUPPLIER = runpy.run_path(str(SUPPLIER_FILE))
+open_shop, hold = APPROVAL["open_shop"], APPROVAL["hold"]
+SpendingPolicy = APPROVAL["SpendingPolicy"]
+propose, approve, revoke = APPROVAL["propose"], APPROVAL["approve"], APPROVAL["revoke"]
+execute, StockEvent = APPROVAL["execute"], APPROVAL["StockEvent"]
 
 
 @contextmanager
 def supplier_process(root):
+    """The learner's supplier in its own process, with its own database."""
     ready, path = root / "ready", root / "supplier.sqlite"
-    process = subprocess.Popen(
-        [
-            sys.executable,
-            "-m",
-            "reference_organizations.store.supplier",
-            "--database",
-            str(path),
-            "--port",
-            "0",
-            "--ready",
-            str(ready),
-        ],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
+    command = [sys.executable, str(SUPPLIER_FILE), "--database", str(path), "--ready", str(ready)]
+    process = subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     try:
         deadline = time.monotonic() + 10
         while not ready.exists() and time.monotonic() < deadline and process.poll() is None:
             time.sleep(0.02)
         if not ready.exists():
             raise RuntimeError("chapter supplier failed to start")
-        yield SupplierClient("http://127.0.0.1:" + ready.read_text()), path
+        yield SUPPLIER["SupplierClient"]("http://127.0.0.1:" + ready.read_text()), path
     finally:
         process.terminate()
         try:
@@ -66,11 +61,11 @@ def refused(action):
 
 def experiment(root):
     with supplier_process(root) as (supplier, supplier_path):
-        db = Database(root / "agent.sqlite")
+        db, queue = open_shop(root / "agent.sqlite")
         try:
-            seed_lucy(db)
-            enqueue(db, "chapter8:morning", "lucy", "Prepare replenishment orders")
-            work = claim(db, "chapter8-builder")
+            queue.admit("chapter8:morning", "lucy", "Prepare replenishment orders")
+            work = queue.claim("chapter8-builder")
+            hold(db, work)
             original = propose(db, work, "SKU-VANILLA", 6, target=supplier.identity)
 
             def digest(operation):
@@ -113,7 +108,7 @@ def experiment(root):
                 expires=time.time() + 60,
             )
             db.close()
-            db = Database(root / "agent.sqlite")
+            db, queue = open_shop(root / "agent.sqlite")
             print(
                 "Reduced automatic allowance refused:",
                 refused(lambda: execute(db, work, original, supplier, policy=policy)),
@@ -135,9 +130,9 @@ def experiment(root):
                 policy=policy,
                 expires=time.time() + 60,
             )
-            # A changed physical fixture creates a revised need in the same assignment.
-            with db.immediate() as connection:
-                connection.execute("UPDATE inventory SET on_hand=1 WHERE sku='SKU-VANILLA'")
+            # A sale leaves one tub; the need becomes seven, a revised proposal in the same work.
+            db.apply(StockEvent("sale:vanilla:1", "SKU-VANILLA", -1, "sale"))
+            assert db.stock()["SKU-VANILLA"] == 1
             revised = propose(db, work, "SKU-VANILLA", 7, target=supplier.identity)
             old = db.connection.execute(
                 "SELECT status,revoked FROM assistant_orders WHERE id=?", (original,)
@@ -183,6 +178,13 @@ def experiment(root):
                     )
                 ),
             )
+            # The same supplier reached by another name is another destination: not approved.
+            renamed = supplier.endpoint.replace("127.0.0.1", "localhost")
+            elsewhere = SUPPLIER["SupplierClient"](renamed)
+            print(
+                "Other destination refused:",
+                refused(lambda: execute(db, work, revised, elsewhere, policy=policy)),
+            )
             with sqlite3.connect(supplier_path) as remote:
                 assert remote.execute("SELECT count(*) FROM orders").fetchone()[0] == 0
             print("Supplier orders before authorized send:", 0)
@@ -200,14 +202,13 @@ def experiment(root):
                 ).fetchone()
             )
             assert balance == (0, 1750)
-            finish(db, work, "DONE", "Confirmed seven vanilla tubs for $17.50; no other purchase.")
+            queue.finish(work, "Confirmed seven vanilla tubs for $17.50 USD; no other purchase.")
             print("Supplier orders after authorized send:", len(rows))
             print("Reserved and spent cents:", *balance)
         finally:
             db.close()
 
 
-BOOK = Path(__file__).resolve().parents[1]
 CAL = runpy.run_path(str(BOOK / "learner/profrod_sovereign_agent_ch11_calibration_learner.py"))
 
 

@@ -15,6 +15,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from contextlib import contextmanager
 from pathlib import Path
 
 from reference_organizations.store.agent import seed_lucy
@@ -81,16 +82,44 @@ class NoNewReasoning:
         raise AssertionError("replacement must continue the existing approved record")
 
 
+@contextmanager
+def supplied_supplier_process(root):
+    """The supplied supplier, with account epochs, until this chapter is rebuilt."""
+    ready, path = root / "ready", root / "supplier.sqlite"
+    process = subprocess.Popen(
+        [
+            sys.executable,
+            "-m",
+            "reference_organizations.store.supplier",
+            "--database",
+            str(path),
+            "--port",
+            "0",
+            "--ready",
+            str(ready),
+        ],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    try:
+        deadline = time.monotonic() + 10
+        while not ready.exists() and time.monotonic() < deadline and process.poll() is None:
+            time.sleep(0.02)
+        if not ready.exists():
+            raise RuntimeError("chapter supplier failed to start")
+        yield SupplierClient("http://127.0.0.1:" + ready.read_text()), path
+    finally:
+        process.terminate()
+        try:
+            process.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            process.kill()
+            process.wait(timeout=5)
+
+
 def experiment(root, *, kill):
     root.mkdir()
-    supplier_context = runpy.run_path(
-        str(
-            Path(__file__).with_name(
-                "profrod_sovereign_agent_ch11_spending_permissions_checkpoint.py"
-            )
-        )
-    )["supplier_process"]
-    with supplier_context(root) as (supplier, supplier_path):
+    with supplied_supplier_process(root) as (supplier, supplier_path):
         db = Database(root / "agent.sqlite")
         seed_lucy(db)
         identifier = enqueue(db, "morning", "lucy", "Replenish vanilla")
