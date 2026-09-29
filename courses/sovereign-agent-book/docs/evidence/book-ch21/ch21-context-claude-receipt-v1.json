@@ -1,0 +1,6992 @@
+{
+ "schemaVersion": 1,
+ "chapter": 21,
+ "created": "2026-09-29",
+ "python": "3.14.3",
+ "provider": "anthropic",
+ "models": [
+  "claude-haiku-4-5-20251001",
+  "claude-sonnet-5-5"
+ ],
+ "seed": 7,
+ "api": "Messages API, anthropic-version 2023-06-01",
+ "settings": {
+  "claude-haiku-4-5-20251001": {
+   "temperature": 0
+  },
+  "claude-sonnet-5-5": {
+   "thinking": {
+    "type": "between_tools"
+   }
+  }
+ },
+ "windows": {
+  "claude-haiku-4-5-20251001": 200000,
+  "claude-sonnet-5-5": 1000000
+ },
+ "caching": "the depth log and the layout request are marked for caching; the receipt records the tokens read from and written to the cache",
+ "depth": {
+  "claude-haiku-4-5-20251001": [
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1028
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4056
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8029
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16040
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64085
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150051
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150051
+   }
+  ],
+  "claude-sonnet-5-5": [
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 1000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 1055
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 4000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 4060
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 8000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 8055
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 16000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 16055
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 64000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 64068
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.25,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.5,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 0.75,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-6305",
+    "expected": 12,
+    "answer": "12",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-3471",
+    "expected": 40,
+    "answer": "40",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-7468",
+    "expected": 15,
+    "answer": "15",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-1791",
+    "expected": 13,
+    "answer": "13",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-2186",
+    "expected": 22,
+    "answer": "22",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-9779",
+    "expected": 35,
+    "answer": "35",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-2542",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150082
+   },
+   {
+    "length": 150000,
+    "depth": 1.0,
+    "order": "A-6991",
+    "expected": 7,
+    "answer": "7",
+    "correct": true,
+    "promptTokens": 150082
+   }
+  ]
+ },
+ "depthMeta": {
+  "claude-haiku-4-5-20251001": {
+   "tokensPerLine": 30.83,
+   "poolSize": 9000,
+   "overflow": {
+    "window": 200000,
+    "countedTokens": 210062,
+    "error": "Claude API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"prompt is too long: 210098 tokens > 200000 maximum\"},\"request_id\":\"req_011CfX5AP5FGNWx8z5NvcsHX\"}"
+   }
+  },
+  "claude-sonnet-5-5": {
+   "tokensPerLine": 45.41,
+   "poolSize": 9000,
+   "overflow": {
+    "window": 1000000,
+    "skipped": "the pool holds too few deliveries for 1,000,000"
+   }
+  }
+ },
+ "compaction": {
+  "claude-haiku-4-5-20251001": {
+   "full": {
+    "estimatedTokens": 6398,
+    "correct": 10,
+    "n": 10,
+    "wilson95": [
+     0.722,
+     1.0
+    ],
+    "rows": [
+     {
+      "question": "What is the shop called?",
+      "kind": "pinned-note",
+      "answer": "Lucy's Scoops.",
+      "correct": true
+     },
+     {
+      "question": "Which flavor must never be ordered from Frostline?",
+      "kind": "pinned-note",
+      "answer": "Mango. Never order mango from Frostline again; they were late twice.",
+      "correct": true
+     },
+     {
+      "question": "What time does the shop close today? Give the hour only.",
+      "kind": "superseded",
+      "answer": "7 pm.",
+      "correct": true
+     },
+     {
+      "question": "How many tubs of chocolate has Lucy approved? Number only.",
+      "kind": "superseded",
+      "answer": "15",
+      "correct": true
+     },
+     {
+      "question": "Which supplier do we order vanilla from now?",
+      "kind": "pinned-note",
+      "answer": "Polar Dairy.",
+      "correct": true
+     },
+     {
+      "question": "How many tubs arrived with order A-4817? Number only.",
+      "kind": "old-tool-result",
+      "answer": "20",
+      "correct": true
+     },
+     {
+      "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+      "kind": "old-tool-result",
+      "answer": "7",
+      "correct": true
+     },
+     {
+      "question": "What is the health inspector's name?",
+      "kind": "pinned-note",
+      "answer": "Dana Ortiz.",
+      "correct": true
+     },
+     {
+      "question": "Where should the sign-up sheet go?",
+      "kind": "recent",
+      "answer": "By the till.",
+      "correct": true
+     },
+     {
+      "question": "How many tubs of mango have sold today? Number only.",
+      "kind": "recent-tool-result",
+      "answer": "11",
+      "correct": true
+     }
+    ]
+   },
+   "1500": {
+    "window": {
+     "estimatedTokens": 73,
+     "correct": 1,
+     "n": 10,
+     "wilson95": [
+      0.018,
+      0.404
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's ice cream shop.",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "I don't have information about which flavors to avoid ordering from Frostline. Y",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "I don't have access to the shop's closing time information. You may need to chec",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "I don't have information about Lucy's approval of chocolate tubs. I can only see",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "I don't have access to supplier information. You'd need to check your supplier r",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have information about order A-4817 in the current context. I'd need to ",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have access to freezer inventory data. I can only see today's sales info",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "I don't have that information. You'd need to check your records or contact your ",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "I don't have information about sign-up sheets or their placement. You might want",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-window": {
+     "estimatedTokens": 720,
+     "correct": 9,
+     "n": 10,
+     "wilson95": [
+      0.596,
+      0.982
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Mango. They were late twice.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have that information available.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-summary": {
+     "estimatedTokens": 720,
+     "correct": 9,
+     "n": 10,
+     "wilson95": [
+      0.596,
+      0.982
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Mango. They were late twice.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have that information available.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "pinned-clear-window": {
+     "estimatedTokens": 795,
+     "correct": 9,
+     "n": 10,
+     "wilson95": [
+      0.596,
+      0.982
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Mango. They were late twice.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have that information available.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    }
+   },
+   "600": {
+    "window": {
+     "estimatedTokens": 73,
+     "correct": 1,
+     "n": 10,
+     "wilson95": [
+      0.018,
+      0.404
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's ice cream shop.",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "I don't have information about which flavors to avoid ordering from Frostline. Y",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "I don't have access to the shop's closing time information. You may need to chec",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "I don't have information about Lucy's approval of chocolate tubs. I can only see",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "I don't have access to supplier information. You'd need to check your supplier r",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have information about order A-4817 in the current context. I'd need to ",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have access to freezer inventory data. I can only see today's sales info",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "I don't have that information. You'd need to check your records or contact your ",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "I don't have information about sign-up sheets or their placement. You might want",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-window": {
+     "estimatedTokens": 593,
+     "correct": 6,
+     "n": 10,
+     "wilson95": [
+      0.313,
+      0.832
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's ice cream shop.",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "I don't have that information. You haven't told me which flavor to never order f",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "I don't have that information.",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have that information available. Could you check the delivery records?",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-summary": {
+     "estimatedTokens": 190,
+     "correct": 9,
+     "n": 10,
+     "wilson95": [
+      0.596,
+      0.982
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Mango. They've been late twice.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have that information in the summary or from the previous conversation. ",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "pinned-clear-window": {
+     "estimatedTokens": 602,
+     "correct": 9,
+     "n": 10,
+     "wilson95": [
+      0.596,
+      0.982
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Mango must never be ordered from Frostline.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have that information available.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    }
+   },
+   "_session": {
+    "fullEstimatedTokens": 6394,
+    "budgets": {
+     "1500": {
+      "compactReport": {
+       "before": 6394,
+       "steps": [
+        {
+         "step": "clear-tool-results",
+         "total": 716
+        }
+       ],
+       "after": 716
+      },
+      "summary": null
+     },
+     "600": {
+      "compactReport": {
+       "before": 6394,
+       "steps": [
+        {
+         "step": "clear-tool-results",
+         "total": 716
+        },
+        {
+         "step": "summarize",
+         "turns": 54,
+         "total": 186
+        }
+       ],
+       "after": 186
+      },
+      "summary": "Summary of the earlier conversation:\n# Summary for Lucy's Scoops\n\n**Shop Details:**\n- Name: Lucy's Scoops\n- Owner: Lucy\n- Closing time today: 7 pm (updated from 6 pm)\n\n**Supplier Rules:**\n- Never order mango from Frostline (late twice)\n- Order vanilla from Polar Dairy\n\n**Pending Orders:**\n- 15 tubs of chocolate from Frostline (updated from 12)\n\n**Current Inventory:**\n- 7 tubs of strawberry remaining\n\n**Other Notes:**\n- Health inspector Dana Ortiz visiting Friday\n- Sign-up sheet placed by till"
+     }
+    }
+   }
+  },
+  "claude-sonnet-5-5": {
+   "full": {
+    "estimatedTokens": 6398,
+    "correct": 10,
+    "n": 10,
+    "wilson95": [
+     0.722,
+     1.0
+    ],
+    "rows": [
+     {
+      "question": "What is the shop called?",
+      "kind": "pinned-note",
+      "answer": "Lucy's Scoops.",
+      "correct": true
+     },
+     {
+      "question": "Which flavor must never be ordered from Frostline?",
+      "kind": "pinned-note",
+      "answer": "Mango, since they were late twice.",
+      "correct": true
+     },
+     {
+      "question": "What time does the shop close today? Give the hour only.",
+      "kind": "superseded",
+      "answer": "7 pm",
+      "correct": true
+     },
+     {
+      "question": "How many tubs of chocolate has Lucy approved? Number only.",
+      "kind": "superseded",
+      "answer": "15",
+      "correct": true
+     },
+     {
+      "question": "Which supplier do we order vanilla from now?",
+      "kind": "pinned-note",
+      "answer": "Polar Dairy.",
+      "correct": true
+     },
+     {
+      "question": "How many tubs arrived with order A-4817? Number only.",
+      "kind": "old-tool-result",
+      "answer": "20",
+      "correct": true
+     },
+     {
+      "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+      "kind": "old-tool-result",
+      "answer": "7",
+      "correct": true
+     },
+     {
+      "question": "What is the health inspector's name?",
+      "kind": "pinned-note",
+      "answer": "Dana Ortiz, coming Friday.",
+      "correct": true
+     },
+     {
+      "question": "Where should the sign-up sheet go?",
+      "kind": "recent",
+      "answer": "By the till.",
+      "correct": true
+     },
+     {
+      "question": "How many tubs of mango have sold today? Number only.",
+      "kind": "recent-tool-result",
+      "answer": "11",
+      "correct": true
+     }
+    ]
+   },
+   "1500": {
+    "window": {
+     "estimatedTokens": 73,
+     "correct": 1,
+     "n": 10,
+     "wilson95": [
+      0.018,
+      0.404
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's ice cream shop.",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "I don't have that info. Check with Lucy.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "I don't have today's closing time on hand, so I can't give you the hour. Check t",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "I don't have that information. The only data I've seen is mango sales.",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "I don't have supplier info handy. Check the order records?",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have order A-4817's details. Could you pull it up?",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have that data. I only see mango sales (11 tubs), not freezer counts.",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "I don't have that on hand. Check your inspection paperwork.",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the register.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-window": {
+     "estimatedTokens": 720,
+     "correct": 9,
+     "n": 10,
+     "wilson95": [
+      0.596,
+      0.982
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Mango.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I can't give a number: that delivery result was cleared and I no longer have the",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-summary": {
+     "estimatedTokens": 720,
+     "correct": 9,
+     "n": 10,
+     "wilson95": [
+      0.596,
+      0.982
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Mango. Frostline was late twice.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I can't tell. That delivery result was cleared and I never saw the count. Please",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "pinned-clear-window": {
+     "estimatedTokens": 795,
+     "correct": 9,
+     "n": 10,
+     "wilson95": [
+      0.596,
+      0.982
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Mango.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have that number. The delivery lookup result was cleared, and I never sa",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    }
+   },
+   "600": {
+    "window": {
+     "estimatedTokens": 73,
+     "correct": 1,
+     "n": 10,
+     "wilson95": [
+      0.018,
+      0.404
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's ice cream shop.",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "I don't have that info. Check with Lucy.",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "I don't have today's closing hour on hand, so I can't say. Check the shop schedu",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "I don't have that information.",
+       "correct": false
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "I don't have supplier info here. Check your ordering records.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have order A-4817's details. Could you check the order lookup?",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have that number. I only have today's mango sales (11 tubs). I'd need an",
+       "correct": false
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Not sure, I don't have that info.",
+       "correct": false
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the register.",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-window": {
+     "estimatedTokens": 593,
+     "correct": 7,
+     "n": 10,
+     "wilson95": [
+      0.397,
+      0.892
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's ice cream shop.",
+       "correct": false
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "I don't have that information. You've only told me vanilla goes to Polar Dairy, ",
+       "correct": false
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have that number. I can't see the earlier delivery results anymore, and ",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "clear-then-summary": {
+     "estimatedTokens": 287,
+     "correct": 9,
+     "n": 10,
+     "wilson95": [
+      0.596,
+      0.982
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Mango. They were late twice.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have that. The order A-4817 details weren't retained, so I'd need to loo",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz, coming Friday.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    },
+    "pinned-clear-window": {
+     "estimatedTokens": 602,
+     "correct": 9,
+     "n": 10,
+     "wilson95": [
+      0.596,
+      0.982
+     ],
+     "rows": [
+      {
+       "question": "What is the shop called?",
+       "kind": "pinned-note",
+       "answer": "Lucy's Scoops.",
+       "correct": true
+      },
+      {
+       "question": "Which flavor must never be ordered from Frostline?",
+       "kind": "pinned-note",
+       "answer": "Mango.",
+       "correct": true
+      },
+      {
+       "question": "What time does the shop close today? Give the hour only.",
+       "kind": "superseded",
+       "answer": "7 pm",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of chocolate has Lucy approved? Number only.",
+       "kind": "superseded",
+       "answer": "15",
+       "correct": true
+      },
+      {
+       "question": "Which supplier do we order vanilla from now?",
+       "kind": "pinned-note",
+       "answer": "Polar Dairy.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs arrived with order A-4817? Number only.",
+       "kind": "old-tool-result",
+       "answer": "I don't have that. The delivery record I saw earlier was cleared, and it didn't ",
+       "correct": false
+      },
+      {
+       "question": "How many tubs of strawberry were in the freezer at the last check? Number only.",
+       "kind": "old-tool-result",
+       "answer": "7",
+       "correct": true
+      },
+      {
+       "question": "What is the health inspector's name?",
+       "kind": "pinned-note",
+       "answer": "Dana Ortiz.",
+       "correct": true
+      },
+      {
+       "question": "Where should the sign-up sheet go?",
+       "kind": "recent",
+       "answer": "By the till.",
+       "correct": true
+      },
+      {
+       "question": "How many tubs of mango have sold today? Number only.",
+       "kind": "recent-tool-result",
+       "answer": "11",
+       "correct": true
+      }
+     ]
+    }
+   },
+   "_session": {
+    "fullEstimatedTokens": 6394,
+    "budgets": {
+     "1500": {
+      "compactReport": {
+       "before": 6394,
+       "steps": [
+        {
+         "step": "clear-tool-results",
+         "total": 716
+        }
+       ],
+       "after": 716
+      },
+      "summary": null
+     },
+     "600": {
+      "compactReport": {
+       "before": 6394,
+       "steps": [
+        {
+         "step": "clear-tool-results",
+         "total": 716
+        },
+        {
+         "step": "summarize",
+         "turns": 54,
+         "total": 283
+        }
+       ],
+       "after": 283
+      },
+      "summary": "Summary of the earlier conversation:\nSummary of conversation with Lucy (owner of Lucy's Scoops):\n\n**Rules/decisions Lucy stated (latest values):**\n- Never order mango from Frostline again (they were late twice).\n- Order vanilla from Polar Dairy from now on.\n- Approved order: 15 tubs of chocolate from Frostline (changed from 12).\n- Closing time today: 7 pm (changed from 6 pm).\n- Health inspector coming Friday: Dana Ortiz.\n- Sign-up sheet should be placed by the till.\n\n**Actions taken by assistant:**\n- Recorded a delivery that came in.\n- Checked the freezer several times (tool results cleared; contents not retained).\n- Reported sales so far several times (tool results cleared; figures not retained, latest check was the most recent request).\n- Reported strawberry stock: 7 tubs left.\n\n**Notes:** Freezer and sales tool outputs were cleared from context, so specific freezer cont"
+     }
+    }
+   }
+  }
+ },
+ "truncation": {
+  "claude-haiku-4-5-20251001": {
+   "full": {
+    "estimatedTokens": 4016,
+    "correct": 2,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "147",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "Mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "Coconut",
+      "correct": true
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "Coconut",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "500",
+      "correct": false
+     }
+    ]
+   },
+   "head": {
+    "estimatedTokens": 1438,
+    "correct": 2,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "38",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "Mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "Coconut",
+      "correct": true
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "I don't see a 14:07 entry in the sales l",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "163",
+      "correct": false
+     }
+    ]
+   },
+   "head-and-tail": {
+    "estimatedTokens": 1440,
+    "correct": 2,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "68",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "Mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "Coconut",
+      "correct": true
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "Pistachio",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "400",
+      "correct": false
+     }
+    ]
+   },
+   "digest": {
+    "estimatedTokens": 66,
+    "correct": 4,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "81",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "Mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "Coconut",
+      "correct": true
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "I don't have access to the specific tran",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "480",
+      "correct": true
+     }
+    ]
+   },
+   "_truth": {
+    "pistachio": 81,
+    "first": "mango",
+    "last": "coconut",
+    "middle_time": "14:07",
+    "middle": "mango",
+    "count": 480
+   }
+  },
+  "claude-sonnet-5-5": {
+   "full": {
+    "estimatedTokens": 4016,
+    "correct": 3,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "I'll sum the pistachio entries in order:",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "Mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "Coconut",
+      "correct": true
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "Mango",
+      "correct": true
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "The log runs from 10:00 to 17:59 with on",
+      "correct": false
+     }
+    ]
+   },
+   "head": {
+    "estimatedTokens": 1438,
+    "correct": 2,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "Pistachio entries:\n10:17: 3\n10:18: 3\n10:",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "Mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "Coconut",
+      "correct": true
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "The log ends at 12:52, so there's no ent",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "The log runs from 10:00 to 12:52, one en",
+      "correct": false
+     }
+    ]
+   },
+   "head-and-tail": {
+    "estimatedTokens": 1440,
+    "correct": 2,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "I can't give a reliable total: 309 lines",
+      "correct": false
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "Mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "Coconut",
+      "correct": true
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "I can't tell \u2014 the 14:07 entry falls in ",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "The log runs from 10:00 to 17:59 with on",
+      "correct": false
+     }
+    ]
+   },
+   "digest": {
+    "estimatedTokens": 66,
+    "correct": 4,
+    "rows": [
+     {
+      "question": "How many tubs of pistachio were sold in total? Number only.",
+      "expected": 81,
+      "answer": "81",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the first sale of the day? One word.",
+      "expected": "mango",
+      "answer": "Mango",
+      "correct": true
+     },
+     {
+      "question": "What flavor was the last sale of the day? One word.",
+      "expected": "coconut",
+      "answer": "Coconut",
+      "correct": true
+     },
+     {
+      "question": "What flavor was sold at 14:07? One word.",
+      "expected": "mango",
+      "answer": "Unknown \u2014 the sales log only lists the f",
+      "correct": false
+     },
+     {
+      "question": "How many sales are in the log? Number only.",
+      "expected": 480,
+      "answer": "480",
+      "correct": true
+     }
+    ]
+   },
+   "_truth": {
+    "pistachio": 81,
+    "first": "mango",
+    "last": "coconut",
+    "middle_time": "14:07",
+    "middle": "mango",
+    "count": 480
+   }
+  }
+ },
+ "layout": {
+  "claude-haiku-4-5-20251001": {
+   "volatile-first": {
+    "turns": [
+     {
+      "turn": 0,
+      "promptTokens": 5867,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 5864,
+      "wallMs": 701.2
+     },
+     {
+      "turn": 1,
+      "promptTokens": 5890,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 5887,
+      "wallMs": 657.1
+     },
+     {
+      "turn": 2,
+      "promptTokens": 5913,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 5910,
+      "wallMs": 644.9
+     },
+     {
+      "turn": 3,
+      "promptTokens": 5936,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 5933,
+      "wallMs": 718.5
+     },
+     {
+      "turn": 4,
+      "promptTokens": 5959,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 5956,
+      "wallMs": 760.7
+     },
+     {
+      "turn": 5,
+      "promptTokens": 5982,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 5979,
+      "wallMs": 971.4
+     },
+     {
+      "turn": 6,
+      "promptTokens": 6005,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 6002,
+      "wallMs": 793.0
+     },
+     {
+      "turn": 7,
+      "promptTokens": 6028,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 6025,
+      "wallMs": 730.1
+     },
+     {
+      "turn": 8,
+      "promptTokens": 6051,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 6048,
+      "wallMs": 849.5
+     },
+     {
+      "turn": 9,
+      "promptTokens": 6074,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 6071,
+      "wallMs": 760.1
+     }
+    ],
+    "cacheReadShareAfterFirst": 0.0,
+    "medianWallMsAfterFirst": 760.1
+   },
+   "stable-first": {
+    "turns": [
+     {
+      "turn": 0,
+      "promptTokens": 5867,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 5864,
+      "wallMs": 842.5
+     },
+     {
+      "turn": 1,
+      "promptTokens": 5960,
+      "cacheReadTokens": 5864,
+      "cacheWriteTokens": 93,
+      "wallMs": 755.1
+     },
+     {
+      "turn": 2,
+      "promptTokens": 6053,
+      "cacheReadTokens": 5957,
+      "cacheWriteTokens": 93,
+      "wallMs": 897.9
+     },
+     {
+      "turn": 3,
+      "promptTokens": 6146,
+      "cacheReadTokens": 6050,
+      "cacheWriteTokens": 93,
+      "wallMs": 873.3
+     },
+     {
+      "turn": 4,
+      "promptTokens": 6239,
+      "cacheReadTokens": 6143,
+      "cacheWriteTokens": 93,
+      "wallMs": 753.6
+     },
+     {
+      "turn": 5,
+      "promptTokens": 6332,
+      "cacheReadTokens": 6236,
+      "cacheWriteTokens": 93,
+      "wallMs": 693.8
+     },
+     {
+      "turn": 6,
+      "promptTokens": 6425,
+      "cacheReadTokens": 6329,
+      "cacheWriteTokens": 93,
+      "wallMs": 799.8
+     },
+     {
+      "turn": 7,
+      "promptTokens": 6518,
+      "cacheReadTokens": 6422,
+      "cacheWriteTokens": 93,
+      "wallMs": 2957.6
+     },
+     {
+      "turn": 8,
+      "promptTokens": 6611,
+      "cacheReadTokens": 6515,
+      "cacheWriteTokens": 93,
+      "wallMs": 784.9
+     },
+     {
+      "turn": 9,
+      "promptTokens": 6704,
+      "cacheReadTokens": 6608,
+      "cacheWriteTokens": 93,
+      "wallMs": 792.0
+     }
+    ],
+    "cacheReadShareAfterFirst": 0.985,
+    "medianWallMsAfterFirst": 792.0
+   }
+  },
+  "claude-sonnet-5-5": {
+   "volatile-first": {
+    "turns": [
+     {
+      "turn": 0,
+      "promptTokens": 8626,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 8622,
+      "wallMs": 1203.5
+     },
+     {
+      "turn": 1,
+      "promptTokens": 8654,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 8650,
+      "wallMs": 1503.7
+     },
+     {
+      "turn": 2,
+      "promptTokens": 8682,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 8678,
+      "wallMs": 1432.3
+     },
+     {
+      "turn": 3,
+      "promptTokens": 8710,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 8706,
+      "wallMs": 1719.6
+     },
+     {
+      "turn": 4,
+      "promptTokens": 8738,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 8734,
+      "wallMs": 1199.3
+     },
+     {
+      "turn": 5,
+      "promptTokens": 8766,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 8762,
+      "wallMs": 1290.4
+     },
+     {
+      "turn": 6,
+      "promptTokens": 8794,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 8790,
+      "wallMs": 1377.4
+     },
+     {
+      "turn": 7,
+      "promptTokens": 8822,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 8818,
+      "wallMs": 1216.3
+     },
+     {
+      "turn": 8,
+      "promptTokens": 8850,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 8846,
+      "wallMs": 1187.4
+     },
+     {
+      "turn": 9,
+      "promptTokens": 8878,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 8874,
+      "wallMs": 1941.1
+     }
+    ],
+    "cacheReadShareAfterFirst": 0.0,
+    "medianWallMsAfterFirst": 1377.4
+   },
+   "stable-first": {
+    "turns": [
+     {
+      "turn": 0,
+      "promptTokens": 8626,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 8622,
+      "wallMs": 1172.5
+     },
+     {
+      "turn": 1,
+      "promptTokens": 8745,
+      "cacheReadTokens": 8622,
+      "cacheWriteTokens": 119,
+      "wallMs": 1075.2
+     },
+     {
+      "turn": 2,
+      "promptTokens": 8864,
+      "cacheReadTokens": 8741,
+      "cacheWriteTokens": 119,
+      "wallMs": 1164.0
+     },
+     {
+      "turn": 3,
+      "promptTokens": 8983,
+      "cacheReadTokens": 8860,
+      "cacheWriteTokens": 119,
+      "wallMs": 1027.6
+     },
+     {
+      "turn": 4,
+      "promptTokens": 9102,
+      "cacheReadTokens": 8979,
+      "cacheWriteTokens": 119,
+      "wallMs": 984.2
+     },
+     {
+      "turn": 5,
+      "promptTokens": 9221,
+      "cacheReadTokens": 9098,
+      "cacheWriteTokens": 119,
+      "wallMs": 1033.3
+     },
+     {
+      "turn": 6,
+      "promptTokens": 9340,
+      "cacheReadTokens": 9217,
+      "cacheWriteTokens": 119,
+      "wallMs": 1137.7
+     },
+     {
+      "turn": 7,
+      "promptTokens": 9459,
+      "cacheReadTokens": 9336,
+      "cacheWriteTokens": 119,
+      "wallMs": 988.8
+     },
+     {
+      "turn": 8,
+      "promptTokens": 9578,
+      "cacheReadTokens": 9455,
+      "cacheWriteTokens": 119,
+      "wallMs": 1177.5
+     },
+     {
+      "turn": 9,
+      "promptTokens": 9697,
+      "cacheReadTokens": 9574,
+      "cacheWriteTokens": 119,
+      "wallMs": 1238.0
+     }
+    ],
+    "cacheReadShareAfterFirst": 0.987,
+    "medianWallMsAfterFirst": 1075.2
+   }
+  }
+ },
+ "estimate": {
+  "claude-haiku-4-5-20251001": [
+   {
+    "kind": "prose",
+    "chars": 1775,
+    "estimate": 444,
+    "actual": 360,
+    "charsPerToken": 4.93,
+    "estimateError": 0.233
+   },
+   {
+    "kind": "json",
+    "chars": 2573,
+    "estimate": 644,
+    "actual": 923,
+    "charsPerToken": 2.79,
+    "estimateError": -0.302
+   },
+   {
+    "kind": "numbers",
+    "chars": 2016,
+    "estimate": 504,
+    "actual": 1136,
+    "charsPerToken": 1.77,
+    "estimateError": -0.556
+   },
+   {
+    "kind": "python",
+    "chars": 2400,
+    "estimate": 600,
+    "actual": 615,
+    "charsPerToken": 3.9,
+    "estimateError": -0.024
+   }
+  ],
+  "claude-sonnet-5-5": [
+   {
+    "kind": "prose",
+    "chars": 1775,
+    "estimate": 444,
+    "actual": 552,
+    "charsPerToken": 3.22,
+    "estimateError": -0.196
+   },
+   {
+    "kind": "json",
+    "chars": 2573,
+    "estimate": 644,
+    "actual": 1352,
+    "charsPerToken": 1.9,
+    "estimateError": -0.524
+   },
+   {
+    "kind": "numbers",
+    "chars": 2016,
+    "estimate": 504,
+    "actual": 1289,
+    "charsPerToken": 1.56,
+    "estimateError": -0.609
+   },
+   {
+    "kind": "python",
+    "chars": 2400,
+    "estimate": 600,
+    "actual": 842,
+    "charsPerToken": 2.85,
+    "estimateError": -0.287
+   }
+  ]
+ },
+ "depthTable": [
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 1000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 1028.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 1000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 1028.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 1000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 1028.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 1000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 1028.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 1000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 1028.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 4000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 4056.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 4000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 4056.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 4000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 4056.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 4000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 4056.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 4000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 4056.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 8000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 8029.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 8000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 8029.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 8000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 8029.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 8000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 8029.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 8000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 8029.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 16000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 16040.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 16000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 16040.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 16000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 16040.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 16000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 16040.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 16000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 16040.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 64000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 64085.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 64000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 64085.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 64000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 64085.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 64000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 64085.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 64000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 64085.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 150000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 150051.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 150000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 150051.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 150000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 150051.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 150000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 150051.0
+  },
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "length": 150000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 150051.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 1000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 1055.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 1000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 1055.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 1000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 1055.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 1000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 1055.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 1000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 1055.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 4000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 4060.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 4000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 4060.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 4000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 4060.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 4000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 4060.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 4000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 4060.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 8000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 8055.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 8000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 8055.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 8000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 8055.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 8000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 8055.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 8000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 8055.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 16000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 16055.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 16000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 16055.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 16000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 16055.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 16000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 16055.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 16000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 16055.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 64000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 64068.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 64000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 64068.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 64000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 64068.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 64000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 64068.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 64000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 64068.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 150000,
+   "depth": 0.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 150082.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 150000,
+   "depth": 0.25,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 150082.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 150000,
+   "depth": 0.5,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 150082.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 150000,
+   "depth": 0.75,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 150082.0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "length": 150000,
+   "depth": 1.0,
+   "n": 8,
+   "correct": 8,
+   "medianPromptTokens": 150082.0
+  }
+ ],
+ "limits": [
+  "Two Claude models through the API. Haiku 4.5 ran at temperature 0; Sonnet 5.5 accepts no temperature setting, so a rerun can differ by a question in a cell.",
+  "Eight questions per depth cell and ten per compaction strategy: read differences as patterns across cells, not as single-cell results.",
+  "Wall-clock times include the network and the API's queue; the cache token counts are what the layout measurement compares."
+ ],
+ "usage": {
+  "provider": "anthropic",
+  "requests": 582,
+  "usage": {
+   "claude-haiku-4-5-20251001": {
+    "input_tokens": 259789,
+    "output_tokens": 2306,
+    "cache_creation_input_tokens": 1217016,
+    "cache_read_input_tokens": 8110604
+   },
+   "claude-sonnet-5-5": {
+    "input_tokens": 288160,
+    "output_tokens": 2373,
+    "cache_creation_input_tokens": 1253073,
+    "cache_read_input_tokens": 8173182
+   }
+  },
+  "costUsd": 7.971,
+  "prices": "USD per million tokens, platform.claude.com pricing page, 2026-09-29",
+  "settings": {
+   "claude-haiku-4-5-20251001": {
+    "temperature": 0
+   },
+   "claude-sonnet-5-5": {
+    "thinking": {
+     "type": "between_tools"
+    }
+   }
+  },
+  "ceilingUsd": 15.0
+ },
+ "additionalRuns": [
+  {
+   "created": "2026-09-29",
+   "models": [
+    "claude-haiku-4-5-20251001",
+    "claude-sonnet-5-5"
+   ],
+   "only": [
+    "depth"
+   ],
+   "lengths": [
+    4000,
+    8000
+   ],
+   "usage": {
+    "provider": "anthropic",
+    "requests": 160,
+    "usage": {
+     "claude-haiku-4-5-20251001": {
+      "input_tokens": 162880,
+      "output_tokens": 400,
+      "cache_creation_input_tokens": 40065,
+      "cache_read_input_tokens": 280455
+     },
+     "claude-sonnet-5-5": {
+      "input_tokens": 1600,
+      "output_tokens": 240,
+      "cache_creation_input_tokens": 60375,
+      "cache_read_input_tokens": 422625
+     }
+    },
+    "costUsd": 0.4841,
+    "prices": "USD per million tokens, platform.claude.com pricing page, 2026-09-29",
+    "settings": {
+     "claude-haiku-4-5-20251001": {
+      "temperature": 0
+     },
+     "claude-sonnet-5-5": {
+      "thinking": {
+       "type": "between_tools"
+      }
+     }
+    },
+    "ceilingUsd": 2.0
+   }
+  }
+ ]
+}

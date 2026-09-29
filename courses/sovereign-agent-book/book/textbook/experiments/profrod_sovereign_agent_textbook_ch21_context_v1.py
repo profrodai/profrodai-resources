@@ -713,6 +713,50 @@ def estimate_experiment(model: str = "qwen2.5:1.5b") -> list[dict]:
     return rows
 
 
+def depth_table(depth: dict) -> list[dict]:
+    table = []
+    for model, rows in depth.items():
+        for length in sorted({r["length"] for r in rows}):
+            for depth_at in DEPTHS:
+                picked = [r for r in rows if r["length"] == length and r["depth"] == depth_at]
+                table.append(
+                    {
+                        "model": model,
+                        "length": length,
+                        "depth": depth_at,
+                        "n": len(picked),
+                        "correct": sum(r["correct"] for r in picked),
+                        "medianPromptTokens": statistics.median(
+                            r["promptTokens"] or 0 for r in picked
+                        ),
+                    }
+                )
+    return table
+
+
+def merged(base: dict, run: dict, args) -> dict:
+    """The earlier receipt plus this run: new depth lengths join the old rows, other measurements
+    this run made replace the old ones, and the run itself is listed with its own usage."""
+    for model, rows in run["depth"].items():
+        lengths = {r["length"] for r in rows}
+        kept = [r for r in base["depth"].get(model, []) if r["length"] not in lengths]
+        base["depth"][model] = sorted([*kept, *rows], key=lambda r: (r["length"], r["depth"]))
+        base["depthMeta"].setdefault(model, run["depthMeta"][model])
+    for part in ("compaction", "truncation", "layout"):
+        base[part] |= run[part]
+    if "estimate" in run:
+        base["estimate"] = run["estimate"]
+    base.setdefault("additionalRuns", []).append(
+        {
+            "created": run["created"],
+            "models": run["models"],
+            "only": args.only,
+            "lengths": args.lengths,
+        }
+    )
+    return base
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", required=True)
@@ -726,6 +770,11 @@ def main() -> None:
         help="run only these measurements",
     )
     parser.add_argument("--lengths", nargs="*", type=int, help="override the depth lengths")
+    parser.add_argument(
+        "--merge",
+        action="store_true",
+        help="add this run's measurements to the receipt at --out, recording the run separately",
+    )
     args = parser.parse_args()
     claude = args.provider == "anthropic"
     RUN.update(provider=args.provider, lengths=args.lengths)
@@ -785,25 +834,9 @@ def main() -> None:
             receipt["estimate"] = {m: estimate_experiment(m) for m in models}
         else:
             receipt["estimate"] = estimate_experiment()
-    table = []
-    for model, rows in receipt["depth"].items():
-        for length in sorted({r["length"] for r in rows}):
-            for depth in DEPTHS:
-                picked = [r for r in rows if r["length"] == length and r["depth"] == depth]
-                right = sum(r["correct"] for r in picked)
-                table.append(
-                    {
-                        "model": model,
-                        "length": length,
-                        "depth": depth,
-                        "n": len(picked),
-                        "correct": right,
-                        "medianPromptTokens": statistics.median(
-                            r["promptTokens"] or 0 for r in picked
-                        ),
-                    }
-                )
-    receipt["depthTable"] = table
+    if args.merge:
+        receipt = merged(json.loads(Path(args.out).read_text()), receipt, args)
+    receipt["depthTable"] = depth_table(receipt["depth"])
     receipt["limits"] = [
         "Small local models at temperature zero; larger models hold longer contexts better, but "
         "the ways a context is shortened behave the same way for any model.",
@@ -819,7 +852,10 @@ def main() -> None:
             "Wall-clock times include the network and the API's queue; the cache token counts "
             "are what the layout measurement compares.",
         ]
-        receipt["usage"] = RUN["claude"].report()
+        if args.merge:
+            receipt["additionalRuns"][-1]["usage"] = RUN["claude"].report()
+        else:
+            receipt["usage"] = RUN["claude"].report()
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(receipt, indent=1) + "\n")
     print("wrote", args.out, spent(), file=sys.stderr)
