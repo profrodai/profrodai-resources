@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import runpy
 import statistics
 import time
 from dataclasses import asdict, dataclass
@@ -22,8 +23,6 @@ from pathlib import Path
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict
-
-from sovereign_agent.model_turn import HTTPModel
 
 
 class Decision(BaseModel):
@@ -311,7 +310,11 @@ def main() -> None:
         parser.error("output already exists; choose a fresh evidence filename")
     candidates = {"keywords": lambda payload: (keyword_decision(payload), 0)}
     if args.live:
-        model = HTTPModel(model=args.model, reasoning_effort="none")
+        # The learner's Chapter 3 model adapter, so this experiment needs no supplied package.
+        loop = runpy.run_path(
+            "book/textbook/learner/profrod_sovereign_agent_ch03_agent_loop_learner.py"
+        )
+        model = loop["HTTPModel"](model=args.model, reasoning_effort="none")
         candidates.update(
             {name: model_infer(model, prompt, args.timeout) for name, prompt in PROMPTS.items()}
         )

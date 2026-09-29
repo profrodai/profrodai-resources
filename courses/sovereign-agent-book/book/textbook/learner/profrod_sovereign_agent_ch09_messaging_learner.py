@@ -11,9 +11,14 @@ Chapter 7's context, with Chapter 5's memory, gives each turn its session's pref
 skills, and Chapter 3's loop runs it. This file adds what a phone needs: an allowlisted private
 intake whose batch and cursor commit together, a claim that serializes a session's turns, and a
 delivery that knows its recipient and never resends a report whose outcome is unknown.
+
+It runs where most readers run it: a Google Colab notebook, whose runtime is Python 3.12. There,
+credentials come from Colab's Secrets panel, a bounded serving loop fits in one cell, and a
+stopped cell or a lost runtime must not leave a conversation waiting forever.
 """
 
 import json
+import os
 import re
 import runpy
 import time
@@ -103,7 +108,7 @@ class Telegram:
             if not isinstance(result, dict) or result.get("ok") is not True:
                 raise ValueError("Telegram declined operation")
             return result["result"]
-        except OSError, ValueError, KeyError, TypeError:
+        except (OSError, ValueError, KeyError, TypeError):
             # API URLs contain the token. Never expose exception URLs or bodies.
             raise OSError("Telegram request failed; inspect connectivity and credentials") from None
 
@@ -322,7 +327,7 @@ def deliver_one(db, bot: Bot, operators: frozenset[int]) -> str | None:
         ):
             raise ValueError("missing delivery receipt")
         outcome, receipt = "confirmed", json.dumps({"message_id": result["message_id"]})
-    except OSError, ValueError:
+    except (OSError, ValueError):
         outcome, receipt = "unknown", None
     with db.immediate() as connection:
         updated = connection.execute(
@@ -348,3 +353,96 @@ def activate_opening_skill(db) -> None:
         evaluate=lambda skill: SKILLS["evaluate_opening"](SKILLS["OfflineShopModel"], skill),
         required_cases=frozenset(case.name for case in SKILLS["OPENING_CASES"]),
     )
+
+
+def secret(name: str) -> str:
+    """A credential from the environment, or else from Colab's Secrets panel on Colab.
+
+    Returned, never printed. Empty when neither has it, or when the Colab notebook has not been
+    given access to it; the caller decides what a missing credential means."""
+    value = os.environ.get(name, "")
+    if value:
+        return value
+    try:
+        from google.colab import userdata  # only importable inside a Colab runtime
+    except ImportError:
+        return ""
+    try:
+        return userdata.get(name) or ""
+    except (userdata.SecretNotFoundError, userdata.NotebookAccessError, userdata.TimeoutException):
+        return ""
+
+
+def release_interrupted(db, queue, worker_id: str) -> list[int]:
+    """Finish the work this worker label left running when its process stopped.
+
+    A stopped Colab cell or a lost runtime cannot finish its turn, and Chapter 8's states allow a
+    running item only to finish. Left running, it would hold its session forever: Chapter 13's
+    leases solve this for many workers. With one serving notebook per database, the serving
+    worker's own label identifies its orphans, and each gets a report asking Lucy to ask again."""
+    orphans = [
+        row[0]
+        for row in db.connection.execute(
+            "SELECT work_id FROM work WHERE state = 'running' AND worker_id = ? ORDER BY work_id",
+            (worker_id,),
+        )
+    ]
+    for work_id in orphans:
+        session_id, text = db.connection.execute(
+            "SELECT session_id, text FROM work WHERE work_id = ?", (work_id,)
+        ).fetchone()
+        queue.finish(
+            Assignment(work_id, session_id, text, worker_id),
+            "The agent stopped before answering this request. Please send it again.",
+        )
+    return orphans
+
+
+def serve(
+    db,
+    queue,
+    bot: Bot,
+    operators: frozenset[int],
+    model_factory,
+    *,
+    rounds: int = 1,
+    worker_id: str = "phone-worker",
+) -> dict[str, Any]:
+    """Poll, answer and deliver, `rounds` times: the whole channel in one bounded call.
+
+    Each poll waits up to 20 seconds for a message, so serve(..., rounds=90) keeps a Colab cell
+    answering for about half an hour. Stopping the cell raises KeyboardInterrupt: the turn in
+    progress is finished with a report saying so, and the interrupt is raised again. Admitted
+    work and pending reports stay in the database for the next call."""
+    if type(rounds) is not int or not 1 <= rounds <= 10_000:
+        raise ValueError("a bounded number of rounds is required")
+    channel = "telegram:" + bot.account
+    summary: dict[str, Any] = {
+        "recovered": release_interrupted(db, queue, worker_id),
+        "admitted": 0,
+        "ran": [],
+        "deliveries": [],
+    }
+    for _ in range(rounds):
+        summary["admitted"] += len(poll(db, queue, bot, operators))
+        pending = [
+            row[0]
+            for row in db.connection.execute(
+                "SELECT w.work_id FROM work w JOIN channel_routes c ON c.work_id = w.work_id"
+                " WHERE c.channel = ? AND w.state = 'pending' ORDER BY w.work_id",
+                (channel,),
+            )
+        ]
+        for work_id in pending:
+            held = claim(db, worker_id, work_id=work_id)
+            if held is None:
+                continue
+            try:
+                passed, _ = run_claim(db, queue, held, model_factory())
+            except KeyboardInterrupt:
+                release_interrupted(db, queue, worker_id)
+                raise
+            summary["ran"].append({"work": work_id, "draft_evidence": passed})
+        while (outcome := deliver_one(db, bot, operators)) is not None:
+            summary["deliveries"].append(outcome)
+    return summary

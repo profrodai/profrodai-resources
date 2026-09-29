@@ -139,7 +139,7 @@ def run_loop(
                 timeout=deadline - clock(),
                 max_output_tokens=remaining,
             )
-        except ModelError, TimeoutError, OSError:
+        except (ModelError, TimeoutError, OSError):
             return finish("MODEL_FAILED")
         if clock() >= deadline:
             return finish("TIME_LIMIT")
@@ -261,7 +261,7 @@ class HTTPModel:
             ):
                 raise ModelError("invalid content or usage")
             return ModelTurn(content, calls, tokens)
-        except OSError, ValueError, KeyError, IndexError, TypeError, AttributeError:
+        except (OSError, ValueError, KeyError, IndexError, TypeError, AttributeError):
             raise ModelError("model transport or response validation failed") from None
 
 

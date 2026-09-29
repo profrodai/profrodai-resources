@@ -6,7 +6,8 @@
 """A standard-library client for the Claude Messages API, used by the chapters' experiments.
 
 The key comes from ANTHROPIC_API_KEY in the environment, else from the `.env` file named by
-ANTHROPIC_ENV_FILE, else from the course folder's `.env`, which git ignores. It is never
+ANTHROPIC_ENV_FILE, else from the course folder's `.env`, which git ignores, else, on Google
+Colab, from the notebook's Secrets panel under the same name. It is never
 printed, logged or written to a receipt. Every request is counted against a spending ceiling,
 and every experiment records the tokens and the list-price cost it used, so a Claude run is as
 inspectable as a local one.
@@ -56,7 +57,8 @@ class BudgetExceededError(Exception):
 
 def api_key() -> str:
     """ANTHROPIC_API_KEY from the environment, else from ANTHROPIC_ENV_FILE's file, else from the
-    course folder's .env file. The value is returned, never printed."""
+    course folder's .env file, else from Colab's Secrets panel. The value is returned, never
+    printed."""
     key = os.environ.get("ANTHROPIC_API_KEY", "")
     if not key:
         env = Path(os.environ.get("ANTHROPIC_ENV_FILE") or COURSE / ".env").expanduser()
@@ -66,8 +68,18 @@ def api_key() -> str:
                 if name == "ANTHROPIC_API_KEY":
                     key = value.strip().strip('"').strip("'")
     if not key:
+        try:
+            from google.colab import userdata  # only importable inside a Colab runtime
+
+            key = userdata.get("ANTHROPIC_API_KEY") or ""
+        except ImportError:
+            pass
+        except (userdata.SecretNotFoundError, userdata.NotebookAccessError):
+            pass
+    if not key:
         raise RuntimeError(
-            "No Claude key: set ANTHROPIC_API_KEY or add it to the course folder's .env file"
+            "No Claude key: set ANTHROPIC_API_KEY, add it to the course folder's .env file, "
+            "or on Colab add it in the Secrets panel and give this notebook access"
         )
     return key
 

@@ -14,7 +14,9 @@ import json
 import math
 import os
 import runpy
+import sys
 import tempfile
+import types
 from pathlib import Path
 
 BOOK = Path(__file__).resolve().parents[1]
@@ -162,6 +164,7 @@ def offline():
     with tempfile.TemporaryDirectory(prefix="lucy-channel-") as temporary:
         root = Path(temporary)
         boundaries(root)
+        on_colab(root)
         db, queue = open_channel(root / "agent.sqlite")
         CHANNEL["activate_opening_skill"](db)
         bot = OfflineBot([update(103, actor=999), update(101), update(102)])
@@ -241,96 +244,158 @@ def offline():
     return 0
 
 
+def on_colab(root):
+    """What changes on Colab: secrets from its panel, a bounded serving cell, and a cell or a
+    runtime that stops mid-turn."""
+    secret = CHANNEL["secret"]
+
+    class SecretNotFoundError(Exception):
+        pass
+
+    class NotebookAccessError(Exception):
+        pass
+
+    class TimeoutException(Exception):  # noqa: N818 - Colab's own name
+        pass
+
+    shared = {"SOVEREIGN_AGENT_OPERATORS": "123"}
+
+    def get(name):
+        if name == "SOVEREIGN_AGENT_TELEGRAM_TOKEN":
+            raise NotebookAccessError(name)
+        if name not in shared:
+            raise SecretNotFoundError(name)
+        return shared[name]
+
+    userdata = types.SimpleNamespace(
+        get=get,
+        SecretNotFoundError=SecretNotFoundError,
+        NotebookAccessError=NotebookAccessError,
+        TimeoutException=TimeoutException,
+    )
+    google = types.ModuleType("google")
+    colab = types.ModuleType("google.colab")
+    colab.userdata = userdata
+    google.colab = colab
+    saved = {name: sys.modules.get(name) for name in ("google", "google.colab")}
+    before = os.environ.pop("SOVEREIGN_AGENT_OPERATORS", None)
+    try:
+        assert secret("SOVEREIGN_AGENT_OPERATORS") == ""  # outside Colab: nothing
+        sys.modules.update({"google": google, "google.colab": colab})
+        assert secret("SOVEREIGN_AGENT_OPERATORS") == "123"
+        assert secret("SOVEREIGN_AGENT_TELEGRAM_TOKEN") == ""  # not shared with this notebook
+        assert secret("ANOTHER_NAME") == ""
+        os.environ["SOVEREIGN_AGENT_OPERATORS"] = "456"
+        assert secret("SOVEREIGN_AGENT_OPERATORS") == "456"  # the environment wins
+    finally:
+        os.environ.pop("SOVEREIGN_AGENT_OPERATORS", None)
+        if before is not None:
+            os.environ["SOVEREIGN_AGENT_OPERATORS"] = before
+        for name, module in saved.items():
+            if module is None:
+                sys.modules.pop(name, None)
+            else:
+                sys.modules[name] = module
+    print("Colab secrets: read from its panel; missing or unshared ones are empty, never shown")
+
+    db, queue = open_channel(root / "colab.sqlite")
+    CHANNEL["activate_opening_skill"](db)
+    operators = frozenset({123})
+    bot = OfflineBot([update(201), update(202, actor=999)])
+    served = CHANNEL["serve"](db, queue, bot, operators, SKILLS["OfflineShopModel"], rounds=2)
+    assert served["recovered"] == [] and served["admitted"] == 1
+    assert [row["draft_evidence"] for row in served["ran"]] == [True]
+    assert served["deliveries"] == ["confirmed"] and bot.offsets == [0, 203]
+    assert refused(ValueError, lambda: CHANNEL["serve"](db, queue, bot, operators, None, rounds=0))
+
+    class StoppedCell:
+        def complete(self, *args, **kwargs):
+            raise KeyboardInterrupt
+
+    stopped = OfflineBot([update(203)])
+    assert refused(
+        KeyboardInterrupt,
+        lambda: CHANNEL["serve"](db, queue, stopped, operators, StoppedCell, rounds=1),
+    )
+    body = one(db, "SELECT body FROM reports ORDER BY rowid DESC LIMIT 1")
+    assert "stopped before answering" in body
+    assert one(db, "SELECT count(*) FROM work WHERE state = 'running'") == 0
+    # A lost runtime cannot run any handler. Its turn is still running when the next one starts.
+    lost = poll(db, queue, OfflineBot([update(204)]), operators)
+    assert claim(db, "phone-worker", work_id=lost[0]) is not None
+    # Another worker's turn in another session is not this worker's to end.
+    elsewhere = poll(db, queue, OfflineBot([update(205, actor=7)]), frozenset({7}))
+    assert claim(db, "other-worker", work_id=elsewhere[0]) is not None
+    resumed = CHANNEL["serve"](db, queue, OfflineBot([]), operators, SKILLS["OfflineShopModel"])
+    assert resumed["recovered"] == lost and resumed["deliveries"] == ["confirmed", "confirmed"]
+    running = db.connection.execute("SELECT work_id FROM work WHERE state = 'running'").fetchall()
+    assert [row[0] for row in running] == elsewhere
+    print("Serving cell: answers, then a stopped cell and a lost runtime each leave a report")
+    db.close()
+
+
 def main():
     latency_arithmetic()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--telegram",
         action="store_true",
-        help="use your dedicated test bot and allowlisted private account",
+        help="serve your dedicated test bot and allowlisted private account",
     )
     parser.add_argument(
         "--root", type=Path, help="persistent dedicated test state; required for Telegram"
     )
-    parser.add_argument(
-        "--live", action="store_true", help="use the local HTTP model for Telegram work"
-    )
+    parser.add_argument("--rounds", type=int, default=1, help="poll rounds, about 20 s each")
+    model = parser.add_mutually_exclusive_group()
+    model.add_argument("--live", action="store_true", help="use the local HTTP model")
+    model.add_argument("--claude", metavar="MODEL", help="use Claude, e.g. on Colab")
     parser.add_argument("--model", default="qwen3")
-    parser.add_argument("--transcript", action="store_true")
     args = parser.parse_args()
     if not args.telegram:
-        if args.live:
-            parser.error(
-                "--live requires --telegram here; Chapter 7 supplies the model-only experiment"
-            )
+        if args.live or args.claude:
+            parser.error("a model option requires --telegram; the offline run uses the fixture")
         return offline()
     if args.root is None:
         parser.error("--telegram requires a dedicated persistent --root")
-    token = os.environ.get("SOVEREIGN_AGENT_TELEGRAM_TOKEN", "")
-    actors = os.environ.get("SOVEREIGN_AGENT_OPERATORS", "").split(",")
+    token = CHANNEL["secret"]("SOVEREIGN_AGENT_TELEGRAM_TOKEN")
+    actors = CHANNEL["secret"]("SOVEREIGN_AGENT_OPERATORS").split(",")
     if not token or not all(actor.isdigit() and int(actor) > 0 for actor in actors):
         parser.error(
-            "set the bot credential and positive numeric operator allowlist in your environment"
+            "set the bot credential and positive numeric operator allowlist in your environment "
+            "or, on Colab, in the Secrets panel"
         )
-    bot = CHANNEL["Telegram"](token)
-    operators = frozenset(int(actor) for actor in actors)
+    if args.claude:
+        claude = runpy.run_path(
+            str(BOOK / "experiments/profrod_sovereign_agent_claude_messages_v1.py")
+        )
+        client = claude["Claude"](max_usd=1.0)
+
+        def model_factory():
+            return claude["LoopModel"](client, args.claude, LOOP["ModelTurn"], LOOP["ToolCall"])
+
+    elif args.live:
+
+        def model_factory():
+            return LOOP["HTTPModel"](model=args.model, reasoning_effort="none")
+
+    else:
+        model_factory = SKILLS["OfflineShopModel"]
     args.root.mkdir(parents=True, exist_ok=True)
     db, queue = open_channel(args.root / "agent.sqlite")
     CHANNEL["activate_opening_skill"](db)
-    ids = poll(db, queue, bot, operators)
-    print("New allowed requests:", len(ids))
-    if not ids:
-        print("No new allowed private text arrived during the bounded poll.")
-    # Read durable work, including requests admitted by a prior process that
-    # stopped before execution. The in-memory poll result is not the queue.
-    queued = db.connection.execute(
-        "SELECT w.work_id FROM work w JOIN channel_routes c ON c.work_id = w.work_id"
-        " WHERE c.channel = ? AND w.state = 'pending' ORDER BY w.work_id LIMIT 20",
-        ("telegram:" + bot.account,),
-    ).fetchall()
-    results = []
-    for row in queued:
-        identifier = row[0]
-        current = claim(db, "phone-checkpoint", work_id=identifier)
-        if current is None:
-            continue
-        model = (
-            LOOP["HTTPModel"](model=args.model, reasoning_effort="none")
-            if args.live
-            else SKILLS["OfflineShopModel"]()
-        )
-        passed, result = run_claim(db, queue, current, model)
-        results.append({"work": identifier, "draft_evidence": passed})
-        if args.transcript:
-            print(json.dumps(result.messages, indent=2))
-    deliveries = []
-    for _ in range(20):
-        delivery = deliver_one(db, bot, operators)
-        if delivery is None:
-            break
-        deliveries.append(delivery)
-    for row in results:
-        row["delivery"] = db.connection.execute(
-            "SELECT delivery FROM reports WHERE work_id=? ORDER BY generation DESC", (row["work"],)
-        ).fetchone()[0]
-    print(
-        json.dumps(
-            {
-                "results": results,
-                "outbox_observations": deliveries,
-                "scope": "bounded construction run; inspect the actual reply on your phone",
-            },
-            indent=2,
-        )
-    )
-    db.close()
-    return (
-        0
-        if (results or deliveries)
-        and all(row["draft_evidence"] and row["delivery"] == "confirmed" for row in results)
-        and all(value == "confirmed" for value in deliveries)
-        else 1
-    )
+    bot = CHANNEL["Telegram"](token)
+    operators = frozenset(int(actor) for actor in actors)
+    try:
+        summary = CHANNEL["serve"](db, queue, bot, operators, model_factory, rounds=args.rounds)
+    finally:
+        db.close()
+    if args.claude:
+        summary["claude"] = client.report()
+    summary["scope"] = "bounded run; inspect the actual reply on your phone"
+    print(json.dumps(summary, indent=2))
+    ran_well = all(row["draft_evidence"] for row in summary["ran"])
+    delivered = all(value == "confirmed" for value in summary["deliveries"])
+    return 0 if (summary["ran"] or summary["deliveries"]) and ran_well and delivered else 1
 
 
 if __name__ == "__main__":

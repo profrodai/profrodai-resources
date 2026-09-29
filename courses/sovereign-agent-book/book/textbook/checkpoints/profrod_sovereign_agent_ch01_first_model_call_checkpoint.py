@@ -217,7 +217,7 @@ def main():
     try:
         document = live_call(body) if args.live else OFFLINE_RESPONSE
         review = review_brief(built, document, SHOP)
-    except OSError, ValueError:
+    except (OSError, ValueError):
         parser.exit(
             1,
             "Model call failed. Start Ollama and pull the selected model; "
