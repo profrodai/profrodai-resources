@@ -171,13 +171,42 @@ def negative_control():
     print("ok   negative control: without the allowlist the server records the purchase")
 
 
+def claude_cost(usage):
+    """List-price cost from token counts, with the Claude client's own price table."""
+    prices = EXPERIMENT["CLAUDE"]["PRICES"]
+    total = 0.0
+    for model, used in usage["usage"].items():
+        price_in, price_out, price_write, price_read = prices[model]
+        total += (
+            used["input_tokens"] * price_in
+            + used["output_tokens"] * price_out
+            + used["cache_creation_input_tokens"] * price_write
+            + used["cache_read_input_tokens"] * price_read
+        ) / 1_000_000
+    return round(total, 4)
+
+
 def measured_selection():
-    """The receipt's table recomputed from its rows, and its BM25 tool search rerun here."""
-    receipt = json.loads(
-        (
-            BOOK.parents[1] / "docs/evidence/book-ch14/ch14-tool-selection-receipt-v1.json"
-        ).read_text()
+    """Both receipts' tables recomputed from their rows, and the BM25 tool search rerun here."""
+    evidence = BOOK.parents[1] / "docs/evidence/book-ch14"
+    for run in ("", "-claude"):
+        name = f"ch14-tool-selection{run}-receipt-v1.json"
+        raw = (evidence / name).read_text()
+        assert "sk-ant" not in raw and "x-api-key" not in raw, "a receipt must never hold a key"
+        receipt = json.loads(raw)
+        recompute_selection(receipt)
+        if "usage" in receipt:
+            usage = receipt["usage"]
+            assert usage["costUsd"] == claude_cost(usage) <= usage["ceilingUsd"]
+            assert usage["requests"] == len(receipt["rows"])
+            spent = usage["costUsd"]
+    print(
+        "ok   both receipts' tables recomputed from their rows; BM25 tool search reran identically;"
+        f" the Claude run cost {spent:.2f} USD at list price"
     )
+
+
+def recompute_selection(receipt):
     rows = receipt["rows"]
     for entry in receipt["table"]:
         key = (entry["model"], entry["protocol"], entry["offer"])
@@ -202,9 +231,6 @@ def measured_selection():
         assert top == receipt["search"]["offered"][f"bm25:{index}"], index
         found += expected in top
     assert receipt["search"]["recallAt5"]["bm25"] == round(found / len(tasks), 3)
-    print(
-        "ok   the receipt's table recomputed from its rows; its BM25 tool search reran identically"
-    )
 
 
 def main():
