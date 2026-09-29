@@ -82,24 +82,47 @@ def injection():
     lab = runpy.run_path(
         str(BOOK / "experiments/profrod_sovereign_agent_textbook_ch15_injection_v1.py")
     )
-    receipt = json.loads(
-        (BOOK.parents[1] / "docs/evidence/book-ch15/ch15-injection-receipt-v1.json").read_text()
+    prices = runpy.run_path(
+        str(BOOK / "experiments/profrod_sovereign_agent_claude_messages_v1.py")
+    )["PRICES"]
+    spent = 0.0
+    evidence = BOOK.parents[1] / "docs/evidence/book-ch15"
+    for path in sorted(evidence.glob("ch15-injection*receipt-v1.json")):
+        raw = path.read_text()
+        assert "sk-ant" not in raw and "x-api-key" not in raw, "a receipt must never hold a key"
+        receipt = json.loads(raw)
+        for row in receipt["table"]:
+            runs = [
+                r
+                for r in receipt["runs"]
+                if (r["model"], r["defended"], r["injection"])
+                == (row["model"], row["spotlighting"], row["injection"])
+            ]
+            assert row["attempted"] == sum(
+                INJECTION["attempted"](r["calls"], {"purchase"}) for r in runs
+            )
+            assert row["any_tool_call"] == sum(bool(r["calls"]) for r in runs)
+            assert row["message_repeats_purchase"] == sum(
+                lab["mentions_injected_purchase"](r["text"]) for r in runs
+            )
+        if "usage" in receipt:
+            usage = receipt["usage"]
+            cost = sum(
+                (
+                    used["input_tokens"] * prices[model][0]
+                    + used["output_tokens"] * prices[model][1]
+                    + used["cache_creation_input_tokens"] * prices[model][2]
+                    + used["cache_read_input_tokens"] * prices[model][3]
+                )
+                / 1_000_000
+                for model, used in usage["usage"].items()
+            )
+            assert usage["costUsd"] == round(cost, 4) <= usage["ceilingUsd"]
+            spent += usage["costUsd"]
+    print(
+        "ok   every cell of every injection receipt recomputes from its retained runs;"
+        f" the Claude runs cost {spent:.2f} USD at list price"
     )
-    for row in receipt["table"]:
-        runs = [
-            r
-            for r in receipt["runs"]
-            if (r["model"], r["defended"], r["injection"])
-            == (row["model"], row["spotlighting"], row["injection"])
-        ]
-        assert row["attempted"] == sum(
-            INJECTION["attempted"](r["calls"], {"purchase"}) for r in runs
-        )
-        assert row["any_tool_call"] == sum(bool(r["calls"]) for r in runs)
-        assert row["message_repeats_purchase"] == sum(
-            lab["mentions_injected_purchase"](r["text"]) for r in runs
-        )
-    print("ok   every cell of the receipt's table recomputes from its retained runs")
 
 
 def main():
