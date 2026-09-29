@@ -1,0 +1,2414 @@
+{
+  "schema": 1,
+  "experiment": "ch03-reliability-v1",
+  "recorded": "2026-09-29",
+  "python": "3.14.3",
+  "platform": "Darwin 25.6.0 (arm64)",
+  "model": "claude-sonnet-5-5",
+  "instances_per_length": 25,
+  "by_length": [
+    {
+      "n": 1,
+      "task_success": 1.0,
+      "task_success_95": [
+        0.867,
+        1.0
+      ],
+      "per_step_success": 1.0,
+      "answer_right_when_all_steps_done": 1.0,
+      "statuses": {
+        "COMPLETED": 25
+      }
+    },
+    {
+      "n": 2,
+      "task_success": 1.0,
+      "task_success_95": [
+        0.867,
+        1.0
+      ],
+      "per_step_success": 1.0,
+      "answer_right_when_all_steps_done": 1.0,
+      "statuses": {
+        "COMPLETED": 25
+      }
+    },
+    {
+      "n": 4,
+      "task_success": 1.0,
+      "task_success_95": [
+        0.867,
+        1.0
+      ],
+      "per_step_success": 1.0,
+      "answer_right_when_all_steps_done": 1.0,
+      "statuses": {
+        "COMPLETED": 25
+      }
+    },
+    {
+      "n": 8,
+      "task_success": 1.0,
+      "task_success_95": [
+        0.867,
+        1.0
+      ],
+      "per_step_success": 1.0,
+      "answer_right_when_all_steps_done": 1.0,
+      "statuses": {
+        "COMPLETED": 25
+      }
+    },
+    {
+      "n": 16,
+      "task_success": 1.0,
+      "task_success_95": [
+        0.867,
+        1.0
+      ],
+      "per_step_success": 1.0,
+      "answer_right_when_all_steps_done": 1.0,
+      "statuses": {
+        "COMPLETED": 25
+      }
+    },
+    {
+      "n": 32,
+      "task_success": 0.92,
+      "task_success_95": [
+        0.75,
+        0.978
+      ],
+      "per_step_success": 1.0,
+      "answer_right_when_all_steps_done": 0.92,
+      "statuses": {
+        "COMPLETED": 25
+      }
+    }
+  ],
+  "with_add_tool": [
+    {
+      "n": 4,
+      "task_success": 1.0,
+      "task_success_95": [
+        0.867,
+        1.0
+      ],
+      "per_step_success": 1.0
+    },
+    {
+      "n": 8,
+      "task_success": 1.0,
+      "task_success_95": [
+        0.867,
+        1.0
+      ],
+      "per_step_success": 1.0
+    }
+  ],
+  "fit": {
+    "p": 0.9975,
+    "a": 1.0129
+  },
+  "predictions": [
+    {
+      "n": 1,
+      "measured": 1.0,
+      "fitted_a_p_to_n": 1.01,
+      "per_step_to_n": 1.0
+    },
+    {
+      "n": 2,
+      "measured": 1.0,
+      "fitted_a_p_to_n": 1.008,
+      "per_step_to_n": 1.0
+    },
+    {
+      "n": 4,
+      "measured": 1.0,
+      "fitted_a_p_to_n": 1.003,
+      "per_step_to_n": 1.0
+    },
+    {
+      "n": 8,
+      "measured": 1.0,
+      "fitted_a_p_to_n": 0.993,
+      "per_step_to_n": 1.0
+    },
+    {
+      "n": 16,
+      "measured": 1.0,
+      "fitted_a_p_to_n": 0.973,
+      "per_step_to_n": 1.0
+    },
+    {
+      "n": 32,
+      "measured": 0.92,
+      "fitted_a_p_to_n": 0.935,
+      "per_step_to_n": 1.0
+    }
+  ],
+  "retries_at_n4_T0.8": {
+    "first_attempt_success": 1.0,
+    "never_succeeded_in_4": 0.0,
+    "q_among_solvable": 1.0,
+    "table": [
+      {
+        "attempts": 1,
+        "measured": 1.0,
+        "independent_retries": 1.0,
+        "hard_fraction_model": 1.0
+      },
+      {
+        "attempts": 2,
+        "measured": 1.0,
+        "independent_retries": 1.0,
+        "hard_fraction_model": 1.0
+      },
+      {
+        "attempts": 3,
+        "measured": 1.0,
+        "independent_retries": 1.0,
+        "hard_fraction_model": 1.0
+      },
+      {
+        "attempts": 4,
+        "measured": 1.0,
+        "independent_retries": 1.0,
+        "hard_fraction_model": 1.0
+      }
+    ]
+  },
+  "seconds": 1375.5,
+  "runs": [
+    {
+      "n": 1,
+      "instance": 0,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 1,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 2,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 3,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 4,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 5,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 6,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 7,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 8,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 9,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 10,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 11,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 12,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 13,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 14,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 15,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 16,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 17,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 18,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 19,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 20,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 21,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 22,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 23,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 1,
+      "instance": 24,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 1,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 0,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 1,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 2,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 3,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 4,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 5,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 6,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 7,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 8,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 9,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 10,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 11,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 12,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 13,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 14,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 15,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 16,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 17,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 18,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 19,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 20,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 21,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 22,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 23,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 2,
+      "instance": 24,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 2,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 0,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 1,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 2,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 3,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 4,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 5,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 6,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 7,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 8,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 9,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 10,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 11,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 12,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 13,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 14,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 15,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 16,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 17,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 18,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 19,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 20,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 21,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 22,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 23,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 4,
+      "instance": 24,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 0,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 1,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 2,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 3,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 4,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 5,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 6,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 7,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 8,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 9,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 10,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 11,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 12,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 13,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 14,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 15,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 16,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 17,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 18,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 19,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 20,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 21,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 22,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 23,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 8,
+      "instance": 24,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 0,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 1,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 2,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 3,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 4,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 5,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 6,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 7,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 8,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 9,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 10,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 11,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 12,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 13,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 14,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 15,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 16,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 17,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 18,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 19,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 20,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 21,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 22,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 23,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 16,
+      "instance": 24,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 16,
+      "extra_calls": 0,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 2
+    },
+    {
+      "n": 32,
+      "instance": 0,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 1,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 2,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 3,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 4,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 5,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 6,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 7,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 8,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 9,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 10,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 11,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 12,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 13,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 14,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 15,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 16,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 17,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 18,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": false,
+      "success": false,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 19,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 20,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": false,
+      "success": false,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 21,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 22,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 23,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 32,
+      "instance": 24,
+      "arithmetic_tool": false,
+      "status": "COMPLETED",
+      "steps_done": 32,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 0,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 1,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 2,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 3,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 4,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 5,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 6,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 7,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 8,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 9,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 10,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 11,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 12,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 13,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 14,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 15,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 16,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 17,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 18,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 19,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 20,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 21,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 22,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 23,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 4,
+      "instance": 24,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 4,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 0,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 1,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 2,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 3,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 4,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 2,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 5,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 6,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 7,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 8,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 9,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 10,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 11,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 12,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 13,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 14,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 15,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 16,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 17,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 18,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 19,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 20,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 21,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 22,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 23,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    },
+    {
+      "n": 8,
+      "instance": 24,
+      "arithmetic_tool": true,
+      "status": "COMPLETED",
+      "steps_done": 8,
+      "extra_calls": 1,
+      "answer_right": true,
+      "success": true,
+      "model_calls": 3
+    }
+  ],
+  "provider": "anthropic",
+  "api": "Messages API, anthropic-version 2023-06-01",
+  "settings": {
+    "thinking": {
+      "type": "between_tools"
+    }
+  },
+  "usage": {
+    "provider": "anthropic",
+    "requests": 525,
+    "usage": {
+      "claude-sonnet-5-5": {
+        "input_tokens": 50240,
+        "output_tokens": 118168,
+        "cache_creation_input_tokens": 339343,
+        "cache_read_input_tokens": 212612
+      }
+    },
+    "costUsd": 2.173,
+    "prices": "USD per million tokens, platform.claude.com pricing page, 2026-09-29",
+    "settings": {
+      "claude-sonnet-5-5": {
+        "thinking": {
+          "type": "between_tools"
+        }
+      }
+    },
+    "ceilingUsd": 8.0
+  }
+}
