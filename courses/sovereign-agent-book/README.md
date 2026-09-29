@@ -49,10 +49,12 @@ teaching guides, session plans and student and solution copies for a class are u
 
 - **In Colab:** nothing to install. Each notebook carries its own runtime; the setup cell asks for
   `pydantic` if Colab lacks it.
+- **Chapter code in Colab:** open
+  [`book/textbook/appendices/profrod_sovereign_agent_textbook_chapter_code_on_colab_v1.ipynb`](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/textbook/appendices/profrod_sovereign_agent_textbook_chapter_code_on_colab_v1.ipynb).
+  It clones this folder, installs the two pinned dependencies and runs any chapter's checkpoint.
 - **Locally:** Python 3.12 or newer with Jupyter and Pydantic 2 for the notebooks. The chapter code
-  (checkpoints, learner modules, experiments) runs with [uv](https://docs.astral.sh/uv/). Chapters built
-  only on the learner's own code also run on Python 3.12, as on Colab; the others still import the
-  supplied package, which needs Python 3.14.
+  (checkpoints, learner modules, experiments) runs with [uv](https://docs.astral.sh/uv/) on Python
+  3.12, the version Colab runs, which `.python-version` pins.
 
 ## Run, verify, reset
 

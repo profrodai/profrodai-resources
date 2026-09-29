@@ -101,9 +101,26 @@ def colab_notebook_failures(path: Path, book: Path = BOOK) -> list[str]:
     return failures
 
 
+def environment_failures(course: Path = BOOK.parent) -> list[str]:
+    """The course's own environment must admit Colab's Python, so its chapter code installs
+    there: the declared floor, the development pin and the runtime file."""
+    failures = []
+    colab = "{}.{}".format(*COLAB_PYTHON)
+    floor = re.search(r'requires-python = ">=3\.(\d+)"', (course / "pyproject.toml").read_text())
+    if not floor or int(floor.group(1)) > COLAB_PYTHON[1]:
+        failures.append(f"pyproject.toml: requires-python must admit Python {colab}")
+    pinned = course / ".python-version"
+    if not pinned.is_file() or pinned.read_text().strip() != colab:
+        failures.append(f".python-version: develop on Python {colab}, Colab's version")
+    runtime = course / "runtime.txt"
+    if runtime.is_file() and runtime.read_text().strip() != f"python-{colab}":
+        failures.append(f"runtime.txt: name python-{colab}")
+    return failures
+
+
 def colab_failures(book: Path = BOOK) -> list[str]:
     """Everything a reader opens on Colab: course Python files and every notebook in the book."""
-    failures = colab_parse_failures(book)
+    failures = colab_parse_failures(book) + environment_failures(book.parent)
     for path in sorted(book.rglob("*.ipynb")):
         failures += colab_notebook_failures(path, book)
     return failures
