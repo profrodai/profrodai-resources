@@ -1,0 +1,247 @@
+{
+  "n": 500,
+  "wrongAnswers": 259,
+  "rightAnswers": 241,
+  "candidateAccuracy": {
+    "k": 241,
+    "n": 500,
+    "wilson95": [
+      0.4385065876245351,
+      0.5257678886320809
+    ]
+  },
+  "judges": {
+    "claude-haiku-4-5-20251001/direct": {
+      "confusion": {
+        "tp": 221,
+        "fn": 38,
+        "fp": 150,
+        "tn": 91
+      },
+      "unparsed": 0,
+      "meanOutputTokens": 18.114,
+      "oneWordReplies": 462,
+      "accuracy": {
+        "value": 0.624,
+        "wilson95": [
+          0.5807491793847674,
+          0.6653599841807676
+        ]
+      },
+      "recallWrong": {
+        "k": 221,
+        "n": 259,
+        "wilson95": [
+          0.8050331705001256,
+          0.8912040244274807
+        ],
+        "clopperPearson95": [
+          0.8042236852300086,
+          0.8940351677472831
+        ]
+      },
+      "recallRight": {
+        "k": 91,
+        "n": 241,
+        "wilson95": [
+          0.3187602724929821,
+          0.4402674661743988
+        ]
+      },
+      "kappa": {
+        "value": 0.23466479946589364,
+        "bootstrap95": [
+          0.1599130262897805,
+          0.3116306878972875
+        ]
+      }
+    },
+    "claude-haiku-4-5-20251001/reasoned": {
+      "confusion": {
+        "tp": 254,
+        "fn": 5,
+        "fp": 1,
+        "tn": 240
+      },
+      "unparsed": 0,
+      "meanOutputTokens": 231.86,
+      "oneWordReplies": 0,
+      "accuracy": {
+        "value": 0.988,
+        "wilson95": [
+          0.9740696388835527,
+          0.9944890048259724
+        ]
+      },
+      "recallWrong": {
+        "k": 254,
+        "n": 259,
+        "wilson95": [
+          0.9556125809534446,
+          0.9917265531283803
+        ],
+        "clopperPearson95": [
+          0.9555260401426451,
+          0.9937027222978396
+        ]
+      },
+      "recallRight": {
+        "k": 240,
+        "n": 241,
+        "wilson95": [
+          0.9768747151162902,
+          0.9992671570616076
+        ]
+      },
+      "kappa": {
+        "value": 0.9759827075494356,
+        "bootstrap95": [
+          0.9559534868821475,
+          0.9919996159815672
+        ]
+      }
+    },
+    "claude-sonnet-5-5/direct": {
+      "confusion": {
+        "tp": 254,
+        "fn": 5,
+        "fp": 2,
+        "tn": 239
+      },
+      "unparsed": 0,
+      "meanOutputTokens": 79.234,
+      "oneWordReplies": 8,
+      "accuracy": {
+        "value": 0.986,
+        "wilson95": [
+          0.9713869308622147,
+          0.9932022102091564
+        ]
+      },
+      "recallWrong": {
+        "k": 254,
+        "n": 259,
+        "wilson95": [
+          0.9556125809534446,
+          0.9917265531283803
+        ],
+        "clopperPearson95": [
+          0.9555260401426451,
+          0.9937027222978396
+        ]
+      },
+      "recallRight": {
+        "k": 239,
+        "n": 241,
+        "wilson95": [
+          0.9702520969234297,
+          0.9977212240228538
+        ]
+      },
+      "kappa": {
+        "value": 0.9719757870800372,
+        "bootstrap95": [
+          0.948,
+          0.9919672262832356
+        ]
+      }
+    },
+    "claude-sonnet-5-5/reasoned": {
+      "confusion": {
+        "tp": 256,
+        "fn": 3,
+        "fp": 2,
+        "tn": 239
+      },
+      "unparsed": 0,
+      "meanOutputTokens": 157.232,
+      "oneWordReplies": 0,
+      "accuracy": {
+        "value": 0.99,
+        "wilson95": [
+          0.9768069002442693,
+          0.9957212461034096
+        ]
+      },
+      "recallWrong": {
+        "k": 256,
+        "n": 259,
+        "wilson95": [
+          0.966504375956398,
+          0.9960530574681068
+        ],
+        "clopperPearson95": [
+          0.9665245824897706,
+          0.9976049049976639
+        ]
+      },
+      "recallRight": {
+        "k": 239,
+        "n": 241,
+        "wilson95": [
+          0.9702520969234297,
+          0.9977212240228538
+        ]
+      },
+      "kappa": {
+        "value": 0.9799769334273083,
+        "bootstrap95": [
+          0.9599615631005766,
+          0.9959953866854616
+        ]
+      }
+    }
+  },
+  "pairedTests": {
+    "claude-haiku-4-5-20251001: direct vs reasoned": {
+      "pairs": 500,
+      "onlyDirectRight": 4,
+      "onlyReasonedRight": 186,
+      "mcnemarExactP": 6.849720557755681e-50
+    },
+    "claude-sonnet-5-5: direct vs reasoned": {
+      "pairs": 500,
+      "onlyDirectRight": 0,
+      "onlyReasonedRight": 2,
+      "mcnemarExactP": 0.5
+    }
+  },
+  "correctionOutOfSample": {
+    "claude-haiku-4-5-20251001/direct": {
+      "calibrationItems": 250,
+      "heldOutItems": 250,
+      "calibratedCatchWrong": 0.8396946564885496,
+      "calibratedPassRight": 0.37815126050420167,
+      "heldOutTruth": 0.512,
+      "heldOutReported": 0.748,
+      "heldOutCorrected": 0.5790848056537107
+    },
+    "claude-haiku-4-5-20251001/reasoned": {
+      "calibrationItems": 250,
+      "heldOutItems": 250,
+      "calibratedCatchWrong": 0.9770992366412213,
+      "calibratedPassRight": 0.9915966386554622,
+      "heldOutTruth": 0.512,
+      "heldOutReported": 0.504,
+      "heldOutCorrected": 0.511612211111847
+    },
+    "claude-sonnet-5-5/direct": {
+      "calibrationItems": 250,
+      "heldOutItems": 250,
+      "calibratedCatchWrong": 0.9770992366412213,
+      "calibratedPassRight": 0.9831932773109243,
+      "heldOutTruth": 0.512,
+      "heldOutReported": 0.504,
+      "heldOutCorrected": 0.5073384101536407
+    },
+    "claude-sonnet-5-5/reasoned": {
+      "calibrationItems": 250,
+      "heldOutItems": 250,
+      "calibratedCatchWrong": 0.9770992366412213,
+      "calibratedPassRight": 0.9831932773109243,
+      "heldOutTruth": 0.512,
+      "heldOutReported": 0.512,
+      "heldOutCorrected": 0.5156692050768205
+    }
+  }
+}

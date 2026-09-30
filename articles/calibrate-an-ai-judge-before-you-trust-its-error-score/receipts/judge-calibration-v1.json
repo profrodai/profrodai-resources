@@ -1,0 +1,42 @@
+{
+  "data": {
+    "source": "https://raw.githubusercontent.com/openai/grade-school-math/master/grade_school_math/data/test.jsonl",
+    "sourceSha256": "3730d312f6e3440559ace48831e51066acaca737f6eabec99bccb9e4b3c39d14",
+    "sourceLines": 1319,
+    "seed": 20260930,
+    "n": 500,
+    "licence": "MIT (openai/grade-school-math)"
+  },
+  "runs": [
+    {
+      "step": "all",
+      "started": "2026-09-30T07:18:42Z",
+      "finished": "2026-09-30T07:25:43Z",
+      "provider": "anthropic",
+      "requests": 2500,
+      "usage": {
+        "claude-haiku-4-5-20251001": {
+          "input_tokens": 174123,
+          "output_tokens": 127889
+        },
+        "claude-sonnet-5-5": {
+          "input_tokens": 170042,
+          "output_tokens": 118233
+        }
+      },
+      "costUsd": 2.336,
+      "ceilingUsd": 6.0,
+      "prices": "USD per million tokens (input, output), platform.claude.com pricing page, 2026-09-29",
+      "settings": {
+        "claude-haiku-4-5-20251001": {
+          "temperature": 0
+        },
+        "claude-sonnet-5-5": {
+          "thinking": {
+            "type": "between_tools"
+          }
+        }
+      }
+    }
+  ]
+}
