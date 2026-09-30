@@ -32,6 +32,7 @@ Each file below is the completed comparison implementation for one chapter's con
 | 15 | `profrod_sovereign_agent_ch15_catalog_server.py` | A standard-library MCP server over stdio: Lucy's catalog, and a purchase tool whose description claims authority it does not have |
 | 16 | `profrod_sovereign_agent_ch16_evaluation_statistics_learner.py` | Wilson intervals, clustered standard errors, McNemar's test, sample size, pass@k and kappa |
 | 17 | `profrod_sovereign_agent_ch17_optimization_learner.py` | The expected maximum of k normals, the winner's curse, and Bradley–Terry ratings fitted from preferences |
+| 17 | `profrod_sovereign_agent_ch17_improvement_learner.py` | Attributed proposals staged through Chapter 7, the change operation over Chapter 16's harness that saves its report before switching, rollback that must re-earn activation, and the STALE guard |
 | 18 | `profrod_sovereign_agent_ch18_delegation_learner.py` | Amdahl's law, composed success, majority-vote accuracy and delegation token counts; one bounded delegation with an immutable contract, role-separated claims, fenced model calls billed to the parent, cancellation and expiry |
 | 19 | `profrod_sovereign_agent_ch19_inference_economics_learner.py` | Decode ceilings, arithmetic intensity, KV-cache memory, latency, percentiles, Little's law and loop cost |
 | 20 | `profrod_sovereign_agent_ch20_reliability_learner.py` | Series success, per-step reliability, the Wilson interval, and checks of a report's amounts and names |
