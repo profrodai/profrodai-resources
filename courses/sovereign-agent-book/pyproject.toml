@@ -5,9 +5,7 @@ description = "Exercises, solutions, educator guides and chapter code for Build 
 requires-python = ">=3.12"
 license = "MIT"
 dependencies = [
-  # The finished agent the chapters build toward, pinned to the commit that runs on Python 3.12,
-  # Colab's version (sovereign-agent#134), until a PyPI release carries it.
-  "sovereign-agent @ git+https://github.com/profrodai/sovereign-agent@100c01a1ffa3e0fe031e1483282718f61817c363",
+  # Every chapter builds on the learner's own code; the finished agent is not a dependency.
   "pydantic>=2,<3",
 ]
 

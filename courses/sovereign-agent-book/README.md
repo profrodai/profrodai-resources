@@ -61,7 +61,7 @@ teaching guides, session plans and student and solution copies for a class are u
 ```bash
 git clone https://github.com/profrodai/profrodai-resources.git
 cd profrodai-resources/courses/sovereign-agent-book
-make setup    # uv sync: the pinned sovereign-agent package, pydantic and the notebook tools
+make setup    # uv sync: pydantic and the notebook tools; every chapter runs on your own code
 make run      # the Chapter 20 checkpoint: an integrated shop day on the finished agent
 make test     # every chapter checkpoint
 make verify   # the layout, the receipt of every notebook's executed bytes, and the checkpoints

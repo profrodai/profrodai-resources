@@ -841,20 +841,11 @@ wheels = [
 ]
 
 [[package]]
-name = "sovereign-agent"
-version = "1.4.0"
-source = { git = "https://github.com/profrodai/sovereign-agent?rev=100c01a1ffa3e0fe031e1483282718f61817c363#100c01a1ffa3e0fe031e1483282718f61817c363" }
-dependencies = [
-    { name = "pydantic" },
-]
-
-[[package]]
 name = "sovereign-agent-book-course"
 version = "2026.9.28"
 source = { virtual = "." }
 dependencies = [
     { name = "pydantic" },
-    { name = "sovereign-agent" },
 ]
 
 [package.dev-dependencies]
@@ -866,10 +857,7 @@ course = [
 ]
 
 [package.metadata]
-requires-dist = [
-    { name = "pydantic", specifier = ">=2,<3" },
-    { name = "sovereign-agent", git = "https://github.com/profrodai/sovereign-agent?rev=100c01a1ffa3e0fe031e1483282718f61817c363" },
-]
+requires-dist = [{ name = "pydantic", specifier = ">=2,<3" }]
 
 [package.metadata.requires-dev]
 course = [
