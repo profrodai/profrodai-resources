@@ -1,0 +1,57 @@
+{
+  "schema": "profrod.sovereign-agent.ch19-service.v1",
+  "recorded": "2026-09-30",
+  "platform": "Linux 7.0.0-28-generic aarch64",
+  "systemd": "systemd 259 (259.5-0ubuntu3)",
+  "python": "3.12.14",
+  "paths": {
+    "state": "/home/rodbot.guest/lucy-agent",
+    "python": "/home/rodbot.guest/lucy-venv/bin/python",
+    "course": "/home/rodbot.guest/course/sovereign-agent-book"
+  },
+  "unit": "[Unit]\nDescription=Lucy's always-on teaching agent\nAfter=network-online.target\n\n[Service]\nType=simple\nWorkingDirectory=/home/rodbot.guest/course/sovereign-agent-book\nExecStart=/home/rodbot.guest/lucy-venv/bin/python -I /home/rodbot.guest/course/sovereign-agent-book/book/textbook/learner/profrod_sovereign_agent_ch10_wakeups_learner.py serve --root /home/rodbot.guest/lucy-agent\nEnvironmentFile=/home/rodbot.guest/lucy-agent/agent.env\nRestart=on-failure\nRestartSec=10\nTimeoutStopSec=90\nUMask=0077\nNoNewPrivileges=true\nPrivateTmp=true\n\n[Install]\nWantedBy=default.target\n",
+  "linger": "Linger=yes",
+  "boot_before": "bcfb94c6-df3e-493e-8cd9-e32e10e3f4da",
+  "status_before_kill": {
+    "ActiveState": "active",
+    "SubState": "running",
+    "MainPID": "2426",
+    "NRestarts": "0"
+  },
+  "status_after_restart": {
+    "ActiveState": "active",
+    "SubState": "running",
+    "MainPID": "2454",
+    "NRestarts": "1"
+  },
+  "reports": {
+    "morning": [
+      "Draft estimates:\n- \"SKU-STRAWBERRY\": 4 tubs, $11.00 USD.\n- \"SKU-VANILLA\": 6 tubs, $15.00 USD.\nTotal: $26.00 USD."
+    ],
+    "vanilla episode": [
+      "Draft estimates:\n- \"SKU-VANILLA\": 6 tubs, $15.00 USD.\nTotal: $15.00 USD."
+    ],
+    "after restart": [
+      "Draft estimates:\n- \"SKU-STRAWBERRY\": 4 tubs, $11.00 USD.\n- \"SKU-VANILLA\": 6 tubs, $15.00 USD.\nTotal: $26.00 USD."
+    ],
+    "after reboot": [
+      "Draft estimates:\n- \"SKU-STRAWBERRY\": 4 tubs, $11.00 USD.\n- \"SKU-VANILLA\": 6 tubs, $15.00 USD.\nTotal: $26.00 USD."
+    ]
+  },
+  "checks": {
+    "served_work": true,
+    "restarted_after_sigkill": true,
+    "work_after_restart": true,
+    "rebooted": true,
+    "active_after_reboot": true,
+    "work_after_reboot": true,
+    "linger_enabled": true
+  },
+  "boot_after": "6bbb68b0-a82a-49f2-9c97-afc06c435695",
+  "status_after_reboot": {
+    "ActiveState": "active",
+    "SubState": "running",
+    "MainPID": "1555",
+    "NRestarts": "0"
+  }
+}
