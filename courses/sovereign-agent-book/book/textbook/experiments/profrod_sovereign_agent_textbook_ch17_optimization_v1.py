@@ -81,9 +81,11 @@ def offline():
 
 
 def live(model_name, runs):
-    from sovereign_agent.model_turn import HTTPModel
-
-    model = HTTPModel(model=model_name, reasoning_effort="none")
+    # The learner's Chapter 3 model adapter, as Chapter 16's experiment uses.
+    loop = runpy.run_path(
+        str(ROOT / "book/textbook/learner/profrod_sovereign_agent_ch03_agent_loop_learner.py")
+    )
+    model = loop["HTTPModel"](model=model_name, reasoning_effort="none")
     cases = REQUESTS["CASES"]
     variants = []
     for mask in itertools.product((0, 1), repeat=len(HINTS)):
