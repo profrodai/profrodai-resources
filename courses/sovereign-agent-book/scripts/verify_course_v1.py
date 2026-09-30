@@ -163,7 +163,6 @@ def verify_layout(book: Path = BOOK) -> dict:
 
 # Chapters whose checkpoint builds only on the standard library, locked dependencies and the
 # learner's own files. The book promises every chapter joins this set; none may leave it.
-FROM_SCRATCH = frozenset({1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21})
 SUPPLIED = ("sovereign_agent", "reference_organizations")
 # Runs a checkpoint as its own script would run, with the supplied packages refused on import,
 # so a file the checkpoint loads indirectly cannot bring them back either.
@@ -197,28 +196,25 @@ def supplied_imports(chapter: int) -> list[str]:
 
 
 def verify_code() -> None:
-    """Every course Python file parses on Colab's Python; every draft chapter's checkpoint runs
-    from the course root; the from-scratch chapters run with the supplied packages refused."""
+    """Every course Python file parses on Colab's Python; every drafted chapter's checkpoint
+    runs from the course root with the supplied packages refused. Every chapter builds from
+    scratch, and a new one must too."""
     manifest = verify_layout()
-    ran, scratch = 0, 0
+    ran = 0
     for row in manifest["chapters"]:
         if row["status"] == "PLANNED":
             continue
         path = BOOK / "textbook" / row["checkpoint"]
-        command = [sys.executable, str(path)]
-        if row["number"] in FROM_SCRATCH:
-            found = supplied_imports(row["number"])
-            assert not found, f"chapter {row['number']} imports supplied code: {found}"
-            runner = FROM_SCRATCH_RUNNER.format(
-                supplied=set(SUPPLIED), path=str(path), folder=str(path.parent)
-            )
-            command = [sys.executable, "-c", runner]
-            scratch += 1
-        subprocess.run(command, cwd=ROOT, check=True, timeout=120)
+        found = supplied_imports(row["number"])
+        assert not found, f"chapter {row['number']} imports supplied code: {found}"
+        runner = FROM_SCRATCH_RUNNER.format(
+            supplied=set(SUPPLIED), path=str(path), folder=str(path.parent)
+        )
+        subprocess.run([sys.executable, "-c", runner], cwd=ROOT, check=True, timeout=120)
         ran += 1
     print(
-        f"CHAPTER CODE: {ran} checkpoints ran; {scratch} build only on learner code, "
-        f"{ran - scratch} still import the supplied sovereign-agent package. Every course "
+        f"CHAPTER CODE: {ran} checkpoints ran, every one on learner code alone, with the "
+        f"supplied packages refused on import. Every course "
         f"Python file and notebook parses as Python {colab.COLAB_PYTHON[0]}."
         f"{colab.COLAB_PYTHON[1]}, Colab's runtime."
     )

@@ -38,6 +38,7 @@ Each file below is the completed comparison implementation for one chapter's con
 | 19 | `profrod_sovereign_agent_ch19_operations_learner.py` | A consistent SQLite backup; a restore that keeps the file, starts paused and revokes every old approval and lease; a read-only health summary; account inspection that fences the supplier; a digest-bound recovery plan of current counts and deliveries; and the systemd unit for the Chapter 10 worker |
 | 19 | `profrod_sovereign_agent_ch19_supplier_learner.py` | Chapter 11's supplier with an account epoch that every order must carry, and a complete receipt export for recovery |
 | 20 | `profrod_sovereign_agent_ch20_reliability_learner.py` | Series success, per-step reliability, the Wilson interval, and checks of a report's amounts and names |
+| 20 | `profrod_sovereign_agent_ch20_day_learner.py` | Every earlier chapter's store opened as one; a worker that handles phone approvals and order continuations without a model and model turns that may propose orders and then wait; retries as new work; delivery received once; and a report read from one snapshot |
 
 Each chapter's checkpoint loads its file, so changing a function's essential behavior changes the executable result. The live adapters still use supplied bounded HTTP transport, and later reference checkpoints import other supplied runtime components. See [code ownership](https://profrod.ai/book/code-ownership) and the [construction roadmap](https://profrod.ai/book/construction-roadmap) before treating these files as a finished agent.
 
