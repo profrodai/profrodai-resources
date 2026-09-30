@@ -3,7 +3,12 @@
 # Join the Prof Rod learner community: https://profrod.ai/community
 # Original source and updates: https://github.com/profrodai/sovereign-agent
 
-"""Chapter 19: recover a consistent local snapshot against retained supplier history."""
+"""Chapter 19: backup, restore without old authority, account recovery, and the host service.
+
+Every function it calls is the learner's own: Chapter 19's operations on Chapter 11's orders and
+Chapter 19's supplier, and the chapters beneath them. The systemd service itself runs only on a
+Linux host; see the chapter's service experiment and its receipt.
+"""
 
 import bisect
 import hashlib
@@ -19,37 +24,27 @@ import time
 from contextlib import contextmanager
 from pathlib import Path
 
-from reference_organizations.store.account_recovery import (
-    configured_supplier,
-    inspect_account,
-    recover,
-)
-from reference_organizations.store.agent import OfflineShopModel, seed_lucy, shop_dispatcher
-from reference_organizations.store.assistant import run_once
-from reference_organizations.store.supplier import SupplierClient
-from sovereign_agent import assistant_orders as orders
-from sovereign_agent import assistant_work as work
-from sovereign_agent.assistant_service import backup, health, restore, unit_text
-from sovereign_agent.database import Database
-from sovereign_agent.model_turn import ToolCall
+BOOK = Path(__file__).resolve().parents[1]
+OPS = runpy.run_path(str(BOOK / "learner/profrod_sovereign_agent_ch19_operations_learner.py"))
+ORDERS, SUPPLIER = OPS["ORDERS"], OPS["SUPPLIER"]
+SUPPLIER_FILE = BOOK / "learner/profrod_sovereign_agent_ch19_supplier_learner.py"
+
+
+def refused(error, action):
+    try:
+        action()
+    except error:
+        return True
+    return False
 
 
 @contextmanager
-def supplied_supplier_process(root):
-    """The supplied supplier, with account epochs, until this chapter is rebuilt."""
+def supplier_process(root):
+    """The chapter's supplier in its own process, with its own ledger."""
     ready, path = root / "ready", root / "supplier.sqlite"
     process = subprocess.Popen(
-        [
-            sys.executable,
-            "-m",
-            "reference_organizations.store.supplier",
-            "--database",
-            str(path),
-            "--port",
-            "0",
-            "--ready",
-            str(ready),
-        ],
+        [sys.executable, str(SUPPLIER_FILE), "--database", str(path), "--ready", str(ready)],
+        cwd=BOOK.parents[1],
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
@@ -59,7 +54,7 @@ def supplied_supplier_process(root):
             time.sleep(0.02)
         if not ready.exists():
             raise RuntimeError("chapter supplier failed to start")
-        yield SupplierClient("http://127.0.0.1:" + ready.read_text()), path
+        yield "http://127.0.0.1:" + ready.read_text(), path
     finally:
         process.terminate()
         try:
@@ -69,121 +64,160 @@ def supplied_supplier_process(root):
             process.wait(timeout=5)
 
 
-def experiment(root, supplier_process):
-    policy = orders.SpendingPolicy(frozenset({"lucy"}))
+def experiment(root):
+    policy = ORDERS["SpendingPolicy"](frozenset({"lucy"}))
     with supplier_process(root) as (endpoint, supplier_path):
-        db = Database(root / "agent.sqlite")
+        db, queue = OPS["open_operations"](root / "agent.sqlite")
         observer = None
         try:
-            seed_lucy(db)
-            client = configured_supplier(db, endpoint.endpoint)
+            client = OPS["configured_supplier"](db, endpoint)
 
             def prepare(source, sku, quantity):
-                identifier = work.enqueue(db, source, "lucy", "Prepare replenishment.")
-                holder = work.claim(db, source, identifier=identifier)
-                operation = orders.propose(db, holder, sku, quantity, target=client.identity)
+                assert queue.admit(source, "lucy", "Prepare replenishment.") == "accepted"
+                holder = OPS["claim"](db, "worker-" + source)
+                operation = ORDERS["propose"](db, holder, sku, quantity, target=client.identity)
                 digest = db.connection.execute(
                     "SELECT digest FROM assistant_orders WHERE id=?", (operation,)
                 ).fetchone()[0]
-                orders.approve(
+                ORDERS["approve"](
                     db, operation, digest, actor="lucy", policy=policy, expires=time.time() + 120
                 )
                 return holder, operation
 
             original, vanilla = prepare("morning", "SKU-VANILLA", 6)
-            snapshot = backup(db, root / "morning.sqlite")
+            snapshot = OPS["backup"](db, root / "morning.sqlite")
             snapshot_hash = hashlib.sha256(snapshot.read_bytes()).hexdigest()
-            try:
-                backup(db, snapshot)
-            except FileExistsError:
-                pass
-            else:
-                raise AssertionError("backup overwrote prior evidence")
+            assert refused(FileExistsError, lambda: OPS["backup"](db, snapshot))
             assert snapshot.stat().st_mode & 0o077 == 0
-            assert (
-                orders.execute(db, original, vanilla, client, policy=policy)["status"] == "ACCEPTED"
-            )
-            orders.receive(db, vanilla, "delivery-A", actor="lucy", policy=policy)
-            work.finish(db, original, "DONE", "received")
+            with sqlite3.connect(snapshot) as saved:
+                assert saved.execute("PRAGMA integrity_check").fetchone()[0] == "ok"
+            print("ok   a private, checked snapshot; a second backup to it is refused")
+            receipt = ORDERS["execute"](db, original, vanilla, client, policy=policy)
+            assert receipt["status"] == "ACCEPTED"
+            db.apply(OPS["STORE"]["StockEvent"]("delivery-A", "SKU-VANILLA", 6, "received"))
+            queue.finish(original, "received")
             later, strawberry = prepare("afternoon", "SKU-STRAWBERRY", 4)
-            assert (
-                orders.execute(db, later, strawberry, client, policy=policy)["status"] == "ACCEPTED"
-            )
-            work.finish(db, later, "DONE", "awaiting delivery")
-            observer = Database(db.path)
+            receipt = ORDERS["execute"](db, later, strawberry, client, policy=policy)
+            assert receipt["status"] == "ACCEPTED"
+            assert refused(ValueError, lambda: OPS["restore"](db, db.path))
+            other = ORDERS["StateStore"](root / "other.sqlite")
+            other.migrate("extra", {1: ("CREATE TABLE extra (x)",)})
+            OPS["backup"](other, root / "other-snapshot.sqlite")
+            other.close()
+            assert refused(ValueError, lambda: OPS["restore"](db, root / "other-snapshot.sqlite"))
+            observer = ORDERS["StateStore"](db.path)
+            ORDERS["assert_current"](observer.connection, later)  # still owned before restore
             inode = db.path.stat().st_ino
-            restore(db, snapshot)
+            OPS["restore"](db, snapshot)
             assert db.path.stat().st_ino == inode
-            assert health(db)["paused"] is True
-            assert work.claim(db, "replacement") is None
-            try:
-                work.assert_current(observer.connection, later)
-            except PermissionError:
-                pass
-            else:
-                raise AssertionError("pre-restore connection retained authority")
-            assert db.connection.execute("SELECT count(*) FROM assistant_orders").fetchone()[0] == 1
-            assert db.connection.execute("SELECT revoked FROM assistant_orders").fetchone()[0] == 1
-            inspection = inspect_account(db, client, actor="lucy", policy=policy)
+            assert OPS["health"](db)["paused"] is True
+            # Intake still works while paused; nothing may claim what it admits.
+            assert queue.admit("during-pause", "lucy", "Prepare a stock brief.") == "accepted"
+            assert OPS["claim"](db, "replacement") is None
+            for holder in (original, later):
+                assert refused(
+                    PermissionError,
+                    lambda h=holder: ORDERS["assert_current"](observer.connection, h),
+                )
+            assert refused(PermissionError, lambda: OPS["configured_supplier"](db, endpoint))
+            orders = dict(db.connection.execute("SELECT id, status FROM assistant_orders"))
+            assert orders == {vanilla: "REVOKED"} and db.stock()["SKU-VANILLA"] == 2
+            print("ok   restored in place and paused; old holders and connections refused")
+            inspector = SUPPLIER["EpochClient"](endpoint, OPS["control"](db.connection)[0])
+            inspection = OPS["inspect_account"](db, inspector, actor="lucy", policy=policy)
             assert len(inspection["receipts"]) == 2
             plan = inspection["plan_template"]
             assert plan["inventory"]["SKU-VANILLA"]["on_hand"] is None
+            # The pre-restore client still holds the old epoch: the account now refuses it.
+            assert refused(OSError, lambda: client.order("f" * 32, receipt["proposal"]))
             plan["observed_at"] = time.time()
-            # Authored physical observations are independent of the restored inventory.
+            # Authored physical observations, independent of the restored stock.
             plan["inventory"] = {
-                "SKU-VANILLA": {"on_hand": 8, "reserved": 0},
-                "SKU-CHOCOLATE": {"on_hand": 12, "reserved": 0},
-                "SKU-STRAWBERRY": {"on_hand": 1, "reserved": 0},
+                "SKU-CHOCOLATE": {"on_hand": 12},
+                "SKU-STRAWBERRY": {"on_hand": 1},
+                "SKU-VANILLA": {"on_hand": 8},
             }
             plan["deliveries"] = {
                 vanilla: {"received": True, "reference": "delivery-A"},
                 strawberry: {"received": False, "reference": ""},
             }
-            plan["model_grants"] = {"lucy": {"calls": 5, "estimated_cents": 100}}
             raw = json.dumps(plan).encode()
             digest = hashlib.sha256(raw).hexdigest()
-            try:
-                recover(db, client, raw, "0" * 64, actor="lucy", policy=policy)
-            except ValueError:
-                pass
-            else:
-                raise AssertionError("changed recovery bytes were accepted")
-            assert health(db)["paused"] is True
-            result = recover(db, client, raw, digest, actor="lucy", policy=policy)
+            recover = OPS["recover"]
+            for broken in (
+                {**plan, "receipts": plan["receipts"][:1]},
+                {**plan, "deliveries": {vanilla: plan["deliveries"][vanilla]}},
+                {**plan, "inventory": {"SKU-VANILLA": {"on_hand": 8}}},
+            ):
+                wrong = json.dumps(broken).encode()
+                assert refused(
+                    ValueError,
+                    lambda w=wrong: recover(
+                        db,
+                        inspector,
+                        w,
+                        hashlib.sha256(w).hexdigest(),
+                        actor="lucy",
+                        policy=policy,
+                    ),
+                )
+            assert refused(
+                ValueError,
+                lambda: recover(db, inspector, raw, "0" * 64, actor="lucy", policy=policy),
+            )
+            stale = json.dumps({**plan, "observed_at": time.time() - 3600}).encode()
+            assert refused(
+                ValueError,
+                lambda: recover(
+                    db,
+                    inspector,
+                    stale,
+                    hashlib.sha256(stale).hexdigest(),
+                    actor="lucy",
+                    policy=policy,
+                ),
+            )
+            assert OPS["health"](db)["paused"] is True
+            result = recover(db, inspector, raw, digest, actor="lucy", policy=policy)
             assert result == {
                 "status": "ACTIVE",
                 "duplicate": False,
                 "orders": 2,
                 "spent_cents": 2600,
             }
-            assert (
-                recover(db, client, raw, digest, actor="lucy", policy=policy)["duplicate"] is True
+            again = recover(db, inspector, raw, digest, actor="lucy", policy=policy)
+            assert refused(
+                PermissionError,
+                lambda: OPS["inspect_account"](db, inspector, actor="lucy", policy=policy),
             )
-            assert dict(db.connection.execute("SELECT id,status FROM assistant_orders")) == {
+            assert again["duplicate"] is True
+            assert dict(db.connection.execute("SELECT id, status FROM assistant_orders")) == {
                 vanilla: "DELIVERED",
                 strawberry: "CONFIRMED",
             }
-            stock = shop_dispatcher(db).invoke(
-                ToolCall(id="stock", name="list_stock", arguments={})
-            )
-            assert [(row["on_hand"], row["on_order"], row["needed"]) for row in stock["value"]] == [
-                (12, 0, 0),
-                (1, 4, 0),
-                (8, 0, 0),
+            spending = db.connection.execute(
+                "SELECT reserved_cents, spent_cents FROM assistant_spending"
+            ).fetchone()
+            assert tuple(spending) == (0, 2600)
+            position = [
+                (r["on_hand"], r["on_order"], r["needed"]) for r in OPS["stock_position"](db)
             ]
-            try:
-                client.order("f" * 32, inspection["receipts"][0]["proposal"])
-            except OSError:
-                pass
-            else:
-                raise AssertionError("old supplier epoch could purchase")
-            work.enqueue(db, "after-recovery", "lucy", "Prepare a stock brief.")
-            assert run_once(db, OfflineShopModel())["status"] == "DONE"
+            assert position == [(12, 0, 0), (1, 4, 0), (8, 0, 0)]
+            interrupted = db.connection.execute(
+                "SELECT body FROM reports r JOIN work w ON w.work_id = r.work_id"
+                " WHERE w.source_id='morning'"
+            ).fetchall()
+            assert [row[0] for row in interrupted] == [
+                "This request was interrupted by a restore. Please send it again."
+            ]
+            assert queue.admit("after-recovery", "lucy", "Prepare a stock brief.") == "accepted"
+            skills = runpy.run_path(
+                str(BOOK / "learner/profrod_sovereign_agent_ch07_skills_learner.py")
+            )
+            fresh = OPS["work_once"](db, queue, skills["OfflineShopModel"]())
+            assert fresh["status"] == "COMPLETED"
             assert (
-                db.connection.execute(
-                    "SELECT history_complete FROM assistant_daily WHERE session='lucy'"
-                ).fetchone()[0]
-                == 0
+                OPS["configured_supplier"](db, endpoint).epoch == OPS["control"](db.connection)[0]
             )
             assert hashlib.sha256(snapshot.read_bytes()).hexdigest() == snapshot_hash
             with sqlite3.connect(supplier_path) as remote:
@@ -196,8 +230,7 @@ def experiment(root, supplier_process):
                 "spent_cents": 2600,
                 "vanilla_on_hand": 8,
                 "strawberry_on_order": 4,
-                "fresh_work": "DONE",
-                "history_complete": False,
+                "fresh_work": fresh["status"],
                 "backup_unchanged": True,
             }
         finally:
@@ -270,14 +303,39 @@ def economics():
     print(f"ok   Little's law: sampled {in_system:.2f} in progress, predicted {predicted:.2f}")
 
 
-def main():
-    economics()
-    with tempfile.TemporaryDirectory(prefix="lucy-maintenance-") as directory:
-        result = experiment(Path(directory), supplied_supplier_process)
-    unit = unit_text(
-        Path("/srv/lucy/state"), Path("/srv/lucy/releases/one/.venv/bin/sovereign-agent")
+def service_unit():
+    """The unit text, checked here; the service itself is proven on Linux by the experiment."""
+    unit = OPS["unit_text"](
+        Path("/srv/lucy/state"), Path("/srv/lucy/course/.venv/bin/python"), Path("/srv/lucy/course")
     )
     assert "Restart=on-failure" in unit and "TimeoutStopSec=90" in unit
+    assert "ExecStart=/srv/lucy/course/.venv/bin/python -I /srv/lucy/course/book/" in unit
+    assert unit.rstrip().endswith("WantedBy=default.target")
+    assert refused(
+        ValueError,
+        lambda: OPS["unit_text"](Path("/srv/lucy state"), Path("/usr/bin/python3"), Path("/srv")),
+    )
+    receipt = json.loads(
+        (BOOK.parents[1] / "docs/evidence/book-ch19/ch19-service-receipt-v1.json").read_text()
+    )
+    assert receipt["unit"] == OPS["unit_text"](
+        Path(receipt["paths"]["state"]),
+        Path(receipt["paths"]["python"]),
+        Path(receipt["paths"]["course"]),
+    )
+    checks = receipt["checks"]
+    assert all(checks.values()), checks
+    print(
+        "ok   unit text; the recorded Linux run served work, restarted after SIGKILL and came"
+        " back after a reboot"
+    )
+
+
+def main():
+    economics()
+    service_unit()
+    with tempfile.TemporaryDirectory(prefix="lucy-maintenance-") as directory:
+        result = experiment(Path(directory))
     print("Snapshot retained; original database inode preserved:", result["same_inode"])
     print("Old open connection and supplier epoch refused:", result["old_connection_refused"])
     print(
@@ -291,13 +349,8 @@ def main():
         result["vanilla_on_hand"],
         result["strawberry_on_order"],
     )
-    print(
-        "Fresh work:",
-        result["fresh_work"],
-        "; historical model usage complete:",
-        result["history_complete"],
-    )
-    print("Systemd host operations: NOT RUN by this portable checkpoint")
+    print("Fresh work:", result["fresh_work"])
+    print("Systemd host operations: recorded on Linux; not run by this portable checkpoint")
 
 
 if __name__ == "__main__":
