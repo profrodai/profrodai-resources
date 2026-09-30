@@ -1,0 +1,204 @@
+{
+  "schema": "profrod.sovereign-agent.ch20-day-claude.v1",
+  "recorded": "2026-09-30",
+  "python": "3.12.13",
+  "command": "python book/textbook/checkpoints/profrod_sovereign_agent_ch20_integrated_shop_day_checkpoint.py --claude MODEL --output DIR",
+  "scope": "Claude answered every model turn of the day: the morning brief, the phone request and the two ordering turns. The research child used the offline catering fixture. Model ids, token counts and list-price cost only.",
+  "earlier_attempts": [
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "stopped_at": "morning brief",
+      "observed": "Asked to 'Prepare a stock brief.', Haiku reported the stock and recommended ordering, but drafted nothing; the checkpoint required the offline fixture's drafts. The check now asks a live model only for a completed brief."
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "stopped_at": "first stock episode",
+      "observed": "Asked for 'a replenishment draft', Haiku used draft_order, as the words said, so no order was proposed. The fixture had been turning drafts into proposals. In an ordering turn, propose_order now replaces draft_order."
+    }
+  ],
+  "earlier_attempts_cost_usd_estimate": 0.02,
+  "runs": {
+    "claude-haiku-4-5-20251001": {
+      "passed": true,
+      "morning_answer": "## Stock Brief\n\n**Status Summary:**\n\n| SKU | Product | On Hand | Reorder Point | Needed | Status |\n|-----|---------|---------|---------------|--------|--------|\n| SKU-CHOCOLATE | Chocolate | 12 | 6 | 0 | ✓ Healthy |\n| SKU-STRAWBERRY | Strawberry | 1 | 5 | 4 | ⚠ Low Stock |\n| SKU-VANILLA | Vanilla | 2 | 8 | 6 | ⚠ Low Stock |\n\n**Key Findings:**\n\n- **Chocolate**: Well-stocked above reorder point. No action needed.\n- **Strawberry**: Below reorder point. Need to order 4 units to reach target.\n- **Vanilla**: Critically low. Need to order 6 units to reach target.\n\n**Recommendation:** Prioritize reordering Strawberry and Vanilla to maintain adequate inventory levels.",
+      "tool_calls": [
+        "list_stock",
+        "list_stock",
+        "list_stock",
+        "propose_order",
+        "list_stock",
+        "propose_order",
+        "catering_quote"
+      ],
+      "independent_supplier_orders": 2,
+      "independent_supplier_cents": 2600,
+      "killed_worker_exit": -9,
+      "report": {
+        "observed_at": "2026-09-30T00:55:23.636087+00:00",
+        "work": {
+          "finished": 8
+        },
+        "outcomes": {
+          "BLOCKED": 1,
+          "DONE": 7
+        },
+        "orders": {
+          "CONFIRMED": 1,
+          "DELIVERED": 1
+        },
+        "spending": {
+          "accepted_cents": 2600,
+          "reserved_cents": 0,
+          "order_totals_match": true
+        },
+        "stock": [
+          {
+            "sku": "SKU-CHOCOLATE",
+            "name": "Chocolate",
+            "on_hand": 12,
+            "reorder_point": 6,
+            "needed": 0,
+            "on_order": 0
+          },
+          {
+            "sku": "SKU-STRAWBERRY",
+            "name": "Strawberry",
+            "on_hand": 1,
+            "reorder_point": 5,
+            "needed": 0,
+            "on_order": 4
+          },
+          {
+            "sku": "SKU-VANILLA",
+            "name": "Vanilla",
+            "on_hand": 8,
+            "reorder_point": 8,
+            "needed": 0,
+            "on_order": 0
+          }
+        ],
+        "open_work": [],
+        "research_quotes_completed": 1,
+        "model_usage": {
+          "calls": 13,
+          "estimated_cents": 26
+        },
+        "exceptions": []
+      },
+      "claude": {
+        "provider": "anthropic",
+        "requests": 10,
+        "usage": {
+          "claude-haiku-4-5-20251001": {
+            "input_tokens": 10944,
+            "output_tokens": 1370,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          }
+        },
+        "costUsd": 0.0178,
+        "prices": "USD per million tokens, platform.claude.com pricing page, 2026-09-29",
+        "settings": {
+          "claude-haiku-4-5-20251001": {
+            "temperature": 0
+          }
+        },
+        "ceilingUsd": 1.0
+      }
+    },
+    "claude-sonnet-5-5": {
+      "passed": true,
+      "morning_answer": "Draft estimates:\n- \"SKU-STRAWBERRY\": 4 tubs, $11.00 USD.\n- \"SKU-VANILLA\": 6 tubs, $15.00 USD.\nTotal: $26.00 USD.",
+      "tool_calls": [
+        "list_stock",
+        "supplier",
+        "draft_order",
+        "list_stock",
+        "supplier",
+        "list_stock",
+        "propose_order",
+        "list_stock",
+        "propose_order",
+        "catering_quote"
+      ],
+      "independent_supplier_orders": 2,
+      "independent_supplier_cents": 2600,
+      "killed_worker_exit": -9,
+      "report": {
+        "observed_at": "2026-09-30T00:56:17.517930+00:00",
+        "work": {
+          "finished": 8
+        },
+        "outcomes": {
+          "BLOCKED": 1,
+          "DONE": 7
+        },
+        "orders": {
+          "CONFIRMED": 1,
+          "DELIVERED": 1
+        },
+        "spending": {
+          "accepted_cents": 2600,
+          "reserved_cents": 0,
+          "order_totals_match": true
+        },
+        "stock": [
+          {
+            "sku": "SKU-CHOCOLATE",
+            "name": "Chocolate",
+            "on_hand": 12,
+            "reorder_point": 6,
+            "needed": 0,
+            "on_order": 0
+          },
+          {
+            "sku": "SKU-STRAWBERRY",
+            "name": "Strawberry",
+            "on_hand": 1,
+            "reorder_point": 5,
+            "needed": 0,
+            "on_order": 4
+          },
+          {
+            "sku": "SKU-VANILLA",
+            "name": "Vanilla",
+            "on_hand": 8,
+            "reorder_point": 8,
+            "needed": 0,
+            "on_order": 0
+          }
+        ],
+        "open_work": [],
+        "research_quotes_completed": 1,
+        "model_usage": {
+          "calls": 16,
+          "estimated_cents": 32
+        },
+        "exceptions": []
+      },
+      "claude": {
+        "provider": "anthropic",
+        "requests": 13,
+        "usage": {
+          "claude-sonnet-5-5": {
+            "input_tokens": 15682,
+            "output_tokens": 2473,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          }
+        },
+        "costUsd": 0.0561,
+        "prices": "USD per million tokens, platform.claude.com pricing page, 2026-09-29",
+        "settings": {
+          "claude-sonnet-5-5": {
+            "thinking": {
+              "type": "between_tools"
+            }
+          }
+        },
+        "ceilingUsd": 1.0
+      }
+    }
+  },
+  "costUsd": 0.0739
+}
