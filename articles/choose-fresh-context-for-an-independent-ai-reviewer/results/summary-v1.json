@@ -1,0 +1,377 @@
+{
+ "models": {
+  "Qwen/Qwen2.5-Coder-1.5B-Instruct": {
+   "revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+   "conditions": {
+    "buggy/clean": {
+     "n": 90,
+     "flagged": 1,
+     "rate": 0.011111111111111112,
+     "wilson95": [
+      0.0019640840792123256,
+      0.06028408374483127
+     ],
+     "noVerdict": 37
+    },
+    "correct/clean": {
+     "n": 90,
+     "flagged": 1,
+     "rate": 0.011111111111111112,
+     "wilson95": [
+      0.0019640840792123256,
+      0.06028408374483127
+     ],
+     "noVerdict": 46
+    },
+    "buggy/anchored-pass": {
+     "n": 90,
+     "flagged": 0,
+     "rate": 0.0,
+     "wilson95": [
+      0.0,
+      0.04093562618368095
+     ],
+     "noVerdict": 61
+    },
+    "correct/anchored-pass": {
+     "n": 90,
+     "flagged": 0,
+     "rate": 0.0,
+     "wilson95": [
+      0.0,
+      0.04093562618368095
+     ],
+     "noVerdict": 64
+    },
+    "buggy/anchored-fail": {
+     "n": 90,
+     "flagged": 14,
+     "rate": 0.15555555555555556,
+     "wilson95": [
+      0.09498275557740157,
+      0.24432845357135638
+     ],
+     "noVerdict": 61
+    },
+    "correct/anchored-fail": {
+     "n": 90,
+     "flagged": 15,
+     "rate": 0.16666666666666666,
+     "wilson95": [
+      0.10368488695151801,
+      0.2569388638376026
+     ],
+     "noVerdict": 60
+    }
+   },
+   "comparisons": {
+    "suppression": {
+     "label": "buggy",
+     "first": "clean",
+     "second": "anchored-pass",
+     "pairs": 90,
+     "onlyFirst": 1,
+     "onlySecond": 0,
+     "difference": -0.011111111111111112,
+     "mcnemarP": 1.0,
+     "bootstrap95": [
+      -0.03333333333333333,
+      0.0
+     ]
+    },
+    "invention": {
+     "label": "correct",
+     "first": "clean",
+     "second": "anchored-fail",
+     "pairs": 90,
+     "onlyFirst": 1,
+     "onlySecond": 15,
+     "difference": 0.15555555555555556,
+     "mcnemarP": 0.000518798828125,
+     "bootstrap95": [
+      0.06666666666666667,
+      0.24444444444444444
+     ]
+    },
+    "pass-anchor on correct": {
+     "label": "correct",
+     "first": "clean",
+     "second": "anchored-pass",
+     "pairs": 90,
+     "onlyFirst": 1,
+     "onlySecond": 0,
+     "difference": -0.011111111111111112,
+     "mcnemarP": 1.0,
+     "bootstrap95": [
+      -0.03333333333333333,
+      0.0
+     ]
+    },
+    "fail-anchor on buggy": {
+     "label": "buggy",
+     "first": "clean",
+     "second": "anchored-fail",
+     "pairs": 90,
+     "onlyFirst": 1,
+     "onlySecond": 14,
+     "difference": 0.14444444444444443,
+     "mcnemarP": 0.0009765625,
+     "bootstrap95": [
+      0.06666666666666667,
+      0.2222222222222222
+     ]
+    }
+   }
+  },
+  "Qwen/Qwen2.5-Coder-3B-Instruct": {
+   "revision": "488639f1ff808d1d3d0ba301aef8c11461451ec5",
+   "conditions": {
+    "buggy/clean": {
+     "n": 90,
+     "flagged": 48,
+     "rate": 0.5333333333333333,
+     "wilson95": [
+      0.4310218737549074,
+      0.6329157511661805
+     ],
+     "noVerdict": 3
+    },
+    "correct/clean": {
+     "n": 90,
+     "flagged": 35,
+     "rate": 0.3888888888888889,
+     "wilson95": [
+      0.2946991714296459,
+      0.4921754121667275
+     ],
+     "noVerdict": 3
+    },
+    "buggy/anchored-pass": {
+     "n": 90,
+     "flagged": 41,
+     "rate": 0.45555555555555555,
+     "wilson95": [
+      0.35659616834046715,
+      0.5581536650980822
+     ],
+     "noVerdict": 3
+    },
+    "correct/anchored-pass": {
+     "n": 90,
+     "flagged": 18,
+     "rate": 0.2,
+     "wilson95": [
+      0.13042401137979498,
+      0.2941373643304136
+     ],
+     "noVerdict": 2
+    },
+    "buggy/anchored-fail": {
+     "n": 90,
+     "flagged": 57,
+     "rate": 0.6333333333333333,
+     "wilson95": [
+      0.5302230468161866,
+      0.725527452868165
+     ],
+     "noVerdict": 2
+    },
+    "correct/anchored-fail": {
+     "n": 90,
+     "flagged": 50,
+     "rate": 0.5555555555555556,
+     "wilson95": [
+      0.45271926376404914,
+      0.6538434444377641
+     ],
+     "noVerdict": 4
+    }
+   },
+   "comparisons": {
+    "suppression": {
+     "label": "buggy",
+     "first": "clean",
+     "second": "anchored-pass",
+     "pairs": 90,
+     "onlyFirst": 17,
+     "onlySecond": 10,
+     "difference": -0.07777777777777778,
+     "mcnemarP": 0.24778856337070465,
+     "bootstrap95": [
+      -0.2,
+      0.044444444444444446
+     ]
+    },
+    "invention": {
+     "label": "correct",
+     "first": "clean",
+     "second": "anchored-fail",
+     "pairs": 90,
+     "onlyFirst": 11,
+     "onlySecond": 26,
+     "difference": 0.16666666666666666,
+     "mcnemarP": 0.020073851919732988,
+     "bootstrap95": [
+      0.044444444444444446,
+      0.28888888888888886
+     ]
+    },
+    "pass-anchor on correct": {
+     "label": "correct",
+     "first": "clean",
+     "second": "anchored-pass",
+     "pairs": 90,
+     "onlyFirst": 25,
+     "onlySecond": 8,
+     "difference": -0.18888888888888888,
+     "mcnemarP": 0.004551384132355452,
+     "bootstrap95": [
+      -0.3,
+      -0.06666666666666667
+     ]
+    },
+    "fail-anchor on buggy": {
+     "label": "buggy",
+     "first": "clean",
+     "second": "anchored-fail",
+     "pairs": 90,
+     "onlyFirst": 10,
+     "onlySecond": 19,
+     "difference": 0.1,
+     "mcnemarP": 0.13604594767093658,
+     "bootstrap95": [
+      0.0,
+      0.2
+     ]
+    }
+   }
+  },
+  "Qwen/Qwen3-1.7B": {
+   "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+   "conditions": {
+    "buggy/clean": {
+     "n": 90,
+     "flagged": 46,
+     "rate": 0.5111111111111111,
+     "wilson95": [
+      0.40951745708084497,
+      0.6117950845595176
+     ],
+     "noVerdict": 0
+    },
+    "correct/clean": {
+     "n": 90,
+     "flagged": 4,
+     "rate": 0.044444444444444446,
+     "wilson95": [
+      0.017417241731725534,
+      0.10876855101340599
+     ],
+     "noVerdict": 0
+    },
+    "buggy/anchored-pass": {
+     "n": 90,
+     "flagged": 24,
+     "rate": 0.26666666666666666,
+     "wilson95": [
+      0.18623818683848364,
+      0.36619843871390073
+     ],
+     "noVerdict": 0
+    },
+    "correct/anchored-pass": {
+     "n": 90,
+     "flagged": 0,
+     "rate": 0.0,
+     "wilson95": [
+      0.0,
+      0.04093562618368095
+     ],
+     "noVerdict": 0
+    },
+    "buggy/anchored-fail": {
+     "n": 90,
+     "flagged": 76,
+     "rate": 0.8444444444444444,
+     "wilson95": [
+      0.7556715464286436,
+      0.9050172444225983
+     ],
+     "noVerdict": 0
+    },
+    "correct/anchored-fail": {
+     "n": 90,
+     "flagged": 41,
+     "rate": 0.45555555555555555,
+     "wilson95": [
+      0.35659616834046715,
+      0.5581536650980822
+     ],
+     "noVerdict": 0
+    }
+   },
+   "comparisons": {
+    "suppression": {
+     "label": "buggy",
+     "first": "clean",
+     "second": "anchored-pass",
+     "pairs": 90,
+     "onlyFirst": 23,
+     "onlySecond": 1,
+     "difference": -0.24444444444444444,
+     "mcnemarP": 2.9802322387695312e-06,
+     "bootstrap95": [
+      -0.3333333333333333,
+      -0.15555555555555556
+     ]
+    },
+    "invention": {
+     "label": "correct",
+     "first": "clean",
+     "second": "anchored-fail",
+     "pairs": 90,
+     "onlyFirst": 1,
+     "onlySecond": 38,
+     "difference": 0.4111111111111111,
+     "mcnemarP": 1.4551915228366852e-10,
+     "bootstrap95": [
+      0.2777777777777778,
+      0.5444444444444444
+     ]
+    },
+    "pass-anchor on correct": {
+     "label": "correct",
+     "first": "clean",
+     "second": "anchored-pass",
+     "pairs": 90,
+     "onlyFirst": 4,
+     "onlySecond": 0,
+     "difference": -0.044444444444444446,
+     "mcnemarP": 0.125,
+     "bootstrap95": [
+      -0.08888888888888889,
+      -0.011111111111111112
+     ]
+    },
+    "fail-anchor on buggy": {
+     "label": "buggy",
+     "first": "clean",
+     "second": "anchored-fail",
+     "pairs": 90,
+     "onlyFirst": 1,
+     "onlySecond": 31,
+     "difference": 0.3333333333333333,
+     "mcnemarP": 1.5366822481155396e-08,
+     "bootstrap95": [
+      0.2222222222222222,
+      0.4444444444444444
+     ]
+    }
+   }
+  }
+ },
+ "items": {
+  "correct": 90,
+  "buggy": 90
+ }
+}
