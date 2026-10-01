@@ -26,5 +26,10 @@
   "generations": 1527,
   "outputTokens": 218504,
   "costUsd": 0.0,
-  "note": "Open weights run locally; no API was called. Every model-written file ran under the OS sandbox."
+  "note": "Open weights run locally; no API was called. Every model-written file ran under the OS sandbox.",
+  "testEditJudging": {
+    "ranOn": "2026-10-01",
+    "method": "reclassify: every changed test file run in the sandbox against the reference and three seeded bugs (gaming_candidates_v1.py); labels in results/edits-v1.json",
+    "note": "the first, AST-only classifier labeled six changes as weakenings; against the known candidates none let a bug through"
+  }
 }
