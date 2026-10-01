@@ -1,0 +1,39 @@
+{
+  "experiment": "diagnose-retrieval-before-changing-the-generation-prompt v1",
+  "ranOn": "2026-10-01",
+  "where": "Darwin arm64, Python 3.12.13",
+  "device": "mps",
+  "data": {
+    "url": "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/scifact.zip",
+    "md5": "5f7d1de60b170fc8027bb7898e2efca1"
+  },
+  "packages": {
+    "transformers": "5.18.0",
+    "torch": "2.14.1",
+    "sentence-transformers": "6.1.0"
+  },
+  "models": {
+    "sentence-transformers/all-MiniLM-L6-v2": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "cross-encoder/ms-marco-MiniLM-L-6-v2": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "Qwen/Qwen2.5-1.5B-Instruct": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+  },
+  "settings": {
+    "topRetrieve": 100,
+    "topRerank": 10,
+    "topPrompt": 5,
+    "promptBudgetTokens": 1024,
+    "bm25": {
+      "k1": 0.9,
+      "b": 0.4
+    },
+    "generation": "greedy, 16 new tokens"
+  },
+  "wallSeconds": 1106,
+  "costUsd": 0.0,
+  "note": "Open weights run locally; no API was called. The dataset is downloaded at run time and not committed.",
+  "followUp": {
+    "ranOn": "2026-10-01",
+    "what": "the revised generation prompt (ASK['revised']) on the saved prompts of the dense+cross-encoder pipeline: 300 greedy generations; retrieval, reranking and assembly reused unchanged",
+    "disclosure": "the revised prompt was written after seeing the original run's results, on the same claims"
+  }
+}
