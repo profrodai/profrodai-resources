@@ -1,0 +1,46 @@
+{
+  "experiment": "measure-the-latency-your-user-experiences v1",
+  "ranOn": "2026-09-30",
+  "where": "Darwin arm64, Python 3.12.13",
+  "devices": [
+    "mps (float16)"
+  ],
+  "packages": {
+    "transformers": "5.18.0",
+    "torch": "2.14.1"
+  },
+  "models": {
+    "Qwen/Qwen2.5-0.5B-Instruct": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "Qwen/Qwen2.5-1.5B-Instruct": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+  },
+  "settings": {
+    "prefillLengths": [
+      64,
+      128,
+      256,
+      512,
+      1024,
+      2048,
+      4096
+    ],
+    "prefixTokens": 2048,
+    "questionTokens": 32,
+    "utilizations": [
+      0.3,
+      0.5,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "seed": 20261001,
+    "decoding": "greedy, hand-written loop"
+  },
+  "costUsd": 0.0,
+  "note": "Open weights run locally; no API was called. Timings depend on the machine; rerun on yours.",
+  "reruns": [
+    {
+      "ranOn": "2026-10-01",
+      "what": "queue, Qwen/Qwen2.5-0.5B-Instruct: the first run's service-time calibration included one-off GPU warm-up (0.89 s against about 0.5 s served), so its utilization levels missed their targets; rerun with five untimed warm-up calls before calibrating"
+    }
+  ]
+}

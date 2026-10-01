@@ -1,0 +1,2 @@
+{"model": "Qwen/Qwen2.5-0.5B-Instruct", "revision": "7ae557604adf67be50417f59c2c2f167def9a775", "device": "mps", "dtype": "float16", "questions": 20, "sameNextToken": 20, "maxLogitDiff": 0.025390625}
+{"model": "Qwen/Qwen2.5-1.5B-Instruct", "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306", "device": "mps", "dtype": "float16", "questions": 20, "sameNextToken": 20, "maxLogitDiff": 0.03125}
