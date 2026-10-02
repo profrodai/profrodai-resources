@@ -1,0 +1,78 @@
+{
+  "name": "qwen05-add-strict-full-s1-n30-lr2e-7",
+  "config": {
+    "model": "qwen05",
+    "task": "add",
+    "seed": 1,
+    "steps": 30,
+    "prompts": 8,
+    "group": 8,
+    "max_new": 96,
+    "temperature": 1.0,
+    "lr": 2e-07,
+    "warmup": 10,
+    "beta": 0.04,
+    "clip": 0.2,
+    "updates": 2,
+    "microbatch": 8,
+    "lora": 0,
+    "lora_alpha": 32.0,
+    "max_grad_norm": 1.0,
+    "verifier": "strict",
+    "eval_n": 0,
+    "eval_set": "dev",
+    "tag": "lr2e-7",
+    "pad": 151643
+  },
+  "device": "mps",
+  "trainSeconds": 722.5156870000064,
+  "loadAverageStart": [
+    6.04,
+    7.66,
+    13.68
+  ],
+  "loadAverageEnd": [
+    10.61,
+    7.45,
+    9.41
+  ],
+  "evalSeconds": 14.906116790996748,
+  "phaseSeconds": {
+    "sample": 159.0806944599899,
+    "score": 177.13436183299928,
+    "train": 385.59680262603797
+  },
+  "trainableParameters": 494032768,
+  "eval": {
+    "strict": {
+      "correct": 177,
+      "n": 200,
+      "rate": 0.885,
+      "wilson95": [
+        0.8333528310151243,
+        0.9221362676743804
+      ]
+    },
+    "content": {
+      "correct": 177,
+      "n": 200,
+      "rate": 0.885,
+      "wilson95": [
+        0.8333528310151243,
+        0.9221362676743804
+      ]
+    },
+    "planted": {
+      "correct": 177,
+      "n": 200,
+      "rate": 0.885,
+      "wilson95": [
+        0.8333528310151243,
+        0.9221362676743804
+      ]
+    },
+    "unparseableRate": 0.0,
+    "meanTokens": 11.55
+  },
+  "driverMemoryGB": 22.98454016
+}

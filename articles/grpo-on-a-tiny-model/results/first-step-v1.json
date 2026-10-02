@@ -1,0 +1,23 @@
+[
+  {
+    "what": "full fine-tune",
+    "lr": 2e-06,
+    "meanAbsChange": 1.0354909896850586,
+    "maxAbsChange": 14.42800521850586,
+    "tokens": 155
+  },
+  {
+    "what": "full fine-tune",
+    "lr": 2e-07,
+    "meanAbsChange": 0.14710505306720734,
+    "maxAbsChange": 2.682138442993164,
+    "tokens": 155
+  },
+  {
+    "what": "LoRA r16",
+    "lr": 2e-05,
+    "meanAbsChange": 0.2921483814716339,
+    "maxAbsChange": 5.899801254272461,
+    "tokens": 155
+  }
+]
