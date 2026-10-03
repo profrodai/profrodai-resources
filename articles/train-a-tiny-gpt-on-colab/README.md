@@ -4,7 +4,7 @@
 
 The measured run behind https://profrod.ai/articles/train-a-tiny-gpt-on-colab, and feasibility pilot P1 for the course "PyTorch Through Broken Training Runs".
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/articles/train-a-tiny-gpt-on-colab/train_tiny_gpt_v2.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/articles/train-a-tiny-gpt-on-colab/train_tiny_gpt_v3.ipynb)
 
 A small GPT in plain PyTorch (an `nn.Module`, an explicit training loop, AdamW, warmup then cosine decay, gradient clipping and checkpoints; no trainer library), trained on a pinned slice of TinyStories. The questions: what does a healthy run look like across seeds, and does that band catch three one-line bugs, and how early?
 
@@ -96,7 +96,7 @@ The earlier T4 estimate above is retained as the pre-run calculation, not presen
 
 ## Two learning routes
 
-- **Short:** notebook v2 setup, Recorded, then the CPU causal-boundary intervention and repair. No dataset download, trained checkpoint or GPU is needed. The experiment prints its own measured duration. It tests causality, not learned language quality. Optionally run A for one healthy GPU training run.
+- **Short:** notebook v3 setup, Recorded, then the CPU causal-boundary intervention and repair. No dataset download, trained checkpoint or GPU is needed. The experiment prints its own measured duration. It tests causality, not learned language quality. Optionally run A for one healthy GPU training run.
 - **Full reproduction:** A–D and Receipt, about 80.3 minutes of runs on the measured T4. Retain all raw run rows and download the full receipt. Leave-one-out checks do not replace held-out healthy controls.
 
 Change only the final input token; compare earlier logits with both attention faults and the healthy model. Repair the attention rule without changing weights or inputs and repeat. Write 200–400 words explaining the dependency, observed change, controlled variables and one unsupported claim. Repaired architecture behavior is not evidence that a checkpoint trained under the bug has recovered its learning.
@@ -110,8 +110,8 @@ Change only the final input token; compare earlier logits with both attention fa
 - `data/dataset-v1.json` (revision, license, sizes, hashes, token counts) and `data/tokenizer-v1.json`.
 - `results/runs-v1.jsonl`: one line per run, with every training loss, gradient norm and learning rate, every evaluation, timings, memory and load average. `results/summary-v1.json` holds every number above.
 - `receipts/tinygpt-v1.json`: packages, device, dataset, model, minutes, tokens/s and load average per run, dates and the $0 cost.
-- `tinygpt_causality_v1.py`: CPU future-token intervention, followed by attention repair at fixed weights. Its focused regression test verifies the causal boundary.
-- `train_tiny_gpt_v2.ipynb`: the short experiment, full optional reproduction and an untruncated console display of band/control fields.
+- `tinygpt_causality_v2.py`: CPU future-token intervention, followed by attention repair at fixed weights. Its focused regression test verifies the causal boundary.
+- `train_tiny_gpt_v3.ipynb`: the short experiment, full optional reproduction and an untruncated console display of band/control fields.
 - `train_tiny_gpt_v1.ipynb` (historical): recomputes the recorded numbers, then runs sections A (environment and seed 0), B (seeds 1 to 4 and the band), C (the bugs) and an optional D (healthy controls) on the runtime's own GPU. It saves after every run, resumes after a disconnect, and ends with a downloadable receipt.
 
 ## Run it yourself
@@ -127,3 +127,9 @@ Python 3.12. Timings need a quiet machine, so run nothing else heavy alongside.
         --with pytest pytest -q
 
 The runs behind this file are the five healthy seeds, three controls (`--purpose control`, seeds 10 to 12), each bug on seeds 10 to 12, a same-seed rerun (`--purpose rerun --tag rerun`), and two short timing runs (`--purpose timing`). `train` appends to `results/runs-v1.jsonl`, so write a fresh results file (`--out`) for your own runs. Formatted with `ruff format --target-version py312 --line-length 140`.
+
+### P1 council visual revision, October 3, 2026
+
+Probe v2 sets both tolerances (`atol=1e-6, rtol=0`). Notebook v3 imports it; consumed notebook v2 and probe v1 remain unchanged. The saved CPU v1 receipt supplies the article delta table: the maximum differences do not depend on allclose tolerances. The finite probe supports its specific example; causal masking and normalization over keys establish the general boundary.
+
+`tinygpt_figures_v1.py` renders the attention matrix and two evidence figures from the unchanged full T4 receipt. Run it with Python, matplotlib and Pillow, passing an output directory: `python tinygpt_figures_v1.py --output /path/to/figures`. SVG and PNG exports are standalone artifacts; WebP exports are the article media. Curve panels show all five reference seeds, all three held-out controls and three seeds per fault. Dots mark the original two-consecutive-same-side flag; initialization remains included. No new run is implied by these plots.
