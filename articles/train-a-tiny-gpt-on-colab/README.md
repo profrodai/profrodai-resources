@@ -1,8 +1,10 @@
 # Train a tiny GPT on Colab: a healthy band, then three planted bugs
 
+**Updated:** October 3, 2026. Teaching route v2 and a separately attributed T4 console receipt added; historical MPS runs and notebook v1 retained.
+
 The measured run behind https://profrod.ai/articles/train-a-tiny-gpt-on-colab, and feasibility pilot P1 for the course "PyTorch Through Broken Training Runs".
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/articles/train-a-tiny-gpt-on-colab/train_tiny_gpt_v1.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/articles/train-a-tiny-gpt-on-colab/train_tiny_gpt_v2.ipynb)
 
 A small GPT in plain PyTorch (an `nn.Module`, an explicit training loop, AdamW, warmup then cosine decay, gradient clipping and checkpoints; no trainer library), trained on a pinned slice of TinyStories. The questions: what does a healthy run look like across seeds, and does that band catch three one-line bugs, and how early?
 
@@ -10,7 +12,8 @@ A small GPT in plain PyTorch (an `nn.Module`, an explicit training loop, AdamW, 
 
 - **Losses, seed bands and which bugs are caught** come from 20 local runs on an Apple M4 Pro GPU (MPS) and its CPU, on 2026-10-02. They do not depend on the machine's load.
 - **Local timings are indicative only:** a shared machine, with other sessions' test suites and browsers running, at a 1-minute load average of 1 to 35. Each run records its load at start and end.
-- **T4 and L4 numbers: not yet measured.** The operator runs `train_tiny_gpt_v1.ipynb` on Colab, and its receipt fills the slot at the end of this file. Until then the T4 time below is an estimate, with its basis stated.
+- **T4:** operator-supplied console export dated October 3, 2026, preserved verbatim under `receipts/colab/`. It reports timings and planted-bug outcomes, but omits its healthy band and healthy-control outcomes. A rounded healthy mean/CI comes from the accompanying SUMMARY line. See the provenance file.
+- **L4:** no measured result is claimed. The earlier proposal included it; no additional hardware run is needed for the article's T4 feasibility claim.
 
 ## What was run
 
@@ -62,7 +65,7 @@ What the runs show:
 - **Two of the three bugs are leaks, and both look like success.** Without the mask, the loss hugs the lower edge of the band through step 100; two seeds sit just below it at steps 50 and 100, which is where the rule flags them. At step 150 it is 3.56 to 3.59, against a band floor of 3.62. By step 200 it falls to 0.30 to 0.33, and it ends near 0.016 nats per token, far below anything a 12M model can honestly reach on this data. The wrong-dim softmax is a quieter leak. Normalizing over queries lets later positions' scores into an earlier position's weights; `test_tinygpt_model_v1.py` shows that changing only the last token moves earlier logits. Its loss leaves the band at step 150 (3.48 to 3.52), is 2.86 to 2.95 at step 200 against a mean of 3.37, and ends at 0.033 to 0.035.
 - **The missing `zero_grad` looks like a slow learner.** It is above the band from the first evaluation after training starts (4.82 to 4.84 at step 50, against at most 4.66), and ends 0.60 nats behind (2.867 to 2.870). Clipping and Adam's normalization keep it from diverging, so it never produces a NaN that would announce itself.
 - **The step-0 band is too narrow for new seeds.** At step 0 the loss measures only the initialization, and the 5 healthy seeds happen to agree closely there (prediction band 8.3787 to 8.4197). The held-out seeds 11 and 12 start at 8.4227 and 8.4267 with no bug at all. The `no_zero_grad` runs share those initializations, so their step-50 flags for seeds 11 and 12 lean on that step-0 excursion. Leaving step 0 out of the rule (decided after seeing the data, so treat it as a proposal) changes only those two: all three `no_zero_grad` runs then flag at step 100, the leaks flag at the same steps, and the controls stay unflagged.
-- **The rule raised one false alarm in 8 healthy checks.** The leave-one-out band is built from 4 seeds, so it is narrower in places, and seed 2 sat below it at steps 200 and 250. All three bugs here end tens to hundreds of seed standard deviations from the healthy mean, so the rule catches them by step 200. A subtle bug that shifts the curve by about one seed standard deviation would sit inside the false-alarm rate. Separating those needs more seeds or a paired comparison on the same seed, which is course unit 9.
+- **The local held-out controls had 0 flags in 3 runs; leave-one-out had 1 flag in 5 checks.** These are different reference bands and overlapping calibration data, so do not pool them into an estimated false-alarm rate. The leave-one-out band is built from 4 seeds, and seed 2 sat below it at steps 200 and 250. All three bugs here end tens to hundreds of seed standard deviations from the healthy mean, so the rule catches them by step 200. A subtle bug that shifts the curve by about one seed standard deviation would sit inside the false-alarm rate. Separating those needs more seeds or a paired comparison on the same seed, which is course unit 9.
 
 ## Time and memory (indicative, shared machine)
 
@@ -77,14 +80,24 @@ The healthy runs took a median 0.233 to 0.298 s per step and reached 2.1 to 2.8 
 
 **T4 estimate (not measured).** One run is 7.5 × 10¹⁴ FLOPs: 6.6 × 10¹⁴ for 8.2M training tokens at 80.2M FLOPs each, plus 0.9 × 10¹⁴ for 21 evaluations. A T4's float32 peak is 8.1 TFLOP/s. Assuming it sustains 25% to 50% of that (2 to 4 TFLOP/s, which brackets the 2.1 to 2.8 TFLOP/s the M4 Pro reached on its fastest runs), one run takes **about 3 to 6 minutes**. The notebook's 14 runs then take about 45 to 90 minutes, including setup. The basis is float32 throughout; mixed precision would be faster, but it would change the numerics the band describes, and that belongs to course unit 5.
 
-## Colab: T4 and L4 (slot to fill)
+## T4 receipt, October 3, 2026
 
-Not yet run. The operator runs `train_tiny_gpt_v1.ipynb` from the badge above, on a T4 and on an L4. Each run produces `tinygpt-colab-receipt-<date>.json` with the device and driver, torch and CUDA versions, minutes per run, that GPU's own 5-seed band, the bugs it caught and when, and whether its healthy seeds fall inside the M4 Pro band above. Those receipts go in `receipts/colab/`, and their numbers replace the estimate above.
+Rod supplied a notebook console export, preserved as `receipts/colab/tinygpt-operator-console-20261003.json`. Its provenance file records the hash and the accompanying rounded healthy SUMMARY values. The 17 runs took about 80.3 minutes (4.55–4.82 each); data preparation took 1.1 minutes. Section timers sum to 81.58 minutes and include surrounding work and rounding. Do not combine those timers. Python 3.13.15, torch 2.11.0+cu130, Tesla T4; reported USD 0 on free Colab, no API calls.
 
-| GPU | Minutes per run | Tokens/s | Final validation loss (5 seeds) | Bugs caught | Inside the M4 Pro band? |
-|---|---|---|---|---|---|
-| T4 | not yet run | | | | |
-| L4 | not yet run | | | | |
+Each planted bug family was detected in all three tested seeds under this setup. By seed 10 / 11 / 12: no mask at 200 / 100 / 100; wrong softmax axis at 200 / 200 / 200; missing zero_grad at 100 / 50 / 50. Those results do not validate a general-purpose training-fault detector.
+
+**Band and controls:** local reference seeds 0–4 fit the local band. Held-out controls 10–12 are independent of that fit; leave-one-out checks exclude the tested reference seed but use overlapping four-seed bands. Same-band reference checks are calibration, not independent validation. Pointwise 95% prediction intervals and two consecutive excursions do not provide a known simultaneous false-alarm rate over 21 correlated evaluations.
+
+The T4 console export lists control-run durations but omits their flag outcomes and the T4 band. Five T4 healthy runs were checked against the independently recorded MPS band, with no flags and all final losses inside its prediction interval. The downloaded notebook JSON includes the omitted fields; it remains needed for a complete audit of the T4 detector. Do not infer those fields from timing or from the rounded mean confidence interval.
+
+The earlier T4 estimate above is retained as the pre-run calculation, not presented as a current measurement. No L4 validation is claimed.
+
+## Two learning routes
+
+- **Short:** notebook v2 setup, Recorded, then the CPU causal-boundary intervention and repair. No dataset download, trained checkpoint or GPU is needed. The experiment prints its own measured duration. It tests causality, not learned language quality. Optionally run A for one healthy GPU training run.
+- **Full reproduction:** A–D and Receipt, about 80.3 minutes of runs on the measured T4. Retain all raw run rows and download the full receipt. Leave-one-out checks do not replace held-out healthy controls.
+
+Change only the final input token; compare earlier logits with both attention faults and the healthy model. Repair the attention rule without changing weights or inputs and repeat. Write 200–400 words explaining the dependency, observed change, controlled variables and one unsupported claim. Repaired architecture behavior is not evidence that a checkpoint trained under the bug has recovered its learning.
 
 ## Files
 
@@ -95,7 +108,9 @@ Not yet run. The operator runs `train_tiny_gpt_v1.ipynb` from the badge above, o
 - `data/dataset-v1.json` (revision, license, sizes, hashes, token counts) and `data/tokenizer-v1.json`.
 - `results/runs-v1.jsonl`: one line per run, with every training loss, gradient norm and learning rate, every evaluation, timings, memory and load average. `results/summary-v1.json` holds every number above.
 - `receipts/tinygpt-v1.json`: packages, device, dataset, model, minutes, tokens/s and load average per run, dates and the $0 cost.
-- `train_tiny_gpt_v1.ipynb`: recomputes the recorded numbers, then runs sections A (environment and seed 0), B (seeds 1 to 4 and the band), C (the bugs) and an optional D (healthy controls) on the runtime's own GPU. It saves after every run, resumes after a disconnect, and ends with a downloadable receipt.
+- `tinygpt_causality_v1.py`: CPU future-token intervention, followed by attention repair at fixed weights. Its focused regression test verifies the causal boundary.
+- `train_tiny_gpt_v2.ipynb`: the short experiment, full optional reproduction and an untruncated console display of band/control fields.
+- `train_tiny_gpt_v1.ipynb` (historical): recomputes the recorded numbers, then runs sections A (environment and seed 0), B (seeds 1 to 4 and the band), C (the bugs) and an optional D (healthy controls) on the runtime's own GPU. It saves after every run, resumes after a disconnect, and ends with a downloadable receipt.
 
 ## Run it yourself
 
