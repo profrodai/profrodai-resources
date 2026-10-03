@@ -1,0 +1,345 @@
+{
+  "strict": {
+    "add": {
+      "fp": 0,
+      "negatives": 18,
+      "fpWilson95": [
+        0.0,
+        0.17587922364665765
+      ],
+      "fn": 1,
+      "positives": 9,
+      "fnWilson95": [
+        0.019890887638544907,
+        0.434999705576656
+      ],
+      "disagreements": [
+        {
+          "response": "<answer>8786.</answer>",
+          "label": 1,
+          "why": "a sentence-final period after the number"
+        }
+      ]
+    },
+    "units": {
+      "fp": 0,
+      "negatives": 20,
+      "fpWilson95": [
+        0.0,
+        0.16112515805281938
+      ],
+      "fn": 3,
+      "positives": 17,
+      "fnWilson95": [
+        0.06191126637620997,
+        0.41029458568834126
+      ],
+      "disagreements": [
+        {
+          "response": "<answer>7.4e-3</answer>",
+          "label": 1,
+          "why": "scientific notation is still the number"
+        },
+        {
+          "response": "<answer>.5</answer>",
+          "label": 1,
+          "why": "a number without the leading zero"
+        },
+        {
+          "response": "<answer>63 000</answer>",
+          "label": 1,
+          "why": "space as a thousands separator"
+        }
+      ]
+    },
+    "all, model samples": {
+      "fp": 0,
+      "negatives": 29,
+      "fpWilson95": [
+        0.0,
+        0.11696979849974075
+      ],
+      "fn": 0,
+      "positives": 15,
+      "fnWilson95": [
+        0.0,
+        0.20388330103584862
+      ],
+      "disagreements": []
+    },
+    "all, constructed": {
+      "fp": 0,
+      "negatives": 9,
+      "fpWilson95": [
+        0.0,
+        0.2991450484195441
+      ],
+      "fn": 4,
+      "positives": 11,
+      "fnWilson95": [
+        0.15166471095367573,
+        0.6461988254921511
+      ],
+      "disagreements": [
+        {
+          "response": "<answer>7.4e-3</answer>",
+          "label": 1,
+          "why": "scientific notation is still the number"
+        },
+        {
+          "response": "<answer>.5</answer>",
+          "label": 1,
+          "why": "a number without the leading zero"
+        },
+        {
+          "response": "<answer>63 000</answer>",
+          "label": 1,
+          "why": "space as a thousands separator"
+        },
+        {
+          "response": "<answer>8786.</answer>",
+          "label": 1,
+          "why": "a sentence-final period after the number"
+        }
+      ]
+    },
+    "all": {
+      "fp": 0,
+      "negatives": 38,
+      "fpWilson95": [
+        0.0,
+        0.09180986822558396
+      ],
+      "fn": 4,
+      "positives": 26,
+      "fnWilson95": [
+        0.06150033723578355,
+        0.3353119932821348
+      ],
+      "disagreements": [
+        {
+          "response": "<answer>7.4e-3</answer>",
+          "label": 1,
+          "why": "scientific notation is still the number"
+        },
+        {
+          "response": "<answer>.5</answer>",
+          "label": 1,
+          "why": "a number without the leading zero"
+        },
+        {
+          "response": "<answer>63 000</answer>",
+          "label": 1,
+          "why": "space as a thousands separator"
+        },
+        {
+          "response": "<answer>8786.</answer>",
+          "label": 1,
+          "why": "a sentence-final period after the number"
+        }
+      ]
+    }
+  },
+  "planted": {
+    "add": {
+      "fp": 3,
+      "negatives": 18,
+      "fpWilson95": [
+        0.05836576805861446,
+        0.39222038103915724
+      ],
+      "fn": 0,
+      "positives": 9,
+      "fnWilson95": [
+        0.0,
+        0.2991450484195441
+      ],
+      "disagreements": [
+        {
+          "response": "Understood! The sum of 5055 and 7492 is 12547. Now, I can put the final answer inside <answer></answer> tags for you.",
+          "label": 0,
+          "why": "no tags"
+        },
+        {
+          "response": "<answer>The sum of 96738 and 54601 is 151349.</answer>",
+          "label": 0,
+          "why": "a sentence in the tags, and its number is wrong"
+        },
+        {
+          "response": "<answer>6423 + 2363 = 8786</answer>",
+          "label": 0,
+          "why": "not the number only"
+        }
+      ]
+    },
+    "units": {
+      "fp": 5,
+      "negatives": 20,
+      "fpWilson95": [
+        0.11186170140766569,
+        0.468700877618744
+      ],
+      "fn": 0,
+      "positives": 17,
+      "fnWilson95": [
+        0.0,
+        0.1843181350088518
+      ],
+      "disagreements": [
+        {
+          "response": "<answer>0.9 hours</answer>",
+          "label": 0,
+          "why": "unit inside the tags; prompt said number only"
+        },
+        {
+          "response": "<answer>Inverse</answer>",
+          "label": 0,
+          "why": "not a number"
+        },
+        {
+          "response": "<answer>about 0.9</answer>",
+          "label": 0,
+          "why": "not the number only"
+        },
+        {
+          "response": "<answer></answer>",
+          "label": 0,
+          "why": "empty answer"
+        },
+        {
+          "response": "<answer>?</answer>",
+          "label": 0,
+          "why": "not a number"
+        }
+      ]
+    },
+    "all, model samples": {
+      "fp": 4,
+      "negatives": 29,
+      "fpWilson95": [
+        0.05497439964111964,
+        0.30558993720352023
+      ],
+      "fn": 0,
+      "positives": 15,
+      "fnWilson95": [
+        0.0,
+        0.20388330103584862
+      ],
+      "disagreements": [
+        {
+          "response": "<answer>0.9 hours</answer>",
+          "label": 0,
+          "why": "unit inside the tags; prompt said number only"
+        },
+        {
+          "response": "<answer>Inverse</answer>",
+          "label": 0,
+          "why": "not a number"
+        },
+        {
+          "response": "Understood! The sum of 5055 and 7492 is 12547. Now, I can put the final answer inside <answer></answer> tags for you.",
+          "label": 0,
+          "why": "no tags"
+        },
+        {
+          "response": "<answer>The sum of 96738 and 54601 is 151349.</answer>",
+          "label": 0,
+          "why": "a sentence in the tags, and its number is wrong"
+        }
+      ]
+    },
+    "all, constructed": {
+      "fp": 4,
+      "negatives": 9,
+      "fpWilson95": [
+        0.18877852109766452,
+        0.733348706504507
+      ],
+      "fn": 0,
+      "positives": 11,
+      "fnWilson95": [
+        0.0,
+        0.2588329669680317
+      ],
+      "disagreements": [
+        {
+          "response": "<answer>about 0.9</answer>",
+          "label": 0,
+          "why": "not the number only"
+        },
+        {
+          "response": "<answer></answer>",
+          "label": 0,
+          "why": "empty answer"
+        },
+        {
+          "response": "<answer>?</answer>",
+          "label": 0,
+          "why": "not a number"
+        },
+        {
+          "response": "<answer>6423 + 2363 = 8786</answer>",
+          "label": 0,
+          "why": "not the number only"
+        }
+      ]
+    },
+    "all": {
+      "fp": 8,
+      "negatives": 38,
+      "fpWilson95": [
+        0.11074791842995879,
+        0.363457794753274
+      ],
+      "fn": 0,
+      "positives": 26,
+      "fnWilson95": [
+        0.0,
+        0.1287289218592153
+      ],
+      "disagreements": [
+        {
+          "response": "<answer>0.9 hours</answer>",
+          "label": 0,
+          "why": "unit inside the tags; prompt said number only"
+        },
+        {
+          "response": "<answer>Inverse</answer>",
+          "label": 0,
+          "why": "not a number"
+        },
+        {
+          "response": "Understood! The sum of 5055 and 7492 is 12547. Now, I can put the final answer inside <answer></answer> tags for you.",
+          "label": 0,
+          "why": "no tags"
+        },
+        {
+          "response": "<answer>The sum of 96738 and 54601 is 151349.</answer>",
+          "label": 0,
+          "why": "a sentence in the tags, and its number is wrong"
+        },
+        {
+          "response": "<answer>about 0.9</answer>",
+          "label": 0,
+          "why": "not the number only"
+        },
+        {
+          "response": "<answer></answer>",
+          "label": 0,
+          "why": "empty answer"
+        },
+        {
+          "response": "<answer>?</answer>",
+          "label": 0,
+          "why": "not a number"
+        },
+        {
+          "response": "<answer>6423 + 2363 = 8786</answer>",
+          "label": 0,
+          "why": "not the number only"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "dataset": "roneneldan/TinyStories",
+  "revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64",
+  "license": "CDLA-Sharing-1.0",
+  "train": {
+    "file": "TinyStoriesV2-GPT4-train.txt",
+    "bytesRequested": 100000000,
+    "bytesKept": 99998621,
+    "sha256": "1cc02c697e13d5e4b1d39e3dc9c35274fbf5abe474d3f2ecfc8445bc3a30982a",
+    "stories": 122004,
+    "tokens": 24797675
+  },
+  "valid": {
+    "file": "TinyStoriesV2-GPT4-valid.txt",
+    "bytes": 22502601,
+    "sha256": "6874bae9a4c1a4e7edcf0e53b86c17817e9cf881fc75ff2368da457b80c0585d",
+    "stories": 27630,
+    "tokens": 5578638
+  },
+  "tokenizer": {
+    "type": "byte-level BPE (Hugging Face tokenizers)",
+    "vocabSize": 4096,
+    "eotId": 0,
+    "file": "data/tokenizer-v1.json",
+    "sha256": "d3336651ba01d5da2e3f1803e25fd2a16aa87efd46b0bd358ffb498c3a9e3718",
+    "trainedOn": "the train slice above",
+    "tokenizersVersion": "0.23.2"
+  }
+}
