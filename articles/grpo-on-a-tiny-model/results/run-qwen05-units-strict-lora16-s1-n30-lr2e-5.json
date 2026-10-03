@@ -1,0 +1,77 @@
+{
+  "name": "qwen05-units-strict-lora16-s1-n30-lr2e-5",
+  "config": {
+    "model": "qwen05",
+    "task": "units",
+    "seed": 1,
+    "steps": 30,
+    "prompts": 8,
+    "group": 8,
+    "max_new": 96,
+    "temperature": 1.0,
+    "lr": 2e-05,
+    "warmup": 10,
+    "beta": 0.04,
+    "clip": 0.2,
+    "updates": 2,
+    "microbatch": 8,
+    "lora": 16,
+    "lora_alpha": 32.0,
+    "max_grad_norm": 1.0,
+    "verifier": "strict",
+    "eval_n": 0,
+    "tag": "lr2e-5",
+    "pad": 151643
+  },
+  "device": "mps",
+  "trainSeconds": 464.51077887500287,
+  "loadAverageStart": [
+    19.9,
+    19.65,
+    20.44
+  ],
+  "loadAverageEnd": [
+    4.69,
+    13.23,
+    17.75
+  ],
+  "evalSeconds": 17.79627237499517,
+  "phaseSeconds": {
+    "sample": 112.21342687204015,
+    "score": 144.09923270904983,
+    "train": 207.67635153699666
+  },
+  "trainableParameters": 8798208,
+  "eval": {
+    "strict": {
+      "correct": 168,
+      "n": 200,
+      "rate": 0.84,
+      "wilson95": [
+        0.7828592983793289,
+        0.8843258796841297
+      ]
+    },
+    "content": {
+      "correct": 170,
+      "n": 200,
+      "rate": 0.85,
+      "wilson95": [
+        0.7939442071583334,
+        0.89286406437758
+      ]
+    },
+    "planted": {
+      "correct": 172,
+      "n": 200,
+      "rate": 0.86,
+      "wilson95": [
+        0.8051011913429243,
+        0.9013301736654437
+      ]
+    },
+    "unparseableRate": 0.02,
+    "meanTokens": 11.735
+  },
+  "driverMemoryGB": 8.354807808
+}

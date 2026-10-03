@@ -1,0 +1,78 @@
+{
+  "name": "qwen05-units-strict-lora16-s5-n30-test",
+  "config": {
+    "model": "qwen05",
+    "task": "units",
+    "seed": 5,
+    "steps": 30,
+    "prompts": 8,
+    "group": 8,
+    "max_new": 96,
+    "temperature": 1.0,
+    "lr": 2e-05,
+    "warmup": 10,
+    "beta": 0.04,
+    "clip": 0.2,
+    "updates": 2,
+    "microbatch": 8,
+    "lora": 16,
+    "lora_alpha": 32.0,
+    "max_grad_norm": 1.0,
+    "verifier": "strict",
+    "eval_n": 0,
+    "eval_set": "test",
+    "tag": "",
+    "pad": 151643
+  },
+  "device": "mps",
+  "trainSeconds": 378.2123543750058,
+  "loadAverageStart": [
+    1.78,
+    1.79,
+    2.72
+  ],
+  "loadAverageEnd": [
+    1.58,
+    1.58,
+    2.27
+  ],
+  "evalSeconds": 4.660068875004072,
+  "phaseSeconds": {
+    "sample": 90.06653191399528,
+    "score": 116.53928900201572,
+    "train": 171.2403446639073
+  },
+  "trainableParameters": 8798208,
+  "eval": {
+    "strict": {
+      "correct": 163,
+      "n": 200,
+      "rate": 0.815,
+      "wilson95": [
+        0.7554293723884824,
+        0.8626980719938395
+      ]
+    },
+    "content": {
+      "correct": 163,
+      "n": 200,
+      "rate": 0.815,
+      "wilson95": [
+        0.7554293723884824,
+        0.8626980719938395
+      ]
+    },
+    "planted": {
+      "correct": 163,
+      "n": 200,
+      "rate": 0.815,
+      "wilson95": [
+        0.7554293723884824,
+        0.8626980719938395
+      ]
+    },
+    "unparseableRate": 0.0,
+    "meanTokens": 11.675
+  },
+  "driverMemoryGB": 8.354807808
+}
