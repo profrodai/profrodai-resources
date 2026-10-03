@@ -1,0 +1,8 @@
+{
+  "source": "Operator-downloaded ~/Downloads/sftdpo-v1.json",
+  "received": "2026-10-03",
+  "bytes": 9378,
+  "sha256": "a32dfc7af44c70d627d83009fd5db2e9f90839a10ec5b5893130aa8b94b23ca7",
+  "device": "Tesla T4",
+  "scope": "Aggregate receipt; T4 per-item correctness, per-seed interval endpoints and generation outputs were not supplied. Paired intervals are recorded evidence, not recomputed from aggregate accuracies."
+}
