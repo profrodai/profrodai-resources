@@ -25,22 +25,43 @@ MAINTENANCE = load("maintenance", ROOT / "tools" / "validate_curriculum_maintena
 LINKS = load("links", ROOT / "tools" / "check_local_links.py")
 
 
+# A frozen policy for the behavior tests, so renewing the live policy after a real review
+# (docs/maintenance-reviews.md) never breaks them. These are the policy's first values.
+FIXTURE_POLICY = {
+    "schema_version": 1,
+    "areas": [
+        {"id": "catalog-provenance", "owner": "operator", "cadence_days": 31, "last_reviewed": "2026-08-27", "next_due": "2026-09-27"},
+        {"id": "locked-dependencies", "owner": "maintainer", "cadence_days": 7, "last_reviewed": "2026-08-27", "next_due": "2026-09-03"},
+        {"id": "companion-accuracy", "owner": "operator", "cadence_days": 92, "last_reviewed": "2026-08-27", "next_due": "2026-11-27"},
+        {"id": "readme-links", "owner": "maintainer", "cadence_days": 92, "last_reviewed": "2026-08-27", "next_due": "2026-11-27"},
+        {"id": "safety-cost-accessibility", "owner": "operator", "cadence_days": 92, "last_reviewed": "2026-08-27", "next_due": "2026-11-27"},
+    ],
+}
+
+
 class CurriculumMaintenanceTests(unittest.TestCase):
     def policy(self) -> dict:
-        return json.loads((ROOT / "catalog" / "curriculum-maintenance.json").read_text())
+        return json.loads(json.dumps(FIXTURE_POLICY))
 
     def write_policy(self, directory: str, policy: dict) -> Path:
         path = Path(directory) / "policy.json"
         path.write_text(json.dumps(policy))
         return path
 
+    def test_live_policy_is_valid_on_its_latest_review(self) -> None:
+        live = json.loads((ROOT / "catalog" / "curriculum-maintenance.json").read_text())
+        latest = max(date.fromisoformat(area["last_reviewed"]) for area in live["areas"])
+        self.assertEqual(5, len(MAINTENANCE.validate(today=latest)))
+
     def test_current_policy_passes_with_injected_date(self) -> None:
-        areas = MAINTENANCE.validate(today=date(2026, 8, 27))
+        with tempfile.TemporaryDirectory() as directory:
+            areas = MAINTENANCE.validate(self.write_policy(directory, self.policy()), date(2026, 8, 27))
         self.assertEqual(5, len(areas))
 
     def test_overdue_area_fails_with_owner_and_due_date(self) -> None:
-        with self.assertRaisesRegex(ValueError, "locked-dependencies owner=maintainer due=2026-09-03"):
-            MAINTENANCE.validate(today=date(2026, 9, 4))
+        with tempfile.TemporaryDirectory() as directory:
+            with self.assertRaisesRegex(ValueError, "locked-dependencies owner=maintainer due=2026-09-03"):
+                MAINTENANCE.validate(self.write_policy(directory, self.policy()), date(2026, 9, 4))
 
     def test_inconsistent_due_date_fails(self) -> None:
         policy = self.policy()
