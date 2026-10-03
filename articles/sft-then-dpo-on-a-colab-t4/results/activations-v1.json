@@ -1,0 +1,71 @@
+{
+  "id": "probe:activations",
+  "device": "mps",
+  "float16Max": 65504.0,
+  "models": {
+    "base": {
+      "checkpoint": null,
+      "trainFormatFp32": [
+        [
+          "model.layers.3.mlp.down_proj",
+          20559.6
+        ],
+        [
+          "model.layers.13.mlp.down_proj",
+          20268.7
+        ],
+        [
+          "model.layers.31.mlp.down_proj",
+          14792.3
+        ]
+      ],
+      "leftPaddedSamplingFp32": [
+        [
+          "model.layers.30.mlp.down_proj",
+          48448.5
+        ],
+        [
+          "model.layers.13.mlp.down_proj",
+          20648.7
+        ],
+        [
+          "model.layers.3.mlp.down_proj",
+          20559.6
+        ]
+      ],
+      "fp16Sampling": "ok"
+    },
+    "sft-4-steps-under-fp16-autocast (smoke run)": {
+      "checkpoint": "sft-s0",
+      "trainFormatFp32": [
+        [
+          "model.layers.3.mlp.down_proj",
+          20408.6
+        ],
+        [
+          "model.layers.13.mlp.down_proj",
+          20366.9
+        ],
+        [
+          "model.layers.31.mlp.down_proj",
+          14705.5
+        ]
+      ],
+      "leftPaddedSamplingFp32": [
+        [
+          "model.layers.30.mlp.down_proj",
+          72780.8
+        ],
+        [
+          "model.layers.13.mlp.down_proj",
+          20625.1
+        ],
+        [
+          "model.layers.3.mlp.down_proj",
+          20408.6
+        ]
+      ],
+      "fp16Sampling": "failed: AcceleratorError: probability tensor contains either `inf`, `nan` or element < 0"
+    }
+  }
+}

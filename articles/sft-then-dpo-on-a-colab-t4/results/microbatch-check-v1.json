@@ -1,0 +1,21 @@
+{
+  "id": "check:microbatch",
+  "device": "mps",
+  "precision": "fp32",
+  "micros": [
+    16,
+    8
+  ],
+  "relativeDifference": 1.7376857800153738e-06,
+  "cosine": 1.0000000000023408,
+  "peakGiB": {
+    "16": 7.26,
+    "8": 5.71
+  },
+  "peakNote": "CUDA: max_memory_allocated; MPS: current_allocated_memory sampled after each backward",
+  "loadAverage": [
+    1.61,
+    1.62,
+    2.19
+  ]
+}

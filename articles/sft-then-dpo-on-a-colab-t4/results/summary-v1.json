@@ -1,0 +1,565 @@
+{
+  "experiment": "sft-then-dpo-on-a-colab-t4 v1",
+  "size": "default",
+  "devices": [
+    "mps"
+  ],
+  "arms": {
+    "base-chatml": {
+      "seeds": 1,
+      "accuracyPerSeed": [
+        0.0
+      ],
+      "wilsonPerSeed": [
+        [
+          2.168404344971009e-19,
+          0.0038267585456940676
+        ]
+      ],
+      "accuracyMean": 0.0,
+      "accuracySeedSd": 0.0,
+      "meanReplyTokens": 64.0,
+      "endedFraction": 0.0,
+      "n": 1000
+    },
+    "base-fewshot": {
+      "seeds": 1,
+      "accuracyPerSeed": [
+        0.275
+      ],
+      "wilsonPerSeed": [
+        [
+          0.2482258738186985,
+          0.3034961675268637
+        ]
+      ],
+      "accuracyMean": 0.275,
+      "accuracySeedSd": 0.0,
+      "meanReplyTokens": 64.0,
+      "endedFraction": 0.0,
+      "n": 1000
+    },
+    "dpo": {
+      "seeds": 3,
+      "accuracyPerSeed": [
+        0.819,
+        0.824,
+        0.815
+      ],
+      "wilsonPerSeed": [
+        [
+          0.793930468323125,
+          0.8416280597247221
+        ],
+        [
+          0.7991696849540425,
+          0.8463505755083477
+        ],
+        [
+          0.7897439457302489,
+          0.8378451963859637
+        ]
+      ],
+      "accuracyMean": 0.8193333333333332,
+      "accuracySeedSd": 0.0045092497528228985,
+      "meanReplyTokens": 29.825333333333333,
+      "endedFraction": 1.0,
+      "n": 1000
+    },
+    "sft": {
+      "seeds": 3,
+      "accuracyPerSeed": [
+        0.798,
+        0.825,
+        0.803
+      ],
+      "wilsonPerSeed": [
+        [
+          0.7719968299823364,
+          0.82172242192443
+        ],
+        [
+          0.8002183544097695,
+          0.8472942525355293
+        ],
+        [
+          0.7772091458813424,
+          0.826471838439967
+        ]
+      ],
+      "accuracyMean": 0.8086666666666668,
+      "accuracySeedSd": 0.01436430761761011,
+      "meanReplyTokens": 29.83366666666667,
+      "endedFraction": 1.0,
+      "n": 1000
+    },
+    "trap-nogenprompt": {
+      "seeds": 3,
+      "accuracyPerSeed": [
+        0.796,
+        0.819,
+        0.809
+      ],
+      "wilsonPerSeed": [
+        [
+          0.7699135740245494,
+          0.8198209849163997
+        ],
+        [
+          0.793930468323125,
+          0.8416280597247221
+        ],
+        [
+          0.7834719953610882,
+          0.8321630678576728
+        ]
+      ],
+      "accuracyMean": 0.8079999999999999,
+      "accuracySeedSd": 0.011532562594670753,
+      "meanReplyTokens": 29.83566666666667,
+      "endedFraction": 1.0,
+      "n": 1000
+    },
+    "trap-promptloss": {
+      "seeds": 3,
+      "accuracyPerSeed": [
+        0.78,
+        0.794,
+        0.776
+      ],
+      "wilsonPerSeed": [
+        [
+          0.7532805084184011,
+          0.8045765067960102
+        ],
+        [
+          0.7678312569285212,
+          0.8179186090466107
+        ],
+        [
+          0.7491310657571941,
+          0.8007565635255827
+        ]
+      ],
+      "accuracyMean": 0.7833333333333333,
+      "accuracySeedSd": 0.009451631252505225,
+      "meanReplyTokens": 29.838666666666665,
+      "endedFraction": 1.0,
+      "n": 1000
+    },
+    "trap-sysprompt": {
+      "seeds": 3,
+      "accuracyPerSeed": [
+        0.796,
+        0.818,
+        0.805
+      ],
+      "wilsonPerSeed": [
+        [
+          0.7699135740245494,
+          0.8198209849163997
+        ],
+        [
+          0.7928834386240703,
+          0.8406827429408682
+        ],
+        [
+          0.7792957710041268,
+          0.8283699062829999
+        ]
+      ],
+      "accuracyMean": 0.8063333333333333,
+      "accuracySeedSd": 0.01106044001535799,
+      "meanReplyTokens": 29.831666666666667,
+      "endedFraction": 1.0,
+      "n": 1000
+    }
+  },
+  "comparisons": {
+    "sft vs base-fewshot": {
+      "pooled": {
+        "diff": 0.5336666666666666,
+        "lo": 0.504,
+        "hi": 0.5636666666666666,
+        "items": 1000,
+        "sdItem": 0.4928358961702031
+      },
+      "perSeed": [
+        {
+          "diff": 0.523,
+          "lo": 0.488,
+          "hi": 0.556,
+          "items": 1000,
+          "sdItem": 0.5493384865206267,
+          "bOnly": 549,
+          "aOnly": 26,
+          "mcnemarP": 1.3376235190797218e-128
+        },
+        {
+          "diff": 0.55,
+          "lo": 0.516,
+          "hi": 0.583,
+          "items": 1000,
+          "sdItem": 0.5457085282436017,
+          "bOnly": 575,
+          "aOnly": 25,
+          "mcnemarP": 5.562080541418385e-137
+        },
+        {
+          "diff": 0.528,
+          "lo": 0.494,
+          "hi": 0.561,
+          "items": 1000,
+          "sdItem": 0.5436097051299871,
+          "bOnly": 551,
+          "aOnly": 23,
+          "mcnemarP": 2.3810263730736146e-132
+        }
+      ],
+      "seedDiffMean": 0.5336666666666666,
+      "seedDiffSd": 0.014364307617610175,
+      "itemsNeeded": 4,
+      "real": true
+    },
+    "dpo vs sft": {
+      "pooled": {
+        "diff": 0.010666666666666668,
+        "lo": 9.436895709313831e-19,
+        "hi": 0.021333333333333336,
+        "items": 1000,
+        "sdItem": 0.1710228182434013
+      },
+      "perSeed": [
+        {
+          "diff": 0.021,
+          "lo": 0.0,
+          "hi": 0.043,
+          "items": 1000,
+          "sdItem": 0.34738980940678105,
+          "bOnly": 71,
+          "aOnly": 50,
+          "mcnemarP": 0.06859363812061438
+        },
+        {
+          "diff": -0.001,
+          "lo": -0.016,
+          "hi": 0.014,
+          "items": 1000,
+          "sdItem": 0.23886409536817385,
+          "bOnly": 28,
+          "aOnly": 29,
+          "mcnemarP": 1.0
+        },
+        {
+          "diff": 0.012,
+          "lo": -0.004,
+          "hi": 0.028,
+          "items": 1000,
+          "sdItem": 0.2606221861697962,
+          "bOnly": 40,
+          "aOnly": 28,
+          "mcnemarP": 0.18181005453559343
+        }
+      ],
+      "seedDiffMean": 0.010666666666666666,
+      "seedDiffSd": 0.011060440015358039,
+      "itemsNeeded": 988,
+      "real": false
+    },
+    "dpo vs base-fewshot": {
+      "pooled": {
+        "diff": 0.5443333333333333,
+        "lo": 0.514,
+        "hi": 0.5753333333333334,
+        "items": 1000,
+        "sdItem": 0.5016168940509144
+      },
+      "perSeed": [
+        {
+          "diff": 0.544,
+          "lo": 0.51,
+          "hi": 0.578,
+          "items": 1000,
+          "sdItem": 0.5480550742072957,
+          "bOnly": 570,
+          "aOnly": 26,
+          "mcnemarP": 1.6514412282016224e-134
+        },
+        {
+          "diff": 0.549,
+          "lo": 0.515,
+          "hi": 0.582,
+          "items": 1000,
+          "sdItem": 0.549455094526296,
+          "bOnly": 576,
+          "aOnly": 27,
+          "mcnemarP": 3.76456641141453e-135
+        },
+        {
+          "diff": 0.54,
+          "lo": 0.505,
+          "hi": 0.574,
+          "items": 1000,
+          "sdItem": 0.5465333463739415,
+          "bOnly": 565,
+          "aOnly": 25,
+          "mcnemarP": 3.712089240010081e-134
+        }
+      ],
+      "seedDiffMean": 0.5443333333333333,
+      "seedDiffSd": 0.0045092497528228985,
+      "itemsNeeded": 4,
+      "real": true
+    },
+    "trap-promptloss vs sft": {
+      "pooled": {
+        "diff": -0.025333333333333336,
+        "lo": -0.04,
+        "hi": -0.01066666666666667,
+        "items": 1000,
+        "sdItem": 0.24146514557517149
+      },
+      "perSeed": [
+        {
+          "diff": -0.018,
+          "lo": -0.044,
+          "hi": 0.009,
+          "items": 1000,
+          "sdItem": 0.4264479544538323,
+          "bOnly": 82,
+          "aOnly": 100,
+          "mcnemarP": 0.2075033970186372
+        },
+        {
+          "diff": -0.031,
+          "lo": -0.054,
+          "hi": -0.007,
+          "items": 1000,
+          "sdItem": 0.384950889318608,
+          "bOnly": 59,
+          "aOnly": 90,
+          "mcnemarP": 0.013712033079849216
+        },
+        {
+          "diff": -0.027,
+          "lo": -0.051,
+          "hi": -0.002,
+          "items": 1000,
+          "sdItem": 0.3980319452373508,
+          "bOnly": 66,
+          "aOnly": 93,
+          "mcnemarP": 0.038877995222780744
+        }
+      ],
+      "seedDiffMean": -0.025333333333333333,
+      "seedDiffSd": 0.006658328118479394,
+      "itemsNeeded": 349,
+      "real": false
+    },
+    "trap-sysprompt vs sft": {
+      "pooled": {
+        "diff": -0.002333333333333334,
+        "lo": -0.008,
+        "hi": 0.0033333333333333335,
+        "items": 1000,
+        "sdItem": 0.09251307897206754
+      },
+      "perSeed": [
+        {
+          "diff": -0.002,
+          "lo": -0.013,
+          "hi": 0.009,
+          "items": 1000,
+          "sdItem": 0.17328019513500678,
+          "bOnly": 14,
+          "aOnly": 16,
+          "mcnemarP": 0.855535551905632
+        },
+        {
+          "diff": -0.007,
+          "lo": -0.016,
+          "hi": 0.002,
+          "items": 1000,
+          "sdItem": 0.1515716793268913,
+          "bOnly": 8,
+          "aOnly": 15,
+          "mcnemarP": 0.21003961563110352
+        },
+        {
+          "diff": 0.002,
+          "lo": -0.007,
+          "hi": 0.011,
+          "items": 1000,
+          "sdItem": 0.1483846960370847,
+          "bOnly": 12,
+          "aOnly": 10,
+          "mcnemarP": 0.8318119049072266
+        }
+      ],
+      "seedDiffMean": -0.0023333333333333335,
+      "seedDiffSd": 0.004509249752822894,
+      "itemsNeeded": 6039,
+      "real": false
+    },
+    "trap-nogenprompt vs sft": {
+      "pooled": {
+        "diff": -0.000666666666666667,
+        "lo": -0.005666666666666667,
+        "hi": 0.004,
+        "items": 1000,
+        "sdItem": 0.0789177152707891
+      },
+      "perSeed": [
+        {
+          "diff": -0.002,
+          "lo": -0.011,
+          "hi": 0.006,
+          "items": 1000,
+          "sdItem": 0.1342162956351203,
+          "bOnly": 8,
+          "aOnly": 10,
+          "mcnemarP": 0.8145294189453125
+        },
+        {
+          "diff": -0.006,
+          "lo": -0.015,
+          "hi": 0.003,
+          "items": 1000,
+          "sdItem": 0.14136471972873565,
+          "bOnly": 7,
+          "aOnly": 13,
+          "mcnemarP": 0.26317596435546875
+        },
+        {
+          "diff": 0.006,
+          "lo": -0.002,
+          "hi": 0.014,
+          "items": 1000,
+          "sdItem": 0.12641194555887503,
+          "bOnly": 11,
+          "aOnly": 5,
+          "mcnemarP": 0.210113525390625
+        }
+      ],
+      "seedDiffMean": -0.0006666666666666666,
+      "seedDiffSd": 0.006110100926607787,
+      "itemsNeeded": 53831,
+      "real": false
+    }
+  },
+  "training": {
+    "sft:s0": {
+      "minutes": 9.95897272083336,
+      "peakGiB": 7.220212697982788,
+      "steps": 188,
+      "tokens": 201652,
+      "firstLoss": 1.7741,
+      "finalLoss": 0.0487
+    },
+    "sft:s1": {
+      "minutes": 8.286697185416658,
+      "peakGiB": 7.228482961654663,
+      "steps": 188,
+      "tokens": 201652,
+      "firstLoss": 1.7942,
+      "finalLoss": 0.0152
+    },
+    "sft:s2": {
+      "minutes": 7.89432741874989,
+      "peakGiB": 7.244077444076538,
+      "steps": 188,
+      "tokens": 201652,
+      "firstLoss": 1.7687,
+      "finalLoss": 0.0296
+    },
+    "dpo:s0": {
+      "minutes": 5.350055150683329,
+      "peakGiB": 10.207165956497192,
+      "steps": 52,
+      "tokens": 108768,
+      "pairMinutes": 2.272091719433471,
+      "pairStats": {
+        "problems": 1000,
+        "samplesPerProblem": 4,
+        "sampleAccuracy": 0.69825,
+        "pairs": 404
+      },
+      "final": {
+        "step": 51,
+        "loss": 0.5949,
+        "rewardAccuracy": 1.0,
+        "chosenDrift": 0.025,
+        "rejectedDrift": -2.083,
+        "gradNorm": 4.614
+      }
+    },
+    "dpo:s1": {
+      "minutes": 5.1592060131998245,
+      "peakGiB": 10.36328125,
+      "steps": 46,
+      "tokens": 95568,
+      "pairMinutes": 2.359418017366503,
+      "pairStats": {
+        "problems": 1000,
+        "samplesPerProblem": 4,
+        "sampleAccuracy": 0.75775,
+        "pairs": 355
+      },
+      "final": {
+        "step": 45,
+        "loss": 0.6896,
+        "rewardAccuracy": 0.667,
+        "chosenDrift": -0.284,
+        "rejectedDrift": -0.381,
+        "gradNorm": 6.054
+      }
+    },
+    "dpo:s2": {
+      "minutes": 5.442258226383274,
+      "peakGiB": 10.195416688919067,
+      "steps": 52,
+      "tokens": 111450,
+      "pairMinutes": 2.254880630549936,
+      "pairStats": {
+        "problems": 1000,
+        "samplesPerProblem": 4,
+        "sampleAccuracy": 0.70475,
+        "pairs": 414
+      },
+      "final": {
+        "step": 51,
+        "loss": 0.6221,
+        "rewardAccuracy": 0.929,
+        "chosenDrift": 0.217,
+        "rejectedDrift": -1.308,
+        "gradNorm": 2.345
+      }
+    }
+  },
+  "minutesByRun": {
+    "eval:base-fewshot": 3.328,
+    "eval:base-chatml": 2.006,
+    "train:sft:s0": 9.959,
+    "train:sft:s1": 8.287,
+    "train:sft:s2": 7.894,
+    "eval:sft:s0": 0.603,
+    "eval:sft:s1": 0.619,
+    "eval:sft:s2": 0.639,
+    "train:dpo:s0": 5.35,
+    "train:dpo:s1": 5.159,
+    "train:dpo:s2": 5.442,
+    "eval:dpo:s0": 0.583,
+    "eval:dpo:s1": 0.601,
+    "eval:dpo:s2": 0.61,
+    "eval:trap-sysprompt:s0": 0.704,
+    "eval:trap-nogenprompt:s0": 0.59,
+    "eval:trap-promptloss:s0": 7.325,
+    "eval:trap-sysprompt:s1": 0.684,
+    "eval:trap-nogenprompt:s1": 0.57,
+    "eval:trap-promptloss:s1": 7.118,
+    "eval:trap-sysprompt:s2": 0.677,
+    "eval:trap-nogenprompt:s2": 0.569,
+    "eval:trap-promptloss:s2": 7.318
+  },
+  "totalMinutes": 76.6348499444505
+}
