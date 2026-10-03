@@ -1,6 +1,6 @@
 # Train a tiny GPT on Colab: a healthy band, then three planted bugs
 
-**Updated:** October 3, 2026. Teaching route v2 and a separately attributed T4 console receipt added; historical MPS runs and notebook v1 retained.
+**Updated:** October 3, 2026. Teaching route v2 and separately attributed T4 console/full downloaded receipts added; historical MPS runs and notebook v1 retained.
 
 The measured run behind https://profrod.ai/articles/train-a-tiny-gpt-on-colab, and feasibility pilot P1 for the course "PyTorch Through Broken Training Runs".
 
@@ -12,7 +12,7 @@ A small GPT in plain PyTorch (an `nn.Module`, an explicit training loop, AdamW, 
 
 - **Losses, seed bands and which bugs are caught** come from 20 local runs on an Apple M4 Pro GPU (MPS) and its CPU, on 2026-10-02. They do not depend on the machine's load.
 - **Local timings are indicative only:** a shared machine, with other sessions' test suites and browsers running, at a 1-minute load average of 1 to 35. Each run records its load at start and end.
-- **T4:** operator-supplied console export dated October 3, 2026, preserved verbatim under `receipts/colab/`. It reports timings and planted-bug outcomes, but omits its healthy band and healthy-control outcomes. A rounded healthy mean/CI comes from the accompanying SUMMARY line. See the provenance file.
+- **T4:** operator-supplied console export and full downloaded notebook receipt dated October 3, 2026, preserved verbatim under `receipts/colab/`. The full receipt supplies raw validation curves, the healthy band and control outcomes omitted from the console. Recomputing every band element, held-out/leave-one-out flag and planted-bug flag from its curves matches the reported values exactly. See the full receipt provenance file; this checks internal consistency rather than independently observing the Colab execution.
 - **L4:** no measured result is claimed. The earlier proposal included it; no additional hardware run is needed for the article's T4 feasibility claim.
 
 ## What was run
@@ -88,7 +88,9 @@ Each planted bug family was detected in all three tested seeds under this setup.
 
 **Band and controls:** local reference seeds 0–4 fit the local band. Held-out controls 10–12 are independent of that fit; leave-one-out checks exclude the tested reference seed but use overlapping four-seed bands. Same-band reference checks are calibration, not independent validation. Pointwise 95% prediction intervals and two consecutive excursions do not provide a known simultaneous false-alarm rate over 21 correlated evaluations.
 
-The T4 console export lists control-run durations but omits their flag outcomes and the T4 band. Five T4 healthy runs were checked against the independently recorded MPS band, with no flags and all final losses inside its prediction interval. The downloaded notebook JSON includes the omitted fields; it remains needed for a complete audit of the T4 detector. Do not infer those fields from timing or from the rounded mean confidence interval.
+The full downloaded notebook receipt, `receipts/colab/tinygpt-full-20261003.json`, resolves those console omissions. T4 reference seeds 0–4 give a final mean of 2.2651731873, a mean confidence interval of 2.2580558779–2.2722904966, and a prediction interval for one new run of 2.2477394110–2.2826069635. Independent T4 healthy controls 10–12 had no flags and all final losses inside that prediction interval. T4 leave-one-out seed 2 flagged below at step 250; the other four were unflagged. These five overlapping checks are not additional independent controls.
+
+The raw T4 curves reproduce every band element exactly using `tinygpt_stats_v1.py`; recomputed controls, leave-one-out and all nine planted-bug flags match the receipt. Excluding step 0 retrospectively moves the missing-zero-grad flags to step 100 for all three T4 seeds, just as in the local experiment. It remains an exploratory rule change, not a prospective validation result. Five T4 healthy runs also had no flags against the independently recorded MPS band, with all final losses inside its prediction interval. Historical MPS numbers above stay attributed to their own runs and environment.
 
 The earlier T4 estimate above is retained as the pre-run calculation, not presented as a current measurement. No L4 validation is claimed.
 
