@@ -1,0 +1,210 @@
+{
+  "experiment": "train-a-tiny-gpt-on-colab v1 (feasibility pilot P1)",
+  "ranOn": [
+    "2026-10-02"
+  ],
+  "where": "Darwin arm64, Python 3.12.13",
+  "devices": [
+    "Apple M4 Pro CPU (8 threads) [cpu, float32]",
+    "Apple M4 Pro GPU (MPS) [mps, float32]"
+  ],
+  "packages": {
+    "torch": "2.14.1",
+    "tokenizers": "0.23.2",
+    "numpy": "2.3.3"
+  },
+  "dataset": {
+    "dataset": "roneneldan/TinyStories",
+    "revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64",
+    "license": "CDLA-Sharing-1.0",
+    "train": {
+      "file": "TinyStoriesV2-GPT4-train.txt",
+      "bytesRequested": 100000000,
+      "bytesKept": 99998621,
+      "sha256": "1cc02c697e13d5e4b1d39e3dc9c35274fbf5abe474d3f2ecfc8445bc3a30982a",
+      "stories": 122004,
+      "tokens": 24797675
+    },
+    "valid": {
+      "file": "TinyStoriesV2-GPT4-valid.txt",
+      "bytes": 22502601,
+      "sha256": "6874bae9a4c1a4e7edcf0e53b86c17817e9cf881fc75ff2368da457b80c0585d",
+      "stories": 27630,
+      "tokens": 5578638
+    },
+    "tokenizer": {
+      "type": "byte-level BPE (Hugging Face tokenizers)",
+      "vocabSize": 4096,
+      "eotId": 0,
+      "file": "data/tokenizer-v1.json",
+      "sha256": "d3336651ba01d5da2e3f1803e25fd2a16aa87efd46b0bd358ffb498c3a9e3718",
+      "trainedOn": "the train slice above",
+      "tokenizersVersion": "0.23.2"
+    }
+  },
+  "model": {
+    "config": {
+      "vocab_size": 4096,
+      "block_size": 256,
+      "n_layer": 6,
+      "n_head": 6,
+      "n_embd": 384,
+      "bug": "none"
+    },
+    "params": 12318720,
+    "flopsPerToken": 80216064,
+    "train": {
+      "batch_size": 32,
+      "steps": 1000,
+      "max_lr": 0.001,
+      "min_lr": 0.0001,
+      "warmup_steps": 100,
+      "weight_decay": 0.1,
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "grad_clip": 1.0,
+      "eval_every": 50,
+      "eval_batches": 20
+    }
+  },
+  "runs": {
+    "bug": 9,
+    "control": 3,
+    "healthy": 5,
+    "rerun": 1,
+    "timing": 2
+  },
+  "minutes": {
+    "healthy-none-s0": 4.47,
+    "healthy-none-s1": 6.11,
+    "healthy-none-s2": 5.92,
+    "healthy-none-s3": 6.05,
+    "healthy-none-s4": 4.71,
+    "control-none-s10": 4.39,
+    "control-none-s11": 4.47,
+    "control-none-s12": 4.43,
+    "bug-no_causal_mask-s10": 4.29,
+    "bug-no_causal_mask-s11": 4.46,
+    "bug-no_causal_mask-s12": 5.45,
+    "bug-softmax_wrong_dim-s10": 8.9,
+    "bug-softmax_wrong_dim-s11": 10.86,
+    "bug-softmax_wrong_dim-s12": 10.06,
+    "bug-no_zero_grad-s10": 10.54,
+    "bug-no_zero_grad-s11": 9.99,
+    "bug-no_zero_grad-s12": 9.81,
+    "rerun-none-s0-rerun": 10.33,
+    "timing-none-s0-cpu": 0.42,
+    "timing-none-s0-mps-foreground": 1.1
+  },
+  "tokensPerSecond": {
+    "healthy-none-s0": 34974,
+    "healthy-none-s1": 28709,
+    "healthy-none-s2": 26261,
+    "healthy-none-s3": 25579,
+    "healthy-none-s4": 33337,
+    "control-none-s10": 35554,
+    "control-none-s11": 34914,
+    "control-none-s12": 35491,
+    "bug-no_causal_mask-s10": 36308,
+    "bug-no_causal_mask-s11": 36557,
+    "bug-no_causal_mask-s12": 36911,
+    "bug-softmax_wrong_dim-s10": 21147,
+    "bug-softmax_wrong_dim-s11": 14304,
+    "bug-softmax_wrong_dim-s12": 15387,
+    "bug-no_zero_grad-s10": 14649,
+    "bug-no_zero_grad-s11": 15515,
+    "bug-no_zero_grad-s12": 15873,
+    "rerun-none-s0-rerun": 15048,
+    "timing-none-s0-cpu": 14131,
+    "timing-none-s0-mps-foreground": 14965
+  },
+  "loadAverage1minStartEnd": {
+    "healthy-none-s0": [
+      26.94,
+      33.4
+    ],
+    "healthy-none-s1": [
+      32.4,
+      17.86
+    ],
+    "healthy-none-s2": [
+      17.86,
+      16.28
+    ],
+    "healthy-none-s3": [
+      16.28,
+      18.62
+    ],
+    "healthy-none-s4": [
+      18.62,
+      14.62
+    ],
+    "control-none-s10": [
+      14.62,
+      25.71
+    ],
+    "control-none-s11": [
+      25.71,
+      22.74
+    ],
+    "control-none-s12": [
+      22.74,
+      23.58
+    ],
+    "bug-no_causal_mask-s10": [
+      22.57,
+      29.82
+    ],
+    "bug-no_causal_mask-s11": [
+      31.11,
+      20.85
+    ],
+    "bug-no_causal_mask-s12": [
+      23.05,
+      35.15
+    ],
+    "bug-softmax_wrong_dim-s10": [
+      33.61,
+      15.52
+    ],
+    "bug-softmax_wrong_dim-s11": [
+      16.82,
+      30.85
+    ],
+    "bug-softmax_wrong_dim-s12": [
+      6.55,
+      3.14
+    ],
+    "bug-no_zero_grad-s10": [
+      3.61,
+      6.6
+    ],
+    "bug-no_zero_grad-s11": [
+      5.3,
+      1.08
+    ],
+    "bug-no_zero_grad-s12": [
+      1.08,
+      1.37
+    ],
+    "rerun-none-s0-rerun": [
+      1.34,
+      8.94
+    ],
+    "timing-none-s0-cpu": [
+      5.18,
+      5.43
+    ],
+    "timing-none-s0-mps-foreground": [
+      5.76,
+      4.86
+    ]
+  },
+  "timings": "indicative only: a shared machine, with other sessions' test suites and browsers running; the 1-minute load average at the start and end of each run is above. Authoritative timings come from the Colab receipt.",
+  "totalGpuMinutes": 126.3,
+  "costUsd": 0.0,
+  "colab": "slot: T4 and L4 receipts from train_tiny_gpt_v1.ipynb go in receipts/colab/; none recorded yet",
+  "note": "Local hardware, no API, no paid compute. Timings depend on the machine and on what else runs on it; each run records the load average at its start and end."
+}
