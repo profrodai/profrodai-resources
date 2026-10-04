@@ -136,14 +136,26 @@ Probe v2 sets both tolerances (`atol=1e-6, rtol=0`). Notebook v3 imports it; con
 
 The v2 figure generator enlarges chart labels for phone and print reading; the consumed v1 generator and figure exports remain preserved.
 
-## Current house figures, October 4, 2026
+## Historical SVG candidate, superseded October 4, 2026
 
 The article now uses the site's actual native chalkboard components. `figures-v4/` contains their source-bound SVGs, 2× PNG exports and HTML context with legends/tables. Expand all four tiny-GPT curve panels when reading the HTML. These figures use the unchanged T4 receipt; they do not reconstruct unavailable observations or strengthen the conclusions above. Older paper-style figure versions and their consumed generators are retained as historical artifacts after the operator rejected their visual style.
 
-To reproduce the preferred exports from the validated site checkout, with Node 24, installed site dependencies and Chromium:
+To reproduce these historical exports from their recorded site checkout, with Node 24, installed site dependencies and Chromium:
 
 ```bash
 CHROME_PATH=/path/to/chromium node tools/export_house_figures_v1.mjs --site /path/to/profrod-site
 ```
 
 The command writes the two article figure directories together and records the exact site commit, component/shared-source hashes, receipt hashes, embedded-font license and output hashes. No training or model download is required. Read each plotted board with its adjacent HTML context. The site enforces its figure-brand gate before builds, verification and normal pushes; maintainer/operator visual review still applies.
+
+## Responsive house WebPs, October 4, 2026
+
+`figures-v5/` is the current review candidate. It copies the site's exact WebP bytes at 320, 640, 960 and 1520 pixels, with descriptive HTML, legends, tables and editable `.source.svg` authoring files. These SVGs are not the website delivery format. The manifest binds every image and receipt hash to the exact committed site tree. All four tiny-GPT panels are expanded in the exported context.
+
+Reproduce both article exports from a clean, committed site checkout with Node 24 and installed site dependencies:
+
+```bash
+node tools/export_house_figures_v2.mjs --site /path/to/profrod-site
+```
+
+This version replaces the rejected paper-style and SVG delivery candidates. Original exports, consumed generators, notebooks and the operator's T4 receipt bytes remain intact. No training, model download or new measurement is performed. Mechanical validation does not establish operator or council aesthetic acceptance; the website publication holds remain in force.
