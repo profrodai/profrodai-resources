@@ -135,3 +135,15 @@ Probe v2 sets both tolerances (`atol=1e-6, rtol=0`). Notebook v3 imports it; con
 `tinygpt_figures_v3.py` renders the attention matrix and two evidence figures from the unchanged full T4 receipt. Run it with Python, matplotlib and Pillow, passing an output directory: `python tinygpt_figures_v3.py --output /path/to/figures`. SVG and PNG exports are standalone artifacts; WebP exports are the article media. Curve panels show all five reference seeds, all three held-out controls and three seeds per fault. Dots mark the original two-consecutive-same-side flag; initialization remains included. No new run is implied by these plots.
 
 The v2 figure generator enlarges chart labels for phone and print reading; the consumed v1 generator and figure exports remain preserved.
+
+## Current house figures, October 4, 2026
+
+The article now uses the site's actual native chalkboard components. `figures-v4/` contains their source-bound SVGs, 2× PNG exports and HTML context with legends/tables. Expand all four tiny-GPT curve panels when reading the HTML. These figures use the unchanged T4 receipt; they do not reconstruct unavailable observations or strengthen the conclusions above. Older paper-style figure versions and their consumed generators are retained as historical artifacts after the operator rejected their visual style.
+
+To reproduce the preferred exports from the validated site checkout, with Node 24, installed site dependencies and Chromium:
+
+```bash
+CHROME_PATH=/path/to/chromium node tools/export_house_figures_v1.mjs --site /path/to/profrod-site
+```
+
+The command writes the two article figure directories together and records the exact site commit, component/shared-source hashes, receipt hashes, embedded-font license and output hashes. No training or model download is required. Read each plotted board with its adjacent HTML context. The site enforces its figure-brand gate before builds, verification and normal pushes; maintainer/operator visual review still applies.

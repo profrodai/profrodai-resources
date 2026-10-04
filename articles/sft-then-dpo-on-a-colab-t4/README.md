@@ -71,3 +71,15 @@ uv run --no-project --with pytest pytest -q \
 ```
 
 The focused checks cover the causal target boundary, relative likelihood counterexample, conditional item bootstrap, negative pooled interval with failed seed agreement, and unchanged receipt/data hashes. Original scripts and consumed notebooks remain unchanged.
+
+## Current house figures, October 4, 2026
+
+The article now uses the site's actual native chalkboard components. `figures-v2/` contains their source-bound SVGs, 2× PNG exports and HTML context with legends/tables. Expand all four tiny-GPT curve panels when reading the HTML. These figures use the unchanged T4 receipt; they do not reconstruct unavailable observations or strengthen the conclusions above. Older paper-style figure versions and their consumed generators are retained as historical artifacts after the operator rejected their visual style.
+
+To reproduce the preferred exports from the validated site checkout, with Node 24, installed site dependencies and Chromium:
+
+```bash
+CHROME_PATH=/path/to/chromium node tools/export_house_figures_v1.mjs --site /path/to/profrod-site
+```
+
+The command writes the two article figure directories together and records the exact site commit, component/shared-source hashes, receipt hashes, embedded-font license and output hashes. No training or model download is required. Read each plotted board with its adjacent HTML context. The site enforces its figure-brand gate before builds, verification and normal pushes; maintainer/operator visual review still applies.

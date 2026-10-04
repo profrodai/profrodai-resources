@@ -1,0 +1,62 @@
+{
+  "siteRepo": "rodriveracom/profrod-site",
+  "siteCommit": "4bf87d04128fa0cdccfc545e97c5b9bd267506b9",
+  "font": {
+    "name": "Routed Gothic",
+    "sha256": "0bb69e4a35bffae221e576957b70735e5eee819d9141781eb4cb79042e8e4c33",
+    "license": "SIL Open Font License 1.1; see Routed-Gothic-OFL.txt"
+  },
+  "sharedSources": [
+    {
+      "file": "src/widgets/training/measured.ts",
+      "sha256": "b75a2836a734270e2cc8f47d336c4f0a2deafb644fcd27724e24f1fe3593ea41"
+    },
+    {
+      "file": "src/widgets/training/FigureShell.tsx",
+      "sha256": "1471c4e2cc62c8e33bb7c17c2c011e46d69e3240eda38f84aa333c0308344727"
+    },
+    {
+      "file": "src/widgets/chalkboard/chalk.tsx",
+      "sha256": "617e8f91527d43b19ba23076844233069842ee5df600e38ba9dd25c83ef17d44"
+    },
+    {
+      "file": "src/widgets/chalkboard/chalkTokens.ts",
+      "sha256": "5e26800ed3dd14fc8790446124f1f150dce3ca5fe98dccb6e74d0e64a82e9f5a"
+    },
+    {
+      "file": "src/components/content/ProfrodMark.tsx",
+      "sha256": "512abf872dea36cfa6b6ef8a8ab59d8c38ab7d2799eb70fba7c6f831817b4955"
+    },
+    {
+      "file": "src/lib/diagrams/diagramSource.mjs",
+      "sha256": "56e9b4aafde8bd4fd637ec37dacf7949976edf428f6cac370531ded6a55266fb"
+    },
+    {
+      "file": "src/diagrams/profrod-mark.json",
+      "sha256": "0b4699b5abb469cbf61964581973b7a0a08749f74cc692d7d4a1d4e0071cbe65"
+    }
+  ],
+  "figures": [
+    {
+      "name": "sftdpo-seeds",
+      "svgSha256": "5f2d3329692e42203d1e7d8fd580da8e07de091873ac5bc297712b8fe8c2c658",
+      "pngSha256": "c241a31b79decace1a1191bc6a74bfb6d7d9fc327eab4b8eceafcb3a6a698b93",
+      "contextFile": "sftdpo-seeds.html",
+      "contextSha256": "615d1f8f13d7635a0b536abe5118b97202d1da57357511f3907e6332dd8318af",
+      "receiptSha256": "a32dfc7af44c70d627d83009fd5db2e9f90839a10ec5b5893130aa8b94b23ca7",
+      "component": "src/widgets/training/PairedSeeds.tsx",
+      "componentSha256": "0c585ee5cf8357f4d5aa73f1a6fed6b9307ee6e0c26781453a8084cbaae70259"
+    },
+    {
+      "name": "sftdpo-intervals",
+      "svgSha256": "451dca1ab9bcf08b200858162adeb42adceebcbf910e7882283b4ca3b3a1a019",
+      "pngSha256": "092ef628d8277a4b844149c5c8570d21cb61cc27b77d683ae93e6942ec18f5cd",
+      "contextFile": "sftdpo-intervals.html",
+      "contextSha256": "54ceeb3b6d2edf161ef2bebf99789e6410974e180d7eaeea1cc545eeedb9c139",
+      "receiptSha256": "a32dfc7af44c70d627d83009fd5db2e9f90839a10ec5b5893130aa8b94b23ca7",
+      "component": "src/widgets/training/PairedIntervals.tsx",
+      "componentSha256": "df7a728c305f30c35113da40994a653708895eecba02774f73898b1d36e3fe25"
+    }
+  ],
+  "evidence": "Original hash-bound operator T4 receipts. No new run or reconstruction. Read adjacent HTML context, including legends/tables and conditional uncertainty limits. SVGs embed the licensed font; PNGs are 2× raster exports of those actual boards."
+}
