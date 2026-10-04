@@ -159,3 +159,19 @@ node tools/export_house_figures_v2.mjs --site /path/to/profrod-site
 ```
 
 This version replaces the rejected paper-style and SVG delivery candidates. Original exports, consumed generators, notebooks and the operator's T4 receipt bytes remain intact. No training, model download or new measurement is performed. Mechanical validation does not establish operator or council aesthetic acceptance; the website publication holds remain in force.
+
+## Flagship attention exploration, October 4, 2026
+
+`figures-v6/` appends the revised P1 attention board and readable worked comparison from its exact committed site source. The other five P1 drawings retain the previous WebP bytes; `figures-v5/` remains frozen. All four responsive widths, editable sources, HTML context and hashes are included. The HTML export is static: its controls are disabled, and its calculated C-to-D comparison is expanded.
+
+The new example fixes scalar embeddings A = 1, B = 2, C = 0, D = 3 and identity Q/K/V projections. Change only the last token. With a causal mask and normalization across keys, earlier outputs stay fixed. With the same mask and normalization down queries, A's output changes from 0.244728 to 0.090031 because a later query enters the first column's denominator. These are synthetic attention outputs, not measured GPT logits or new T4 observations. Setting all V outputs to zero gives a nearby counterexample: an unchanged output on one input does not establish architecture-level causality.
+
+The on-page exploration is the short mechanism route. `train_tiny_gpt_v3.ipynb` remains the deeper CPU GPT intervention and optional training reproduction; its saved measurements and explicit `atol=1e-6, rtol=0` probe are unchanged. The fixed-input scalar demonstration does not replace that finite probe or strengthen its generality.
+
+Reproduce this appended P1 export with Node 24 and installed site dependencies:
+
+```bash
+node tools/export_house_figures_v3.mjs --site /path/to/profrod-site
+```
+
+The manifest pins the attention component and arithmetic module as well as the shared rendering sources and immutable T4 receipt. Website and companion review/publication holds remain in force.
