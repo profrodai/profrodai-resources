@@ -1,0 +1,213 @@
+{
+  "siteRepo": "rodriveracom/profrod-site",
+  "siteCommit": "4e94ee7727c4183fc7530bee1ebf2ce56f67cf1c",
+  "font": {
+    "name": "Routed Gothic",
+    "sha256": "0bb69e4a35bffae221e576957b70735e5eee819d9141781eb4cb79042e8e4c33",
+    "license": "SIL Open Font License 1.1; see Routed-Gothic-OFL.txt"
+  },
+  "sharedSources": [
+    {
+      "file": "src/widgets/training/measured.ts",
+      "sha256": "b75a2836a734270e2cc8f47d336c4f0a2deafb644fcd27724e24f1fe3593ea41"
+    },
+    {
+      "file": "src/widgets/training/AttentionBoundary.tsx",
+      "sha256": "423e122ad64581117d28ee7e35e091e066914260817fe26fe9c165d7c9a20f0f"
+    },
+    {
+      "file": "src/widgets/training/attentionModel.ts",
+      "sha256": "1b5f11047cff6ce3334951510defce7a52549f47b23d53e18f9d64f7ece37cc0"
+    },
+    {
+      "file": "src/widgets/training/DpoMargin.tsx",
+      "sha256": "27fc423644a8b3567e2027da38d750b154fc3f081215ef6d5cc92d7c81e8077f"
+    },
+    {
+      "file": "src/widgets/training/dpoModel.ts",
+      "sha256": "a8c789ba0da0d86349b3f09694c40e0591d200dcead3cb08b4b1a2bed779cd7c"
+    },
+    {
+      "file": "src/widgets/training/TrainingCurves.tsx",
+      "sha256": "ae32fbf3bdcfcbeff47628254128968b6f68df381370c3abcfaec667611f141f"
+    },
+    {
+      "file": "src/widgets/training/PairedSeeds.tsx",
+      "sha256": "f619f1764b3331a40a26684df59348bb3dc44df6b3a7337a30908ab542363683"
+    },
+    {
+      "file": "src/widgets/training/PairedIntervals.tsx",
+      "sha256": "78e031ff771a3cbf6eb4ba24135fb47fa72876e8eed57869da7352a91aa28a64"
+    },
+    {
+      "file": "src/widgets/training/PredictionInterval.tsx",
+      "sha256": "90db687a427d9734c3701620dab40a86e30f393ad2a1028caa4642cd2546cfc3"
+    },
+    {
+      "file": "src/widgets/training/FigureShell.tsx",
+      "sha256": "3ec336cd28f113c1a3d36e2d6cdccad564b4d1810576a2efde13dd63d816ee6d"
+    },
+    {
+      "file": "src/widgets/chalkboard/chalk.tsx",
+      "sha256": "2b52a2c31b667b28f41a0b2888a564583d599d2585bf940b27458a0527177815"
+    },
+    {
+      "file": "src/widgets/chalkboard/RasterFigure.tsx",
+      "sha256": "c1ed18ec6ba13bce7cfb45e60c5d27cee5b3b2d3a63870b463ba145f16e59937"
+    },
+    {
+      "file": "src/widgets/chalkboard/chalkTokens.ts",
+      "sha256": "5e26800ed3dd14fc8790446124f1f150dce3ca5fe98dccb6e74d0e64a82e9f5a"
+    },
+    {
+      "file": "src/components/content/ProfrodMark.tsx",
+      "sha256": "512abf872dea36cfa6b6ef8a8ab59d8c38ab7d2799eb70fba7c6f831817b4955"
+    },
+    {
+      "file": "src/lib/diagrams/diagramSource.mjs",
+      "sha256": "7bcbf5442d353a925a5f633ef0190bf8383f94290291af4115a57e31d45ce8b2"
+    },
+    {
+      "file": "src/diagrams/profrod-mark.json",
+      "sha256": "0b4699b5abb469cbf61964581973b7a0a08749f74cc692d7d4a1d4e0071cbe65"
+    }
+  ],
+  "rendererSources": [
+    {
+      "file": "scripts/render-figure-webp-v1.mjs",
+      "sha256": "f5466fd17ab5aeea4599adf7d71bfa92793a9008a6afe0cf7b9bf8bd5f36b8c2"
+    },
+    {
+      "file": "scripts/figures/browser-v1.mjs",
+      "sha256": "97d6419af0921ee741baed6a06e690830d1e476ab5587a36aeafd2876a6cfc2e"
+    },
+    {
+      "file": "scripts/figures/label-bounds-v1.mjs",
+      "sha256": "ec2f7f9eebf42a0ae79a1fd10d34c9c941f14fc16a7af1fe11f4f1951243a288"
+    },
+    {
+      "file": "public/fonts/routed-gothic/routed-gothic.ttf",
+      "sha256": "0bb69e4a35bffae221e576957b70735e5eee819d9141781eb4cb79042e8e4c33"
+    }
+  ],
+  "figures": [
+    {
+      "name": "sftdpo-seeds",
+      "key": "9e623f5ed8b41df2",
+      "sourceSvgSha256": "c25bb2e6c55e12e541b61bcc11d1d4accc770f4c8be124abe695eb5f40ca7886",
+      "artifacts": [
+        {
+          "file": "sftdpo-seeds-w320.webp",
+          "width": 320,
+          "height": 192,
+          "bytes": 4346,
+          "sha256": "e647100272e75bc1017909b74af7fb4d1c65016daf4b9a130e657435f2e969c1"
+        },
+        {
+          "file": "sftdpo-seeds-w640.webp",
+          "width": 640,
+          "height": 384,
+          "bytes": 10596,
+          "sha256": "135811174b63e553dd38e9887c674165ffe1d44059f02cc2c61059698365bbd7"
+        },
+        {
+          "file": "sftdpo-seeds-w960.webp",
+          "width": 960,
+          "height": 576,
+          "bytes": 22010,
+          "sha256": "f7dc3d7862bb87d53c03e8fdcaa534f83d3f4e653d6752aa97c4c89b73ffd989"
+        },
+        {
+          "file": "sftdpo-seeds-w1520.webp",
+          "width": 1520,
+          "height": 912,
+          "bytes": 50436,
+          "sha256": "ebfeb16a68971a16b02881e5f67da2310d3108ebd52b8b1d6ec4cbfa249715ec"
+        }
+      ],
+      "receiptSha256": "a32dfc7af44c70d627d83009fd5db2e9f90839a10ec5b5893130aa8b94b23ca7",
+      "component": "sftdpo-seeds",
+      "contextFile": "sftdpo-seeds.html",
+      "contextSha256": "f849f7a8bfce2aa0d6bd6a44af5b2817667c64b507b3a69c5310edfe6a9e9409"
+    },
+    {
+      "name": "sftdpo-intervals",
+      "key": "d48f7ca5d147e2e3",
+      "sourceSvgSha256": "194204dabfe4ea942d361d79d6d243190ebc0c8e0b319481f118b0010afd4d40",
+      "artifacts": [
+        {
+          "file": "sftdpo-intervals-w320.webp",
+          "width": 320,
+          "height": 226,
+          "bytes": 5596,
+          "sha256": "52385c1ac30d4159cd52a13879d09618c785d6909b7c4c01e9d1c98762477363"
+        },
+        {
+          "file": "sftdpo-intervals-w640.webp",
+          "width": 640,
+          "height": 453,
+          "bytes": 12816,
+          "sha256": "4506714ba7fe6c5ba50ee312737e9db5c2c30e145aa27a6bde2a01e51a575e79"
+        },
+        {
+          "file": "sftdpo-intervals-w960.webp",
+          "width": 960,
+          "height": 679,
+          "bytes": 24546,
+          "sha256": "cba1e8301cc5552b331529ae308ba18ffa3f2b52686caddb1a10caba8f677cd9"
+        },
+        {
+          "file": "sftdpo-intervals-w1520.webp",
+          "width": 1520,
+          "height": 1075,
+          "bytes": 57656,
+          "sha256": "9eaa78cbe13b46478443bf77ca926b2163a4a0517417a55de8a196a0415755f3"
+        }
+      ],
+      "receiptSha256": "a32dfc7af44c70d627d83009fd5db2e9f90839a10ec5b5893130aa8b94b23ca7",
+      "component": "sftdpo-intervals",
+      "contextFile": "sftdpo-intervals.html",
+      "contextSha256": "064420d2322d7e9e6f9d88f017d6a975219feabd72854fb4d97e240a0847c80d"
+    },
+    {
+      "name": "sftdpo-margin",
+      "key": "477bde7017dc70ea",
+      "sourceSvgSha256": "f40b7cfb213b92aed78293d7113afa7e072c0d8e31bbedd36f48b2ae1bc508ae",
+      "artifacts": [
+        {
+          "file": "sftdpo-margin-w320.webp",
+          "width": 320,
+          "height": 174,
+          "bytes": 3400,
+          "sha256": "b3f7c15fb5bdc65089a7a18ae8566442fddc36266095aa6263695a4638baeeda"
+        },
+        {
+          "file": "sftdpo-margin-w640.webp",
+          "width": 640,
+          "height": 347,
+          "bytes": 8760,
+          "sha256": "6222232f0d2c0924f88ee7a3c76094bbcd9d21e1e716e1e7ec375bb834fce6f1"
+        },
+        {
+          "file": "sftdpo-margin-w960.webp",
+          "width": 960,
+          "height": 521,
+          "bytes": 17598,
+          "sha256": "8087bc962e5623a71e5225b78724c51c0af5da253487be617d165cb31f847f0f"
+        },
+        {
+          "file": "sftdpo-margin-w1520.webp",
+          "width": 1520,
+          "height": 825,
+          "bytes": 43692,
+          "sha256": "12fec4cdcd56176ab6435b2641ffb1abe58b81fd4f6c8d3aad087ce59d0bca68"
+        }
+      ],
+      "receiptSha256": "a32dfc7af44c70d627d83009fd5db2e9f90839a10ec5b5893130aa8b94b23ca7",
+      "component": "sftdpo-margin",
+      "contextFile": "sftdpo-margin.html",
+      "contextSha256": "452856e46120ab653e152499b5466cac4d41e695d7fc9bbc19e650a6efe54d3a"
+    }
+  ],
+  "evidence": "Exact responsive WebP bytes delivered by the site, with adjacent HTML descriptions, legends and tables. .source.svg files are editable authoring sources, not the website image format. The attention and fixed-reference DPO examples are synthetic arithmetic, separate from the unchanged operator T4 receipts. Static controls are disabled in this export; no training, new measurement or publication is implied."
+}

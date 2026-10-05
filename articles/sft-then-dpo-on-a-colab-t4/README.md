@@ -95,3 +95,17 @@ node tools/export_house_figures_v2.mjs --site /path/to/profrod-site
 ```
 
 This version replaces the rejected paper-style and SVG delivery candidates. Original exports, consumed generators, notebooks and the operator's T4 receipt bytes remain intact. No training, model download or new measurement is performed. Mechanical validation does not establish operator or council aesthetic acceptance; the website publication holds remain in force.
+
+### October 5 council corrections — current review export
+
+`figures-v4/` is the latest review candidate, appended from the clean site commit in its manifest. Paired-seed points/lines and interval endpoints are stronger and outside the chalk distress filter. Shapes, line patterns and direct labels distinguish the quantities while the textured house board, Routed Gothic, palette, cartoon mark and responsive WebP delivery remain.
+
+The new `sftdpo-margin.html` is a **synthetic** fixed-reference example. Reference log-probabilities −10 and −12 and β=0.1 stay fixed. Changes −1 and −3 give margin 2, loss 0.5981 instead of 0.6931, and probability ratios 0.368 and 0.050. Both absolute reply probabilities fall. Other replies may receive the mass: the two replies are not renormalized into an exhaustive distribution. Static controls are disabled; the worked comparison is expanded. This is objective arithmetic, not a recovered training curve or a T4 measurement.
+
+Reproduce this P2 export and the corrected P1 `figures-v7/` together:
+
+```sh
+node tools/export_house_figures_v4.mjs --site /path/to/profrod-site
+```
+
+The unchanged aggregate receipt supports the qualified accuracy comparison, not an observed training-loss decrease or an independently rerun item bootstrap. The council accepted that aggregate interpretation; the missing raw item-level outputs remain missing. The executable notebook stays the deeper reproduction route. Maintainer integration, corrected interaction/legibility review and publication approval remain outstanding; no new training or site publication is implied.

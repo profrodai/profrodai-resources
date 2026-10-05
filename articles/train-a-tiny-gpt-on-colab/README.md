@@ -175,3 +175,17 @@ node tools/export_house_figures_v3.mjs --site /path/to/profrod-site
 ```
 
 The manifest pins the attention component and arithmetic module as well as the shared rendering sources and immutable T4 receipt. Website and companion review/publication holds remain in force.
+
+### October 5 council corrections — current review export
+
+`figures-v7/` is the latest review candidate, appended from the clean site commit in its manifest. It corrects the zero-value transfer answer: an identically zero value projection makes the attention output zero for **every input**. Another input cannot expose the future-dependent weights through that output. Inspect the weights or restore a nonzero value projection; a passing finite probe does not establish an architectural guarantee. The older `figures-v6/` answer is superseded and retained as history.
+
+Normalization labels now read “Across keys, within each row” and “Across queries, within each column.” Scientific lines, points and interval endpoints are stronger and outside the chalk distress filter; the board texture, Routed Gothic, house palette, cartoon mark and responsive WebP delivery remain. The figures use the unchanged full T4 receipt. The portable keyboard review and three-reader formative check are private review work; no intended-reader learning outcome is claimed here.
+
+Reproduce the new P1 and P2 static exports together from a clean committed site checkout:
+
+```sh
+node tools/export_house_figures_v4.mjs --site /path/to/profrod-site
+```
+
+The exporter refuses to overwrite either new version. Controls are disabled in the static context; worked comparisons and transfer answers are expanded. Use the notebook for executable model/probe work. Maintainer integration, scientific/editorial review of the corrections, Rod's aesthetic choice and existing publication holds remain separate requirements.
