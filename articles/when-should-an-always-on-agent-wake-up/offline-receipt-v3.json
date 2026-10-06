@@ -1,0 +1,332 @@
+{
+  "provenance": "Entirely constructed teaching fixture, including all scores. No Jev/Laya/GLiClass inference or operational traffic. Distinct synthetic episodes split into tune16 and test24.",
+  "model_calls": 0,
+  "policy_only_not_model_benchmark": true,
+  "prices": {
+    "gate_attempt_cents": 1,
+    "investigation_cents": 25,
+    "review_cents": 50,
+    "currency": "USD",
+    "provenance": "synthetic unit costs"
+  },
+  "fixtureSha256": "f9f3bad994cde2e946ee43330a84c865ccba17f6718e7a680d8a8d6edb82083a",
+  "scriptSha256": "13556c06a245ac9bab2ac94800113d5d2c929ae534c853c2883d1a878be4c967",
+  "threshold_frozen_from_tune": 0.2,
+  "tune_sweep": [
+    {
+      "threshold": 0.02,
+      "defers": 2,
+      "important_misses": 0
+    },
+    {
+      "threshold": 0.05,
+      "defers": 3,
+      "important_misses": 0
+    },
+    {
+      "threshold": 0.1,
+      "defers": 5,
+      "important_misses": 0
+    },
+    {
+      "threshold": 0.2,
+      "defers": 8,
+      "important_misses": 0
+    },
+    {
+      "threshold": 0.3,
+      "defers": 9,
+      "important_misses": 1
+    }
+  ],
+  "results": {
+    "tune": {
+      "events": 16,
+      "routes": {
+        "defer": 8,
+        "investigate": 2,
+        "review": 6
+      },
+      "important_events": 6,
+      "missed_important_events": 0,
+      "miss_rate": 0.0,
+      "miss_rate_unit": "known-important distinct synthetic episodes",
+      "gate_attempts": 15,
+      "valid_binary_judgments": 12,
+      "binary_brier_score": 0.067775,
+      "synthetic_cascade_cost_cents": 365,
+      "synthetic_investigate_every_event_cost_cents": 400,
+      "decisions": [
+        {
+          "event_id": "tune-routine-01",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "tune-routine-02",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "tune-routine-03",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "tune-routine-04",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "tune-routine-05",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "tune-routine-06",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "tune-routine-07",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "tune-routine-08",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "tune-important-01",
+          "route": "review",
+          "reason": "between thresholds",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "tune-important-02",
+          "route": "review",
+          "reason": "between thresholds",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "tune-important-03",
+          "route": "investigate",
+          "reason": "above investigation threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "tune-important-04",
+          "route": "investigate",
+          "reason": "above investigation threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "tune-ambiguous-01",
+          "route": "review",
+          "reason": "between thresholds",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "tune-ambiguous-02",
+          "route": "review",
+          "reason": "between thresholds",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "tune-protected-01",
+          "route": "review",
+          "reason": "trusted approval boundary",
+          "gate_attempted": false
+        },
+        {
+          "event_id": "tune-failed-01",
+          "route": "review",
+          "reason": "missing or malformed response",
+          "gate_attempted": true
+        }
+      ]
+    },
+    "test": {
+      "events": 24,
+      "routes": {
+        "defer": 10,
+        "investigate": 2,
+        "review": 12
+      },
+      "important_events": 10,
+      "missed_important_events": 1,
+      "miss_rate": 0.1,
+      "miss_rate_unit": "known-important distinct synthetic episodes",
+      "gate_attempts": 22,
+      "valid_binary_judgments": 18,
+      "binary_brier_score": 0.11998750000000001,
+      "synthetic_cascade_cost_cents": 672,
+      "synthetic_investigate_every_event_cost_cents": 600,
+      "decisions": [
+        {
+          "event_id": "test-routine-01",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-routine-02",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-routine-03",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-routine-04",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-routine-05",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-routine-06",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-routine-07",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-routine-08",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-routine-09",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-routine-10",
+          "route": "review",
+          "reason": "between thresholds",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-routine-11",
+          "route": "review",
+          "reason": "between thresholds",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-routine-12",
+          "route": "review",
+          "reason": "between thresholds",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-important-01",
+          "route": "defer",
+          "reason": "below quiet threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-important-02",
+          "route": "review",
+          "reason": "between thresholds",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-important-03",
+          "route": "review",
+          "reason": "between thresholds",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-important-04",
+          "route": "review",
+          "reason": "between thresholds",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-important-05",
+          "route": "investigate",
+          "reason": "above investigation threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-important-06",
+          "route": "investigate",
+          "reason": "above investigation threshold",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-ambiguous-01",
+          "route": "review",
+          "reason": "between thresholds",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-ambiguous-02",
+          "route": "review",
+          "reason": "between thresholds",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-protected-01",
+          "route": "review",
+          "reason": "trusted approval boundary",
+          "gate_attempted": false
+        },
+        {
+          "event_id": "test-protected-02",
+          "route": "review",
+          "reason": "trusted approval boundary",
+          "gate_attempted": false
+        },
+        {
+          "event_id": "test-failed-01",
+          "route": "review",
+          "reason": "missing or malformed response",
+          "gate_attempted": true
+        },
+        {
+          "event_id": "test-failed-02",
+          "route": "review",
+          "reason": "missing or malformed response",
+          "gate_attempted": true
+        }
+      ]
+    }
+  },
+  "controls": {
+    "trusted_boundary": "PASS",
+    "invalid_probability": "PASS",
+    "pinned_response_type": "PASS",
+    "request_excludes_fixture_answers": "PASS",
+    "occurrence_conflict": "PASS",
+    "restart_and_duplicate_records": "PASS",
+    "defer_all_negative_control": "REJECTED:10/10 known-important events missed"
+  },
+  "limits": "No model accuracy/latency/cost invoice or production durability guarantee. All scores constructed. No actual investigator/human outcome measured. Scheduling, leases, expiry and tool execution not implemented."
+}
