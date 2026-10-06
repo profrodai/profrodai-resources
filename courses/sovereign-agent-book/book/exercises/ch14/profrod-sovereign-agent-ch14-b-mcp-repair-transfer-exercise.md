@@ -203,7 +203,8 @@ def main() -> None:
             grandchild.terminate()
             grandchild.wait(timeout=3)
         raise SystemExit(0)
-    signal.signal(signal.SIGTERM, stop)
+    if args.mode == "lingering":
+        signal.signal(signal.SIGTERM, stop)
     previous = None  # (id, text) of the last call answered, for --mode stale
     for line in sys.stdin:
         message = json.loads(line)
@@ -876,7 +877,9 @@ try:
     hung.call_tool("word_count", {"text": "one"})
 except TimeoutError:
     pass
-print("hung server exit status:", hung.close())
+hung_exit_status = hung.close()
+print("hung server exit status:", hung_exit_status)
+assert hung_exit_status == -signal.SIGTERM, "hung server must end by SIGTERM"
 ```
 
 The lingering server deliberately ignores EOF; closing the group ends it. Healthy servers exit normally when stdin closes. The child is reaped by the teaching server when the group receives SIGTERM. The hung server ignored its closed input and exited with status `-15`: it was ended by `SIGTERM`.

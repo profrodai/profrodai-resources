@@ -41,7 +41,8 @@ From that commit, with its relative layout kept so every path the code computes 
 - 2026-10-06: Chapter14 alone received a Colab usability and completeness revision.
   `verification-v7.json` records the first revision; the append-only successor
   `verification-v8.json` records the strict UTF-8/JSON follow-up. `verification-v9.json`
-  records the final restored-allowlist observation and scoped runtime metadata; each successor
+  records the restored-allowlist observation and scoped runtime metadata.
+  `verification-v10.json` records the final hung-process exit-status alignment and assertion; each successor
   freshly executes/replays the four Chapter14 notebooks and its handoff,
   and explicitly inherits the unchanged80 notebook and20 handoff records from immutable v6.
   Student/solution and educator copies remain byte-identical. The stdlib Chapter14 gate also

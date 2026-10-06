@@ -204,7 +204,8 @@ def main() -> None:
             grandchild.terminate()
             grandchild.wait(timeout=3)
         raise SystemExit(0)
-    signal.signal(signal.SIGTERM, stop)
+    if args.mode == "lingering":
+        signal.signal(signal.SIGTERM, stop)
     previous = None  # (id, text) of the last call answered, for --mode stale
     for line in sys.stdin:
         message = json.loads(line)
