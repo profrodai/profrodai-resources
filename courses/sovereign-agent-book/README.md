@@ -54,7 +54,7 @@ teaching guides, session plans and student and solution copies for a class are u
   It clones this folder, installs the two pinned dependencies and runs any chapter's checkpoint.
 - **Locally:** Python 3.12 or newer with Jupyter and Pydantic 2 for the notebooks. The chapter code
   (checkpoints, learner modules, experiments) runs with [uv](https://docs.astral.sh/uv/) on Python
-  3.12, the version Colab runs, which `.python-version` pins.
+  3.12, the compatibility baseline that `.python-version` pins; notebooks print the actual runtime version.
 
 ## Run, verify, reset
 
@@ -69,16 +69,18 @@ make verify   # the layout, the receipt of every notebook's executed bytes, and 
 
 `make verify-execution` re-runs all 84 notebooks in fresh kernels and every Unit A to Unit B
 handoff, and compares them with the saved receipt; it takes a while. It runs them on Python 3.12,
-the version Google Colab runs, one at a time and without the course's own environment, so a
+our compatibility baseline, one at a time and without the course's own environment, so a
 notebook that only works where the supplied package is installed fails here as it would on Colab.
-To reset, delete your `practical-work/` folders; the notebooks never write anywhere else.
+Keep your edited notebooks and download evidence before disconnecting Colab. Chapter14 preserves
+separate attempt folders; its runtime server lives in a temporary folder. Deleting local work folders
+removes learner evidence, so export anything you want to retain first.
 
 ## Colab first
 
 Every notebook in this course, and every notebook added to it, must run on Google Colab:
 
 - it opens itself with an **Open in Colab** badge;
-- it declares no Python but Colab's, demands no newer one, and parses as Python 3.12, including the
+- it supports the Python3.12 compatibility baseline and newer Colab runtimes, including the
   runtime files it embeds;
 - an embedded runtime registers itself for the notebook's child processes, since Colab installs
   no course package;
@@ -86,7 +88,9 @@ Every notebook in this course, and every notebook added to it, must run on Googl
   append-only receipt).
 
 `python3 scripts/check_colab_v1.py` checks the first three with the standard library alone, and the
-repository's pull-request gate runs it, so a notebook that would fail on Colab cannot be merged.
+repository's pull-request gate runs it, as a syntax/bootstrap gate. This does not prove hosted execution: Chapter14 additionally
+executes untouched and repaired learner cells, both worked editions, reruns and Colab transfer/export
+adapter branches in every PR (`make ch14-colab`). Actual hosted-browser evidence is separate.
 
 ## Credential and live-API boundary
 

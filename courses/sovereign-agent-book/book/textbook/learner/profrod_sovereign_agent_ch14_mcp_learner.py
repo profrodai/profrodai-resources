@@ -122,25 +122,28 @@ def parse_frame(line: bytes) -> dict[str, Any]:
     return message
 
 
-def answer_for(request_id: int, message: dict[str, Any]) -> dict[str, Any] | None:
-    """The result `message` gives request `request_id`, or None if it answers nothing we wait for.
-
-    A notification (a method, no id) is skipped. A response for another id is refused: in a
-    one-at-a-time client it means the stream is confused, and accepting it would attach one
-    request's evidence to another. An error response is raised, never treated as a result.
-    """
-    if "method" in message and "id" not in message:
-        return None
+def answer_for(request_id, message):
+    """Accept only our response; a notification answers no request."""
+    if not isinstance(message, dict) or message.get("jsonrpc") != "2.0":
+        raise ValueError("not a JSON-RPC 2.0 object")
+    if "method" in message:
+        if "id" not in message and isinstance(message["method"], str) and not (
+            "result" in message or "error" in message
+        ):
+            return None
+        raise ValueError("a server request or mixed message is outside this client")
     if type(message.get("id")) is not int or message["id"] != request_id:
-        raise ValueError(f"response id {message.get('id')!r} does not answer request {request_id}")
+        raise ValueError("response does not answer our integer request id")
+    if ("result" in message) == ("error" in message):
+        raise ValueError("response must contain exactly one of result or error")
     if "error" in message:
         error = message["error"]
-        raise RuntimeError(f"server error {error.get('code')}: {error.get('message')}")
-    result = message.get("result")
-    if not isinstance(result, dict):
+        if not isinstance(error, dict) or type(error.get("code")) is not int or not isinstance(error.get("message"), str):
+            raise ValueError("malformed error object")
+        raise RuntimeError(f"server error: {error['message']}")
+    if not isinstance(message["result"], dict):
         raise ValueError("response carries no result object")
-    return result
-
+    return message["result"]
 
 # ---------------------------------------------------------------- Part B: handshake and discovery
 
@@ -175,18 +178,16 @@ def check_tools(result: dict[str, Any], limit: int = 32) -> dict[str, dict[str, 
     return catalog
 
 
-def result_text(result: dict[str, Any]) -> str:
-    """A tool result's text blocks, joined. A result flagged isError is a failed call."""
+def result_text(result):
     blocks = result.get("content")
-    if not isinstance(blocks, list):
-        raise ValueError("tool result has no content list")
-    text = "\n".join(
-        block["text"] for block in blocks if isinstance(block, dict) and block.get("type") == "text"
-    )
+    if not isinstance(blocks, list) or type(result.get("isError", False)) is not bool:
+        raise ValueError("malformed tool result")
+    if any(not isinstance(b, dict) or b.get("type") != "text" or not isinstance(b.get("text"), str) for b in blocks):
+        raise ValueError("this teaching client accepts text blocks only")
+    text = "\n".join(b["text"] for b in blocks)
     if result.get("isError"):
         raise RuntimeError(f"tool reported an error: {text}")
     return text
-
 
 # ---------------------------------------------------------------- Part B: the bounded client
 
@@ -215,6 +216,7 @@ class StdioClient:
         self.pending: list[bytes] = []  # whole frames read but not yet consumed
         self.next_id = 0
         self.catalog: dict[str, dict[str, Any]] = {}
+        self.state = "NEW"
         self.process = subprocess.Popen(
             list(command),
             stdin=subprocess.PIPE,
@@ -233,6 +235,8 @@ class StdioClient:
         with selectors.DefaultSelector() as selector:
             selector.register(self.process.stdin, selectors.EVENT_WRITE)
             while frame:
+                if time.monotonic() >= deadline:
+                    raise TimeoutError("write deadline passed")
                 if not selector.select(max(0.0, deadline - time.monotonic())):
                     raise TimeoutError("write deadline passed")
                 written = os.write(self.process.stdin.fileno(), frame)
@@ -243,6 +247,8 @@ class StdioClient:
         with selectors.DefaultSelector() as selector:
             selector.register(self.process.stdout, selectors.EVENT_READ)
             while True:
+                if time.monotonic() >= deadline:
+                    raise TimeoutError("response deadline passed")
                 if self.pending:
                     return parse_frame(self.pending.pop(0))
                 if not selector.select(max(0.0, deadline - time.monotonic())):
@@ -256,16 +262,22 @@ class StdioClient:
         self, method: str, params: dict[str, Any], notifications: int = 16
     ) -> dict[str, Any]:
         """Send one request and return its result; at most `notifications` may arrive first."""
-        self.next_id += 1
-        deadline = time.monotonic() + self.timeout
-        self._write(
-            encode_frame(request_message(self.next_id, method, params), self.frame_limit), deadline
-        )
-        for _ in range(notifications + 1):
-            result = answer_for(self.next_id, self._read(deadline))
-            if result is not None:
-                return result
-        raise ValueError("too many notifications before the response")
+        if self.state in {"BROKEN", "CLOSED"}:
+            raise ValueError("close a failed connection; do not reuse buffered replies")
+        try:
+            self.next_id += 1
+            deadline = time.monotonic() + self.timeout
+            self._write(
+                encode_frame(request_message(self.next_id, method, params), self.frame_limit), deadline
+            )
+            for _ in range(notifications + 1):
+                result = answer_for(self.next_id, self._read(deadline))
+                if result is not None:
+                    return result
+            raise ValueError("too many notifications before the response")
+        except Exception:
+            self.state = "BROKEN"
+            raise
 
     def notify(self, method: str, params: dict[str, Any] | None = None) -> None:
         deadline = time.monotonic() + self.timeout
@@ -273,6 +285,8 @@ class StdioClient:
 
     def initialize(self) -> dict[str, Any]:
         """Agree on the version and capabilities; nothing else may happen before this succeeds."""
+        if self.state != "NEW":
+            raise ValueError("initialize requires a new connection")
         result = self.request(
             "initialize",
             {
@@ -283,9 +297,12 @@ class StdioClient:
         )
         check_initialize(result)
         self.notify("notifications/initialized")
+        self.state = "READY"
         return result
 
     def list_tools(self) -> dict[str, dict[str, Any]]:
+        if self.state != "READY":
+            raise ValueError("initialize before discovery")
         self.catalog = check_tools(self.request("tools/list", {}))
         return self.catalog
 
@@ -293,6 +310,8 @@ class StdioClient:
         """Call a tool the server advertised AND the application allowed; return its text."""
         if name not in self.allowed:
             raise PermissionError(f"{name!r} is not allowed by this application")
+        if self.state != "READY":
+            raise ValueError("initialize before calling a tool")
         if name not in self.catalog:
             raise PermissionError(f"{name!r} was not advertised by this server")
         return result_text(self.request("tools/call", {"name": name, "arguments": arguments}))

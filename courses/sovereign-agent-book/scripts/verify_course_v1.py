@@ -43,7 +43,7 @@ PLANNED: set[int] = set()
 AVAILABLE = set(range(1, 22)) - PLANNED
 EXPECTED = {f"ch{chapter:02d}-{letter}" for chapter in AVAILABLE for letter in "ab"}
 # v5 recorded Python 3.14 kernels. v6 records Colab's Python, which is what readers run.
-RECEIPT = ROOT / "docs/evidence/book-four-assets/verification-v6.json"
+RECEIPT = ROOT / "docs/evidence/book-four-assets/verification-v7.json"
 LEGACY = runpy.run_path(str(ROOT / "scripts/verify_practical_course_v1.py"))
 
 
@@ -242,9 +242,9 @@ def execute_one(path: Path) -> dict:
         )
         if instructor:
             assert LEGACY["report"](executed, "HOLDOUT_RESULT=") == {"unit": identity, "status": "PASSED"}
-        saved = json.loads(
-            (Path(folder) / "practical-work" / identity / f"{identity}-submission-v1.json").read_text()
-        )
+        submissions = list((Path(folder) / "practical-work" / identity).rglob(f"{identity}-submission-v1.json"))
+        assert len(submissions) == 1, submissions
+        saved = json.loads(submissions[0].read_text())
         assert saved["unit"] == identity and len(saved["transfer"]) >= 4
         assert all(item["passed"] for item in saved["transfer"]) is instructor
     with tempfile.TemporaryDirectory(prefix=f"course-replay-{identity}-") as folder:
@@ -277,7 +277,9 @@ def execute_handoff(chapter: int) -> dict:
     unit_b = nbformat.read(distribution.unit_path(BOOK, chapter, "b", "solutions"), as_version=4)
     with tempfile.TemporaryDirectory(prefix=f"course-handoff-{chapter}-") as temporary:
         LEGACY["run_notebook"](unit_a, temporary)
-        artifact = Path(temporary) / f"practical-work/ch{chapter:02d}-a/ch{chapter:02d}-unit-a-handoff-v1.json"
+        artifacts = list((Path(temporary) / f"practical-work/ch{chapter:02d}-a").rglob(f"ch{chapter:02d}-unit-a-handoff-v1.json"))
+        assert len(artifacts) == 1, artifacts
+        artifact = artifacts[0]
         assert artifact.is_file(), artifact
         replacements = 0
         for cell in unit_b.cells:
@@ -297,6 +299,19 @@ def verify_receipt(path: Path = RECEIPT, book: Path = BOOK) -> None:
     verify_layout(book)
     receipt = json.loads(path.read_text())
     assert receipt["schemaVersion"] == 1 and receipt["edition"] == "four-assets-21-chapters"
+    if "inheritedFrom" in receipt:
+        inherited = receipt["inheritedFrom"]
+        prior_path = ROOT / "docs/evidence/book-four-assets/verification-v6.json"
+        assert inherited["sha256"] == digest(prior_path), "historical receipt changed"
+        prior = json.loads(prior_path.read_text())
+        assert inherited["notebookCount"] == 80 and inherited["handoffCount"] == 20
+        assert receipt["reexecutedChapters"] == [14]
+        assert [r for r in receipt["notebooks"] if not r["id"].startswith("ch14-")] == [
+            r for r in prior["notebooks"] if not r["id"].startswith("ch14-")
+        ], "unchanged chapter evidence must be inherited verbatim"
+        assert [r for r in receipt["handoffs"] if r["chapter"] != 14] == [
+            r for r in prior["handoffs"] if r["chapter"] != 14
+        ]
     assert receipt["python"].startswith("{}.{}.".format(*colab.COLAB_PYTHON)), (
         "the receipt must record execution on Colab's Python",
         receipt["python"],

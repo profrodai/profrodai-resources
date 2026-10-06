@@ -68,10 +68,10 @@ By the end you should be able to:
 
 These times are planning estimates, not measured completion times. Run All only checks that the notebook executes; the unfinished student functions deliberately report NEEDS_WORK. Keep your first attempt before opening the worked edition.
 
-
+<!-- #region -->
 ## Run the self-contained setup
 
-The unit needs only Python's standard library. The collapsed cell below creates your work folder and defines the supplied parts of the unit:
+The unit needs only Python's standard library. The executable setup cells below creates your work folder and defines the supplied parts of the unit:
 
 - **The teaching server** from Unit A, with all its failure modes: `wrong-id`, `stale`, `oversized`, `stdout-log`, `stderr-log`, `hang`, `notify`, `old-version` and `lingering`. It logs every call it receives.
 - **Unit A's worked `answer_for` and `authorize`**, and the message helpers.
@@ -79,9 +79,12 @@ The unit needs only Python's standard library. The collapsed cell below creates 
 
 Run setup on every fresh kernel. Your saved work lives in `practical-work/ch14-b`.
 
-<details><summary>Supplied setup, teaching server and client</summary>
 
-```python jupyter={"source_hidden": true} tags=["setup", "embedded-runtime"]
+
+In Colab choose a **CPU** runtime, then **Runtime → Run all** for a setup smoke check. NEEDS_WORK is expected in the student edition. Edit a learner code cell, run it, and rerun its assessment and later cells; Run all runs the starter definitions again unless you saved your edits. Make predictions before opening the worked solution. Download the evidence ZIP and the edited notebook before disconnecting.
+<!-- #endregion -->
+
+```python tags=["setup", "runtime-check"]
 import base64
 import json
 import os
@@ -94,9 +97,9 @@ import time
 import zlib
 from pathlib import Path
 
-minimum_python = (3, 12)
+minimum_python = (3, 10)
 if sys.version_info[:2] < minimum_python:
-    raise RuntimeError("This unit needs Python 3.12 or newer; Google Colab runs Python 3.12.")
+    raise RuntimeError("This unit needs Python 3.10 or newer; use a current Colab CPU runtime.")
 if os.name != "posix":
     raise RuntimeError(
         "The stdio client uses POSIX process groups: run it on Colab, Linux or macOS."
@@ -105,7 +108,13 @@ if os.name != "posix":
 if "COURSE_START_DIRECTORY" not in globals():
     COURSE_START_DIRECTORY = Path.cwd()
     COURSE_ROOT = Path(tempfile.mkdtemp(prefix="ch14-course-"))
+```
 
+### Teaching server source (data for a child process)
+
+Run this **code cell**. `SERVER_SOURCE` is Python stored as text, not a commented-out exercise. The next cell writes it to a `.py` file and starts that file with this runtime’s Python. You edit the learner functions in later cells. The full server source is also in the downloaded evidence ZIP.
+
+```python jupyter={"source_hidden": true} tags=["setup", "server-source"]
 SERVER_SOURCE = r'''# Prof Rod | Build Your Always-On AI Agent From Scratch
 # Full book and learning materials: https://profrod.ai/book
 # Join the Prof Rod learner community: https://profrod.ai/community
@@ -120,7 +129,7 @@ It speaks MCP 2025-06-18 over stdio, one JSON message per line, and advertises t
 tools/call it receives is appended to --log, so a test can see what was really invoked without
 trusting the client's own account. Each --mode reproduces one failure a client must survive:
 
-  normal       the protocol, done right
+  normal       the declared teaching subset, done right
   wrong-id     answers tools/call with the next request's id
   oversized    answers tools/call with a 200,000-byte text
   hang         never answers tools/call
@@ -129,6 +138,11 @@ trusting the client's own account. Each --mode reproduces one failure a client m
   old-version  claims protocol 2024-11-05 at initialization
   notify       sends two log notifications before each answer
   stale        before each answer after the first, repeats the previous call's reply
+  endless      sends bytes without a newline, then hangs
+  notify-flood exceeds the client's notification count bound
+  disconnect   closes stdout after recording a call, with no reply
+  rpc-error    sends a JSON-RPC error response
+  tool-error   sends a tool result whose isError is true
   lingering    starts a grandchild that outlives the server unless its process group is ended
 """
 
@@ -137,6 +151,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import signal
 import subprocess
 import sys
 import time
@@ -182,16 +197,27 @@ def main() -> None:
         grandchild = subprocess.Popen(["sleep", "60"])
         with open(args.log + ".grandchild", "w") as out:
             out.write(str(grandchild.pid))
+    initialized = False
+    def stop(signum, frame):
+        if args.mode == "lingering":
+            grandchild.terminate()
+            grandchild.wait(timeout=3)
+        raise SystemExit(0)
+    signal.signal(signal.SIGTERM, stop)
     previous = None  # (id, text) of the last call answered, for --mode stale
     for line in sys.stdin:
         message = json.loads(line)
+        with open(args.log + ".wire", "a") as wire:
+            wire.write(json.dumps(message) + "\n")
         method, request_id = message.get("method"), message.get("id")
         if request_id is None:
+            if method == "notifications/initialized":
+                initialized = True
             continue  # a notification: never answered
         if args.mode == "stderr-log":
             print(f"[teaching-server] handling {method}", file=sys.stderr, flush=True)
-        if args.mode == "notify":
-            for n in range(2):
+        if args.mode in ("notify", "notify-flood") and initialized:
+            for n in range(17 if args.mode == "notify-flood" else 2):
                 send(
                     {
                         "jsonrpc": "2.0",
@@ -205,10 +231,13 @@ def main() -> None:
                 request_id,
                 {
                     "protocolVersion": version,
-                    "capabilities": {"tools": {"listChanged": False}},
+                    "capabilities": {"tools": {"listChanged": False}, "logging": {}},
                     "serverInfo": {"name": "lucy-teaching-server", "version": "1"},
                 },
             )
+        elif not initialized:
+            send({"jsonrpc": "2.0", "id": request_id,
+                  "error": {"code": -32600, "message": "initialize first"}})
         elif method == "tools/list":
             result(request_id, {"tools": TOOLS})
         elif method == "tools/call":
@@ -224,6 +253,20 @@ def main() -> None:
                     )
                     + "\n"
                 )
+            if args.mode == "disconnect":
+                return
+            if args.mode == "rpc-error":
+                send({"jsonrpc": "2.0", "id": request_id,
+                      "error": {"code": -32602, "message": "invalid tool arguments"}})
+                continue
+            if args.mode == "tool-error":
+                result(request_id, {"content": [{"type": "text", "text": "scripted failure"}],
+                                    "isError": True})
+                continue
+            if args.mode == "endless":
+                sys.stdout.write("x" * 65_536)
+                sys.stdout.flush()
+                time.sleep(3600)
             if args.mode == "hang":
                 time.sleep(3600)
             if args.mode == "stdout-log":
@@ -260,11 +303,22 @@ def main() -> None:
                     "error": {"code": -32601, "message": f"method not found: {method}"},
                 }
             )
-    os._exit(0)
+    if args.mode == "lingering":
+        # Ignore EOF on purpose; the client's group signal must end us and our child.
+        time.sleep(60)
 
 
 if __name__ == "__main__":
-    main()'''
+    main()
+'''
+print("Teaching server source ready:", len(SERVER_SOURCE), "characters")
+```
+
+### Client and work folder
+
+Run this executable cell after the server-source cell. Every Run all creates a new attempt folder so earlier evidence survives. No checkout, upload, GPU or API key is needed.
+
+```python tags=["setup", "embedded-runtime"]
 SERVER_PATH = COURSE_ROOT / "teaching_server.py"
 SERVER_PATH.write_text(SERVER_SOURCE, encoding="utf-8")
 PROTOCOL_VERSION = "2025-06-18"
@@ -280,9 +334,10 @@ def server_calls(log):
 
 
 def fresh_log(name):
-    log = COURSE_WORK / f"{name}.jsonl"
-    log.unlink(missing_ok=True)
-    return log
+    # A unique pair of call/wire logs for each cell invocation; preserve previous evidence.
+    descriptor, path = tempfile.mkstemp(prefix=name + "-", suffix=".jsonl", dir=COURSE_WORK)
+    os.close(descriptor)
+    return Path(path)
 
 
 def request_message(request_id, method, params):
@@ -307,18 +362,27 @@ def parse_frame(line):
 
 
 def answer_for(request_id, message):
-    """Unit A's worked version: only the reply with our own integer id answers us."""
-    if "method" in message and "id" not in message:
-        return None
+    """Accept only our response; a notification answers no request."""
+    if not isinstance(message, dict) or message.get("jsonrpc") != "2.0":
+        raise ValueError("not a JSON-RPC 2.0 object")
+    if "method" in message:
+        if "id" not in message and isinstance(message["method"], str) and not (
+            "result" in message or "error" in message
+        ):
+            return None
+        raise ValueError("a server request or mixed message is outside this client")
     if type(message.get("id")) is not int or message["id"] != request_id:
-        raise ValueError(f"response id {message.get('id')!r} does not answer request {request_id}")
+        raise ValueError("response does not answer our integer request id")
+    if ("result" in message) == ("error" in message):
+        raise ValueError("response must contain exactly one of result or error")
     if "error" in message:
-        raise RuntimeError(f"server error: {message['error'].get('message')}")
-    result = message.get("result")
-    if not isinstance(result, dict):
+        error = message["error"]
+        if not isinstance(error, dict) or type(error.get("code")) is not int or not isinstance(error.get("message"), str):
+            raise ValueError("malformed error object")
+        raise RuntimeError(f"server error: {error['message']}")
+    if not isinstance(message["result"], dict):
         raise ValueError("response carries no result object")
-    return result
-
+    return message["result"]
 
 def authorize(name, catalog, allowed):
     """Unit A's worked version: advertised by the server AND allowed by the application."""
@@ -328,7 +392,7 @@ def authorize(name, catalog, allowed):
 def check_initialize(result, version=PROTOCOL_VERSION):
     if result.get("protocolVersion") != version:
         raise ValueError(f"server speaks {result.get('protocolVersion')!r}, not {version}")
-    if "tools" not in result.get("capabilities", {}):
+    if not isinstance(result.get("capabilities"), dict) or not isinstance(result["capabilities"].get("tools"), dict):
         raise ValueError("server does not offer tools")
 
 
@@ -336,16 +400,27 @@ def check_tools(result, limit=32):
     tools = result.get("tools")
     if result.get("nextCursor") or not isinstance(tools, list) or len(tools) > limit:
         raise ValueError("tool list missing, paginated or too long")
-    return {tool["name"]: tool for tool in tools}
+    catalog = {}
+    for tool in tools:
+        name = tool.get("name") if isinstance(tool, dict) else None
+        if not isinstance(name, str) or not name or name in catalog:
+            raise ValueError(f"invalid or duplicate tool name {name!r}")
+        if not isinstance(tool.get("inputSchema"), dict) or tool["inputSchema"].get("type") != "object":
+            raise ValueError(f"tool {name!r} lacks an input schema")
+        catalog[name] = tool
+    return catalog
 
 
 def result_text(result):
-    blocks = result.get("content", [])
-    text = "\n".join(b["text"] for b in blocks if isinstance(b, dict) and b.get("type") == "text")
+    blocks = result.get("content")
+    if not isinstance(blocks, list) or type(result.get("isError", False)) is not bool:
+        raise ValueError("malformed tool result")
+    if any(not isinstance(b, dict) or b.get("type") != "text" or not isinstance(b.get("text"), str) for b in blocks):
+        raise ValueError("this teaching client accepts text blocks only")
+    text = "\n".join(b["text"] for b in blocks)
     if result.get("isError"):
         raise RuntimeError(f"tool reported an error: {text}")
     return text
-
 
 class Client:
     """The bounded stdio client. It reads frames with your `split_frames`, and matches replies
@@ -355,6 +430,7 @@ class Client:
         self.allowed, self.timeout, self.frame_limit = frozenset(allowed), timeout, frame_limit
         self.answer = answer or answer_for
         self.buffer, self.pending, self.next_id, self.catalog = b"", [], 0, {}
+        self.state = "NEW"
         self.process = subprocess.Popen(
             command,
             stdin=subprocess.PIPE,
@@ -369,6 +445,8 @@ class Client:
         with selectors.DefaultSelector() as selector:
             selector.register(self.process.stdin, selectors.EVENT_WRITE)
             while frame:
+                if time.monotonic() >= deadline:
+                    raise TimeoutError("write deadline passed")
                 if not selector.select(max(0.0, deadline - time.monotonic())):
                     raise TimeoutError("write deadline passed")
                 frame = frame[os.write(self.process.stdin.fileno(), frame) :]
@@ -377,6 +455,8 @@ class Client:
         with selectors.DefaultSelector() as selector:
             selector.register(self.process.stdout, selectors.EVENT_READ)
             while not self.pending:
+                if time.monotonic() >= deadline:
+                    raise TimeoutError("response deadline passed")
                 if not selector.select(max(0.0, deadline - time.monotonic())):
                     raise TimeoutError("response deadline passed")
                 chunk = os.read(self.process.stdout.fileno(), 4096)
@@ -387,18 +467,26 @@ class Client:
             return parse_frame(self.pending.pop(0))
 
     def request(self, method, params):
-        self.next_id += 1
-        deadline = time.monotonic() + self.timeout
-        self._write(
-            encode_frame(request_message(self.next_id, method, params), self.frame_limit), deadline
-        )
-        for _ in range(17):
-            result = self.answer(self.next_id, self._read(deadline))
-            if result is not None:
-                return result
-        raise ValueError("too many notifications before the response")
+        if self.state in {"BROKEN", "CLOSED"}:
+            raise ValueError("close a failed connection; do not reuse buffered replies")
+        try:
+            self.next_id += 1
+            deadline = time.monotonic() + self.timeout
+            self._write(
+                encode_frame(request_message(self.next_id, method, params), self.frame_limit), deadline
+            )
+            for _ in range(17):
+                result = self.answer(self.next_id, self._read(deadline))
+                if result is not None:
+                    return result
+            raise ValueError("too many notifications before the response")
+        except Exception:
+            self.state = "BROKEN"
+            raise
 
     def initialize(self):
+        if self.state != "NEW":
+            raise ValueError("initialize requires a new connection")
         result = self.request(
             "initialize",
             {
@@ -410,18 +498,26 @@ class Client:
         check_initialize(result)
         notification = {"jsonrpc": "2.0", "method": "notifications/initialized"}
         self._write(encode_frame(notification, self.frame_limit), time.monotonic() + self.timeout)
+        self.state = "READY"
         return result
 
     def list_tools(self):
+        if self.state != "READY":
+            raise ValueError("initialize before discovery")
         self.catalog = check_tools(self.request("tools/list", {}))
         return self.catalog
 
     def call_tool(self, name, arguments):
+        if self.state != "READY":
+            raise ValueError("initialize before calling a tool")
         if not authorize(name, self.catalog, self.allowed):
             raise PermissionError(f"{name!r} may not be called")
         return result_text(self.request("tools/call", {"name": name, "arguments": arguments}))
 
     def close(self, grace=1.0):
+        if self.state == "CLOSED":
+            return self.process.returncode
+        self.state = "CLOSED"
         self.process.stdin.close()
         try:
             self.process.wait(timeout=grace)
@@ -452,13 +548,44 @@ def split_frames_reference(buffer, limit):
 
 COURSE_WORK = COURSE_START_DIRECTORY / "practical-work" / "ch14-b"
 COURSE_WORK.mkdir(parents=True, exist_ok=True)
+# Each Run all preserves an earlier attempt in its own folder.
+COURSE_WORK = Path(tempfile.mkdtemp(prefix="attempt-", dir=COURSE_WORK))
 os.chdir(COURSE_WORK)
 print("Python", sys.version.split()[0])
 print("Save your work here:", COURSE_WORK)
+
+def require_teaching_schema(schema, arguments):
+    """Refuse unsupported schemas rather than silently treating them as validated."""
+    kinds = {"string", "integer", "number", "boolean"}
+    if not isinstance(arguments, dict):
+        raise ValueError("arguments must be an object")
+    if not isinstance(schema, dict) or schema.get("type") != "object":
+        raise ValueError("only flat object schemas are supported")
+    if set(schema) - {"type", "properties", "required", "additionalProperties"}:
+        raise ValueError("unsupported schema keyword; use a full JSON Schema validator")
+    properties = schema.get("properties", {})
+    required = schema.get("required", [])
+    if not isinstance(properties, dict) or not isinstance(required, list) or any(not isinstance(k, str) or k not in properties for k in required):
+        raise ValueError("malformed properties or required list")
+    if type(schema.get("additionalProperties", True)) is not bool:
+        raise ValueError("additionalProperties must be boolean in this exercise")
+    for key, spec in properties.items():
+        if not isinstance(key, str) or not isinstance(spec, dict) or set(spec) != {"type"} or not isinstance(spec["type"], str) or spec["type"] not in kinds:
+            raise ValueError("only scalar type constraints are supported")
+    import math
+    def is_json(value):
+        if value is None or type(value) in {str, bool, int}:
+            return True
+        if type(value) is float:
+            return math.isfinite(value)
+        if type(value) is list:
+            return all(is_json(v) for v in value)
+        if type(value) is dict:
+            return all(type(k) is str and is_json(v) for k, v in value.items())
+        return False
+    if not is_json(arguments):
+        raise ValueError("arguments must contain JSON values and string keys only")
 ```
-
-</details>
-
 
 ## Commit to a prediction before the failures
 
@@ -482,16 +609,35 @@ prediction_notes = {
 
 This unit uses the configuration you tested in Unit A. To use your own, replace `None` with the path to your `practical-work/ch14-a/ch14-unit-a-handoff-v1.json`. Leave it as `None` to start from the supplied reference, which is the handoff the worked Unit A produces. Your submission records which you chose.
 
+Separate Colab notebooks have separate filesystems. In A, download its evidence ZIP and extract `ch14-unit-a-handoff-v1.json` on your computer. In B set `UPLOAD_HANDOFF = True` and run the next cell to upload **that JSON alone**; Run all otherwise remains noninteractive. For a local path, absolute paths are safest; relative paths resolve from the directory where this notebook first started, not its attempt folder. An invalid selected handoff raises an error: it never silently switches to the reference. A handoff is a learning record, not cryptographic proof or permission to expand the allowlist.
+
 ```python tags=["setup", "handoff-selection"]
 LEARNER_HANDOFF = None
+# Set True only to select a handoff downloaded from Unit A in a separate Colab runtime.
+UPLOAD_HANDOFF = False
 ```
 
 ```python tags=["setup", "independent-reference-start"]
 import shutil
 
+if UPLOAD_HANDOFF:
+    if LEARNER_HANDOFF is not None:
+        raise ValueError("choose a path OR an upload")
+    try:
+        from google.colab import files
+    except ImportError as error:
+        raise RuntimeError("upload is Colab-only; set LEARNER_HANDOFF to a local path") from error
+    uploaded = files.upload()
+    if len(uploaded) != 1:
+        raise ValueError("select exactly the Unit A handoff JSON, not a ZIP")
+    upload_name, upload_bytes = next(iter(uploaded.items()))
+    selected_path = COURSE_WORK / "uploaded-unit-a.json"
+    selected_path.write_bytes(upload_bytes)
+    LEARNER_HANDOFF = str(selected_path)
+
 COURSE_INPUT = COURSE_WORK / "ch14-unit-a-handoff-v1.json"
 if LEARNER_HANDOFF is not None:
-    learner_input = Path(LEARNER_HANDOFF).expanduser().resolve()
+    learner_input = (COURSE_START_DIRECTORY / Path(LEARNER_HANDOFF).expanduser()).resolve()
     if not learner_input.is_file():
         raise FileNotFoundError("The selected learner handoff does not exist")
     if learner_input != COURSE_INPUT.resolve():
@@ -509,7 +655,22 @@ print("Starting evidence:", HANDOFF_ORIGIN)
 ```
 
 ```python tags=["setup", "handoff-consumer"]
-handoff = json.loads(COURSE_INPUT.read_text(encoding="utf-8"))
+def validate_handoff(value):
+    if not isinstance(value, dict):
+        raise ValueError("selected handoff must be an object")
+    expected = {"unit": "ch14-a", "status": "COMPLETED", "protocolVersion": PROTOCOL_VERSION,
+                "advertised": ["place_purchase", "word_count"], "allowed": ["word_count"]}
+    if any(value.get(k) != v for k, v in expected.items()):
+        raise ValueError("selected handoff does not match this unit's bounded configuration")
+    observations = value.get("observations")
+    expected_observations = {"protocolVersion": PROTOCOL_VERSION,
+        "advertised": expected["advertised"], "word_count": "4", "purchase": "refused",
+        "server_calls": ["word_count"], "old_version": "refused", "old_version_calls": 0}
+    if not isinstance(observations, dict) or any(observations.get(k) != v for k, v in expected_observations.items()):
+        raise ValueError("selected handoff lacks the expected independent observations")
+    return value
+
+handoff = validate_handoff(json.loads(COURSE_INPUT.read_text(encoding="utf-8")))
 handoff_status = (
     "VERIFIED"
     if handoff.get("status") == "COMPLETED" and handoff.get("unit") == "ch14-a"
@@ -642,6 +803,11 @@ if VISIBLE_PASSED:
         "stderr-log",
         "notify",
         "hang",
+        "endless",
+        "notify-flood",
+        "disconnect",
+        "rpc-error",
+        "tool-error",
     ):
         log = fresh_log(mode)
         started = time.monotonic()
@@ -664,7 +830,7 @@ if VISIBLE_PASSED:
             f"{mode:11} {outcome:18} after {seen['seconds']}s; server calls: {seen['server_calls']}"
         )
     assert outcomes["normal"]["outcome"] == f"answered {EXPECTED_COUNT} and 3"
-    for mode in ("wrong-id", "stale", "oversized", "stdout-log"):
+    for mode in ("wrong-id", "stale", "oversized", "stdout-log", "endless", "notify-flood"):
         assert outcomes[mode]["outcome"] == "ValueError", mode
     assert outcomes["hang"]["outcome"] == "TimeoutError" and outcomes["hang"]["seconds"] < 4
     assert (
@@ -672,6 +838,8 @@ if VISIBLE_PASSED:
         == outcomes["notify"]["outcome"]
         == outcomes["normal"]["outcome"]
     )
+    assert outcomes["disconnect"]["outcome"] == "EOFError"
+    assert outcomes["rpc-error"]["outcome"] == outcomes["tool-error"]["outcome"] == "RuntimeError"
     connected = outcomes
 else:
     print("CONNECTION_NOT_READY — repair split_frames, then run again.")
@@ -682,6 +850,8 @@ Every failure ends in an exception, and none of them produces a wrong answer. Th
 ### A deadline, and an ending
 
 A deadline stops the waiting, but the server is still running. `close()` shuts it down in the order the stdio transport describes. It closes the server's input and waits a moment, then ends the whole process group with `SIGTERM`, and finally with `SIGKILL`. The `lingering` server starts a grandchild process that would outlive a client that only waits for its own child.
+
+The additional cases separate **JSON-RPC errors** (`error` on the response) from **tool failures** (`isError` inside a result), EOF without a reply, endless unterminated bytes and too many notifications. Both error categories are failures, not useful counts. After a protocol failure, close this connection; do not reuse its buffered replies.
 
 ```python tags=["foundation", "worked-example"]
 lingering_log = fresh_log("lingering")
@@ -708,7 +878,7 @@ except TimeoutError:
 print("hung server exit status:", hung.close())
 ```
 
-The healthy server exited with status 0 once its input closed. The grandchild went with its process group. The hung server ignored its closed input and exited with status `-15`: it was ended by `SIGTERM`.
+The lingering server deliberately ignores EOF; closing the group ends it. Healthy servers exit normally when stdin closes. The child is reaped by the teaching server when the group receives SIGTERM. The hung server ignored its closed input and exited with status `-15`: it was ended by `SIGTERM`.
 
 ## 4. Save the core report
 
@@ -739,6 +909,8 @@ Lucy's operator adds a second server with a new tool, `record_delivery`, whose s
 
 Do not change the inputs. Write your expected values before you run the table.
 
+Call supplied `require_teaching_schema(schema, arguments)` first. It rejects non-object arguments, non-finite numbers and schemas outside this exercise’s **flat scalar subset**. This is not a full JSON Schema validator: nested objects, arrays, enums, ranges, `$ref`, unions and defaults need a production validator. Do not silently ignore unsupported constraints.
+
 ```python tags=["exercise", "transfer-owned"]
 def transfer_problems(schema, arguments):
     raise NotImplementedError("List missing, unexpected and wrongly typed arguments")
@@ -752,6 +924,10 @@ DELIVERY = {
     "additionalProperties": False,
 }
 TRANSFER_CASES = [
+    ("non-object arguments", [DELIVERY, []], {"raises": "ValueError"}),
+    ("unsupported keyword", [{**DELIVERY, "oneOf": []}, {}], {"raises": "ValueError"}),
+    ("unsupported scalar", [{"type": "object", "properties": {"x": {"type": "array"}}}, {"x": []}], {"raises": "ValueError"}),
+    ("not JSON", [{"type": "object", "properties": {"x": {"type": "number"}}}, {"x": float("inf")}], {"raises": "ValueError"}),
     ("valid arguments", [DELIVERY, {"order_id": "A-1043", "tubs": 20}], []),
     ("a missing key", [DELIVERY, {"order_id": "A-1043"}], ["missing tubs"]),
     (
@@ -827,11 +1003,13 @@ def authorize(name, catalog, allowed):
 
 
 control_log = fresh_log("negative-control")
-with Client(server_command("normal", control_log), allowed=ALLOWED) as client:
-    client.initialize()
-    client.list_tools()
-    client.call_tool("place_purchase", {"flavor": "vanilla", "tubs": 100})
-authorize = worked_authorize
+try:
+    with Client(server_command("normal", control_log), allowed=ALLOWED) as client:
+        client.initialize()
+        client.list_tools()
+        client.call_tool("place_purchase", {"flavor": "vanilla", "tubs": 100})
+finally:
+    authorize = worked_authorize
 purchases = [call for call in server_calls(control_log) if call["name"] == "place_purchase"]
 NEGATIVE_CONTROL = "FAILED_AS_EXPECTED" if purchases else "NOT_DETECTED"
 print("purchases the server received:", purchases)
@@ -861,6 +1039,15 @@ It does not support:
 - tool lists that change while connected.
 
 A successful handshake is not containment. Starting the server's executable gave it the same access as any program you run. Chapter 15 adds the operating-system boundary the protocol does not provide.
+
+
+## Carry the boundary into an always-on agent
+
+Before reading the answer below, predict: the server logged a purchase but the connection closed before the reply. Is it safe to send the purchase again?
+
+A timeout or EOF proves **no usable reply**, not **no side effect**. Unit B’s failure log shows the request can already have reached the server. Word counting is read-only; a purchase is not. Chapter12’s durable intent, stable idempotency key and reconciliation are still required. MCP request ids correlate replies; they do not deduplicate business actions. Persist the uncertainty and ask the application to reconcile instead of treating an error as permission to retry.
+
+Transfer: propose a failure that combines notifications with a late reply. Explain the missing guarantee and which layer must supply it. Starting a child also grants ordinary process access: allowlists and cleanup are not OS containment (Chapter15).
 
 
 ## Save your evidence and explain the result
@@ -907,6 +1094,49 @@ print(
         sort_keys=True,
     )
 )
+```
+
+## Download your evidence before Colab disconnects
+
+The ZIP includes this attempt’s submission, independent logs, handoff when successfully produced, server source and actual runtime information. Downloads never certify learner understanding. Save the **edited notebook** too so your function implementations survive. Colab runtime files are temporary; see the [Colab FAQ](https://research.google.com/colaboratory/faq.html).
+
+```python tags=["evidence-export", "colab-download"]
+import inspect
+import hashlib
+import zipfile
+
+# Preserve a new run's evidence rather than overwriting an earlier attempt.
+export_folder = COURSE_WORK / "exports"
+export_folder.mkdir(exist_ok=True)
+with tempfile.NamedTemporaryFile(prefix=course_submission["unit"] + "-", suffix=".zip", dir=export_folder, delete=False) as reserved:
+    EVIDENCE_ZIP = Path(reserved.name)
+members = [p for p in COURSE_WORK.iterdir() if p.is_file() and p.suffix in {".json", ".jsonl", ".wire", ".grandchild"}]
+runtime = {"python": sys.version, "platform": sys.platform, "unit": course_submission["unit"],
+           "protocolVersion": PROTOCOL_VERSION, "modelCalls": 0, "networkCalls": 0,
+           "serverSha256": hashlib.sha256(SERVER_PATH.read_bytes()).hexdigest(),
+           "colabModuleDetected": "google.colab" in sys.modules,
+           "attendedHostedColab": "NOT_OBSERVED_BY_THIS_EXPORT",
+           "limits": ["Scripted teaching server", "No production containment or classroom certification"]}
+learner_names = ("answer_for", "authorize", "transfer_offer") if course_submission["unit"] == "ch14-a" else ("split_frames", "transfer_problems")
+learner_sources = {}
+for name in learner_names:
+    try:
+        learner_sources[name] = inspect.getsource(globals()[name])
+    except (OSError, TypeError):
+        learner_sources[name] = "# Source unavailable: save the edited notebook."
+runtime["learnerSourceCaptured"] = all(not source.startswith("# Source unavailable") for source in learner_sources.values())
+with zipfile.ZipFile(EVIDENCE_ZIP, "w", compression=zipfile.ZIP_DEFLATED) as bundle:
+    for p in sorted(members):
+        bundle.write(p, p.name)
+    bundle.writestr("runtime.json", json.dumps(runtime, indent=2))
+    bundle.write(SERVER_PATH, "teaching_server.py")
+    bundle.writestr("learner_code.py", "\n\n".join(learner_sources.values()))
+
+print("Evidence ZIP:", EVIDENCE_ZIP)
+print("Save this notebook too: File → Download → Download .ipynb")
+if "google.colab" in sys.modules:
+    from google.colab import files
+    files.download(str(EVIDENCE_ZIP))
 ```
 
 <!-- #region tags=["profrod-community"] -->

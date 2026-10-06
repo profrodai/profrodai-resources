@@ -12,7 +12,7 @@ It speaks MCP 2025-06-18 over stdio, one JSON message per line, and advertises t
 tools/call it receives is appended to --log, so a test can see what was really invoked without
 trusting the client's own account. Each --mode reproduces one failure a client must survive:
 
-  normal       the protocol, done right
+  normal       the declared teaching subset, done right
   wrong-id     answers tools/call with the next request's id
   oversized    answers tools/call with a 200,000-byte text
   hang         never answers tools/call
@@ -21,6 +21,11 @@ trusting the client's own account. Each --mode reproduces one failure a client m
   old-version  claims protocol 2024-11-05 at initialization
   notify       sends two log notifications before each answer
   stale        before each answer after the first, repeats the previous call's reply
+  endless      sends bytes without a newline, then hangs
+  notify-flood exceeds the client's notification count bound
+  disconnect   closes stdout after recording a call, with no reply
+  rpc-error    sends a JSON-RPC error response
+  tool-error   sends a tool result whose isError is true
   lingering    starts a grandchild that outlives the server unless its process group is ended
 """
 
@@ -29,6 +34,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import signal
 import subprocess
 import sys
 import time
@@ -74,16 +80,27 @@ def main() -> None:
         grandchild = subprocess.Popen(["sleep", "60"])
         with open(args.log + ".grandchild", "w") as out:
             out.write(str(grandchild.pid))
+    initialized = False
+    def stop(signum, frame):
+        if args.mode == "lingering":
+            grandchild.terminate()
+            grandchild.wait(timeout=3)
+        raise SystemExit(0)
+    signal.signal(signal.SIGTERM, stop)
     previous = None  # (id, text) of the last call answered, for --mode stale
     for line in sys.stdin:
         message = json.loads(line)
+        with open(args.log + ".wire", "a") as wire:
+            wire.write(json.dumps(message) + "\n")
         method, request_id = message.get("method"), message.get("id")
         if request_id is None:
+            if method == "notifications/initialized":
+                initialized = True
             continue  # a notification: never answered
         if args.mode == "stderr-log":
             print(f"[teaching-server] handling {method}", file=sys.stderr, flush=True)
-        if args.mode == "notify":
-            for n in range(2):
+        if args.mode in ("notify", "notify-flood") and initialized:
+            for n in range(17 if args.mode == "notify-flood" else 2):
                 send(
                     {
                         "jsonrpc": "2.0",
@@ -97,10 +114,13 @@ def main() -> None:
                 request_id,
                 {
                     "protocolVersion": version,
-                    "capabilities": {"tools": {"listChanged": False}},
+                    "capabilities": {"tools": {"listChanged": False}, "logging": {}},
                     "serverInfo": {"name": "lucy-teaching-server", "version": "1"},
                 },
             )
+        elif not initialized:
+            send({"jsonrpc": "2.0", "id": request_id,
+                  "error": {"code": -32600, "message": "initialize first"}})
         elif method == "tools/list":
             result(request_id, {"tools": TOOLS})
         elif method == "tools/call":
@@ -116,6 +136,20 @@ def main() -> None:
                     )
                     + "\n"
                 )
+            if args.mode == "disconnect":
+                return
+            if args.mode == "rpc-error":
+                send({"jsonrpc": "2.0", "id": request_id,
+                      "error": {"code": -32602, "message": "invalid tool arguments"}})
+                continue
+            if args.mode == "tool-error":
+                result(request_id, {"content": [{"type": "text", "text": "scripted failure"}],
+                                    "isError": True})
+                continue
+            if args.mode == "endless":
+                sys.stdout.write("x" * 65_536)
+                sys.stdout.flush()
+                time.sleep(3600)
             if args.mode == "hang":
                 time.sleep(3600)
             if args.mode == "stdout-log":
@@ -152,7 +186,9 @@ def main() -> None:
                     "error": {"code": -32601, "message": f"method not found: {method}"},
                 }
             )
-    os._exit(0)
+    if args.mode == "lingering":
+        # Ignore EOF on purpose; the client's group signal must end us and our child.
+        time.sleep(60)
 
 
 if __name__ == "__main__":

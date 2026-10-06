@@ -70,10 +70,10 @@ By the end you should be able to:
 
 These times are planning estimates, not measured completion times. Run All only checks that the notebook executes; the unfinished student functions deliberately report NEEDS_WORK. Keep your first attempt before opening the worked edition.
 
-
+<!-- #region -->
 ## Run the self-contained setup
 
-The unit needs only Python's standard library. The collapsed cell below creates your work folder and defines the supplied parts of the unit:
+The unit needs only Python's standard library. The executable setup cells below creates your work folder and defines the supplied parts of the unit:
 
 - **The teaching server:** a small MCP server written to a file and started as a child process. It advertises two tools: `word_count`, which Lucy's agent may call, and `place_purchase`, which it may not. It writes every call it receives to a log of its own, so you can check what really happened.
 - **Messages and frames:** `request_message`, `notification_message`, `encode_frame`, `FrameReader` and `parse_frame`.
@@ -82,9 +82,12 @@ The unit needs only Python's standard library. The collapsed cell below creates 
 
 Run setup on every fresh kernel. Your saved work lives in `practical-work/ch14-a`. Restarting a kernel clears variables, not saved files.
 
-<details><summary>Supplied setup, teaching server and client</summary>
 
-```python jupyter={"source_hidden": true} tags=["setup", "embedded-runtime"]
+
+In Colab choose a **CPU** runtime, then **Runtime → Run all** for a setup smoke check. NEEDS_WORK is expected in the student edition. Edit a learner code cell, run it, and rerun its assessment and later cells; Run all runs the starter definitions again unless you saved your edits. Make predictions before opening the worked solution. Download the evidence ZIP and the edited notebook before disconnecting.
+<!-- #endregion -->
+
+```python tags=["setup", "runtime-check"]
 import json
 import os
 import selectors
@@ -95,9 +98,9 @@ import tempfile
 import time
 from pathlib import Path
 
-minimum_python = (3, 12)
+minimum_python = (3, 10)
 if sys.version_info[:2] < minimum_python:
-    raise RuntimeError("This unit needs Python 3.12 or newer; Google Colab runs Python 3.12.")
+    raise RuntimeError("This unit needs Python 3.10 or newer; use a current Colab CPU runtime.")
 if os.name != "posix":
     raise RuntimeError(
         "The stdio client uses POSIX process groups: run it on Colab, Linux or macOS."
@@ -106,7 +109,13 @@ if os.name != "posix":
 if "COURSE_START_DIRECTORY" not in globals():
     COURSE_START_DIRECTORY = Path.cwd()
     COURSE_ROOT = Path(tempfile.mkdtemp(prefix="ch14-course-"))
+```
 
+### Teaching server source (data for a child process)
+
+Run this **code cell**. `SERVER_SOURCE` is Python stored as text, not a commented-out exercise. The next cell writes it to a `.py` file and starts that file with this runtime’s Python. You edit the learner functions in later cells. The full server source is also in the downloaded evidence ZIP.
+
+```python jupyter={"source_hidden": true} tags=["setup", "server-source"]
 SERVER_SOURCE = r'''# Prof Rod | Build Your Always-On AI Agent From Scratch
 # Full book and learning materials: https://profrod.ai/book
 # Join the Prof Rod learner community: https://profrod.ai/community
@@ -121,7 +130,7 @@ It speaks MCP 2025-06-18 over stdio, one JSON message per line, and advertises t
 tools/call it receives is appended to --log, so a test can see what was really invoked without
 trusting the client's own account. Each --mode reproduces one failure a client must survive:
 
-  normal       the protocol, done right
+  normal       the declared teaching subset, done right
   wrong-id     answers tools/call with the next request's id
   oversized    answers tools/call with a 200,000-byte text
   hang         never answers tools/call
@@ -130,6 +139,11 @@ trusting the client's own account. Each --mode reproduces one failure a client m
   old-version  claims protocol 2024-11-05 at initialization
   notify       sends two log notifications before each answer
   stale        before each answer after the first, repeats the previous call's reply
+  endless      sends bytes without a newline, then hangs
+  notify-flood exceeds the client's notification count bound
+  disconnect   closes stdout after recording a call, with no reply
+  rpc-error    sends a JSON-RPC error response
+  tool-error   sends a tool result whose isError is true
   lingering    starts a grandchild that outlives the server unless its process group is ended
 """
 
@@ -138,6 +152,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import signal
 import subprocess
 import sys
 import time
@@ -183,16 +198,27 @@ def main() -> None:
         grandchild = subprocess.Popen(["sleep", "60"])
         with open(args.log + ".grandchild", "w") as out:
             out.write(str(grandchild.pid))
+    initialized = False
+    def stop(signum, frame):
+        if args.mode == "lingering":
+            grandchild.terminate()
+            grandchild.wait(timeout=3)
+        raise SystemExit(0)
+    signal.signal(signal.SIGTERM, stop)
     previous = None  # (id, text) of the last call answered, for --mode stale
     for line in sys.stdin:
         message = json.loads(line)
+        with open(args.log + ".wire", "a") as wire:
+            wire.write(json.dumps(message) + "\n")
         method, request_id = message.get("method"), message.get("id")
         if request_id is None:
+            if method == "notifications/initialized":
+                initialized = True
             continue  # a notification: never answered
         if args.mode == "stderr-log":
             print(f"[teaching-server] handling {method}", file=sys.stderr, flush=True)
-        if args.mode == "notify":
-            for n in range(2):
+        if args.mode in ("notify", "notify-flood") and initialized:
+            for n in range(17 if args.mode == "notify-flood" else 2):
                 send(
                     {
                         "jsonrpc": "2.0",
@@ -206,10 +232,13 @@ def main() -> None:
                 request_id,
                 {
                     "protocolVersion": version,
-                    "capabilities": {"tools": {"listChanged": False}},
+                    "capabilities": {"tools": {"listChanged": False}, "logging": {}},
                     "serverInfo": {"name": "lucy-teaching-server", "version": "1"},
                 },
             )
+        elif not initialized:
+            send({"jsonrpc": "2.0", "id": request_id,
+                  "error": {"code": -32600, "message": "initialize first"}})
         elif method == "tools/list":
             result(request_id, {"tools": TOOLS})
         elif method == "tools/call":
@@ -225,6 +254,20 @@ def main() -> None:
                     )
                     + "\n"
                 )
+            if args.mode == "disconnect":
+                return
+            if args.mode == "rpc-error":
+                send({"jsonrpc": "2.0", "id": request_id,
+                      "error": {"code": -32602, "message": "invalid tool arguments"}})
+                continue
+            if args.mode == "tool-error":
+                result(request_id, {"content": [{"type": "text", "text": "scripted failure"}],
+                                    "isError": True})
+                continue
+            if args.mode == "endless":
+                sys.stdout.write("x" * 65_536)
+                sys.stdout.flush()
+                time.sleep(3600)
             if args.mode == "hang":
                 time.sleep(3600)
             if args.mode == "stdout-log":
@@ -261,11 +304,22 @@ def main() -> None:
                     "error": {"code": -32601, "message": f"method not found: {method}"},
                 }
             )
-    os._exit(0)
+    if args.mode == "lingering":
+        # Ignore EOF on purpose; the client's group signal must end us and our child.
+        time.sleep(60)
 
 
 if __name__ == "__main__":
-    main()'''
+    main()
+'''
+print("Teaching server source ready:", len(SERVER_SOURCE), "characters")
+```
+
+### Client and work folder
+
+Run this executable cell after the server-source cell. Every Run all creates a new attempt folder so earlier evidence survives. No checkout, upload, GPU or API key is needed.
+
+```python tags=["setup", "embedded-runtime"]
 SERVER_PATH = COURSE_ROOT / "teaching_server.py"
 SERVER_PATH.write_text(SERVER_SOURCE, encoding="utf-8")
 PROTOCOL_VERSION = "2025-06-18"
@@ -333,7 +387,7 @@ def parse_frame(line):
 def check_initialize(result, version=PROTOCOL_VERSION):
     if result.get("protocolVersion") != version:
         raise ValueError(f"server speaks {result.get('protocolVersion')!r}, not {version}")
-    if "tools" not in result.get("capabilities", {}):
+    if not isinstance(result.get("capabilities"), dict) or not isinstance(result["capabilities"].get("tools"), dict):
         raise ValueError("server does not offer tools")
 
 
@@ -346,19 +400,22 @@ def check_tools(result, limit=32):
         name = tool.get("name") if isinstance(tool, dict) else None
         if not isinstance(name, str) or not name or name in catalog:
             raise ValueError(f"invalid or duplicate tool name {name!r}")
-        if not isinstance(tool.get("inputSchema"), dict):
+        if not isinstance(tool.get("inputSchema"), dict) or tool["inputSchema"].get("type") != "object":
             raise ValueError(f"tool {name!r} lacks an input schema")
         catalog[name] = tool
     return catalog
 
 
 def result_text(result):
-    blocks = result.get("content", [])
-    text = "\n".join(b["text"] for b in blocks if isinstance(b, dict) and b.get("type") == "text")
+    blocks = result.get("content")
+    if not isinstance(blocks, list) or type(result.get("isError", False)) is not bool:
+        raise ValueError("malformed tool result")
+    if any(not isinstance(b, dict) or b.get("type") != "text" or not isinstance(b.get("text"), str) for b in blocks):
+        raise ValueError("this teaching client accepts text blocks only")
+    text = "\n".join(b["text"] for b in blocks)
     if result.get("isError"):
         raise RuntimeError(f"tool reported an error: {text}")
     return text
-
 
 class Client:
     """One configured server, one request at a time, one shared deadline per request.
@@ -369,6 +426,7 @@ class Client:
     def __init__(self, command, allowed, timeout=5.0, frame_limit=65_536):
         self.allowed, self.timeout, self.frame_limit = frozenset(allowed), timeout, frame_limit
         self.reader, self.pending, self.next_id, self.catalog = FrameReader(frame_limit), [], 0, {}
+        self.state = "NEW"
         self.process = subprocess.Popen(
             command,
             stdin=subprocess.PIPE,
@@ -383,6 +441,8 @@ class Client:
         with selectors.DefaultSelector() as selector:
             selector.register(self.process.stdin, selectors.EVENT_WRITE)
             while frame:
+                if time.monotonic() >= deadline:
+                    raise TimeoutError("write deadline passed")
                 if not selector.select(max(0.0, deadline - time.monotonic())):
                     raise TimeoutError("write deadline passed")
                 frame = frame[os.write(self.process.stdin.fileno(), frame) :]
@@ -391,6 +451,8 @@ class Client:
         with selectors.DefaultSelector() as selector:
             selector.register(self.process.stdout, selectors.EVENT_READ)
             while not self.pending:
+                if time.monotonic() >= deadline:
+                    raise TimeoutError("response deadline passed")
                 if not selector.select(max(0.0, deadline - time.monotonic())):
                     raise TimeoutError("response deadline passed")
                 chunk = os.read(self.process.stdout.fileno(), 4096)
@@ -400,18 +462,26 @@ class Client:
             return parse_frame(self.pending.pop(0))
 
     def request(self, method, params):
-        self.next_id += 1
-        deadline = time.monotonic() + self.timeout
-        self._write(
-            encode_frame(request_message(self.next_id, method, params), self.frame_limit), deadline
-        )
-        for _ in range(17):
-            result = answer_for(self.next_id, self._read(deadline))
-            if result is not None:
-                return result
-        raise ValueError("too many notifications before the response")
+        if self.state in {"BROKEN", "CLOSED"}:
+            raise ValueError("close a failed connection; do not reuse buffered replies")
+        try:
+            self.next_id += 1
+            deadline = time.monotonic() + self.timeout
+            self._write(
+                encode_frame(request_message(self.next_id, method, params), self.frame_limit), deadline
+            )
+            for _ in range(17):
+                result = answer_for(self.next_id, self._read(deadline))
+                if result is not None:
+                    return result
+            raise ValueError("too many notifications before the response")
+        except Exception:
+            self.state = "BROKEN"
+            raise
 
     def initialize(self):
+        if self.state != "NEW":
+            raise ValueError("initialize requires a new connection")
         result = self.request(
             "initialize",
             {
@@ -425,18 +495,26 @@ class Client:
             encode_frame(notification_message("notifications/initialized"), self.frame_limit),
             time.monotonic() + self.timeout,
         )
+        self.state = "READY"
         return result
 
     def list_tools(self):
+        if self.state != "READY":
+            raise ValueError("initialize before discovery")
         self.catalog = check_tools(self.request("tools/list", {}))
         return self.catalog
 
     def call_tool(self, name, arguments):
+        if self.state != "READY":
+            raise ValueError("initialize before calling a tool")
         if not authorize(name, self.catalog, self.allowed):
             raise PermissionError(f"{name!r} may not be called")
         return result_text(self.request("tools/call", {"name": name, "arguments": arguments}))
 
     def close(self, grace=1.0):
+        if self.state == "CLOSED":
+            return self.process.returncode
+        self.state = "CLOSED"
         self.process.stdin.close()
         try:
             self.process.wait(timeout=grace)
@@ -461,13 +539,20 @@ class Client:
 
 COURSE_WORK = COURSE_START_DIRECTORY / "practical-work" / "ch14-a"
 COURSE_WORK.mkdir(parents=True, exist_ok=True)
+# Each Run all preserves an earlier attempt in its own folder.
+COURSE_WORK = Path(tempfile.mkdtemp(prefix="attempt-", dir=COURSE_WORK))
 os.chdir(COURSE_WORK)
 print("Python", sys.version.split()[0])
 print("Save your work here:", COURSE_WORK)
+
+
+
+def fresh_log(name):
+    # A unique pair of call/wire logs for each cell invocation; preserve previous evidence.
+    descriptor, path = tempfile.mkstemp(prefix=name + "-", suffix=".jsonl", dir=COURSE_WORK)
+    os.close(descriptor)
+    return Path(path)
 ```
-
-</details>
-
 
 ## Commit to a prediction before the examples
 
@@ -556,6 +641,8 @@ print("waiting in the buffer:", reader.buffer)
 - otherwise return the `result` dictionary.
 
 The starter returns whatever result arrives first. Run the visible cases to see where it fails, then repair it.
+
+Also refuse malformed envelopes: JSON-RPC must be `2.0`; a response cannot contain a method or both result and error; an error must contain an integer code and string message. A method-only notification may be skipped. A server request is outside this one-way teaching client. The visible table includes these cases.
 
 ```python tags=["exercise", "learner-owned", "ch14-answer"]
 def answer_for(request_id, message):
@@ -657,6 +744,15 @@ def grade_unit(answer, allow):
         )
     return rows
 
+ANSWER_CASES += [
+    ("string id is refused", 3, reply("3", {}), "ValueError"),
+    ("float id is refused", 3, reply(3.0, {}), "ValueError"),
+    ("wrong protocol", 3, {"jsonrpc": "1.0", "id": 3, "result": {}}, "ValueError"),
+    ("both result and error", 3, {"jsonrpc": "2.0", "id": 3, "result": {}, "error": {}}, "ValueError"),
+    ("mixed method and response", 3, {"jsonrpc": "2.0", "id": 3, "method": "ping", "result": {}}, "ValueError"),
+    ("malformed error", 3, reply(3, error="bad"), "ValueError"),
+    ("non-object result", 3, reply(3, []), "ValueError"),
+]
 
 visible_results = grade_unit(answer_for, authorize)
 VISIBLE_PASSED = all(r["status"] == "PASS" for r in visible_results)
@@ -680,8 +776,7 @@ Before running it, predict the count, and what the server's log will contain.
 ```python tags=["integration", "learner-path"]
 connected = None
 if VISIBLE_PASSED:
-    log = COURSE_WORK / "calls.jsonl"
-    log.unlink(missing_ok=True)
+    log = fresh_log("calls")
     with Client(server_command("normal", log), allowed={"word_count"}) as client:
         hello = client.initialize()
         catalog = client.list_tools()
@@ -691,8 +786,7 @@ if VISIBLE_PASSED:
             purchase = "called"
         except PermissionError:
             purchase = "refused"
-    old_log = COURSE_WORK / "old-version-calls.jsonl"
-    old_log.unlink(missing_ok=True)
+    old_log = fresh_log("old-version-calls")
     with Client(server_command("old-version", old_log), allowed={"word_count"}) as old:
         try:
             old.initialize()
@@ -713,6 +807,21 @@ if VISIBLE_PASSED:
     assert old_version == "refused" and connected["old_version_calls"] == 0
 else:
     print("CONNECTION_NOT_READY — repair answer_for and authorize, then run again.")
+```
+
+### Read the lifecycle from the server’s wire log
+
+MCP roles are distinct: Lucy’s application is the **host**, this `Client` handles one server connection, and the child is the **server**. Read the actual received order: initialize request → matching version/capabilities response → initialized notification (no id) → discovery → permitted call. A different version is not inherently bad; this teaching client supports only `2025-06-18`, so it disconnects instead of pretending to support it. This is a teaching subset, not the latest full MCP implementation.
+
+Sources: [pinned lifecycle](https://modelcontextprotocol.io/specification/2025-06-18/basic/lifecycle), [stdio transport](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports), [tools](https://modelcontextprotocol.io/specification/2025-06-18/server/tools).
+
+```python tags=["integration", "lifecycle-observation"]
+if connected:
+    wire_messages = [json.loads(line) for line in Path(str(log) + ".wire").read_text().splitlines()]
+    print([(m["method"], m.get("id", "notification")) for m in wire_messages])
+    assert [m["method"] for m in wire_messages] == ["initialize", "notifications/initialized", "tools/list", "tools/call"]
+    assert "id" not in wire_messages[1]
+    assert len({m["id"] for m in wire_messages if "id" in m}) == 3
 ```
 
 The count is four, from a process you did not write. The purchase was refused inside the client, before a byte went to the server, and the server's own log proves it: the only call it received is `word_count`. The description that shouted ALWAYS changed nothing, because the client never asks the description for permission.
@@ -899,6 +1008,49 @@ print(
         sort_keys=True,
     )
 )
+```
+
+## Download your evidence before Colab disconnects
+
+The ZIP includes this attempt’s submission, independent logs, handoff when successfully produced, server source and actual runtime information. Downloads never certify learner understanding. Save the **edited notebook** too so your function implementations survive. Colab runtime files are temporary; see the [Colab FAQ](https://research.google.com/colaboratory/faq.html).
+
+```python tags=["evidence-export", "colab-download"]
+import inspect
+import hashlib
+import zipfile
+
+# Preserve a new run's evidence rather than overwriting an earlier attempt.
+export_folder = COURSE_WORK / "exports"
+export_folder.mkdir(exist_ok=True)
+with tempfile.NamedTemporaryFile(prefix=course_submission["unit"] + "-", suffix=".zip", dir=export_folder, delete=False) as reserved:
+    EVIDENCE_ZIP = Path(reserved.name)
+members = [p for p in COURSE_WORK.iterdir() if p.is_file() and p.suffix in {".json", ".jsonl", ".wire", ".grandchild"}]
+runtime = {"python": sys.version, "platform": sys.platform, "unit": course_submission["unit"],
+           "protocolVersion": PROTOCOL_VERSION, "modelCalls": 0, "networkCalls": 0,
+           "serverSha256": hashlib.sha256(SERVER_PATH.read_bytes()).hexdigest(),
+           "colabModuleDetected": "google.colab" in sys.modules,
+           "attendedHostedColab": "NOT_OBSERVED_BY_THIS_EXPORT",
+           "limits": ["Scripted teaching server", "No production containment or classroom certification"]}
+learner_names = ("answer_for", "authorize", "transfer_offer") if course_submission["unit"] == "ch14-a" else ("split_frames", "transfer_problems")
+learner_sources = {}
+for name in learner_names:
+    try:
+        learner_sources[name] = inspect.getsource(globals()[name])
+    except (OSError, TypeError):
+        learner_sources[name] = "# Source unavailable: save the edited notebook."
+runtime["learnerSourceCaptured"] = all(not source.startswith("# Source unavailable") for source in learner_sources.values())
+with zipfile.ZipFile(EVIDENCE_ZIP, "w", compression=zipfile.ZIP_DEFLATED) as bundle:
+    for p in sorted(members):
+        bundle.write(p, p.name)
+    bundle.writestr("runtime.json", json.dumps(runtime, indent=2))
+    bundle.write(SERVER_PATH, "teaching_server.py")
+    bundle.writestr("learner_code.py", "\n\n".join(learner_sources.values()))
+
+print("Evidence ZIP:", EVIDENCE_ZIP)
+print("Save this notebook too: File → Download → Download .ipynb")
+if "google.colab" in sys.modules:
+    from google.colab import files
+    files.download(str(EVIDENCE_ZIP))
 ```
 
 <!-- #region tags=["profrod-community"] -->
