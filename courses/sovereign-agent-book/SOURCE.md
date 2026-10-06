@@ -38,6 +38,16 @@ From that commit, with its relative layout kept so every path the code computes 
   so it no longer counts chapters. All 84 notebooks and 21 handoffs were executed again; the
   receipt is `docs/evidence/book-four-assets/verification-v5.json`.
 
+- 2026-10-06: Chapter14 alone received a Colab usability and completeness revision.
+  `verification-v7.json` records the first revision; the append-only successor
+  `verification-v8.json` records the strict UTF-8/JSON follow-up. `verification-v9.json`
+  records the restored-allowlist observation and scoped runtime metadata.
+  `verification-v10.json` records the final hung-process exit-status alignment and assertion; each successor
+  freshly executes/replays the four Chapter14 notebooks and its handoff,
+  and explicitly inherits the unchanged80 notebook and20 handoff records from immutable v6.
+  Student/solution and educator copies remain byte-identical. The stdlib Chapter14 gate also
+  exercises repaired student cells, invalid imports, exports and failure controls in PR CI.
+
 ## License
 
 The source is Apache-2.0 at the pin. On 2026-09-28 the operator, Rod Rivera, as copyright holder,

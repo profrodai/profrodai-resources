@@ -1,5 +1,5 @@
 # The course gate. Everything runs from this folder, where the chapter code expects to be run.
-.PHONY: setup run test verify verify-execution record-execution
+.PHONY: setup run test verify verify-execution record-execution verify-ch14-execution
 
 UV ?= uv
 PY := $(UV) run --locked python
@@ -29,3 +29,7 @@ verify-execution:
 # Writes the next receipt; a receipt is append-only, so this refuses if it already exists.
 record-execution:
 	$(COLAB_PY) scripts/verify_course_v1.py --execute --workers 1
+
+# Bounded Chapter14 recheck, including the actual child kernel's Python version.
+verify-ch14-execution:
+	$(COLAB_PY) scripts/verify_ch14_colab_v1.py --check-kernels

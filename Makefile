@@ -2,9 +2,13 @@
 
 ORDER_API_DIR := courses/agentic-coding-with-cursor/order-api
 
-verify: ci-trust-check format-check lint colab catalog consolidation curriculum curriculum-contract curriculum-maintenance jev-routing
+verify: ci-trust-check format-check lint colab catalog consolidation curriculum curriculum-contract curriculum-maintenance jev-routing ch14-colab
 
-verify-pr: ci-trust-check format-check lint colab catalog-structure consolidation curriculum-pr curriculum-contract curriculum-maintenance jev-routing
+verify-pr: ci-trust-check format-check lint colab catalog-structure consolidation curriculum-pr curriculum-contract curriculum-maintenance jev-routing ch14-colab
+
+.PHONY: ch14-colab
+ch14-colab:
+	python3 courses/sovereign-agent-book/scripts/verify_ch14_colab_v1.py
 
 .PHONY: jev-routing
 jev-routing:
