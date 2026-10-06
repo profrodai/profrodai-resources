@@ -28,6 +28,8 @@ The helper scores first and journals completed decisions afterward. Its SQLite r
 python3 verify_lab_v1.py
 ```
 
+The verifier compares routes, counts, costs, keys and source hashes exactly. It permits at most 1e-12 floating-point rounding noise when comparing calculated scores across Python versions; a changed miss count, cost or materially different score fails its negative controls. The historical reference receipt remains unchanged.
+
 This reruns the CLI in a new temporary directory, executes all notebook code cells, checks source hashes and compares policy results with the reference receipt. Temporary execution output goes to your configured `TMPDIR`; the helper creates its explicit output only where requested.
 
 Lower the quiet threshold to 0.05 in the notebook and explain which routes change. After using test cases to revise a policy, use new held-out episodes before making a performance claim. Related-work citations and derivations belong to the article, which is not copied here. Original first-party code/data are covered by the repository MIT license.
