@@ -1015,9 +1015,22 @@ purchases = [call for call in server_calls(control_log) if call["name"] == "plac
 NEGATIVE_CONTROL = "FAILED_AS_EXPECTED" if purchases else "NOT_DETECTED"
 print("purchases the server received:", purchases)
 print("NEGATIVE_CONTROL", NEGATIVE_CONTROL)
+assert NEGATIVE_CONTROL == "FAILED_AS_EXPECTED"
+restored_log = fresh_log("restored-allowlist")
+with Client(server_command("normal", restored_log), allowed=ALLOWED) as restored:
+    restored.initialize()
+    restored.list_tools()
+    try:
+        restored.call_tool("place_purchase", {"flavor": "vanilla", "tubs": 100})
+    except PermissionError:
+        pass
+    else:
+        raise AssertionError("restoring the allowlist did not refuse the purchase")
+assert server_calls(restored_log) == []
+print("RESTORED_ALLOWLIST refused purchase before transmission; server calls: 0")
 ```
 
-Without the allowlist, the purchase the description asked for reached the server, and its log shows it. With the allowlist back, Unit A's integration check fails for exactly this reason.
+Without the allowlist, the purchase the description asked for reached the server, and its log shows it. The next observation checks the restored allowlist too: the same purchase is refused before transmission. Unit A’s integration assertion would fail if the allowlist were removed.
 
 ## What this client supports, and what it does not
 
@@ -1113,7 +1126,7 @@ with tempfile.NamedTemporaryFile(prefix=course_submission["unit"] + "-", suffix=
     EVIDENCE_ZIP = Path(reserved.name)
 members = [p for p in COURSE_WORK.iterdir() if p.is_file() and p.suffix in {".json", ".jsonl", ".wire", ".grandchild"}]
 runtime = {"python": sys.version, "platform": sys.platform, "unit": course_submission["unit"],
-           "protocolVersion": PROTOCOL_VERSION, "modelCalls": 0, "networkCalls": 0,
+           "protocolVersion": PROTOCOL_VERSION, "modelCalls": 0, "externalToolNetworkCalls": 0,
            "serverSha256": hashlib.sha256(SERVER_PATH.read_bytes()).hexdigest(),
            "colabModuleDetected": "google.colab" in sys.modules,
            "attendedHostedColab": "NOT_OBSERVED_BY_THIS_EXPORT",

@@ -1027,7 +1027,7 @@ with tempfile.NamedTemporaryFile(prefix=course_submission["unit"] + "-", suffix=
     EVIDENCE_ZIP = Path(reserved.name)
 members = [p for p in COURSE_WORK.iterdir() if p.is_file() and p.suffix in {".json", ".jsonl", ".wire", ".grandchild"}]
 runtime = {"python": sys.version, "platform": sys.platform, "unit": course_submission["unit"],
-           "protocolVersion": PROTOCOL_VERSION, "modelCalls": 0, "networkCalls": 0,
+           "protocolVersion": PROTOCOL_VERSION, "modelCalls": 0, "externalToolNetworkCalls": 0,
            "serverSha256": hashlib.sha256(SERVER_PATH.read_bytes()).hexdigest(),
            "colabModuleDetected": "google.colab" in sys.modules,
            "attendedHostedColab": "NOT_OBSERVED_BY_THIS_EXPORT",
