@@ -43,7 +43,7 @@ PLANNED: set[int] = set()
 AVAILABLE = set(range(1, 22)) - PLANNED
 EXPECTED = {f"ch{chapter:02d}-{letter}" for chapter in AVAILABLE for letter in "ab"}
 # v5 recorded Python 3.14 kernels. v6 records Colab's Python, which is what readers run.
-RECEIPT = ROOT / "docs/evidence/book-four-assets/verification-v7.json"
+RECEIPT = ROOT / "docs/evidence/book-four-assets/verification-v8.json"
 LEGACY = runpy.run_path(str(ROOT / "scripts/verify_practical_course_v1.py"))
 
 
@@ -234,6 +234,16 @@ def execute_one(path: Path) -> dict:
     assert identity in EXPECTED
     with tempfile.TemporaryDirectory(prefix=f"course-{identity}-") as folder:
         executed = LEGACY["run_notebook"](notebook, folder)
+        if identity.startswith("ch14-"):
+            kernel_versions = [
+                line.removeprefix("Python ").strip()
+                for cell in executed.cells for output in cell.get("outputs", [])
+                for line in "".join(output.get("text", "")).splitlines()
+                if line.startswith("Python ")
+            ]
+            assert kernel_versions == [platform.python_version()], (
+                "the executed kernel must use the receipt interpreter", kernel_versions
+            )
         observed = LEGACY["report"](executed)
         assert observed["unit"] == identity
         assert observed["transfer_passed"] is instructor

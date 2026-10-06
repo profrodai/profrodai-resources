@@ -43,7 +43,7 @@ jupyter:
 
 **Student edition · 90 minutes of dedicated work · 2026-09-28**
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch14/profrod-sovereign-agent-ch14-b-mcp-repair-transfer-exercise.ipynb) Runs on Google Colab or any Python 3.12+ Jupyter kernel. It needs no packages beyond the standard library, no model and no network.
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/exercises/ch14/profrod-sovereign-agent-ch14-b-mcp-repair-transfer-exercise.ipynb) Use a current Google Colab CPU runtime or a POSIX Python3.10+ Jupyter kernel; execution receipts use the Python3.12 compatibility baseline. It needs no packages beyond the standard library, no model and no network.
 
 This is the second of Chapter 14's two practical units. Unit A connected Lucy's agent to a tool in another process and kept the decision to call it inside the application. This unit breaks that connection on purpose, and repairs what each failure exposes.
 
@@ -71,7 +71,7 @@ These times are planning estimates, not measured completion times. Run All only 
 <!-- #region -->
 ## Run the self-contained setup
 
-The unit needs only Python's standard library. The executable setup cells below creates your work folder and defines the supplied parts of the unit:
+The unit needs only Python's standard library. The executable setup cells below create your work folder and defines the supplied parts of the unit:
 
 - **The teaching server** from Unit A, with all its failure modes: `wrong-id`, `stale`, `oversized`, `stdout-log`, `stderr-log`, `hang`, `notify`, `old-version` and `lingering`. It logs every call it receives.
 - **Unit A's worked `answer_for` and `authorize`**, and the message helpers.
@@ -352,14 +352,15 @@ def encode_frame(message, limit):
 
 
 def parse_frame(line):
+    def reject_constant(value):
+        raise ValueError(f"non-JSON constant {value}")
     try:
-        message = json.loads(line)
-    except ValueError as error:
-        raise ValueError(f"malformed frame: {line[:60]!r}") from error
+        message = json.loads(line.decode("utf-8"), parse_constant=reject_constant)
+    except (ValueError, UnicodeDecodeError) as error:
+        raise ValueError(f"malformed UTF-8 JSON frame: {line[:60]!r}") from error
     if not isinstance(message, dict) or message.get("jsonrpc") != "2.0":
         raise ValueError("not a JSON-RPC 2.0 message")
     return message
-
 
 def answer_for(request_id, message):
     """Accept only our response; a notification answers no request."""
@@ -607,7 +608,7 @@ prediction_notes = {
 
 ### Start from Unit A's handoff
 
-This unit uses the configuration you tested in Unit A. To use your own, replace `None` with the path to your `practical-work/ch14-a/ch14-unit-a-handoff-v1.json`. Leave it as `None` to start from the supplied reference, which is the handoff the worked Unit A produces. Your submission records which you chose.
+This unit uses the configuration you tested in Unit A. To use your own, replace `None` with the exact handoff path printed by Unit A (inside its `attempt-*` folder). Leave it as `None` to start from the supplied reference, which is the handoff the worked Unit A produces. Your submission records which you chose.
 
 Separate Colab notebooks have separate filesystems. In A, download its evidence ZIP and extract `ch14-unit-a-handoff-v1.json` on your computer. In B set `UPLOAD_HANDOFF = True` and run the next cell to upload **that JSON alone**; Run all otherwise remains noninteractive. For a local path, absolute paths are safest; relative paths resolve from the directory where this notebook first started, not its attempt folder. An invalid selected handoff raises an error: it never silently switches to the reference. A handoff is a learning record, not cryptographic proof or permission to expand the allowlist.
 

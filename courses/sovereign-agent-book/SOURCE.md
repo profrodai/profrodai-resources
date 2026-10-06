@@ -39,7 +39,8 @@ From that commit, with its relative layout kept so every path the code computes 
   receipt is `docs/evidence/book-four-assets/verification-v5.json`.
 
 - 2026-10-06: Chapter14 alone received a Colab usability and completeness revision.
-  `verification-v7.json` records fresh/replayed execution of its four notebooks and its handoff,
+  `verification-v7.json` records the first revision; the append-only successor
+  `verification-v8.json` records the strict UTF-8/JSON follow-up and fresh/replayed execution of its four notebooks and its handoff,
   and explicitly inherits the unchanged80 notebook and20 handoff records from immutable v6.
   Student/solution and educator copies remain byte-identical. The stdlib Chapter14 gate also
   exercises repaired student cells, invalid imports, exports and failure controls in PR CI.

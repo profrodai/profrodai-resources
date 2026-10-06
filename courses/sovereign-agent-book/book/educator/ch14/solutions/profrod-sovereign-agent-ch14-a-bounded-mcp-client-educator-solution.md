@@ -43,7 +43,7 @@ jupyter:
 
 **Instructor worked edition · 90 minutes of dedicated work · 2026-09-28**
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/solutions/ch14/profrod-sovereign-agent-ch14-a-bounded-mcp-client-solution.ipynb) Runs on Google Colab or any Python 3.12+ Jupyter kernel.
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/courses/sovereign-agent-book/book/solutions/ch14/profrod-sovereign-agent-ch14-a-bounded-mcp-client-solution.ipynb) Use a current Google Colab CPU runtime or a POSIX Python3.10+ Jupyter kernel; execution receipts use the Python3.12 compatibility baseline.
 
 This edition contains the worked `answer_for`, `authorize` and transfer solution, instructor explanations and hidden checks. Learners should attempt the student edition first.
 
@@ -59,7 +59,7 @@ This edition contains the worked `answer_for`, `authorize` and transfer solution
 <!-- #region -->
 ## Run the self-contained setup
 
-The unit needs only Python's standard library. The executable setup cells below creates your work folder and defines the supplied parts of the unit:
+The unit needs only Python's standard library. The executable setup cells below create your work folder and defines the supplied parts of the unit:
 
 - **The teaching server:** a small MCP server written to a file and started as a child process. It advertises two tools: `word_count`, which Lucy's agent may call, and `place_purchase`, which it may not. It writes every call it receives to a log of its own, so you can check what really happened.
 - **Messages and frames:** `request_message`, `notification_message`, `encode_frame`, `FrameReader` and `parse_frame`.
@@ -361,14 +361,15 @@ class FrameReader:
 
 
 def parse_frame(line):
+    def reject_constant(value):
+        raise ValueError(f"non-JSON constant {value}")
     try:
-        message = json.loads(line)
-    except ValueError as error:
-        raise ValueError(f"malformed frame: {line[:60]!r}") from error
+        message = json.loads(line.decode("utf-8"), parse_constant=reject_constant)
+    except (ValueError, UnicodeDecodeError) as error:
+        raise ValueError(f"malformed UTF-8 JSON frame: {line[:60]!r}") from error
     if not isinstance(message, dict) or message.get("jsonrpc") != "2.0":
         raise ValueError("not a JSON-RPC 2.0 message")
     return message
-
 
 def check_initialize(result, version=PROTOCOL_VERSION):
     if result.get("protocolVersion") != version:

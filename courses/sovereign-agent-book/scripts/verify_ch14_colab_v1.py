@@ -176,6 +176,13 @@ def verify():
                 cells(select(repaired(students[1], solutions[1]), relative), namespace_b)
                 check_result(namespace_b, True)
             assert namespace_b["HANDOFF_ORIGIN"] == "LEARNER_SELECTED"
+            for parse in (namespace_a["parse_frame"], namespace_b["parse_frame"]):
+                for invalid_frame in (b'{"jsonrpc":"2.0","id":1,"result":{"x":NaN}}',
+                                      b'{"jsonrpc":"2.0","id":1,"result":{"x":Infinity}}',
+                                      '{"jsonrpc":"2.0","id":1,"result":{}}'.encode("utf-16"),
+                                      b'\xff', b'[]', b'not JSON'):
+                    expect_failure(lambda: parse(invalid_frame), "non-UTF-8/non-JSON frame accepted")
+                assert parse(b'{"jsonrpc":"2.0","id":1,"result":{"text":"NaN"}}')["result"] == {"text": "NaN"}
             for invalid_args in ({3: "x"}, {"extra": object()}, {"extra": [float("inf")]}, {"extra": {1, 2}}):
                 expect_failure(lambda: namespace_b["require_teaching_schema"]({"type": "object", "properties": {}}, invalid_args), "non-JSON argument accepted")
             for invalid_catalog in ({"tools": [{"name": "x", "inputSchema": {"type": "array"}}]},
@@ -238,11 +245,19 @@ def verify():
         os.chdir(initial_cwd)
 
 
-def record_kernels():
+def check_kernels(*, record=False):
     import verify_course_v1 as course
     assert sys.version_info[:2] == (3, 12), "receipt is recorded on pinned Python3.12"
     rows = [course.execute_one(p) for p in paths("exercises") + paths("solutions")]
     handoff = course.execute_handoff(14)
+    if not record:
+        course.verify_receipt()
+        receipt = json.loads(course.RECEIPT.read_text())
+        expected = {(r["id"], r["asset"]): r for r in receipt["notebooks"] if r["id"].startswith("ch14-")}
+        assert all(expected[(r["id"], r["asset"])] == r for r in rows)
+        assert handoff in receipt["handoffs"]
+        print("PASS Chapter14 fresh/replay kernels use the actual Python3.12 receipt interpreter; receipt unchanged")
+        return
     prior_path = ROOT / "docs/evidence/book-four-assets/verification-v6.json"
     prior = json.loads(prior_path.read_text())
     for row in prior["notebooks"]:
@@ -266,7 +281,10 @@ def record_kernels():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--record-kernels", action="store_true")
+    parser.add_argument("--check-kernels", action="store_true")
     args = parser.parse_args()
+    if args.record_kernels and args.check_kernels:
+        parser.error("choose record or check")
     verify()
-    if args.record_kernels:
-        record_kernels()
+    if args.record_kernels or args.check_kernels:
+        check_kernels(record=args.record_kernels)

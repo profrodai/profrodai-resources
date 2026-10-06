@@ -111,16 +111,16 @@ class FrameReader:
         return lines
 
 
-def parse_frame(line: bytes) -> dict[str, Any]:
-    """A frame must be one JSON-RPC 2.0 object; anything else is a protocol error, not a log."""
+def parse_frame(line):
+    def reject_constant(value):
+        raise ValueError(f"non-JSON constant {value}")
     try:
-        message = json.loads(line)
+        message = json.loads(line.decode("utf-8"), parse_constant=reject_constant)
     except (ValueError, UnicodeDecodeError) as error:
-        raise ValueError(f"malformed frame: {line[:60]!r}") from error
+        raise ValueError(f"malformed UTF-8 JSON frame: {line[:60]!r}") from error
     if not isinstance(message, dict) or message.get("jsonrpc") != "2.0":
         raise ValueError("not a JSON-RPC 2.0 message")
     return message
-
 
 def answer_for(request_id, message):
     """Accept only our response; a notification answers no request."""
@@ -321,6 +321,9 @@ class StdioClient:
         to exit; then end its whole process group, first with SIGTERM and then with SIGKILL, so
         neither a hung server nor a grandchild it started outlives the client. Returns the
         server's exit status: 0 for a clean exit, a negative signal number otherwise."""
+        if self.state == "CLOSED":
+            return self.process.returncode
+        self.state = "CLOSED"
         if self.process.stdin:
             self.process.stdin.close()
         try:
