@@ -54,6 +54,8 @@ guides for a class. They build, piece by piece, the finished agent in
 
 ## Start here: your first exercise in five minutes
 
+For the agent-routing lab, [replay constructed scores and inspect Jev's typed interface](articles/when-should-an-always-on-agent-wake-up/README.md). It needs only Python 3.10+: no model download, GPU or API key. Its counterexample tests the routing policy and accounting, rather than measuring a model.
+
 ### What you need
 
 - A computer with a terminal.

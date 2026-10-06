@@ -2,9 +2,13 @@
 
 ORDER_API_DIR := courses/agentic-coding-with-cursor/order-api
 
-verify: ci-trust-check format-check lint colab catalog consolidation curriculum curriculum-contract curriculum-maintenance
+verify: ci-trust-check format-check lint colab catalog consolidation curriculum curriculum-contract curriculum-maintenance jev-routing
 
-verify-pr: ci-trust-check format-check lint colab catalog-structure consolidation curriculum-pr curriculum-contract curriculum-maintenance
+verify-pr: ci-trust-check format-check lint colab catalog-structure consolidation curriculum-pr curriculum-contract curriculum-maintenance jev-routing
+
+.PHONY: jev-routing
+jev-routing:
+	python3 articles/when-should-an-always-on-agent-wake-up/verify_lab_v1.py
 
 # Every notebook and course Python file must run on Google Colab's Python; standard library only.
 colab:

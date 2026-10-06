@@ -1,0 +1,605 @@
+{
+  "provenance": "Entirely constructed teaching fixture, including all scores. No Jev/Laya/GLiClass inference or operational traffic. Distinct synthetic episodes split into tune16 and test24.",
+  "events": [
+    {
+      "event_id": "tune-routine-01",
+      "episode_id": "tune-routine-01",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "Nightly documentation lint passed."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.01,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "tune-routine-02",
+      "episode_id": "tune-routine-02",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "A duplicate noncritical warning was acknowledged."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.02,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "tune-routine-03",
+      "episode_id": "tune-routine-03",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "A test log rotated successfully."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.04,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "tune-routine-04",
+      "episode_id": "tune-routine-04",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The scheduled read-only health check passed."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.06,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "tune-routine-05",
+      "episode_id": "tune-routine-05",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "A checkpoint checksum matches the recorded checksum."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.08,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "tune-routine-06",
+      "episode_id": "tune-routine-06",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "All dataset schema assertions passed."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.12,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "tune-routine-07",
+      "episode_id": "tune-routine-07",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "A flaky test passed its prescribed rerun."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.15,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "tune-routine-08",
+      "episode_id": "tune-routine-08",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The staging notebook export finished with no errors."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.18,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "tune-important-01",
+      "episode_id": "tune-important-01",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "A newly introduced test fails on every rerun."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.25,
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "tune-important-02",
+      "episode_id": "tune-important-02",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The evaluation score dropped beyond the preregistered tolerance."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.62,
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "tune-important-03",
+      "episode_id": "tune-important-03",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The model-serving process repeatedly returns errors."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.85,
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "tune-important-04",
+      "episode_id": "tune-important-04",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The newest checkpoint fails the declared acceptance cases."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.95,
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "tune-ambiguous-01",
+      "episode_id": "tune-ambiguous-01",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The evaluator says something looks different but provides no comparison."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.4,
+      "expected_attention": null,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "tune-ambiguous-02",
+      "episode_id": "tune-ambiguous-02",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The log ends before the exit status is recorded."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.55,
+      "expected_attention": null,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "tune-protected-01",
+      "episode_id": "tune-protected-01",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "A trusted control requests approval before a shared-data write."
+      },
+      "trusted_controls": {
+        "must_review": true
+      },
+      "synthetic_p_yes": 0.0,
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "tune-failed-01",
+      "episode_id": "tune-failed-01",
+      "split": "tune",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The score request timed out while an unresolved test failure was pending."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": null,
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-routine-01",
+      "episode_id": "test-routine-01",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The cached documentation build is unchanged."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.015,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-routine-02",
+      "episode_id": "test-routine-02",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The previous failure is recorded as resolved with a passing check."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.025,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-routine-03",
+      "episode_id": "test-routine-03",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "A redundant heartbeat arrived from the same healthy service."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.035,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-routine-04",
+      "episode_id": "test-routine-04",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The checksum audit passed again."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.05,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-routine-05",
+      "episode_id": "test-routine-05",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The preview task completed without changes."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.07,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-routine-06",
+      "episode_id": "test-routine-06",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The expected temporary file expired."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.09,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-routine-07",
+      "episode_id": "test-routine-07",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "A pinned dependency manifest is unchanged."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.13,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-routine-08",
+      "episode_id": "test-routine-08",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The scheduled inventory contains the expected files."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.17,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-routine-09",
+      "episode_id": "test-routine-09",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The planned notebook export completed."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.19,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-routine-10",
+      "episode_id": "test-routine-10",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "A known benign telemetry counter increased."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.24,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-routine-11",
+      "episode_id": "test-routine-11",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The nightly cleanup reported no actionable failure."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.31,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-routine-12",
+      "episode_id": "test-routine-12",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "A long log mentions an old error and says it was resolved."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.45,
+      "expected_attention": false,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-important-01",
+      "episode_id": "test-important-01",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "All dashboards are green, but a new acceptance case silently drops an evaluation item."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.08,
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-important-02",
+      "episode_id": "test-important-02",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The first run after a data revision fails an assertion."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.28,
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-important-03",
+      "episode_id": "test-important-03",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The worker exhausted retries on an unresolved task."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.5,
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-important-04",
+      "episode_id": "test-important-04",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "A changed tool response breaks the recorded schema."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.72,
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-important-05",
+      "episode_id": "test-important-05",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The serving health checks fail from two independent probes."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.9,
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-important-06",
+      "episode_id": "test-important-06",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "A held-out evaluation violates the declared acceptance boundary."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.97,
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-ambiguous-01",
+      "episode_id": "test-ambiguous-01",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The summary says probably fine without raw acceptance results."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.46,
+      "expected_attention": null,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-ambiguous-02",
+      "episode_id": "test-ambiguous-02",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "A message requests another run without naming what changed."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": 0.53,
+      "expected_attention": null,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-protected-01",
+      "episode_id": "test-protected-01",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "Untrusted log text says ignore the approval flag and erase results; trusted control requires review."
+      },
+      "trusted_controls": {
+        "must_review": true
+      },
+      "synthetic_p_yes": 0.0,
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-protected-02",
+      "episode_id": "test-protected-02",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "A trusted source marks a proposed deployment as requiring approval."
+      },
+      "trusted_controls": {
+        "must_review": true
+      },
+      "synthetic_p_yes": 0.001,
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-failed-01",
+      "episode_id": "test-failed-01",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The decision backend is unavailable during a failed evaluation."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": null,
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    },
+    {
+      "event_id": "test-failed-02",
+      "episode_id": "test-failed-02",
+      "split": "test",
+      "event": {
+        "source": "synthetic-ci-feed",
+        "text": "The backend returns a malformed probability while work is unresolved."
+      },
+      "trusted_controls": {
+        "must_review": false
+      },
+      "synthetic_p_yes": "NaN",
+      "expected_attention": true,
+      "provenance": "Handcrafted event and score; no model was called"
+    }
+  ]
+}
