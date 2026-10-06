@@ -1,0 +1,267 @@
+{
+ "experiment": "train-a-tiny-gpt-on-colab v1 (feasibility pilot P1), Colab run",
+ "ranOn": [
+  "2026-10-03"
+ ],
+ "environment": {
+  "device": "Tesla T4",
+  "nvidiaSmi": "Tesla T4, 580.82.07, 15360 MiB",
+  "cuda": "13.0",
+  "cudnn": 92700,
+  "torch": "2.11.0+cu130",
+  "tokenizers": "0.23.2",
+  "python": "3.13.15",
+  "cpuCount": 2,
+  "preset": "default",
+  "startedUtc": "2026-10-03T01:49:53Z"
+ },
+ "prepareMinutes": 1.1,
+ "preset": "default",
+ "model": {
+  "config": {
+   "vocab_size": 4096,
+   "block_size": 256,
+   "n_layer": 6,
+   "n_head": 6,
+   "n_embd": 384,
+   "bug": "none"
+  },
+  "params": 12318720,
+  "flopsPerToken": 80216064,
+  "train": {
+   "batch_size": 32,
+   "steps": 1000,
+   "max_lr": 0.001,
+   "min_lr": 0.0001,
+   "warmup_steps": 100,
+   "weight_decay": 0.1,
+   "betas": [
+    0.9,
+    0.95
+   ],
+   "grad_clip": 1.0,
+   "eval_every": 50,
+   "eval_batches": 20
+  }
+ },
+ "dataset": {
+  "revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64",
+  "license": "CDLA-Sharing-1.0",
+  "train": "1cc02c697e13d5e4b1d39e3dc9c35274fbf5abe474d3f2ecfc8445bc3a30982a",
+  "valid": "6874bae9a4c1a4e7edcf0e53b86c17817e9cf881fc75ff2368da457b80c0585d",
+  "tokenizerSha256": "d3336651ba01d5da2e3f1803e25fd2a16aa87efd46b0bd358ffb498c3a9e3718"
+ },
+ "minutesPerRun": {
+  "healthy-none-s0": 4.55,
+  "healthy-none-s1": 4.74,
+  "healthy-none-s2": 4.73,
+  "healthy-none-s3": 4.73,
+  "healthy-none-s4": 4.73,
+  "bug-no_causal_mask-s10": 4.63,
+  "bug-no_causal_mask-s11": 4.63,
+  "bug-no_causal_mask-s12": 4.63,
+  "bug-softmax_wrong_dim-s10": 4.82,
+  "bug-softmax_wrong_dim-s11": 4.82,
+  "bug-softmax_wrong_dim-s12": 4.82,
+  "bug-no_zero_grad-s10": 4.74,
+  "bug-no_zero_grad-s11": 4.72,
+  "bug-no_zero_grad-s12": 4.75,
+  "control-none-s10": 4.75,
+  "control-none-s11": 4.74,
+  "control-none-s12": 4.75
+ },
+ "totalRunMinutes": 80.3,
+ "sectionMinutes": {
+  "A": 5.77,
+  "B": 18.95,
+  "C": 42.6,
+  "D": 14.26
+ },
+ "initialLoss": {
+  "lnV": 8.317766166719343,
+  "measured": {
+   "0": 8.400559234619141,
+   "1": 8.409588623046876,
+   "2": 8.391336059570312,
+   "3": 8.396310424804687,
+   "4": 8.398218536376953
+  },
+  "logitSd": {
+   "0": 0.3932192623615265,
+   "1": 0.3912598788738251,
+   "2": 0.39256805181503296,
+   "3": 0.3918747305870056,
+   "4": 0.3924655318260193
+  },
+  "predicted": {
+   "0": 8.395076860865414,
+   "1": 8.394308313127523,
+   "2": 8.394821004372268,
+   "3": 8.394549068955662,
+   "4": 8.394780763555083
+  }
+ },
+ "bugs": {
+  "no_causal_mask": {
+   "caught": 3,
+   "of": 3,
+   "flagSteps": [
+    100,
+    100,
+    200
+   ],
+   "sides": [
+    "below"
+   ],
+   "perSeed": [
+    {
+     "seed": 10,
+     "flag": {
+      "step": 200,
+      "side": "below"
+     },
+     "finalValLoss": 0.015623937547206878,
+     "finalOutsidePi": true,
+     "divergedAtStep": null
+    },
+    {
+     "seed": 11,
+     "flag": {
+      "step": 100,
+      "side": "below"
+     },
+     "finalValLoss": 0.015772706270217894,
+     "finalOutsidePi": true,
+     "divergedAtStep": null
+    },
+    {
+     "seed": 12,
+     "flag": {
+      "step": 100,
+      "side": "below"
+     },
+     "finalValLoss": 0.015944956243038176,
+     "finalOutsidePi": true,
+     "divergedAtStep": null
+    }
+   ]
+  },
+  "softmax_wrong_dim": {
+   "caught": 3,
+   "of": 3,
+   "flagSteps": [
+    200,
+    200,
+    200
+   ],
+   "sides": [
+    "below"
+   ],
+   "perSeed": [
+    {
+     "seed": 10,
+     "flag": {
+      "step": 200,
+      "side": "below"
+     },
+     "finalValLoss": 0.033190056681632996,
+     "finalOutsidePi": true,
+     "divergedAtStep": null
+    },
+    {
+     "seed": 11,
+     "flag": {
+      "step": 200,
+      "side": "below"
+     },
+     "finalValLoss": 0.03438784182071686,
+     "finalOutsidePi": true,
+     "divergedAtStep": null
+    },
+    {
+     "seed": 12,
+     "flag": {
+      "step": 200,
+      "side": "below"
+     },
+     "finalValLoss": 0.03401603102684021,
+     "finalOutsidePi": true,
+     "divergedAtStep": null
+    }
+   ]
+  },
+  "no_zero_grad": {
+   "caught": 3,
+   "of": 3,
+   "flagSteps": [
+    50,
+    50,
+    100
+   ],
+   "sides": [
+    "above"
+   ],
+   "perSeed": [
+    {
+     "seed": 10,
+     "flag": {
+      "step": 100,
+      "side": "above"
+     },
+     "finalValLoss": 2.854418182373047,
+     "finalOutsidePi": true,
+     "divergedAtStep": null
+    },
+    {
+     "seed": 11,
+     "flag": {
+      "step": 50,
+      "side": "above"
+     },
+     "finalValLoss": 2.8520696640014647,
+     "finalOutsidePi": true,
+     "divergedAtStep": null
+    },
+    {
+     "seed": 12,
+     "flag": {
+      "step": 50,
+      "side": "above"
+     },
+     "finalValLoss": 2.8962291717529296,
+     "finalOutsidePi": true,
+     "divergedAtStep": null
+    }
+   ]
+  }
+ },
+ "againstRecordedBand": [
+  {
+   "seed": 0,
+   "flagAgainstRecordedBand": null,
+   "finalInsideRecordedPi": true
+  },
+  {
+   "seed": 1,
+   "flagAgainstRecordedBand": null,
+   "finalInsideRecordedPi": true
+  },
+  {
+   "seed": 2,
+   "flagAgainstRecordedBand": null,
+   "finalInsideRecordedPi": true
+  },
+  {
+   "seed": 3,
+   "flagAgainstRecordedBand": null,
+   "finalInsideRecordedPi": true
+  },
+  {
+   "seed": 4,
+   "flagAgainstRecordedBand": null,
+   "finalInsideRecordedPi": true
+  }
+ ],
+ "costUsd": 0.0,
+ "costNote": "0 on the free Colab tier; if this ran on paid compute units, say how many."
+}

@@ -1,0 +1,330 @@
+{
+  "siteRepo": "rodriveracom/profrod-site",
+  "siteCommit": "4e94ee7727c4183fc7530bee1ebf2ce56f67cf1c",
+  "font": {
+    "name": "Routed Gothic",
+    "sha256": "0bb69e4a35bffae221e576957b70735e5eee819d9141781eb4cb79042e8e4c33",
+    "license": "SIL Open Font License 1.1; see Routed-Gothic-OFL.txt"
+  },
+  "sharedSources": [
+    {
+      "file": "src/widgets/training/measured.ts",
+      "sha256": "b75a2836a734270e2cc8f47d336c4f0a2deafb644fcd27724e24f1fe3593ea41"
+    },
+    {
+      "file": "src/widgets/training/AttentionBoundary.tsx",
+      "sha256": "423e122ad64581117d28ee7e35e091e066914260817fe26fe9c165d7c9a20f0f"
+    },
+    {
+      "file": "src/widgets/training/attentionModel.ts",
+      "sha256": "1b5f11047cff6ce3334951510defce7a52549f47b23d53e18f9d64f7ece37cc0"
+    },
+    {
+      "file": "src/widgets/training/DpoMargin.tsx",
+      "sha256": "27fc423644a8b3567e2027da38d750b154fc3f081215ef6d5cc92d7c81e8077f"
+    },
+    {
+      "file": "src/widgets/training/dpoModel.ts",
+      "sha256": "a8c789ba0da0d86349b3f09694c40e0591d200dcead3cb08b4b1a2bed779cd7c"
+    },
+    {
+      "file": "src/widgets/training/TrainingCurves.tsx",
+      "sha256": "ae32fbf3bdcfcbeff47628254128968b6f68df381370c3abcfaec667611f141f"
+    },
+    {
+      "file": "src/widgets/training/PairedSeeds.tsx",
+      "sha256": "f619f1764b3331a40a26684df59348bb3dc44df6b3a7337a30908ab542363683"
+    },
+    {
+      "file": "src/widgets/training/PairedIntervals.tsx",
+      "sha256": "78e031ff771a3cbf6eb4ba24135fb47fa72876e8eed57869da7352a91aa28a64"
+    },
+    {
+      "file": "src/widgets/training/PredictionInterval.tsx",
+      "sha256": "90db687a427d9734c3701620dab40a86e30f393ad2a1028caa4642cd2546cfc3"
+    },
+    {
+      "file": "src/widgets/training/FigureShell.tsx",
+      "sha256": "3ec336cd28f113c1a3d36e2d6cdccad564b4d1810576a2efde13dd63d816ee6d"
+    },
+    {
+      "file": "src/widgets/chalkboard/chalk.tsx",
+      "sha256": "2b52a2c31b667b28f41a0b2888a564583d599d2585bf940b27458a0527177815"
+    },
+    {
+      "file": "src/widgets/chalkboard/RasterFigure.tsx",
+      "sha256": "c1ed18ec6ba13bce7cfb45e60c5d27cee5b3b2d3a63870b463ba145f16e59937"
+    },
+    {
+      "file": "src/widgets/chalkboard/chalkTokens.ts",
+      "sha256": "5e26800ed3dd14fc8790446124f1f150dce3ca5fe98dccb6e74d0e64a82e9f5a"
+    },
+    {
+      "file": "src/components/content/ProfrodMark.tsx",
+      "sha256": "512abf872dea36cfa6b6ef8a8ab59d8c38ab7d2799eb70fba7c6f831817b4955"
+    },
+    {
+      "file": "src/lib/diagrams/diagramSource.mjs",
+      "sha256": "7bcbf5442d353a925a5f633ef0190bf8383f94290291af4115a57e31d45ce8b2"
+    },
+    {
+      "file": "src/diagrams/profrod-mark.json",
+      "sha256": "0b4699b5abb469cbf61964581973b7a0a08749f74cc692d7d4a1d4e0071cbe65"
+    }
+  ],
+  "rendererSources": [
+    {
+      "file": "scripts/render-figure-webp-v1.mjs",
+      "sha256": "f5466fd17ab5aeea4599adf7d71bfa92793a9008a6afe0cf7b9bf8bd5f36b8c2"
+    },
+    {
+      "file": "scripts/figures/browser-v1.mjs",
+      "sha256": "97d6419af0921ee741baed6a06e690830d1e476ab5587a36aeafd2876a6cfc2e"
+    },
+    {
+      "file": "scripts/figures/label-bounds-v1.mjs",
+      "sha256": "ec2f7f9eebf42a0ae79a1fd10d34c9c941f14fc16a7af1fe11f4f1951243a288"
+    },
+    {
+      "file": "public/fonts/routed-gothic/routed-gothic.ttf",
+      "sha256": "0bb69e4a35bffae221e576957b70735e5eee819d9141781eb4cb79042e8e4c33"
+    }
+  ],
+  "figures": [
+    {
+      "name": "tinygpt-attention",
+      "key": "bbf8f18b3d7f79df",
+      "sourceSvgSha256": "cfe01eab19768e310f8a8e9eada086eed190d27ed5a5f84ff16f5106380c1988",
+      "artifacts": [
+        {
+          "file": "tinygpt-attention-w320.webp",
+          "width": 320,
+          "height": 256,
+          "bytes": 7910,
+          "sha256": "634c2bd5e144bd43a03dfc15f0f2291406e618c8145bffb8fc161eba6f377560"
+        },
+        {
+          "file": "tinygpt-attention-w640.webp",
+          "width": 640,
+          "height": 512,
+          "bytes": 20768,
+          "sha256": "dee83b29768dda63d53806f89af9b0d8eb6f356914624d4b500801b812a5c019"
+        },
+        {
+          "file": "tinygpt-attention-w960.webp",
+          "width": 960,
+          "height": 768,
+          "bytes": 44252,
+          "sha256": "cae043fbaa429f66094002dcb6833d521e538c2017a002c47b55fb9d1ebdf911"
+        },
+        {
+          "file": "tinygpt-attention-w1520.webp",
+          "width": 1520,
+          "height": 1216,
+          "bytes": 85076,
+          "sha256": "4a3df2cef375d969d1b56bf05218084797f303164344fb5e0a5af41610e12efb"
+        }
+      ],
+      "receiptSha256": "6bfcbf9ad1897b30f54eb88650f95624e1e106af00f179de2d41284ea2fe6541",
+      "component": "tinygpt-attention",
+      "contextFile": "tinygpt-attention.html",
+      "contextSha256": "c2d9894668e937e3315d7573db4205500b57d73c3cb2d481dcf34e5bec9adb11"
+    },
+    {
+      "name": "tinygpt-curves-healthy",
+      "key": "384f137433c2574e",
+      "sourceSvgSha256": "36fce9ea230c0751ad9a7c4b136a1d2b79a2e9addd587d368e4628fdbacdc8ed",
+      "artifacts": [
+        {
+          "file": "tinygpt-curves-healthy-w320.webp",
+          "width": 320,
+          "height": 229,
+          "bytes": 5702,
+          "sha256": "987a645f5561946b891e1c9d924b9d9f6e2186e1e68a0ac50701a60d83279772"
+        },
+        {
+          "file": "tinygpt-curves-healthy-w640.webp",
+          "width": 640,
+          "height": 459,
+          "bytes": 16270,
+          "sha256": "082ed5523eda4b81bd37a7db12526eda3d089dcac6b50f9a8cc6d6a26f887cb4"
+        },
+        {
+          "file": "tinygpt-curves-healthy-w960.webp",
+          "width": 960,
+          "height": 688,
+          "bytes": 32414,
+          "sha256": "f13c6fd826f51155cdd1e5f1b735ffd8efa1a1b0c82705e9cc88a500698d71bf"
+        },
+        {
+          "file": "tinygpt-curves-healthy-w1520.webp",
+          "width": 1520,
+          "height": 1089,
+          "bytes": 69890,
+          "sha256": "fef3008563a3b028c0f684e317b788028993bf6d9ec2e64d9c628667cb161a57"
+        }
+      ],
+      "receiptSha256": "6bfcbf9ad1897b30f54eb88650f95624e1e106af00f179de2d41284ea2fe6541",
+      "component": "tinygpt-curves",
+      "contextFile": "tinygpt-curves.html",
+      "contextSha256": "5b6a96ee75fe322d9c75653728224313b2e5c68beb79908e737dcf5db2480efa"
+    },
+    {
+      "name": "tinygpt-curves-no-causal-mask",
+      "key": "11eedd974b4c9eaf",
+      "sourceSvgSha256": "244c363ac26eb44d2644e5c93c487e7db955c4b7142b5afda5976edba6f6a6c1",
+      "artifacts": [
+        {
+          "file": "tinygpt-curves-no-causal-mask-w320.webp",
+          "width": 320,
+          "height": 229,
+          "bytes": 6196,
+          "sha256": "287074e0b6786588065505e021be3cd0a7f90221528125fe816c43057c77b249"
+        },
+        {
+          "file": "tinygpt-curves-no-causal-mask-w640.webp",
+          "width": 640,
+          "height": 459,
+          "bytes": 16906,
+          "sha256": "779b859b39ac489d1dd48e3211bdc51e1c593063da36be30cba5fc6d60014e86"
+        },
+        {
+          "file": "tinygpt-curves-no-causal-mask-w960.webp",
+          "width": 960,
+          "height": 688,
+          "bytes": 33762,
+          "sha256": "596cbb60712c5d71d444b265f7be43add8b136e3316f440438df456202c656e7"
+        },
+        {
+          "file": "tinygpt-curves-no-causal-mask-w1520.webp",
+          "width": 1520,
+          "height": 1089,
+          "bytes": 71488,
+          "sha256": "305096ace012ac0d195972b40c26945b05856f7b6ede818cabc074c57b27fdc4"
+        }
+      ],
+      "receiptSha256": "6bfcbf9ad1897b30f54eb88650f95624e1e106af00f179de2d41284ea2fe6541",
+      "component": "tinygpt-curves",
+      "contextFile": "tinygpt-curves.html",
+      "contextSha256": "5b6a96ee75fe322d9c75653728224313b2e5c68beb79908e737dcf5db2480efa"
+    },
+    {
+      "name": "tinygpt-curves-softmax-wrong-dim",
+      "key": "ea7bd2925ed910d4",
+      "sourceSvgSha256": "39c575d4f0f66980d882d15a7bff19bba4b076107457e36a8576c12471f7d8a5",
+      "artifacts": [
+        {
+          "file": "tinygpt-curves-softmax-wrong-dim-w320.webp",
+          "width": 320,
+          "height": 229,
+          "bytes": 6308,
+          "sha256": "a3ce043d8fe39ccf96cb97b32ce41425d41bfe1c8ddf2876ff983c2ecee738d9"
+        },
+        {
+          "file": "tinygpt-curves-softmax-wrong-dim-w640.webp",
+          "width": 640,
+          "height": 459,
+          "bytes": 17384,
+          "sha256": "d1632960be8301ec1d986138f584fe1ac3810c9709958079fb9ec08af36a0589"
+        },
+        {
+          "file": "tinygpt-curves-softmax-wrong-dim-w960.webp",
+          "width": 960,
+          "height": 688,
+          "bytes": 35258,
+          "sha256": "ad102e4c9231d60b6281bd26cfde08e922fbb3c072d2dda54090c3e1c70b6e74"
+        },
+        {
+          "file": "tinygpt-curves-softmax-wrong-dim-w1520.webp",
+          "width": 1520,
+          "height": 1089,
+          "bytes": 73108,
+          "sha256": "8990ea0f3f669beaa6c6e0e272ad2a8002503fb9269e3a36889497326bc9ad1f"
+        }
+      ],
+      "receiptSha256": "6bfcbf9ad1897b30f54eb88650f95624e1e106af00f179de2d41284ea2fe6541",
+      "component": "tinygpt-curves",
+      "contextFile": "tinygpt-curves.html",
+      "contextSha256": "5b6a96ee75fe322d9c75653728224313b2e5c68beb79908e737dcf5db2480efa"
+    },
+    {
+      "name": "tinygpt-curves-no-zero-grad",
+      "key": "c53e535135a13ab5",
+      "sourceSvgSha256": "ddb16a849c8908d40ecc8330ed6032dfd8ba6e2d90e3a63567844aad5378b692",
+      "artifacts": [
+        {
+          "file": "tinygpt-curves-no-zero-grad-w320.webp",
+          "width": 320,
+          "height": 229,
+          "bytes": 5962,
+          "sha256": "61a5e386453ec791797dc895ab4d85ae9a9cb5320d715c33104232e1c656e84c"
+        },
+        {
+          "file": "tinygpt-curves-no-zero-grad-w640.webp",
+          "width": 640,
+          "height": 459,
+          "bytes": 16614,
+          "sha256": "267ec6dc687bc7c4a2e1e922a9c19e672db0fbe1d2391c50873d8e17e3dae212"
+        },
+        {
+          "file": "tinygpt-curves-no-zero-grad-w960.webp",
+          "width": 960,
+          "height": 688,
+          "bytes": 32712,
+          "sha256": "b20a67d4862112412bd79a9d0d966aa7d3fd1ae6f2aa937b1d0b46459f9f4dac"
+        },
+        {
+          "file": "tinygpt-curves-no-zero-grad-w1520.webp",
+          "width": 1520,
+          "height": 1089,
+          "bytes": 70324,
+          "sha256": "6ff9fc895ddcef81cc25ee0f47e18a9285d31dd4c727c31ed11dfd55adc80876"
+        }
+      ],
+      "receiptSha256": "6bfcbf9ad1897b30f54eb88650f95624e1e106af00f179de2d41284ea2fe6541",
+      "component": "tinygpt-curves",
+      "contextFile": "tinygpt-curves.html",
+      "contextSha256": "5b6a96ee75fe322d9c75653728224313b2e5c68beb79908e737dcf5db2480efa"
+    },
+    {
+      "name": "tinygpt-intervals",
+      "key": "849cc21a19049c98",
+      "sourceSvgSha256": "293a8d72e56b4b53196d466d6b747a8bb766b31476facc2e8ffbdcfd6d1d110c",
+      "artifacts": [
+        {
+          "file": "tinygpt-intervals-w320.webp",
+          "width": 320,
+          "height": 242,
+          "bytes": 7624,
+          "sha256": "4f491eb49d2ec5e340a7d5df57ec4ffaa9353a1cb94867428cc617d013c929bb"
+        },
+        {
+          "file": "tinygpt-intervals-w640.webp",
+          "width": 640,
+          "height": 484,
+          "bytes": 23028,
+          "sha256": "6923e10956788e173e0664257eb44e91a834f63b9405e4f8bddfbdb12e570fc0"
+        },
+        {
+          "file": "tinygpt-intervals-w960.webp",
+          "width": 960,
+          "height": 726,
+          "bytes": 45338,
+          "sha256": "b4ff6659cfa7e9c8e4a3bb3f4299b6a09a264d5da8da97359eb3967aa559f518"
+        },
+        {
+          "file": "tinygpt-intervals-w1520.webp",
+          "width": 1520,
+          "height": 1149,
+          "bytes": 87416,
+          "sha256": "7ff602129015456e9e65d01b862aefe762d79c8f95daf7f8e1898fc5ba7d070b"
+        }
+      ],
+      "receiptSha256": "6bfcbf9ad1897b30f54eb88650f95624e1e106af00f179de2d41284ea2fe6541",
+      "component": "tinygpt-intervals",
+      "contextFile": "tinygpt-intervals.html",
+      "contextSha256": "f8559196828652a4f996936bcace6bf0fcc9f0d4006af26bf7fded2f29973929"
+    }
+  ],
+  "evidence": "Exact responsive WebP bytes delivered by the site, with adjacent HTML descriptions, legends and tables. .source.svg files are editable authoring sources, not the website image format. The attention and fixed-reference DPO examples are synthetic arithmetic, separate from the unchanged operator T4 receipts. Static controls are disabled in this export; no training, new measurement or publication is implied."
+}

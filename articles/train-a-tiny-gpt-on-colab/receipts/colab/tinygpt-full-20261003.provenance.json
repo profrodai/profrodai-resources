@@ -1,0 +1,238 @@
+{
+  "source": "Operator-identified downloaded Colab notebook receipt, October 3, 2026",
+  "sha256": "6bfcbf9ad1897b30f54eb88650f95624e1e106af00f179de2d41284ea2fe6541",
+  "bytes": 36657,
+  "device": "Tesla T4",
+  "originalBytesPreserved": true,
+  "verification": {
+    "device": "Tesla T4",
+    "runCount": 17,
+    "referenceSeeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "bandRecomputedFromRawCurves": true,
+    "maximumAbsoluteBandDifference": 0.0,
+    "heldOutControls": [
+      {
+        "seed": 10,
+        "flag": null,
+        "finalValLoss": 2.2662403106689455,
+        "finalOutsidePi": false
+      },
+      {
+        "seed": 11,
+        "flag": null,
+        "finalValLoss": 2.256937599182129,
+        "finalOutsidePi": false
+      },
+      {
+        "seed": 12,
+        "flag": null,
+        "finalValLoss": 2.2565786361694338,
+        "finalOutsidePi": false
+      }
+    ],
+    "leaveOneOut": [
+      {
+        "seed": 0,
+        "flag": null
+      },
+      {
+        "seed": 1,
+        "flag": null
+      },
+      {
+        "seed": 2,
+        "flag": {
+          "step": 250,
+          "side": "below"
+        }
+      },
+      {
+        "seed": 3,
+        "flag": null
+      },
+      {
+        "seed": 4,
+        "flag": null
+      }
+    ],
+    "bugs": {
+      "no_causal_mask": [
+        {
+          "seed": 10,
+          "flag": {
+            "step": 200,
+            "side": "below"
+          },
+          "finalValLoss": 0.015623937547206878
+        },
+        {
+          "seed": 11,
+          "flag": {
+            "step": 100,
+            "side": "below"
+          },
+          "finalValLoss": 0.015772706270217894
+        },
+        {
+          "seed": 12,
+          "flag": {
+            "step": 100,
+            "side": "below"
+          },
+          "finalValLoss": 0.015944956243038176
+        }
+      ],
+      "softmax_wrong_dim": [
+        {
+          "seed": 10,
+          "flag": {
+            "step": 200,
+            "side": "below"
+          },
+          "finalValLoss": 0.033190056681632996
+        },
+        {
+          "seed": 11,
+          "flag": {
+            "step": 200,
+            "side": "below"
+          },
+          "finalValLoss": 0.03438784182071686
+        },
+        {
+          "seed": 12,
+          "flag": {
+            "step": 200,
+            "side": "below"
+          },
+          "finalValLoss": 0.03401603102684021
+        }
+      ],
+      "no_zero_grad": [
+        {
+          "seed": 10,
+          "flag": {
+            "step": 100,
+            "side": "above"
+          },
+          "finalValLoss": 2.854418182373047
+        },
+        {
+          "seed": 11,
+          "flag": {
+            "step": 50,
+            "side": "above"
+          },
+          "finalValLoss": 2.8520696640014647
+        },
+        {
+          "seed": 12,
+          "flag": {
+            "step": 50,
+            "side": "above"
+          },
+          "finalValLoss": 2.8962291717529296
+        }
+      ]
+    },
+    "excludingStep0Exploratory": {
+      "no_causal_mask": [
+        {
+          "seed": 10,
+          "flag": {
+            "step": 200,
+            "side": "below"
+          }
+        },
+        {
+          "seed": 11,
+          "flag": {
+            "step": 100,
+            "side": "below"
+          }
+        },
+        {
+          "seed": 12,
+          "flag": {
+            "step": 100,
+            "side": "below"
+          }
+        }
+      ],
+      "softmax_wrong_dim": [
+        {
+          "seed": 10,
+          "flag": {
+            "step": 200,
+            "side": "below"
+          }
+        },
+        {
+          "seed": 11,
+          "flag": {
+            "step": 200,
+            "side": "below"
+          }
+        },
+        {
+          "seed": 12,
+          "flag": {
+            "step": 200,
+            "side": "below"
+          }
+        }
+      ],
+      "no_zero_grad": [
+        {
+          "seed": 10,
+          "flag": {
+            "step": 100,
+            "side": "above"
+          }
+        },
+        {
+          "seed": 11,
+          "flag": {
+            "step": 100,
+            "side": "above"
+          }
+        },
+        {
+          "seed": 12,
+          "flag": {
+            "step": 100,
+            "side": "above"
+          }
+        }
+      ]
+    },
+    "healthyFinal": {
+      "values": [
+        2.2615570068359374,
+        2.272551918029785,
+        2.2591621398925783,
+        2.269850158691406,
+        2.2627447128295897
+      ],
+      "mean": 2.265173187255859,
+      "sd": 0.005732073554026499,
+      "ci95": [
+        2.2580558778887685,
+        2.27229049662295
+      ],
+      "pi95": [
+        2.247739410964956,
+        2.2826069635467623
+      ],
+      "interval": "Student t, n - 1 = 4 degrees of freedom"
+    },
+    "remainingGap": "No P1 control/band gap remains. Recalculation checks internal consistency, not independent observation of Colab execution."
+  },
+  "relationship": "Complements the immutable partial console export and historical MPS receipts. Recalculation establishes internal consistency, not independent observation of execution."
+}

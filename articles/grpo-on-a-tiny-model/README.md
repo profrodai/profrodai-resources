@@ -6,7 +6,7 @@ The measured run behind https://profrod.ai/articles/grpo-on-a-tiny-model (feasib
 
 GRPO is written here in plain PyTorch: group-relative advantages, the clipped ratio and a KL penalty to the reference model, each derived in the comments of `grpo_core_v1.py`. `transformers` only loads the model. It runs on small open models with no API key, on a free Colab T4 or a laptop GPU.
 
-**Where the numbers come from.** Every number below was measured on a local Apple M4 Pro GPU (MPS) on 2026-10-02 and is recorded in `results/`. The Mac was shared: other sessions' test suites and two other pilots' training runs used the same CPU and GPU. Accuracies, intervals and paired tests do not depend on that. Timings do, so local timings are **indicative only (shared machine; the load average at each run's start and end is in its `results/run-*.json`, between 1.0 and 28.0)**. The T4 timings will come from the operator's Colab receipt.
+**Where the numbers come from.** Every number in the original benchmark sections below was measured on a local Apple M4 Pro GPU (MPS) on 2026-10-02 and is recorded in `results/`. The Mac was shared: other sessions' test suites and two other pilots' training runs used the same CPU and GPU. Accuracies, intervals and paired tests do not depend on that. Timings do, so local timings are **indicative only (shared machine; the load average at each run's start and end is in its `results/run-*.json`, between 1.0 and 28.0)**. The separate October 3 T4 receipt and comparison are appended at the end; the original MPS observations remain unchanged.
 
 ## What was found
 
@@ -161,3 +161,21 @@ The ladder and dev sweep runs are the same `train` command with `--task`, `--lr`
 - 30 steps of 64 rollouts is a small run. The gains are measured on 200 held-out items from the same generator as training: in-distribution, not transfer.
 - MPS sampling is not bit-reproducible across machines. A seed fixes the prompts and their order, not every sampled token, so a rerun lands within the seed spread, not on the same number.
 - The settings were picked from one seed per setting on the dev set. The test-set confirmation guards against that, but the sweep was small.
+
+## Separate Colab T4 confirmation, October 3, 2026
+
+The operator's downloaded `receipts/colab/grpo-full-20261003.json` contains five strict-verifier seeds and **one** planted-verifier seed. It is a separate run on a Tesla T4 with Python 3.13.15 and torch 2.11.0+cu130. The original bytes and SHA-256 provenance are retained, including unavailable one-seed t intervals encoded as `NaN`. The T4 observations do not replace or extend the original three-seed MPS hack experiment above.
+
+Strict held-out accuracy starts at 103/200 (51.5%). The five strict runs finish at 77.5%, 83.5%, 76.0%, 78.0% and 79.0%: mean **78.8%**, with a 95% t interval across seeds of **75.27%–82.33%**. The seed-mean improvement over strict base accuracy is **27.3 percentage points** (95% t interval 23.77–30.83). Format-blind base accuracy is 63.0%; its mean improvement is 15.8 points (12.27–19.33). The trained strict and format-blind counts coincide for each seed; that does not mean every generated answer follows the format.
+
+In the single T4 planted run, the last-five-step training reward is **0.95625**, while the strict shadow score on those same rollouts is **0.240625**. The gap detector flags step **7**; more than half the answers become unparseable at step **8**. On 200 held-out items, the planted verifier pays **188** answers (94.0%), strict accuracy is **53** (26.5%), and format-blind accuracy is **133** (66.5%). It pays **55 numerically wrong** answers, and 67.5% of trained answers are unparseable. The paired strict change is −25 percentage points, with the receipt's item-bootstrap interval −33 to −17; this is one training seed, not evidence of cross-seed robustness.
+
+The six training runs take 36.28 minutes; the notebook's section timer records **40.43 minutes** including setup and evaluation overhead. Reported cost is **$0 USD** on the free Colab run, with no API calls. Memory entries use decimal GB as recorded. Raw per-item T4 evaluation files and complete rollout histories are not included in this download, so its paired bootstrap cannot be independently rerun from these summarized counts.
+
+Recompute count consistency, exact McNemar values and the seed-mean t intervals without a GPU or model download:
+
+```bash
+python grpo_colab_summary_v1.py
+```
+
+The next lesson will let you compare the same answer under strict and vulnerable verifiers. Before accepting a reward increase, predict whether the answer satisfies the requested number-only task. The T4 receipt establishes the measured gap; constructed parser examples explain the mechanism and will be labeled separately.

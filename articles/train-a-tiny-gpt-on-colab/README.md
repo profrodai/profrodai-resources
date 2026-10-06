@@ -1,8 +1,10 @@
 # Train a tiny GPT on Colab: a healthy band, then three planted bugs
 
+**Updated:** October 3, 2026. Teaching route v2 and separately attributed T4 console/full downloaded receipts added; historical MPS runs and notebook v1 retained.
+
 The measured run behind https://profrod.ai/articles/train-a-tiny-gpt-on-colab, and feasibility pilot P1 for the course "PyTorch Through Broken Training Runs".
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/articles/train-a-tiny-gpt-on-colab/train_tiny_gpt_v1.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/main/articles/train-a-tiny-gpt-on-colab/train_tiny_gpt_v3.ipynb)
 
 A small GPT in plain PyTorch (an `nn.Module`, an explicit training loop, AdamW, warmup then cosine decay, gradient clipping and checkpoints; no trainer library), trained on a pinned slice of TinyStories. The questions: what does a healthy run look like across seeds, and does that band catch three one-line bugs, and how early?
 
@@ -10,7 +12,8 @@ A small GPT in plain PyTorch (an `nn.Module`, an explicit training loop, AdamW, 
 
 - **Losses, seed bands and which bugs are caught** come from 20 local runs on an Apple M4 Pro GPU (MPS) and its CPU, on 2026-10-02. They do not depend on the machine's load.
 - **Local timings are indicative only:** a shared machine, with other sessions' test suites and browsers running, at a 1-minute load average of 1 to 35. Each run records its load at start and end.
-- **T4 and L4 numbers: not yet measured.** The operator runs `train_tiny_gpt_v1.ipynb` on Colab, and its receipt fills the slot at the end of this file. Until then the T4 time below is an estimate, with its basis stated.
+- **T4:** operator-supplied console export and full downloaded notebook receipt dated October 3, 2026, preserved verbatim under `receipts/colab/`. The full receipt supplies raw validation curves, the healthy band and control outcomes omitted from the console. Recomputing every band element, held-out/leave-one-out flag and planted-bug flag from its curves matches the reported values exactly. See the full receipt provenance file; this checks internal consistency rather than independently observing the Colab execution.
+- **L4:** no measured result is claimed. The earlier proposal included it; no additional hardware run is needed for the article's T4 feasibility claim.
 
 ## What was run
 
@@ -62,7 +65,7 @@ What the runs show:
 - **Two of the three bugs are leaks, and both look like success.** Without the mask, the loss hugs the lower edge of the band through step 100; two seeds sit just below it at steps 50 and 100, which is where the rule flags them. At step 150 it is 3.56 to 3.59, against a band floor of 3.62. By step 200 it falls to 0.30 to 0.33, and it ends near 0.016 nats per token, far below anything a 12M model can honestly reach on this data. The wrong-dim softmax is a quieter leak. Normalizing over queries lets later positions' scores into an earlier position's weights; `test_tinygpt_model_v1.py` shows that changing only the last token moves earlier logits. Its loss leaves the band at step 150 (3.48 to 3.52), is 2.86 to 2.95 at step 200 against a mean of 3.37, and ends at 0.033 to 0.035.
 - **The missing `zero_grad` looks like a slow learner.** It is above the band from the first evaluation after training starts (4.82 to 4.84 at step 50, against at most 4.66), and ends 0.60 nats behind (2.867 to 2.870). Clipping and Adam's normalization keep it from diverging, so it never produces a NaN that would announce itself.
 - **The step-0 band is too narrow for new seeds.** At step 0 the loss measures only the initialization, and the 5 healthy seeds happen to agree closely there (prediction band 8.3787 to 8.4197). The held-out seeds 11 and 12 start at 8.4227 and 8.4267 with no bug at all. The `no_zero_grad` runs share those initializations, so their step-50 flags for seeds 11 and 12 lean on that step-0 excursion. Leaving step 0 out of the rule (decided after seeing the data, so treat it as a proposal) changes only those two: all three `no_zero_grad` runs then flag at step 100, the leaks flag at the same steps, and the controls stay unflagged.
-- **The rule raised one false alarm in 8 healthy checks.** The leave-one-out band is built from 4 seeds, so it is narrower in places, and seed 2 sat below it at steps 200 and 250. All three bugs here end tens to hundreds of seed standard deviations from the healthy mean, so the rule catches them by step 200. A subtle bug that shifts the curve by about one seed standard deviation would sit inside the false-alarm rate. Separating those needs more seeds or a paired comparison on the same seed, which is course unit 9.
+- **The local held-out controls had 0 flags in 3 runs; leave-one-out had 1 flag in 5 checks.** These are different reference bands and overlapping calibration data, so do not pool them into an estimated false-alarm rate. The leave-one-out band is built from 4 seeds, and seed 2 sat below it at steps 200 and 250. All three bugs here end tens to hundreds of seed standard deviations from the healthy mean, so the rule catches them by step 200. A subtle bug that shifts the curve by about one seed standard deviation would sit inside the false-alarm rate. Separating those needs more seeds or a paired comparison on the same seed, which is course unit 9.
 
 ## Time and memory (indicative, shared machine)
 
@@ -77,14 +80,26 @@ The healthy runs took a median 0.233 to 0.298 s per step and reached 2.1 to 2.8 
 
 **T4 estimate (not measured).** One run is 7.5 × 10¹⁴ FLOPs: 6.6 × 10¹⁴ for 8.2M training tokens at 80.2M FLOPs each, plus 0.9 × 10¹⁴ for 21 evaluations. A T4's float32 peak is 8.1 TFLOP/s. Assuming it sustains 25% to 50% of that (2 to 4 TFLOP/s, which brackets the 2.1 to 2.8 TFLOP/s the M4 Pro reached on its fastest runs), one run takes **about 3 to 6 minutes**. The notebook's 14 runs then take about 45 to 90 minutes, including setup. The basis is float32 throughout; mixed precision would be faster, but it would change the numerics the band describes, and that belongs to course unit 5.
 
-## Colab: T4 and L4 (slot to fill)
+## T4 receipt, October 3, 2026
 
-Not yet run. The operator runs `train_tiny_gpt_v1.ipynb` from the badge above, on a T4 and on an L4. Each run produces `tinygpt-colab-receipt-<date>.json` with the device and driver, torch and CUDA versions, minutes per run, that GPU's own 5-seed band, the bugs it caught and when, and whether its healthy seeds fall inside the M4 Pro band above. Those receipts go in `receipts/colab/`, and their numbers replace the estimate above.
+Rod supplied a notebook console export, preserved as `receipts/colab/tinygpt-operator-console-20261003.json`. Its provenance file records the hash and the accompanying rounded healthy SUMMARY values. The 17 runs took about 80.3 minutes (4.55–4.82 each); data preparation took 1.1 minutes. Section timers sum to 81.58 minutes and include surrounding work and rounding. Do not combine those timers. Python 3.13.15, torch 2.11.0+cu130, Tesla T4; reported USD 0 on free Colab, no API calls.
 
-| GPU | Minutes per run | Tokens/s | Final validation loss (5 seeds) | Bugs caught | Inside the M4 Pro band? |
-|---|---|---|---|---|---|
-| T4 | not yet run | | | | |
-| L4 | not yet run | | | | |
+Each planted bug family was detected in all three tested seeds under this setup. By seed 10 / 11 / 12: no mask at 200 / 100 / 100; wrong softmax axis at 200 / 200 / 200; missing zero_grad at 100 / 50 / 50. Those results do not validate a general-purpose training-fault detector.
+
+**Band and controls:** local reference seeds 0–4 fit the local band. Held-out controls 10–12 are independent of that fit; leave-one-out checks exclude the tested reference seed but use overlapping four-seed bands. Same-band reference checks are calibration, not independent validation. Pointwise 95% prediction intervals and two consecutive excursions do not provide a known simultaneous false-alarm rate over 21 correlated evaluations.
+
+The full downloaded notebook receipt, `receipts/colab/tinygpt-full-20261003.json`, resolves those console omissions. T4 reference seeds 0–4 give a final mean of 2.2651731873, a mean confidence interval of 2.2580558779–2.2722904966, and a prediction interval for one new run of 2.2477394110–2.2826069635. Independent T4 healthy controls 10–12 had no flags and all final losses inside that prediction interval. T4 leave-one-out seed 2 flagged below at step 250; the other four were unflagged. These five overlapping checks are not additional independent controls.
+
+The raw T4 curves reproduce every band element exactly using `tinygpt_stats_v1.py`; recomputed controls, leave-one-out and all nine planted-bug flags match the receipt. Excluding step 0 retrospectively moves the missing-zero-grad flags to step 100 for all three T4 seeds, just as in the local experiment. It remains an exploratory rule change, not a prospective validation result. Five T4 healthy runs also had no flags against the independently recorded MPS band, with all final losses inside its prediction interval. Historical MPS numbers above stay attributed to their own runs and environment.
+
+The earlier T4 estimate above is retained as the pre-run calculation, not presented as a current measurement. No L4 validation is claimed.
+
+## Two learning routes
+
+- **Short:** notebook v3 setup, Recorded, then the CPU causal-boundary intervention and repair. No dataset download, trained checkpoint or GPU is needed. The experiment prints its own measured duration. It tests causality, not learned language quality. Optionally run A for one healthy GPU training run.
+- **Full reproduction:** A–D and Receipt, about 80.3 minutes of runs on the measured T4. Retain all raw run rows and download the full receipt. Leave-one-out checks do not replace held-out healthy controls.
+
+Change only the final input token; compare earlier logits with both attention faults and the healthy model. Repair the attention rule without changing weights or inputs and repeat. Write 200–400 words explaining the dependency, observed change, controlled variables and one unsupported claim. Repaired architecture behavior is not evidence that a checkpoint trained under the bug has recovered its learning.
 
 ## Files
 
@@ -95,7 +110,9 @@ Not yet run. The operator runs `train_tiny_gpt_v1.ipynb` from the badge above, o
 - `data/dataset-v1.json` (revision, license, sizes, hashes, token counts) and `data/tokenizer-v1.json`.
 - `results/runs-v1.jsonl`: one line per run, with every training loss, gradient norm and learning rate, every evaluation, timings, memory and load average. `results/summary-v1.json` holds every number above.
 - `receipts/tinygpt-v1.json`: packages, device, dataset, model, minutes, tokens/s and load average per run, dates and the $0 cost.
-- `train_tiny_gpt_v1.ipynb`: recomputes the recorded numbers, then runs sections A (environment and seed 0), B (seeds 1 to 4 and the band), C (the bugs) and an optional D (healthy controls) on the runtime's own GPU. It saves after every run, resumes after a disconnect, and ends with a downloadable receipt.
+- `tinygpt_causality_v2.py`: CPU future-token intervention, followed by attention repair at fixed weights. Its focused regression test verifies the causal boundary.
+- `train_tiny_gpt_v3.ipynb`: the short experiment, full optional reproduction and an untruncated console display of band/control fields.
+- `train_tiny_gpt_v1.ipynb` (historical): recomputes the recorded numbers, then runs sections A (environment and seed 0), B (seeds 1 to 4 and the band), C (the bugs) and an optional D (healthy controls) on the runtime's own GPU. It saves after every run, resumes after a disconnect, and ends with a downloadable receipt.
 
 ## Run it yourself
 
@@ -110,3 +127,65 @@ Python 3.12. Timings need a quiet machine, so run nothing else heavy alongside.
         --with pytest pytest -q
 
 The runs behind this file are the five healthy seeds, three controls (`--purpose control`, seeds 10 to 12), each bug on seeds 10 to 12, a same-seed rerun (`--purpose rerun --tag rerun`), and two short timing runs (`--purpose timing`). `train` appends to `results/runs-v1.jsonl`, so write a fresh results file (`--out`) for your own runs. Formatted with `ruff format --target-version py312 --line-length 140`.
+
+### P1 council visual revision, October 3, 2026
+
+Probe v2 sets both tolerances (`atol=1e-6, rtol=0`). Notebook v3 imports it; consumed notebook v2 and probe v1 remain unchanged. The saved CPU v1 receipt supplies the article delta table: the maximum differences do not depend on allclose tolerances. The finite probe supports its specific example; causal masking and normalization over keys establish the general boundary.
+
+`tinygpt_figures_v3.py` renders the attention matrix and two evidence figures from the unchanged full T4 receipt. Run it with Python, matplotlib and Pillow, passing an output directory: `python tinygpt_figures_v3.py --output /path/to/figures`. SVG and PNG exports are standalone artifacts; WebP exports are the article media. Curve panels show all five reference seeds, all three held-out controls and three seeds per fault. Dots mark the original two-consecutive-same-side flag; initialization remains included. No new run is implied by these plots.
+
+The v2 figure generator enlarges chart labels for phone and print reading; the consumed v1 generator and figure exports remain preserved.
+
+## Historical SVG candidate, superseded October 4, 2026
+
+The article now uses the site's actual native chalkboard components. `figures-v4/` contains their source-bound SVGs, 2× PNG exports and HTML context with legends/tables. Expand all four tiny-GPT curve panels when reading the HTML. These figures use the unchanged T4 receipt; they do not reconstruct unavailable observations or strengthen the conclusions above. Older paper-style figure versions and their consumed generators are retained as historical artifacts after the operator rejected their visual style.
+
+To reproduce these historical exports from their recorded site checkout, with Node 24, installed site dependencies and Chromium:
+
+```bash
+CHROME_PATH=/path/to/chromium node tools/export_house_figures_v1.mjs --site /path/to/profrod-site
+```
+
+The command writes the two article figure directories together and records the exact site commit, component/shared-source hashes, receipt hashes, embedded-font license and output hashes. No training or model download is required. Read each plotted board with its adjacent HTML context. The site enforces its figure-brand gate before builds, verification and normal pushes; maintainer/operator visual review still applies.
+
+## Responsive house WebPs, October 4, 2026
+
+`figures-v5/` is the current review candidate. It copies the site's exact WebP bytes at 320, 640, 960 and 1520 pixels, with descriptive HTML, legends, tables and editable `.source.svg` authoring files. These SVGs are not the website delivery format. The manifest binds every image and receipt hash to the exact committed site tree. All four tiny-GPT panels are expanded in the exported context.
+
+Reproduce both article exports from a clean, committed site checkout with Node 24 and installed site dependencies:
+
+```bash
+node tools/export_house_figures_v2.mjs --site /path/to/profrod-site
+```
+
+This version replaces the rejected paper-style and SVG delivery candidates. Original exports, consumed generators, notebooks and the operator's T4 receipt bytes remain intact. No training, model download or new measurement is performed. Mechanical validation does not establish operator or council aesthetic acceptance; the website publication holds remain in force.
+
+## Flagship attention exploration, October 4, 2026
+
+`figures-v6/` appends the revised P1 attention board and readable worked comparison from its exact committed site source. The other five P1 drawings retain the previous WebP bytes; `figures-v5/` remains frozen. All four responsive widths, editable sources, HTML context and hashes are included. The HTML export is static: its controls are disabled, and its calculated C-to-D comparison is expanded.
+
+The new example fixes scalar embeddings A = 1, B = 2, C = 0, D = 3 and identity Q/K/V projections. Change only the last token. With a causal mask and normalization across keys, earlier outputs stay fixed. With the same mask and normalization down queries, A's output changes from 0.244728 to 0.090031 because a later query enters the first column's denominator. These are synthetic attention outputs, not measured GPT logits or new T4 observations. Setting all V outputs to zero gives a nearby counterexample: an unchanged output on one input does not establish architecture-level causality.
+
+The on-page exploration is the short mechanism route. `train_tiny_gpt_v3.ipynb` remains the deeper CPU GPT intervention and optional training reproduction; its saved measurements and explicit `atol=1e-6, rtol=0` probe are unchanged. The fixed-input scalar demonstration does not replace that finite probe or strengthen its generality.
+
+Reproduce this appended P1 export with Node 24 and installed site dependencies:
+
+```bash
+node tools/export_house_figures_v3.mjs --site /path/to/profrod-site
+```
+
+The manifest pins the attention component and arithmetic module as well as the shared rendering sources and immutable T4 receipt. Website and companion review/publication holds remain in force.
+
+### October 5 council corrections — current review export
+
+`figures-v7/` is the latest review candidate, appended from the clean site commit in its manifest. It corrects the zero-value transfer answer: an identically zero value projection makes the attention output zero for **every input**. Another input cannot expose the future-dependent weights through that output. Inspect the weights or restore a nonzero value projection; a passing finite probe does not establish an architectural guarantee. The older `figures-v6/` answer is superseded and retained as history.
+
+Normalization labels now read “Across keys, within each row” and “Across queries, within each column.” Scientific lines, points and interval endpoints are stronger and outside the chalk distress filter; the board texture, Routed Gothic, house palette, cartoon mark and responsive WebP delivery remain. The figures use the unchanged full T4 receipt. The portable keyboard review and three-reader formative check are private review work; no intended-reader learning outcome is claimed here.
+
+Reproduce the new P1 and P2 static exports together from a clean committed site checkout:
+
+```sh
+node tools/export_house_figures_v4.mjs --site /path/to/profrod-site
+```
+
+The exporter refuses to overwrite either new version. Controls are disabled in the static context; worked comparisons and transfer answers are expanded. Use the notebook for executable model/probe work. Maintainer integration, scientific/editorial review of the corrections, Rod's aesthetic choice and existing publication holds remain separate requirements.

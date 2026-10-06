@@ -1,0 +1,36 @@
+{
+  "experiment": "future-token intervention and attention repair v1",
+  "device": "cpu",
+  "torch": "2.11.0",
+  "model": {
+    "vocab_size": 64,
+    "block_size": 16,
+    "n_layer": 2,
+    "n_head": 2,
+    "n_embd": 32
+  },
+  "seconds": 0.1668089579907246,
+  "results": [
+    {
+      "bug": "none",
+      "earlierLogitsChanged": false,
+      "maxEarlierLogitChange": 0.0,
+      "afterRepairEarlierLogitsChanged": false,
+      "afterRepairMaxChange": 0.0
+    },
+    {
+      "bug": "no_causal_mask",
+      "earlierLogitsChanged": true,
+      "maxEarlierLogitChange": 0.00832429900765419,
+      "afterRepairEarlierLogitsChanged": false,
+      "afterRepairMaxChange": 0.0
+    },
+    {
+      "bug": "softmax_wrong_dim",
+      "earlierLogitsChanged": true,
+      "maxEarlierLogitChange": 0.00017990916967391968,
+      "afterRepairEarlierLogitsChanged": false,
+      "afterRepairMaxChange": 0.0
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "source": "tinygpt-full-20261003.json",
+  "sourceSha256": "6bfcbf9ad1897b30f54eb88650f95624e1e106af00f179de2d41284ea2fe6541",
+  "newTraining": false,
+  "figures": {
+    "1": {
+      "svg": "2181f597959a462f6fb5b6fb94e64cdb260191ab99e486799364981b2b4d313c",
+      "png": "fdd13e3f8965fc8cde762220401e134400d37897dca5b82bc3ec08da2b9c898e",
+      "webp": "ab9e4eee6db768f8d6c800bf766d55bc51ef188438fda158b0f816c23092d15e"
+    },
+    "2": {
+      "svg": "e771a91722eef38324b7a6c3af9cfb9ae3c51db7385144afe205e5d6000259d2",
+      "png": "6a6d6854708e892ae7fc58a146bd4e41b585fd64aa8dfc4ef4944858b7fbdae1",
+      "webp": "b68c6bb2c807c50cf968a531b980b5a8cea78f17af10d0862aba9e57875831a4"
+    },
+    "3": {
+      "svg": "f3c5c309a15942beb3aaca75dabea8f572871743a5c00328282e1b4348b02667",
+      "png": "d45ca3f24988396b964268479bba1c644036d81958c0f1b79f4e062a53f1e594",
+      "webp": "b287de1219d849234f0b4ced53358fd4a719d27642933e080779d3c296e8fb1d"
+    }
+  }
+}

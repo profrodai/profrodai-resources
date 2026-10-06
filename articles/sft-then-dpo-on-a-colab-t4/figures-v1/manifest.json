@@ -1,0 +1,17 @@
+{
+  "generator": "sftdpo_figures_v1.py",
+  "sourceSha256": "a32dfc7af44c70d627d83009fd5db2e9f90839a10ec5b5893130aa8b94b23ca7",
+  "sourceScope": "Recorded aggregate T4 accuracies and paired item-bootstrap intervals. No raw item reconstruction or seed-bootstrap interval.",
+  "figures": {
+    "1": {
+      "svg": "993cdaefa32ff0ab4d5eeb2a30e1d902fb5da5e896910eb91f0298af2f1a95b0",
+      "png": "9ff74451bfd5db68d47e761b2e05e08765282ccc3f402b1c76fba02b15c92f24",
+      "webp": "99650a90fc41522648ab7d3e69d5762643096cf75d37647dcb4ed6a6e3b5d02a"
+    },
+    "2": {
+      "svg": "eb0f818942df2be1a7a9aaf7587f4e099cc3073bb2cc59811a409c6c961838e7",
+      "png": "d7ec4e807bace024676a94654391dda0b845dada695f8ff83f8d35ab2e1365bb",
+      "webp": "ab36f81254ef0271e0967ec9c61a71deb751baa0b62e93557c9cfd5ff2863918"
+    }
+  }
+}

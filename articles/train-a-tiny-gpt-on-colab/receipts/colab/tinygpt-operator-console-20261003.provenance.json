@@ -1,0 +1,20 @@
+{
+  "source": "Operator-supplied notebook console export, October 3, 2026",
+  "sha256": "d0ef5848d4d4369c3d3f2add913dfd6dc254956e7a51cf613a437ab230c50118",
+  "device": "Tesla T4",
+  "evidenceKind": "reported execution and bug outcomes; partial console export",
+  "reportedSummary": {
+    "healthyFinalValLossMean": 2.2652,
+    "healthyFinalValLossCI95": [
+      2.2581,
+      2.2723
+    ],
+    "source": "operator-supplied final notebook SUMMARY line; rounded values"
+  },
+  "missing": [
+    "healthy per-step band",
+    "healthy raw curves",
+    "healthy-control detection outcomes"
+  ],
+  "note": "The downloaded notebook receipt includes fields excluded from the original console print. Timings do not establish omitted control outcomes."
+}

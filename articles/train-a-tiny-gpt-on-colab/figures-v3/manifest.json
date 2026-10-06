@@ -1,0 +1,23 @@
+{
+  "generator": "tinygpt_figures_v3.py",
+  "source": "tinygpt-full-20261003.json",
+  "sourceSha256": "6bfcbf9ad1897b30f54eb88650f95624e1e106af00f179de2d41284ea2fe6541",
+  "newTraining": false,
+  "figures": {
+    "1": {
+      "svg": "2181f597959a462f6fb5b6fb94e64cdb260191ab99e486799364981b2b4d313c",
+      "png": "fdd13e3f8965fc8cde762220401e134400d37897dca5b82bc3ec08da2b9c898e",
+      "webp": "ab9e4eee6db768f8d6c800bf766d55bc51ef188438fda158b0f816c23092d15e"
+    },
+    "2": {
+      "svg": "871d498489fa9f2a1bd23a74205b8f0426ad413833589ca2a9eee4e3d8fae251",
+      "png": "aa20530150eadaeba838fc2f559bcbc8dfe372102eb48778b45c25329c5270e0",
+      "webp": "06963d2d25c641bd51062815ed003efe9b348c4deb624a3148a8e3b1a5fc6d4f"
+    },
+    "3": {
+      "svg": "f9fac61c1ae50610015a986b99c7086a046e2498a37df81bfd5693e4333ada7e",
+      "png": "10f097ec7f587b79b83a9a269830d70498414ea22077d2b2b0cd7fd8eb75a0da",
+      "webp": "a18022140bdebc4e5d9b4c45b37674ecdcd02e93d234531df4364130a3d149e3"
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "siteRepo": "rodriveracom/profrod-site",
+  "siteCommit": "4bf87d04128fa0cdccfc545e97c5b9bd267506b9",
+  "font": {
+    "name": "Routed Gothic",
+    "sha256": "0bb69e4a35bffae221e576957b70735e5eee819d9141781eb4cb79042e8e4c33",
+    "license": "SIL Open Font License 1.1; see Routed-Gothic-OFL.txt"
+  },
+  "sharedSources": [
+    {
+      "file": "src/widgets/training/measured.ts",
+      "sha256": "b75a2836a734270e2cc8f47d336c4f0a2deafb644fcd27724e24f1fe3593ea41"
+    },
+    {
+      "file": "src/widgets/training/FigureShell.tsx",
+      "sha256": "1471c4e2cc62c8e33bb7c17c2c011e46d69e3240eda38f84aa333c0308344727"
+    },
+    {
+      "file": "src/widgets/chalkboard/chalk.tsx",
+      "sha256": "617e8f91527d43b19ba23076844233069842ee5df600e38ba9dd25c83ef17d44"
+    },
+    {
+      "file": "src/widgets/chalkboard/chalkTokens.ts",
+      "sha256": "5e26800ed3dd14fc8790446124f1f150dce3ca5fe98dccb6e74d0e64a82e9f5a"
+    },
+    {
+      "file": "src/components/content/ProfrodMark.tsx",
+      "sha256": "512abf872dea36cfa6b6ef8a8ab59d8c38ab7d2799eb70fba7c6f831817b4955"
+    },
+    {
+      "file": "src/lib/diagrams/diagramSource.mjs",
+      "sha256": "56e9b4aafde8bd4fd637ec37dacf7949976edf428f6cac370531ded6a55266fb"
+    },
+    {
+      "file": "src/diagrams/profrod-mark.json",
+      "sha256": "0b4699b5abb469cbf61964581973b7a0a08749f74cc692d7d4a1d4e0071cbe65"
+    }
+  ],
+  "figures": [
+    {
+      "name": "tinygpt-attention",
+      "svgSha256": "660a119153051d55842decb35eed2bbc085c6ccefa4f4394f8226f6979b235dd",
+      "pngSha256": "988a0e89c1b084998925018a8e61f3fd93e420e1233b2e7ca7a9689623717d10",
+      "contextFile": "tinygpt-attention.html",
+      "contextSha256": "274fe83b0749a1ea87971d2b473f75e264fc97a19d931f97b91fa51751d0905f",
+      "receiptSha256": "6bfcbf9ad1897b30f54eb88650f95624e1e106af00f179de2d41284ea2fe6541",
+      "component": "src/widgets/training/AttentionBoundary.tsx",
+      "componentSha256": "b6f85782f40103ae7728710679257778c01ad260cf58233758e6afd299eb2025"
+    },
+    {
+      "name": "tinygpt-curves-healthy",
+      "svgSha256": "cb1b14f70217630b2437c0262c2771b8675f1ea38f9ccc138299ce312fd6950c",
+      "pngSha256": "bfe880632871f9e879b66e6014070818e70b4597cf3f9405dd3a5cba75d424ab",
+      "contextFile": "tinygpt-curves.html",
+      "contextSha256": "561454fd1d3f5af37fcd57b2ada992628f814b80ba77a1a1de807af16b29b7d2",
+      "receiptSha256": "6bfcbf9ad1897b30f54eb88650f95624e1e106af00f179de2d41284ea2fe6541",
+      "component": "src/widgets/training/TrainingCurves.tsx",
+      "componentSha256": "1ff41a75e882063c77ca0ac90603009125cb0976f759fbc242d0860565ec576e"
+    },
+    {
+      "name": "tinygpt-curves-no-causal-mask",
+      "svgSha256": "7be850f5c314101cb3014543c8a99c200b50be374b0722c2ebb09f6ab4cffd2d",
+      "pngSha256": "f150321f4a9b29828dfa56c3d0464087d5470de3dc0fd3d69e104c73ba693228",
+      "contextFile": "tinygpt-curves.html",
+      "contextSha256": "561454fd1d3f5af37fcd57b2ada992628f814b80ba77a1a1de807af16b29b7d2",
+      "receiptSha256": "6bfcbf9ad1897b30f54eb88650f95624e1e106af00f179de2d41284ea2fe6541",
+      "component": "src/widgets/training/TrainingCurves.tsx",
+      "componentSha256": "1ff41a75e882063c77ca0ac90603009125cb0976f759fbc242d0860565ec576e"
+    },
+    {
+      "name": "tinygpt-curves-softmax-wrong-dim",
+      "svgSha256": "0db02c074a02b1461d0ae21fb31bc2e5e3b3073da384d40a407e95aaf5eb6b70",
+      "pngSha256": "f09223c18ae6b25723141c926a1846a22fe4a0c14e1de5675d4560b52649c8e4",
+      "contextFile": "tinygpt-curves.html",
+      "contextSha256": "561454fd1d3f5af37fcd57b2ada992628f814b80ba77a1a1de807af16b29b7d2",
+      "receiptSha256": "6bfcbf9ad1897b30f54eb88650f95624e1e106af00f179de2d41284ea2fe6541",
+      "component": "src/widgets/training/TrainingCurves.tsx",
+      "componentSha256": "1ff41a75e882063c77ca0ac90603009125cb0976f759fbc242d0860565ec576e"
+    },
+    {
+      "name": "tinygpt-curves-no-zero-grad",
+      "svgSha256": "e6fbe88fe9d0fe23d5c9bef04e3d4e67aa787639f35a8378912b991ae35f6f5b",
+      "pngSha256": "84a68d797dfb29903f3d33c1d4d4883792e320a13a2fab70c0eea5af276efc5f",
+      "contextFile": "tinygpt-curves.html",
+      "contextSha256": "561454fd1d3f5af37fcd57b2ada992628f814b80ba77a1a1de807af16b29b7d2",
+      "receiptSha256": "6bfcbf9ad1897b30f54eb88650f95624e1e106af00f179de2d41284ea2fe6541",
+      "component": "src/widgets/training/TrainingCurves.tsx",
+      "componentSha256": "1ff41a75e882063c77ca0ac90603009125cb0976f759fbc242d0860565ec576e"
+    },
+    {
+      "name": "tinygpt-intervals",
+      "svgSha256": "845d3ad5acf12f1a961434e78ff3794ad93cfe9a8ec9e3c9e9b165def4946883",
+      "pngSha256": "746c6c6d0b8e6379f3456a4f4bb2bda0025280bfb517a4bef31325c3608bc51f",
+      "contextFile": "tinygpt-intervals.html",
+      "contextSha256": "64177dbced32fdd27c4a6f17db95f9cd6913a114fa161d147615afa1c71eead1",
+      "receiptSha256": "6bfcbf9ad1897b30f54eb88650f95624e1e106af00f179de2d41284ea2fe6541",
+      "component": "src/widgets/training/PredictionInterval.tsx",
+      "componentSha256": "dc8c7939ab6b4e4b7b804a576264145aae6edc11b791b99195d1a7b8f5322103"
+    }
+  ],
+  "evidence": "Original hash-bound operator T4 receipts. No new run or reconstruction. Read adjacent HTML context, including legends/tables and conditional uncertainty limits. SVGs embed the licensed font; PNGs are 2× raster exports of those actual boards."
+}

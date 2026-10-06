@@ -1,0 +1,13 @@
+{
+  "source": "Operator-identified downloaded grpo_v1.ipynb receipt from ~/Downloads, preserved in recovery evidence",
+  "originalFilename": "receipt-colab-v1.json",
+  "sha256": "1e830f7c74aa9988b9450c4ef4e16af1cb4479ea60776fbf8336be4fda0ebdff",
+  "bytes": 28705,
+  "preservedOriginalBytes": true,
+  "environment": "Tesla T4 / CUDA, October 3, 2026",
+  "limits": [
+    "Five strict seeds; one planted-verifier seed, not the three MPS hack seeds.",
+    "Original receipt encodes unavailable one-seed t intervals as NaN; bytes are retained unchanged.",
+    "Contains summarized paired evaluation counts/intervals; raw T4 per-item outputs and every training rollout are not supplied."
+  ]
+}
