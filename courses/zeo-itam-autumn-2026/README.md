@@ -33,7 +33,7 @@ do not add employer data, credentials, student records, or a live model/API.
 
 The 15 October class notebook (an always-on agent for Lucy's shop, run in Colab) is in [labs/05-always-on-agent](labs/05-always-on-agent/README.md). It is not one of the four offline practicals above and is not part of `make verify`. It runs live models (Qwen and MiniLM in the notebook, Jev and Claude through your own keys), so it needs a Colab account, a GPU runtime is recommended, and the two hosted sections need keys that you add as Colab Secrets.
 
-The later class notebooks live beside it, one folder per class, each with its own README and Open in Colab links: [06 agent memory, 20 October](labs/06-agent-memory-2026-10-20/README.md), [07 one event, many memories, 26 October](labs/07-one-event-many-memories-2026-10-26/README.md). Thursday 29 October's notebook goes next to them as `08`. Like 05, they are not part of `make verify`.
+The later class notebooks live beside it, one folder per class, each with its own README and Open in Colab links: [06 agent memory, 20 October](labs/06-agent-memory-2026-10-20/README.md), [07 one event, many memories, 26 October](labs/07-one-event-many-memories-2026-10-26/README.md), [08 Lucy's survey desk, 29 October](labs/08-survey-chunking-2026-10-29/README.md). Like 05, they are not part of `make verify`.
 
 ## Prerequisites, runtime, safety, and cost
 
