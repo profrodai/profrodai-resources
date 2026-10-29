@@ -1,0 +1,119 @@
+{
+ "s03-route-born-digital": {
+  "asked": {
+   "state": {
+    "characters_in_file": 111,
+    "document_parse_score": 1.0,
+    "identifier_has_valid_shape": true
+   },
+   "questions": {
+    "read": {
+     "type": "choice",
+     "instructions": "A delivery note page has arrived for Lucy's shop. Pick the one way to read it that fits what we know about the file.",
+     "criteria": {
+      "text_layer": "The file already holds the text. Use it as it is.",
+      "ocr": "The page is a picture. Read it with OCR.",
+      "check_text_layer": "The file holds text, but it may be wrong. Read the page picture too and compare."
+     }
+    }
+   }
+  },
+  "answers": {
+   "read": {
+    "text_layer": 0.88,
+    "ocr": 0.04,
+    "check_text_layer": 0.08
+   }
+  },
+  "request_sha256": "219f385e0784e8046d286a3353902ab2ecc7f5d20f806eb15872fb674b2d7c42",
+  "response_sha256": "abe6aab777448076a3045fdd52b345e850e427d86174df6248e5c984d6b36f16"
+ },
+ "s03-route-embedded-wrong": {
+  "asked": {
+   "state": {
+    "characters_in_file": 202,
+    "document_parse_score": 1.0,
+    "identifier_has_valid_shape": false
+   },
+   "questions": {
+    "read": {
+     "type": "choice",
+     "instructions": "A delivery note page has arrived for Lucy's shop. Pick the one way to read it that fits what we know about the file.",
+     "criteria": {
+      "text_layer": "The file already holds the text. Use it as it is.",
+      "ocr": "The page is a picture. Read it with OCR.",
+      "check_text_layer": "The file holds text, but it may be wrong. Read the page picture too and compare."
+     }
+    }
+   }
+  },
+  "answers": {
+   "read": {
+    "text_layer": 0.61,
+    "ocr": 0.04,
+    "check_text_layer": 0.35
+   }
+  },
+  "request_sha256": "68a9520bddae3bd3ab3c840a6d590b3c0cb5f26d573d967bf8b806b62e50574c",
+  "response_sha256": "4725fba3fcd7c52c08fd8c824b8cd53ed17ff9f43b880462236415d3f9531970"
+ },
+ "s03-route-scan": {
+  "asked": {
+   "state": {
+    "characters_in_file": 0
+   },
+   "questions": {
+    "read": {
+     "type": "choice",
+     "instructions": "A delivery note page has arrived for Lucy's shop. Pick the one way to read it that fits what we know about the file.",
+     "criteria": {
+      "text_layer": "The file already holds the text. Use it as it is.",
+      "ocr": "The page is a picture. Read it with OCR.",
+      "check_text_layer": "The file holds text, but it may be wrong. Read the page picture too and compare."
+     }
+    }
+   }
+  },
+  "answers": {
+   "read": {
+    "text_layer": 0.32,
+    "ocr": 0.64,
+    "check_text_layer": 0.04
+   }
+  },
+  "request_sha256": "31429e8d7646a599e5f2a9bfaaef9625e8d7f8c7737c711c43a4c51ed8bb980b",
+  "response_sha256": "d1d2e156e77ad974816721f6de17508fbf9cfa666aa615c7cb8d4783b3eb449b"
+ },
+ "s03-decide-fn-spot": {
+  "asked": {
+   "state": {
+    "reads": {
+     "tesseract": "Tel.:S5",
+     "docling": "Tel. 55",
+     "granite_docling": "Tel. 55",
+     "mineru_flash": "Tel.55 0100"
+    }
+   },
+   "questions": {
+    "recommendation": {
+     "type": "choice",
+     "instructions": "Lucy must contact a supplier. Four readers returned their phone line for one delivery note. Recommend what the assistant should do with the identifier.",
+     "criteria": {
+      "accept": "One complete identifier, returned by more than one reader.",
+      "re_read": "A reader returned only part of the identifier. Read the line again.",
+      "ask_lucy": "No reader returned the identifier. Ask Lucy for a better photo."
+     }
+    }
+   }
+  },
+  "answers": {
+   "recommendation": {
+    "accept": 0.41,
+    "re_read": 0.57,
+    "ask_lucy": 0.02
+   }
+  },
+  "request_sha256": "1a4a87ebb8f9af5dc13d23ec5556161f4876785fbc1b1a9df9c719d6d99e466b",
+  "response_sha256": "080e5c385c091278dc789faa2f616ab633d98827b679b7ccbdb182967c4d4e63"
+ }
+}

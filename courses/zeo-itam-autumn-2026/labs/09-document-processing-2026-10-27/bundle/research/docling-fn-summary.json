@@ -1,0 +1,54 @@
+{
+ "fn-clean": {
+  "phone_text": [
+   "Nota de entrega / Delivery note Tel. 55 0100"
+  ],
+  "ocr": 0.9976210000000002,
+  "layout": 0.7907299211150721,
+  "parse": NaN,
+  "secs": 5.1
+ },
+ "fn-mild": {
+  "phone_text": [
+   "Tel. 55 0100"
+  ],
+  "ocr": 0.9843584999999999,
+  "layout": 0.7429506621862713,
+  "parse": NaN,
+  "secs": 1.3
+ },
+ "fn-spot": {
+  "phone_text": [
+   "Tel. 55"
+  ],
+  "ocr": 0.9847236842105263,
+  "layout": 0.7514720976352691,
+  "parse": NaN,
+  "secs": 1.7
+ },
+ "fn-heavy": {
+  "phone_text": [],
+  "ocr": 0.641258,
+  "layout": 0.6144464052410126,
+  "parse": NaN,
+  "secs": 0.9
+ },
+ "fn-born-digital": {
+  "phone_text": [
+   "FRESAS DEL NORTE Nota de entrega / Delivery note Tel. 55 0100 Fecha 2026-10-16 08:05 Fresa fresca 10 kg 4 3.5 C"
+  ],
+  "ocr": NaN,
+  "layout": 0.9059233069419861,
+  "parse": 1.0,
+  "secs": 0.4
+ },
+ "fn-embedded-wrong": {
+  "phone_text": [
+   "FRESAS DEL NORTE Nota de entrega / Delivery note Tel. 55 O1OO Fecha 2026-10-16 08:05 Fresa fresca 10 kg 4 3.5 C"
+  ],
+  "ocr": NaN,
+  "layout": 0.8924891352653503,
+  "parse": 1.0,
+  "secs": 0.1
+ }
+}

@@ -1,0 +1,153 @@
+{
+ "s03-agent-1": {
+  "asked": {
+   "input": "Report the phone candidate for fn-spot.",
+   "agent": {
+    "model": "gpt-6-astra",
+    "instructions": "You are Lucy's ingestion operator. Call parse_note once per tool for the note, then report the phone identifier as a CANDIDATE: the value if a tool returned it whole, which tools agreed, and which tools returned only part of it. Do not guess missing digits. You do not accept or remember anything; you only report. You have no file tool: do not say you saved anything.",
+    "tools": [
+     {
+      "type": "function",
+      "name": "parse_note",
+      "description": "Return the phone line a named reader returned for one delivery note (extracted text only).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "note": {
+         "type": "string"
+        },
+        "tool": {
+         "type": "string",
+         "enum": [
+          "tesseract",
+          "docling",
+          "granite_docling",
+          "mineru_flash"
+         ]
+        }
+       },
+       "required": [
+        "note",
+        "tool"
+       ]
+      }
+     }
+    ]
+   },
+   "session": null,
+   "environment": []
+  },
+  "run": {
+   "final": "**CANDIDATE: `55 0100`** for `fn-spot`, returned whole by `mineru_flash`.\n\n- `docling` and `granite_docling` both returned only `55`, agreeing with the candidate\u2019s prefix.\n- `tesseract` returned only `S5`, a partial result that does not exactly agree.\n- No other reader returned the whole candidate.",
+   "tools": [
+    {
+     "name": "parse_note",
+     "args": {
+      "note": "fn-spot",
+      "tool": "mineru_flash"
+     }
+    },
+    {
+     "name": "parse_note",
+     "args": {
+      "note": "fn-spot",
+      "tool": "granite_docling"
+     }
+    },
+    {
+     "name": "parse_note",
+     "args": {
+      "note": "fn-spot",
+      "tool": "tesseract"
+     }
+    },
+    {
+     "name": "parse_note",
+     "args": {
+      "note": "fn-spot",
+      "tool": "docling"
+     }
+    }
+   ],
+   "session_id": "sess_06046da06044343b006adf85b11a308195b1b30cd457581e57",
+   "items": [
+    {
+     "type": "message",
+     "role": "user",
+     "phase": null,
+     "name": null
+    },
+    {
+     "type": "message",
+     "role": "assistant",
+     "phase": "commentary",
+     "name": null
+    },
+    {
+     "type": "function_call",
+     "role": null,
+     "phase": null,
+     "name": "parse_note"
+    },
+    {
+     "type": "function_call_output",
+     "role": null,
+     "phase": null,
+     "name": null
+    },
+    {
+     "type": "function_call",
+     "role": null,
+     "phase": null,
+     "name": "parse_note"
+    },
+    {
+     "type": "function_call_output",
+     "role": null,
+     "phase": null,
+     "name": null
+    },
+    {
+     "type": "function_call",
+     "role": null,
+     "phase": null,
+     "name": "parse_note"
+    },
+    {
+     "type": "function_call_output",
+     "role": null,
+     "phase": null,
+     "name": null
+    },
+    {
+     "type": "function_call",
+     "role": null,
+     "phase": null,
+     "name": "parse_note"
+    },
+    {
+     "type": "function_call_output",
+     "role": null,
+     "phase": null,
+     "name": null
+    },
+    {
+     "type": "message",
+     "role": "assistant",
+     "phase": "final_answer",
+     "name": null
+    }
+   ]
+  },
+  "receipt": {
+   "call": "s03-agent-1",
+   "at_utc": "2026-10-26T16:54:46Z",
+   "model": "gpt-6-astra",
+   "session_id": "sess_06046da06044343b006adf85b11a308195b1b30cd457581e57",
+   "turn_id": "turn_06046da06044343b006adf85b5efdc81958e469d919876d5b8",
+   "items": 11,
+   "final_sha256": "f0e1c2141284ffe80a738fdecf5ef2539ffb75316bc03c09ca2432e45601ff7e",
+   "api": "openai-agents-api"
+  }
+ }
+}
