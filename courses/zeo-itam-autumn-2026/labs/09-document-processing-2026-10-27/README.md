@@ -10,7 +10,11 @@ Three notebooks for the ITAM class of 27 October 2026, all about the same made-u
 
 ## Open in Colab
 
-The Colab links are added here when this folder is merged, pinned to the merge commit.
+These links name the merge commit, so they open exactly the files in this folder:
+
+- [Open `itam_1027_document_processing_lab.ipynb` in Colab](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/b13a6d8402232a312c3a04624bb3f0116f21431c/courses/zeo-itam-autumn-2026/labs/09-document-processing-2026-10-27/itam_1027_document_processing_lab.ipynb)
+- [Open `itam_1027_lucys_document_workshop_self_contained_v3.ipynb` in Colab](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/b13a6d8402232a312c3a04624bb3f0116f21431c/courses/zeo-itam-autumn-2026/labs/09-document-processing-2026-10-27/itam_1027_lucys_document_workshop_self_contained_v3.ipynb)
+- [Open `itam_1027_lucys_missing_digits_guided_lab.ipynb` in Colab](https://colab.research.google.com/github/profrodai/profrodai-resources/blob/b13a6d8402232a312c3a04624bb3f0116f21431c/courses/zeo-itam-autumn-2026/labs/09-document-processing-2026-10-27/itam_1027_lucys_missing_digits_guided_lab.ipynb)
 
 None of the three notebooks has been run in Colab yet. If a cell fails there, tell the instructor which one.
 
