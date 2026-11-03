@@ -1,5 +1,7 @@
 # 10 · Lucy's first Telegram bot, from zero (class notebook, 3 November 2026)
 
+**This lab now runs in a Codespace, and Lucy is an agent. Este laboratorio ahora se hace en un Codespace, y Lucy es un agente.** [Open it / Abrir](https://codespaces.new/profrodai/profrodai-resources?devcontainer_path=.devcontainer/itam-lucy-telegram/devcontainer.json). Telegram only carries the messages; a Colab disconnect can interrupt a background bot. Keep the Codespace and Lucy’s program running. See `NEW-VERSION.md` for the current lab. The notebook and sections below describe the old version for reference only.
+
 The notebook for the ITAM class of 3 November 2026. You build a Telegram shop bot on your own phone: a customer asks how much ice cream is left, and only the owner can ask for a restock proposal. Run the cells in order.
 
 ## Open it in Colab
