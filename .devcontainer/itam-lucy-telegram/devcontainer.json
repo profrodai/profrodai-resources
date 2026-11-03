@@ -1,0 +1,33 @@
+{
+  "name": "Lucy's shop agent on Telegram",
+  "image": "mcr.microsoft.com/devcontainers/base:bookworm",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/courses/zeo-itam-autumn-2026/labs/10-telegram-from-zero-2026-11-03/codespaces",
+  "hostRequirements": {
+    "cpus": 2
+  },
+  "secrets": {
+    "TELEGRAM_BOT_TOKEN": {
+      "description": "The token BotFather gave you for your own shop bot (step 05)."
+    },
+    "OPENAI_API_KEY": {
+      "description": "Your OpenAI key. Lucy's agent runs on the OpenAI Agents API with it (needed from step 09)."
+    },
+    "TYPESAFE_API_KEY": {
+      "description": "Your Jev (typesafe) key, used for Lucy's typed decisions (needed from step 09)."
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "workbench.startupEditor": "readme"
+      }
+    }
+  },
+  "postAttachCommand": "echo 'Open README.md in this folder and follow the steps in the terminal.'",
+  "postCreateCommand": "python3 -m pip install --quiet 'pydantic>=2,<3' 'openai==3.35.1' 'typesafe-sdk==0.7.5'",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12"
+    }
+  }
+}
