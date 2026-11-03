@@ -1,0 +1,39 @@
+{
+  "name": "Lucy's shop on Rasa Mantle",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12"
+    },
+    "ghcr.io/devcontainers/features/sshd:1.1.0": {}
+  },
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/courses/zeo-itam-autumn-2026/labs/10-telegram-from-zero-2026-11-03/mantle-alternative",
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "8gb",
+    "storage": "32gb"
+  },
+  "forwardPorts": [
+    5010
+  ],
+  "portsAttributes": {
+    "5010": {
+      "label": "Mantle Inspector",
+      "onAutoForward": "notify"
+    }
+  },
+  "secrets": {
+    "RASA_LICENSE": {
+      "description": "Your Rasa license key"
+    },
+    "OPENAI_API_KEY": {
+      "description": "Your OpenAI key, used by the agent to understand the question"
+    },
+    "DEEPGRAM_API_KEY": {
+      "description": "Your Deepgram key, used for voice in and voice out"
+    }
+  },
+  "onCreateCommand": "bash \"$(git rev-parse --show-toplevel)/.devcontainer/itam-lucy-mantle/install.sh\""
+}
