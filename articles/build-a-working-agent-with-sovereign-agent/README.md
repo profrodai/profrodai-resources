@@ -1,4 +1,4 @@
-# Build a Working Agent with sovereign-agent — practice companion
+# Catch an Agent Citing Papers Its Tools Never Returned — practice companion
 
 **Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
@@ -28,3 +28,9 @@ The fixture is synthetic, offline, credential-free, and makes no claim about the
 
 ## Provenance boundary
 Identity source: `profrod-site/content/articles/build-a-working-agent-with-sovereign-agent.md`. No article body or external project source is copied.
+
+## Current source scope
+
+The current article audits cited paper IDs against search results and measures fabrication with uncertainty. This generic evidence-chain fixture practices missing-evidence denial; it neither runs sovereign-agent nor measures citation grounding.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

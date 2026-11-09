@@ -23,3 +23,7 @@ Use only in-memory fixture data. Do not add secrets, live orders, network calls,
 
 ## Verify
 From the course directory run `make verify`.
+
+## Current source scope
+
+The current course reviews Python evaluation code, split leakage, seeds and metrics. This companion remains a TypeScript order-service exercise in bounded edits and behavioral review; it does not supply evalkit or reproduce the research experiments.

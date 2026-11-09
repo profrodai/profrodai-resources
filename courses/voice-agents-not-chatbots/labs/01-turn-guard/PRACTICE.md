@@ -23,3 +23,7 @@ No call, phone number, recording, credential, network, or provider cost is used.
 
 ## Verify
 From the course directory run `make verify`.
+
+## Current source scope
+
+The course now budgets and measures latency, barge-in and task success. This text-only completed-call guard practices one deterministic boundary; it provides no audio pipeline, latency measurement or voice-quality evaluation.

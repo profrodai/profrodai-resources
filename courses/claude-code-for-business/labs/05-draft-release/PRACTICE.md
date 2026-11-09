@@ -2,7 +2,7 @@
 
 ## Learn first
 
-Read [Practice 05: Drafted, Not Sent](https://profrod.ai/courses/claude-code-for-business/lesson/09-practice-05-drafted-not-sent).
+Read [Practice 05: Drafted, Not Sent](https://profrod.ai/courses/claude-code-for-business).
 
 ## Reinforcement contract
 
@@ -38,8 +38,10 @@ Use `example.test` and fictional content only. This lab never sends, contacts, o
 
 ## Debrief and return link
 
-The gate proves a local release boundary, not authorization to communicate. Return to the [Site lesson](https://profrod.ai/courses/claude-code-for-business/lesson/09-practice-05-drafted-not-sent).
+The gate proves a local release boundary, not authorization to communicate. Return to the [Site lesson](https://profrod.ai/courses/claude-code-for-business).
 
 ## Troubleshooting
 
 If a draft is held, check recipient/body/reviewer and keep delivery at `draft-only`. Do not add an outbound integration to resolve the exercise.
+
+This is a standalone legacy practice. The current course has no matching draft-release lesson; its lesson 09 now covers parallel research experiments.

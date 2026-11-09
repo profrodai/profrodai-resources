@@ -2,7 +2,7 @@
 
 `verify-pr-safe` runs on `pull_request` and executes `make verify-pr`. It receives no secrets,
 does not fetch `profrod-site`, and runs the credential-free committed-tree whitespace check,
-catalog-structure validation, and all 11 course gates. An `imported-courses` job (a workflow change, so it is added by an
+catalog-structure validation, and all 10 course gates. An `imported-courses` job (a workflow change, so it is added by an
 operator whose token may edit workflows) runs the imported course's gate (`make imported-courses`) with uv and Python 3.14; it too receives no
 secrets, and its only network use is installing that course's locked, pinned packages. Its structure-only catalog result must not
 be read as proof that titles match the private source repository.

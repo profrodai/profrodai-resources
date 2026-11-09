@@ -1,4 +1,4 @@
-# When Can You Actually Walk Away? — practice companion
+# When to Let a Coding Agent Run Unsupervised, Using Public Evidence — practice companion
 
 **Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
@@ -58,3 +58,9 @@ decision to `must-review`; it is not a small deduction from a score.
 
 ## Provenance boundary
 Identity source: `profrod-site/content/articles/when-to-let-an-agent-run-unsupervised.md`. No article body or real risk record is copied.
+
+## Current source scope
+
+The article now grounds autonomy choices in public evidence and operating modes. This hard-control checklist remains a bounded preflight exercise; it does not reproduce the cited studies or qualify unattended execution.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

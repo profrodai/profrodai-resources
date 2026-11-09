@@ -35,9 +35,9 @@ class CurriculumManifestTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, message):
                 VALIDATOR.validate(index_path=index_path, manifest_path=manifest_path)
 
-    def test_full_24_resource_companion_contract_is_valid(self) -> None:
+    def test_full_22_resource_companion_contract_is_valid(self) -> None:
         self.assertEqual(
-            {"course": 11, "article": 13, "complete": 24, "developed": 2, "reviewed": 0},
+            {"course": 10, "article": 12, "complete": 22, "developed": 2, "reviewed": 0},
             VALIDATOR.validate(),
         )
 
@@ -52,13 +52,22 @@ class CurriculumManifestTests(unittest.TestCase):
     def test_rejects_missing_duplicate_and_foreign_records(self) -> None:
         fixture = self.manifest()
         fixture["records"].pop()
-        self.assert_invalid(fixture, "exactly 24")
+        self.assert_invalid(fixture, "exactly 22")
         fixture = self.manifest()
         fixture["records"][1]["catalog_path"] = fixture["records"][0]["catalog_path"]
         self.assert_invalid(fixture, "duplicates")
         fixture = self.manifest()
         fixture["records"][-1]["catalog_path"] = "content/articles/foreign.md"
         self.assert_invalid(fixture, "absent from source index")
+
+    def test_retired_companions_cannot_replace_current_records(self) -> None:
+        for retired in (
+            "content/courses/transformation-tracker-with-claude-code/_course.md",
+            "content/articles/the-content-kit.md",
+        ):
+            fixture = self.manifest()
+            fixture["records"][-1]["catalog_path"] = retired
+            self.assert_invalid(fixture, "absent from source index")
 
     def test_rejects_record_shape_identity_and_maturity_drift(self) -> None:
         fixture = self.manifest()
@@ -74,7 +83,7 @@ class CurriculumManifestTests(unittest.TestCase):
         fixture["records"][1]["maturity"] = "developed"
         self.assert_invalid(fixture, "maturity must remain scaffold")
         fixture = self.manifest()
-        fixture["records"][10]["maturity"] = "scaffold"
+        next(row for row in fixture["records"] if row["catalog_path"] == "content/courses/zeo-itam-autumn-2026/_course.md")["maturity"] = "scaffold"
         self.assert_invalid(fixture, "maturity must remain developed")
 
     def test_rejects_incomplete_or_invalid_review_state(self) -> None:

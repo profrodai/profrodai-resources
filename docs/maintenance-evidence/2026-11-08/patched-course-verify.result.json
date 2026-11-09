@@ -1,0 +1,39 @@
+{
+  "label": "patched-course-verify",
+  "command": [
+    "make",
+    "verify"
+  ],
+  "cwd": "courses/sovereign-agent-book",
+  "started": "2026-11-08T23:31:48.404178+00:00",
+  "finished": "2026-11-08T23:32:23.437500+00:00",
+  "exit": 0,
+  "output": {
+    "stdout": {
+      "publicFile": "patched-course-verify.stdout.redacted.txt.gz",
+      "publicRawBytes": 16503,
+      "publicSHA256": "cb5ee5a9d7828fb9735bb12c8202ebd67e786d7e4dec7ab7adc21f6105aa4def",
+      "publicGzipSHA256": "7c6e93df414a09c517b224effa1aa484832c36ab7b7341ccd99f144d9ad2116b",
+      "privateRawLog": {
+        "artifact": "patched-course-verify.stdout.gz",
+        "uncompressedBytes": 16503,
+        "uncompressedSHA256": "cb5ee5a9d7828fb9735bb12c8202ebd67e786d7e4dec7ab7adc21f6105aa4def",
+        "gzipSHA256": "7c6e93df414a09c517b224effa1aa484832c36ab7b7341ccd99f144d9ad2116b"
+      },
+      "redaction": "Machine-specific paths replaced by <local-path>; private original retained; no test rerun or edited-original claim"
+    },
+    "stderr": {
+      "publicFile": "patched-course-verify.stderr.redacted.txt.gz",
+      "publicRawBytes": 0,
+      "publicSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publicGzipSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "privateRawLog": {
+        "artifact": "patched-course-verify.stderr.gz",
+        "uncompressedBytes": 0,
+        "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "gzipSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+      },
+      "redaction": "Machine-specific paths replaced by <local-path>; private original retained; no test rerun or edited-original claim"
+    }
+  }
+}

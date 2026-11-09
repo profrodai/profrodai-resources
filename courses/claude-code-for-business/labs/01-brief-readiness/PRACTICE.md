@@ -44,3 +44,7 @@ If a list looks populated but the gate blocks it, check that it is non-empty. Do
 
 ## Verify
 From the course directory run `make verify`.
+
+## Current source scope
+
+The current course uses reproducible research experiments and evaluation guards. These older synthetic business exercises practice delegation boundaries only; they do not implement the Chapter 16 experiment, statistical intervals or seeded-bug review.

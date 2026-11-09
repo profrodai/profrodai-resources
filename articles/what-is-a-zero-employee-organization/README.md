@@ -1,4 +1,4 @@
-# What Is a Zero-Employee Organization? — practice companion
+# A Dark Factory Beyond Software, and the Review Arithmetic That Caps It — practice companion
 
 **Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
@@ -28,3 +28,9 @@ The organization and decisions are synthetic. No internal record, account, crede
 
 ## Provenance boundary
 Identity source: `profrod-site/content/articles/what-is-a-zero-employee-organization.md`. No article prose or internal governance corpus is copied.
+
+## Current source scope
+
+The current article studies review capacity, sampling and control layers in dark factories. This fictional authority-routing exercise covers separation of duties only; it does not compute review throughput or escaped-error estimates.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

@@ -1,0 +1,39 @@
+{
+  "label": "full-verify-before-operator",
+  "command": [
+    "make",
+    "verify"
+  ],
+  "cwd": ".",
+  "started": "2026-11-08T23:32:24.719673+00:00",
+  "finished": "2026-11-08T23:32:44.395202+00:00",
+  "exit": 2,
+  "output": {
+    "stdout": {
+      "publicFile": "full-verify-before-operator.stdout.redacted.txt.gz",
+      "publicRawBytes": 3465,
+      "publicSHA256": "654b41b004a502362fc06d1cd3ceebfc18588a9aaea12a4d2464fd507b9b621a",
+      "publicGzipSHA256": "e8f8d18f0b4b471ed33bc4ac7f2112bc2898749b92ddd17f9cf16764a5d3fdb9",
+      "privateRawLog": {
+        "artifact": "full-verify-before-operator.stdout.gz",
+        "uncompressedBytes": 3639,
+        "uncompressedSHA256": "b06606965f2bd55b4d1ef530de07496417a73cc9f635aaf18854168db8a3d836",
+        "gzipSHA256": "218da6f3a8e427a04921ed49553ee84bf6b0d69b8204d965fa90d8469bca30d0"
+      },
+      "redaction": "Machine-specific paths replaced by <local-path>; private original retained; no test rerun or edited-original claim"
+    },
+    "stderr": {
+      "publicFile": "full-verify-before-operator.stderr.redacted.txt.gz",
+      "publicRawBytes": 9560,
+      "publicSHA256": "e2aff6681fb9b6e0163500cceab83e301f74e5d114d4a55df628887681855d1b",
+      "publicGzipSHA256": "1f55002122d2dde02eecfefa87cf886fbc5cdce0feef913d778c1e6ab3cb553a",
+      "privateRawLog": {
+        "artifact": "full-verify-before-operator.stderr.gz",
+        "uncompressedBytes": 9560,
+        "uncompressedSHA256": "e2aff6681fb9b6e0163500cceab83e301f74e5d114d4a55df628887681855d1b",
+        "gzipSHA256": "1f55002122d2dde02eecfefa87cf886fbc5cdce0feef913d778c1e6ab3cb553a"
+      },
+      "redaction": "Machine-specific paths replaced by <local-path>; private original retained; no test rerun or edited-original claim"
+    }
+  }
+}

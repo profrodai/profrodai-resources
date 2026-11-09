@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed validation for the 24-resource companion-practice contract."""
+"""Fail-closed validation for the 22-resource companion-practice contract."""
 
 from __future__ import annotations
 
@@ -81,8 +81,8 @@ def catalog_kinds(index: Any) -> dict[str, str]:
     if not isinstance(index, dict) or set(index) != {"repository", "commit", "capturedFrom", "entries"}:
         fail("source index has an unexpected shape")
     entries = index["entries"]
-    if not isinstance(entries, list) or len(entries) != 24:
-        fail("source index must contain exactly 24 entries")
+    if not isinstance(entries, list) or len(entries) != 22:
+        fail("source index must contain exactly 22 entries")
     kinds: dict[str, str] = {}
     for entry in entries:
         if not isinstance(entry, dict) or set(entry) != {"path", "title"}:
@@ -97,8 +97,8 @@ def catalog_kinds(index: Any) -> dict[str, str]:
             kinds[path] = "article"
         else:
             fail(f"source index path has unknown kind: {path}")
-    if list(kinds.values()).count("course") != 11 or list(kinds.values()).count("article") != 13:
-        fail("source index must contain 11 courses and 13 articles")
+    if list(kinds.values()).count("course") != 10 or list(kinds.values()).count("article") != 12:
+        fail("source index must contain 10 courses and 12 articles")
     return kinds
 
 
@@ -201,8 +201,8 @@ def validate(index_path: Path = DEFAULT_INDEX, manifest_path: Path = DEFAULT_MAN
     if manifest["catalog_snapshot"] != EXPECTED_SNAPSHOT:
         fail("manifest catalog_snapshot must equal merged Phase 1 main")
     records = manifest["records"]
-    if not isinstance(records, list) or len(records) != 24:
-        fail("manifest must contain exactly 24 records")
+    if not isinstance(records, list) or len(records) != 22:
+        fail("manifest must contain exactly 22 records")
 
     seen: set[str] = set()
     counts = {"course": 0, "article": 0, "complete": 0, "developed": 0, "reviewed": 0}
@@ -266,7 +266,7 @@ def validate(index_path: Path = DEFAULT_INDEX, manifest_path: Path = DEFAULT_MAN
     if seen != set(catalog):
         fail("manifest/source-index path sets differ")
     fixed_counts = {key: counts[key] for key in ("course", "article", "complete", "developed")}
-    if fixed_counts != {"course": 11, "article": 13, "complete": 24, "developed": 2}:
+    if fixed_counts != {"course": 10, "article": 12, "complete": 22, "developed": 2}:
         fail(f"unexpected curriculum coverage: {counts}")
     reject_source_bodies()
     return counts

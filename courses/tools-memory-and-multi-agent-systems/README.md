@@ -1,4 +1,4 @@
-# Tools, Memory, and Multi-Agent Systems
+# Tools, Memory, and Multi-Agent Systems, Measured
 
 **Status:** scaffolded
 
@@ -37,3 +37,9 @@ will not import it until a merged MIT ZeoTool commit is pinned and reviewed. The
 [legacy QuackTool record](legacy/quacktool/SOURCE.md) preserves the prior GPL-3.0 source only as
 historical provenance; [its migration record](legacy/quacktool/MIGRATION.md) prohibits copying
 or relicensing those historical source bytes.
+
+## Current source scope
+
+The current course derives and measures context, tool, planning and retrieval behavior. This in-memory evidence store demonstrates source IDs and duplicate denial only; it does not measure model memory or multi-agent performance.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

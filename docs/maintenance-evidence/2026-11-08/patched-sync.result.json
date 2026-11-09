@@ -1,0 +1,40 @@
+{
+  "label": "patched-sync",
+  "command": [
+    "uv",
+    "sync",
+    "--locked"
+  ],
+  "cwd": "courses/sovereign-agent-book",
+  "started": "2026-11-08T23:31:44.823675+00:00",
+  "finished": "2026-11-08T23:31:48.404005+00:00",
+  "exit": 0,
+  "output": {
+    "stdout": {
+      "publicFile": "patched-sync.stdout.redacted.txt.gz",
+      "publicRawBytes": 0,
+      "publicSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publicGzipSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "privateRawLog": {
+        "artifact": "patched-sync.stdout.gz",
+        "uncompressedBytes": 0,
+        "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "gzipSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+      },
+      "redaction": "Machine-specific paths replaced by <local-path>; private original retained; no test rerun or edited-original claim"
+    },
+    "stderr": {
+      "publicFile": "patched-sync.stderr.redacted.txt.gz",
+      "publicRawBytes": 1526,
+      "publicSHA256": "7e93a6c83ab521bac5be6957fd5cd6021600c83f483b2ebe913071d8ca14d858",
+      "publicGzipSHA256": "be6e588d3cd2a9081feedf9d42d81df3cd9e464e55d2a95699aa0607068a2ff9",
+      "privateRawLog": {
+        "artifact": "patched-sync.stderr.gz",
+        "uncompressedBytes": 1597,
+        "uncompressedSHA256": "03c4fa23caa163bb763edc8617980257f0e810fffd2c9efbabe595b8d84203cc",
+        "gzipSHA256": "d3f8281e0662f1848a9ccaa9f76be518ae9c61f298e71ba460bb66bd27eb7e53"
+      },
+      "redaction": "Machine-specific paths replaced by <local-path>; private original retained; no test rerun or edited-original claim"
+    }
+  }
+}

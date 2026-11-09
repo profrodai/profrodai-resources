@@ -7,7 +7,7 @@
 <h1 align="center">Practice AI Engineering. Prove What Works.</h1>
 
 <p align="center">
-  <strong>24 small, runnable companions for the courses and articles at <a href="https://profrod.ai">profrod.ai</a>.</strong><br>
+  <strong>22 small, runnable companions for the courses and articles at <a href="https://profrod.ai">profrod.ai</a>.</strong><br>
   Learn with real files, visible failures, and tests you can run on your own computer.
 </p>
 
@@ -24,7 +24,7 @@ completed course material, nor a substitute for the lessons.
 
 <p align="center">
   <a href="#start-here-your-first-exercise-in-five-minutes"><strong>Run your first exercise</strong></a>
-  · <a href="#what-should-i-practise-next">Choose a practice</a>
+  · <a href="#what-should-i-practice-next">Choose a practice</a>
   · <a href="#common-problems">Fix a problem</a>
   · <a href="#for-contributors-and-maintainers">Contribute</a>
 </p>
@@ -132,7 +132,7 @@ Follow the README exercise. Run the same command again after every change. A
 failure is useful: it means the checker found a difference between the result
 you produced and the result the fixture says is correct.
 
-## What should I practise next?
+## What should I practice next?
 
 There are two kinds of companion:
 
@@ -143,6 +143,8 @@ There are two kinds of companion:
 
 You do not need to complete them in order.
 
+The [November source mapping review](docs/maintenance-evidence/2026-11-09-catalog-correction.md) explains what each small companion covers and what the revised site course or article adds. A shared title does not mean the full course is implemented here.
+
 ### Course practices
 
 Every course practice has a `PRACTICE.md` file with an objective, guided task,
@@ -152,15 +154,14 @@ verification command.
 Choose the description that sounds most useful. Each link opens the matching
 practice guide; its final word tells you which runtime you need.
 
-- **Change and test a small order API** — [Agentic Coding with Cursor](courses/agentic-coding-with-cursor/order-api/PRACTICE.md) *(Node.js)*
-- **Check whether a business brief has enough evidence** — [Claude Code for Business](courses/claude-code-for-business/labs/01-brief-readiness/PRACTICE.md) *(Python)*
-- **Route uncertain work to human review** — [LangGraph Agent Orchestration](courses/langgraph-agent-orchestration/labs/01-confidence-routing/PRACTICE.md) *(Python)*
+- **Change and test a small order API** — [Agentic Coding with Cursor for Research Engineers](courses/agentic-coding-with-cursor/order-api/PRACTICE.md) *(Node.js)*
+- **Check whether a business brief has enough evidence** — [Claude Code for AI Research](courses/claude-code-for-business/labs/01-brief-readiness/PRACTICE.md) *(Python)*
+- **Route uncertain work to human review** — [LangGraph for AI Research](courses/langgraph-agent-orchestration/labs/01-confidence-routing/PRACTICE.md) *(Python)*
 - **Choose an eligible model without hiding cost or latency** — [Nebius Token Factory in Production](courses/nebius-token-factory-in-production/labs/01-model-selection/PRACTICE.md) *(Python)*
 - **Turn retrieval inputs into a bounded deployment plan** — [NVIDIA NIM in Production](courses/nvidia-nim-in-production/labs/01-retrieval-plan/PRACTICE.md) *(Python)*
-- **Store evidence without accepting duplicates** — [Tools, Memory, and Multi-Agent Systems](courses/tools-memory-and-multi-agent-systems/labs/01-evidence-store/PRACTICE.md) *(Python)*
-- **Measure a before-and-after time saving honestly** — [Transformation Tracker with Claude Code](courses/transformation-tracker-with-claude-code/labs/01-baseline-delta/PRACTICE.md) *(Python)*
+- **Store evidence without accepting duplicates** — [Tools, Memory, and Multi-Agent Systems, Measured](courses/tools-memory-and-multi-agent-systems/labs/01-evidence-store/PRACTICE.md) *(Python)*
 - **Separate deterministic code from uncertain agent work** — [Two Architectures](courses/two-architectures/labs/01-boundary-classifier/PRACTICE.md) *(Python)*
-- **Prevent a voice agent from speaking after a call ends** — [Voice Agents, Not Chatbots](courses/voice-agents-not-chatbots/labs/01-turn-guard/PRACTICE.md) *(Python)*
+- **Prevent a voice agent from speaking after a call ends** — [Voice Agents, Not Chatbots: Latency, Barge-In, and Evaluation](courses/voice-agents-not-chatbots/labs/01-turn-guard/PRACTICE.md) *(Python)*
 - **Reject an answer that lacks required evidence** — [Why Agents Fail](courses/why-agents-fail/labs/01-evidence-gate/PRACTICE.md) *(Python)*
 - **Measure operator minutes saved without hiding regressions** — [ZEO ITAM Autumn 2026](courses/zeo-itam-autumn-2026/labs/01-minutes-baseline/PRACTICE.md) *(Python)*
 
@@ -179,26 +180,25 @@ The first command prints a result. The second runs the tests. Success ends with
 
 Each article folder contains:
 
-- `README.md` — what to practise and how to know you succeeded;
+- `README.md` — what to practice and how to know you succeeded;
 - `practice.json` — one successful case and one failure case; and
 - an exact command that checks both cases.
 
 Choose one idea to explore. Every link opens a short, offline JSON exercise;
 you only need Python to run it.
 
-- **Prove an agent result has evidence and an owner** — [Build a Working Agent with sovereign-agent](articles/build-a-working-agent-with-sovereign-agent/README.md)
+- **Prove an agent result has evidence and an owner** — [Catch an Agent Citing Papers Its Tools Never Returned](articles/build-a-working-agent-with-sovereign-agent/README.md)
 - **Deny unsafe file targets and overwrites** — [Build Your First ZeoCore Tool](articles/build-your-first-zeocore-tool/README.md)
 - **Compare requested permissions with granted permissions** — [Claude Code Permissions Are Your Org Chart](articles/claude-code-permissions-are-your-org-chart/README.md)
 - **Deduplicate customer data without silently losing records** — [Clean a Messy Customer List](articles/clean-a-messy-customer-list-with-claude-code/README.md)
 - **Check whether every task handoff has an owner and evidence** — [Govern a Multi-Agent Project](articles/govern-a-multi-agent-project-with-zero-employee/README.md)
-- **Choose a content block for a communication goal** — [The Content Kit](articles/the-content-kit/README.md)
-- **Compare verification cost with expected failure loss** — [Unverified Output Has a Negative Margin](articles/unverified-output-has-a-negative-margin/README.md)
+- **Compare verification cost with expected failure loss** — [In a Dark Factory, Checking Is the Real Price of an Answer](articles/unverified-output-has-a-negative-margin/README.md)
 - **Calculate a synthetic token-usage cost** — [What Claude Code Actually Costs](articles/what-claude-code-actually-costs/README.md)
 - **Decide whether a proposed change needs review** — [What Claude Code Actually Changes](articles/what-claude-code-changes/README.md)
-- **Route decisions to operator, Master, stream, or Sparring** — [What Is a Zero-Employee Organization?](articles/what-is-a-zero-employee-organization/README.md)
-- **Check whether a task is safe to run unsupervised** — [When Can You Actually Walk Away?](articles/when-to-let-an-agent-run-unsupervised/README.md)
-- **Compare the transaction cost of a firm and a market** — [Why AI Agents Don't Dissolve the Firm](articles/why-ai-agents-dont-dissolve-the-firm/README.md)
-- **Rebuild state from an ordered event record** — [Your Chat History Is Not a System of Record](articles/your-chat-history-is-not-a-system-of-record/README.md)
+- **Route decisions to operator, Master, stream, or Sparring** — [A Dark Factory Beyond Software, and the Review Arithmetic That Caps It](articles/what-is-a-zero-employee-organization/README.md)
+- **Check whether a task is safe to run unsupervised** — [When to Let a Coding Agent Run Unsupervised, Using Public Evidence](articles/when-to-let-an-agent-run-unsupervised/README.md)
+- **Compare the transaction cost of a firm and a market** — [What a Dark Factory Must Build Itself When Agents Are Cheap](articles/why-ai-agents-dont-dissolve-the-firm/README.md)
+- **Rebuild state from an ordered event record** — [Your Chat History Is Not a Lab Notebook: Make Agent Work Resumable](articles/your-chat-history-is-not-a-system-of-record/README.md)
 
 ## A simple way to work through any exercise
 
@@ -348,7 +348,7 @@ that path.
 make verify-pr
 ```
 
-This runs all 11 course gates, all 13 article exercise specifications, the
+This runs all 10 course gates, all 12 article exercise specifications, the
 repository tests, manifest checks, maintenance checks, and local-link checks.
 It does not need access to the teaching-site repository.
 
@@ -371,8 +371,8 @@ never receive the private-source credential. See the
 
 ### Catalog and status language
 
-- [`catalog/curriculum.json`](catalog/curriculum.json) lists the 11 courses and
-  13 long-form articles.
+- [`catalog/curriculum.json`](catalog/curriculum.json) lists the 10 courses and
+  12 long-form articles.
 - [`catalog/profrod-site-source-index.json`](catalog/profrod-site-source-index.json)
   pins their exact source paths and titles.
 - [`catalog/curriculum-manifest.json`](catalog/curriculum-manifest.json) connects
@@ -384,8 +384,8 @@ never receive the private-source credential. See the
 checks exist. It does not mean the source course or article is reproduced or
 finished here. `maturity` describes teaching maturity, while `review_status`
 records independent human pedagogical and accessibility review. The current
-manifest truthfully claims 9 scaffold courses, two developed flagship courses
-(ZEO ITAM · Autumn 2026 and Agentic Coding with Cursor), 13 mapped articles,
+manifest truthfully claims 8 scaffold courses, two developed flagship courses
+(ZEO ITAM · Autumn 2026 and Agentic Coding with Cursor), 12 mapped articles,
 and zero operator-reviewed resources. `developed` records a complete
 multi-practical teaching contract with direct Site lesson links and independent
 acceptance; it is not a claim of operator pedagogical or accessibility review.
@@ -404,9 +404,7 @@ acceptance; it is not a claim of operator pedagogical or accessibility review.
 
 Detailed contract rules live in the
 [practice-companion authoring guide](docs/curriculum-contract-authoring.md).
-The Transformation Tracker course also has a separate public companion at
-[`profrodai/transformation-tracker-course`](https://github.com/profrodai/transformation-tracker-course);
-the small local lab here does not replace it.
+Transformation Tracker and The Content Kit were retired from this catalog on November 9, 2026. The historical Transformation Tracker source and license mapping remain as provenance records only; its runnable lab is no longer a catalog companion.
 
 </details>
 
@@ -429,7 +427,7 @@ material. The source-to-target registry is
 [`catalog/consolidation-sources.json`](catalog/consolidation-sources.json); the readable policy,
 status table, and gates are in [`docs/consolidation.md`](docs/consolidation.md). A mapping records
 only reviewed provenance and intended destination. It never copies source bodies, rewrites an
-upstream history, or silently changes a licence.
+upstream history, or silently changes a license.
 
 Two course curricula have been adopted as `mapped` documentation only:
 
@@ -444,7 +442,7 @@ They have no runnable labs until an offline, credential-free vertical slice and 
 2. Create a course-local README and a self-contained lab with `make run`, `make test`, and
    `make verify`.
 3. Keep the first run deterministic, offline, and credential-free. Put any live-provider setup
-   behind a later, clearly labelled opt-in decision.
+   behind a later, clearly labeled opt-in decision.
 4. Run `make verify` from the repository root. The catalog validator fails closed if an entry,
    README, runtime contract, or course gate is missing.
 
@@ -460,7 +458,7 @@ claim otherwise. Future resource repositories start with their required safety `
 | Course | Directory | What's there |
 |---|---|---|
 | [Build Your Always-On AI Agent From Scratch](https://profrod.ai/book) | [`courses/sovereign-agent-book/`](courses/sovereign-agent-book/) | The book's course, imported from sovereign-agent: 38 notebook units with solutions and educator guides, and the chapter code. Its gate (`make imported-courses`) needs uv and Python 3.14. |
-| [Agentic Coding with Cursor](https://profrod.ai/courses/agentic-coding-with-cursor) | [`courses/agentic-coding-with-cursor/order-api/`](courses/agentic-coding-with-cursor/order-api/) | `order-api`, the small Node/Express/TypeScript order-lookup service the course runs against starting in lesson 4. |
+| [Agentic Coding with Cursor for Research Engineers](https://profrod.ai/courses/agentic-coding-with-cursor) | [`courses/agentic-coding-with-cursor/order-api/`](courses/agentic-coding-with-cursor/order-api/) | `order-api`, the small Node/Express/TypeScript order-lookup service the course runs against starting in lesson 4. |
 
 The complete map names all remaining source courses. Each gets its own directory under
 `courses/<course-slug>/`; nothing is shared across courses unless a later README says otherwise.
@@ -485,10 +483,10 @@ on its own without anything else in this repo.
 
 ## Current companion boundary
 
-The Transformation Tracker public companion remains live while its canonical import is only
-mapped. The existing `labs/01-baseline-delta` is explicitly its successor scaffold, not its
-replacement. The consolidation policy forbids archiving a legacy repository before a reviewed
-replacement and clear learner redirect exist.
+Transformation Tracker was retired from this catalog on November 9, 2026. Its runnable
+`labs/01-baseline-delta` scaffold has been removed. Only the historical source pin, license and
+migration records remain here; they promise no active successor import or learner destination.
+This catalog retirement does not assert that the separate upstream repository was archived.
 
 ## License
 

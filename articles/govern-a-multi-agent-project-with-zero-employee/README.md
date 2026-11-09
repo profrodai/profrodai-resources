@@ -1,4 +1,4 @@
-# Govern a Multi-Agent Project With Zero-Employee — practice companion
+# A Dark Factory's First Control: Every Claim Carries Its Own Check — practice companion
 
 **Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
@@ -28,3 +28,9 @@ The project record is fictional and contains no internal doctrine, personal data
 
 ## Provenance boundary
 Identity source: `profrod-site/content/articles/govern-a-multi-agent-project-with-zero-employee.md`. No article body or real operating record is reproduced.
+
+## Current source scope
+
+The current article distinguishes a present completion condition from one that actually runs. This handoff fixture checks owner, state and evidence fields only; it does not execute a completion condition or prove an external task finished.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

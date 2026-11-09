@@ -34,3 +34,7 @@ The exercise is an offline decision function. Do not add credentials, network ca
 
 ## Verify
 From the course directory run `make verify`.
+
+## Current source scope
+
+The course now builds measured research pipelines with durable state and human review. This standard-library threshold router practices one decision; it does not execute LangGraph, checkpoint a run or establish judge calibration.

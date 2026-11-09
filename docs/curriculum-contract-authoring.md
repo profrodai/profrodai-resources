@@ -51,7 +51,7 @@ scrape the article body.
 ## Maintenance and verification
 
 1. Confirm the catalog path exists in the pinned source index and preserve the
-   exact 24-record set unless the site catalog changes under separate review.
+   exact 22-record set unless the site catalog changes under separate review.
 2. Keep fixtures synthetic, deterministic, offline, credential-free, and safe
    to rerun.
 3. Update `last_verified` and the owned cadence record when a companion is

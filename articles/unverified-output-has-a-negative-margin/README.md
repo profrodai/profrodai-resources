@@ -1,4 +1,4 @@
-# Unverified Output Has a Negative Margin — practice companion
+# In a Dark Factory, Checking Is the Real Price of an Answer — practice companion
 
 **Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
@@ -28,3 +28,9 @@ All monetary values and probabilities are invented. This is not financial advice
 
 ## Provenance boundary
 Identity source: `profrod-site/content/articles/unverified-output-has-a-negative-margin.md`. No article prose is included.
+
+## Current source scope
+
+The current article prices accepted output including review cost and uncertainty in acceptance rate. This expected-loss exercise uses a different simplified model; it does not implement the article's accepted-output cost estimator or its error bars.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

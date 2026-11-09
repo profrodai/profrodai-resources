@@ -1,4 +1,4 @@
-# Clean a Messy Customer List With Claude Code — and Prove Nothing Was Lost — practice companion
+# Clean an Eval Set With a Coding Agent, Then Prove It Dropped Nothing — practice companion
 
 **Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
@@ -28,3 +28,9 @@ All names and `.test` addresses are synthetic. Never substitute live customer da
 
 ## Provenance boundary
 Identity source: `profrod-site/content/articles/clean-a-messy-customer-list-with-claude-code.md`. No article body, prompt, or customer record is copied.
+
+## Current source scope
+
+The current article protects evaluation data against dropped rows. This synthetic customer-list exercise practices row accounting, but it does not validate an evaluation set, its reference answers or a measured score change.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

@@ -1,4 +1,4 @@
-# LangGraph Agent Orchestration
+# LangGraph for AI Research
 
 **Status:** scaffolded
 
@@ -35,3 +35,9 @@ and credential audit before any exercise is modernized.
 ## Practice companion
 
 The [`confidence-routing` guided practice](labs/01-confidence-routing/PRACTICE.md) exercises threshold and invalid-input decisions without importing LangGraph or course prose.
+
+## Current source scope
+
+The course now builds measured research pipelines with durable state and human review. This standard-library threshold router practices one decision; it does not execute LangGraph, checkpoint a run or establish judge calibration.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

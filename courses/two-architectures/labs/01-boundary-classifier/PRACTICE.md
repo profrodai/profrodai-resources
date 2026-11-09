@@ -23,3 +23,7 @@ The classifier is synthetic and performs no action. Do not connect it to a live 
 
 ## Verify
 From the course directory run `make verify`.
+
+## Current source scope
+
+The current 2x2 crosses who waits with who decides, then evaluates each layer. This legacy classifier uses uncertainty and side effects; those are different axes. Treat it as a separate risk-boundary exercise, not an implementation of the current course diagram.

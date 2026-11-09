@@ -1,0 +1,1976 @@
+[
+  {
+    "ecosystem": "npm",
+    "name": "@edge-runtime/vm",
+    "current": null,
+    "wanted": "5.0.0",
+    "latest": "5.0.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@jridgewell/sourcemap-codec",
+    "current": "1.5.5",
+    "wanted": "1.6.0",
+    "latest": "1.6.0",
+    "dependent": "@jridgewell/trace-mapping",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@jridgewell/sourcemap-codec",
+    "current": "1.5.5",
+    "wanted": "1.6.0",
+    "latest": "1.6.0",
+    "dependent": "magic-string",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@jridgewell/trace-mapping",
+    "current": "0.3.9",
+    "wanted": "0.3.9",
+    "latest": "0.3.31",
+    "dependent": "@cspotcode/source-map-support",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@opentelemetry/api",
+    "current": null,
+    "wanted": "1.10.0",
+    "latest": "1.10.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@oxc-project/types",
+    "current": "0.155.0",
+    "wanted": "0.155.0",
+    "latest": "0.157.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@rolldown/binding-android-arm-eabi",
+    "current": null,
+    "wanted": "1.2.15",
+    "latest": "1.3.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@rolldown/binding-android-arm64",
+    "current": null,
+    "wanted": "1.2.15",
+    "latest": "1.3.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@rolldown/binding-darwin-arm64",
+    "current": "1.2.15",
+    "wanted": "1.2.15",
+    "latest": "1.3.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@rolldown/binding-darwin-x64",
+    "current": null,
+    "wanted": "1.2.15",
+    "latest": "1.3.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@rolldown/binding-freebsd-x64",
+    "current": null,
+    "wanted": "1.2.15",
+    "latest": "1.3.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@rolldown/binding-linux-arm-gnueabihf",
+    "current": null,
+    "wanted": "1.2.15",
+    "latest": "1.3.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@rolldown/binding-linux-arm64-gnu",
+    "current": null,
+    "wanted": "1.2.15",
+    "latest": "1.3.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@rolldown/binding-linux-arm64-musl",
+    "current": null,
+    "wanted": "1.2.15",
+    "latest": "1.3.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@rolldown/binding-linux-ppc64-gnu",
+    "current": null,
+    "wanted": "1.2.15",
+    "latest": "1.3.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@rolldown/binding-linux-s390x-gnu",
+    "current": null,
+    "wanted": "1.2.15",
+    "latest": "1.3.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@rolldown/binding-linux-x64-gnu",
+    "current": null,
+    "wanted": "1.2.15",
+    "latest": "1.3.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@rolldown/binding-linux-x64-musl",
+    "current": null,
+    "wanted": "1.2.15",
+    "latest": "1.3.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@rolldown/binding-openharmony-arm64",
+    "current": null,
+    "wanted": "1.2.15",
+    "latest": "1.3.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@rolldown/binding-win32-arm64-msvc",
+    "current": null,
+    "wanted": "1.2.15",
+    "latest": "1.3.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@rolldown/binding-win32-x64-msvc",
+    "current": null,
+    "wanted": "1.2.15",
+    "latest": "1.3.0",
+    "dependent": "rolldown",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@swc/core",
+    "current": null,
+    "wanted": "1.16.22",
+    "latest": "1.16.22",
+    "dependent": "ts-node",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@swc/wasm",
+    "current": null,
+    "wanted": "1.16.22",
+    "latest": "1.16.22",
+    "dependent": "ts-node",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@tsconfig/node12",
+    "current": "1.0.11",
+    "wanted": "1.0.11",
+    "latest": "12.1.8",
+    "dependent": "ts-node",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@tsconfig/node14",
+    "current": "1.0.3",
+    "wanted": "1.0.3",
+    "latest": "14.1.9",
+    "dependent": "ts-node",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@tsconfig/node16",
+    "current": "1.0.4",
+    "wanted": "1.0.4",
+    "latest": "16.1.9",
+    "dependent": "ts-node",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/estree",
+    "current": "1.0.9",
+    "wanted": "1.0.10",
+    "latest": "1.0.10",
+    "dependent": "estree-walker",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/express",
+    "current": "4.17.25",
+    "wanted": "4.17.25",
+    "latest": "5.0.6",
+    "dependent": "order-api",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/express-serve-static-core",
+    "current": "4.19.9",
+    "wanted": "4.19.9",
+    "latest": "5.1.3",
+    "dependent": "@types/express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/mime",
+    "current": "1.3.5",
+    "wanted": "1.3.5",
+    "latest": "3.0.4",
+    "dependent": "@types/send",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/node",
+    "current": "24.13.3",
+    "wanted": "26.6.6",
+    "latest": "26.6.6",
+    "dependent": "@types/body-parser",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/node",
+    "current": "24.13.3",
+    "wanted": "26.6.6",
+    "latest": "26.6.6",
+    "dependent": "@types/connect",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/node",
+    "current": "24.13.3",
+    "wanted": "26.6.6",
+    "latest": "26.6.6",
+    "dependent": "@types/express-serve-static-core",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/node",
+    "current": "24.13.3",
+    "wanted": "26.6.6",
+    "latest": "26.6.6",
+    "dependent": "@types/send",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/node",
+    "current": "24.13.3",
+    "wanted": "26.6.6",
+    "latest": "26.6.6",
+    "dependent": "@types/send",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/node",
+    "current": "24.13.3",
+    "wanted": "26.6.6",
+    "latest": "26.6.6",
+    "dependent": "@types/serve-static",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/node",
+    "current": "24.13.3",
+    "wanted": "24.19.2",
+    "latest": "26.6.6",
+    "dependent": "order-api",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/node",
+    "current": "24.13.3",
+    "wanted": "26.6.6",
+    "latest": "26.6.6",
+    "dependent": "ts-node",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/node",
+    "current": "24.13.3",
+    "wanted": "26.6.6",
+    "latest": "26.6.6",
+    "dependent": "vite",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/node",
+    "current": "24.13.3",
+    "wanted": "26.6.6",
+    "latest": "26.6.6",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/send",
+    "current": "0.17.6",
+    "wanted": "0.17.6",
+    "latest": "1.2.1",
+    "dependent": "@types/serve-static",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/serve-static",
+    "current": "1.15.10",
+    "wanted": "1.15.10",
+    "latest": "2.2.0",
+    "dependent": "@types/express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitejs/devtools",
+    "current": null,
+    "wanted": "0.8.2",
+    "latest": "0.8.2",
+    "dependent": "vite",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/browser-playwright",
+    "current": null,
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/browser-preview",
+    "current": null,
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/browser-webdriverio",
+    "current": null,
+    "wanted": "4.1.12",
+    "latest": "5.0.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/coverage-istanbul",
+    "current": null,
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/coverage-v8",
+    "current": null,
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/expect",
+    "current": "4.1.12",
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/mocker",
+    "current": "4.1.12",
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/pretty-format",
+    "current": "4.1.12",
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "@vitest/snapshot",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/pretty-format",
+    "current": "4.1.12",
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "@vitest/utils",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/pretty-format",
+    "current": "4.1.12",
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/runner",
+    "current": "4.1.12",
+    "wanted": "4.1.12",
+    "latest": "4.1.11",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/snapshot",
+    "current": "4.1.12",
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/spy",
+    "current": "4.1.12",
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "@vitest/expect",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/spy",
+    "current": "4.1.12",
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "@vitest/mocker",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/spy",
+    "current": "4.1.12",
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/ui",
+    "current": null,
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/utils",
+    "current": "4.1.12",
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "@vitest/expect",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/utils",
+    "current": "4.1.12",
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "@vitest/runner",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/utils",
+    "current": "4.1.12",
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "@vitest/snapshot",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@vitest/utils",
+    "current": "4.1.12",
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "acorn",
+    "current": "8.18.0",
+    "wanted": "8.19.0",
+    "latest": "8.19.0",
+    "dependent": "acorn-walk",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "acorn",
+    "current": "8.18.0",
+    "wanted": "8.19.0",
+    "latest": "8.19.0",
+    "dependent": "ts-node",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "arg",
+    "current": "4.1.3",
+    "wanted": "4.1.3",
+    "latest": "5.0.2",
+    "dependent": "ts-node",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "array-flatten",
+    "current": "1.1.1",
+    "wanted": "1.1.1",
+    "latest": "3.0.0",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "body-parser",
+    "current": "1.20.9",
+    "wanted": "1.20.9",
+    "latest": "2.4.0",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "content-disposition",
+    "current": "0.5.4",
+    "wanted": "0.5.4",
+    "latest": "3.0.0",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "content-type",
+    "current": "1.0.5",
+    "wanted": "1.0.5",
+    "latest": "3.1.1",
+    "dependent": "body-parser",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "content-type",
+    "current": "1.0.5",
+    "wanted": "1.0.5",
+    "latest": "3.1.1",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "cookie",
+    "current": "0.7.2",
+    "wanted": "0.7.2",
+    "latest": "2.0.2",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "cookie-signature",
+    "current": "1.0.7",
+    "wanted": "1.0.7",
+    "latest": "1.2.2",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "debug",
+    "current": "2.6.9",
+    "wanted": "2.6.9",
+    "latest": "4.4.3",
+    "dependent": "body-parser",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "debug",
+    "current": "2.6.9",
+    "wanted": "2.6.9",
+    "latest": "4.4.3",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "debug",
+    "current": "2.6.9",
+    "wanted": "2.6.9",
+    "latest": "4.4.3",
+    "dependent": "finalhandler",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "debug",
+    "current": "2.6.9",
+    "wanted": "2.6.9",
+    "latest": "4.4.3",
+    "dependent": "send",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "diff",
+    "current": "4.0.4",
+    "wanted": "4.0.4",
+    "latest": "9.0.0",
+    "dependent": "ts-node",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "encodeurl",
+    "current": "2.0.0",
+    "wanted": "2.0.1",
+    "latest": "3.0.0",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "encodeurl",
+    "current": "2.0.0",
+    "wanted": "2.0.1",
+    "latest": "3.0.0",
+    "dependent": "finalhandler",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "encodeurl",
+    "current": "2.0.0",
+    "wanted": "2.0.1",
+    "latest": "3.0.0",
+    "dependent": "send",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "encodeurl",
+    "current": "2.0.0",
+    "wanted": "2.0.1",
+    "latest": "3.0.0",
+    "dependent": "serve-static",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "es-module-lexer",
+    "current": "2.3.2",
+    "wanted": "2.3.2",
+    "latest": "3.0.4",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "esbuild",
+    "current": null,
+    "wanted": "0.28.2",
+    "latest": "0.28.2",
+    "dependent": "vite",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "express",
+    "current": "4.22.3",
+    "wanted": "4.22.3",
+    "latest": "5.3.0",
+    "dependent": "order-api",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "finalhandler",
+    "current": "1.3.2",
+    "wanted": "1.3.2",
+    "latest": "2.1.1",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "happy-dom",
+    "current": null,
+    "wanted": "21.0.4",
+    "latest": "21.0.4",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "iconv-lite",
+    "current": "0.4.24",
+    "wanted": "0.4.24",
+    "latest": "0.7.3",
+    "dependent": "body-parser",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "iconv-lite",
+    "current": "0.4.24",
+    "wanted": "0.4.24",
+    "latest": "0.7.3",
+    "dependent": "raw-body",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "ipaddr.js",
+    "current": "1.9.1",
+    "wanted": "1.9.1",
+    "latest": "2.5.0",
+    "dependent": "proxy-addr",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "jiti",
+    "current": null,
+    "wanted": "2.7.0",
+    "latest": "2.7.0",
+    "dependent": "vite",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "jsdom",
+    "current": null,
+    "wanted": "31.0.0",
+    "latest": "31.0.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "less",
+    "current": null,
+    "wanted": "4.9.1",
+    "latest": "4.9.1",
+    "dependent": "vite",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "lightningcss-android-arm64",
+    "current": null,
+    "wanted": "1.33.0",
+    "latest": "1.33.0",
+    "dependent": "lightningcss",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "lightningcss-darwin-x64",
+    "current": null,
+    "wanted": "1.33.0",
+    "latest": "1.33.0",
+    "dependent": "lightningcss",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "lightningcss-freebsd-x64",
+    "current": null,
+    "wanted": "1.33.0",
+    "latest": "1.33.0",
+    "dependent": "lightningcss",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "lightningcss-linux-arm-gnueabihf",
+    "current": null,
+    "wanted": "1.33.0",
+    "latest": "1.33.0",
+    "dependent": "lightningcss",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "lightningcss-linux-arm64-gnu",
+    "current": null,
+    "wanted": "1.33.0",
+    "latest": "1.33.0",
+    "dependent": "lightningcss",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "lightningcss-linux-arm64-musl",
+    "current": null,
+    "wanted": "1.33.0",
+    "latest": "1.33.0",
+    "dependent": "lightningcss",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "lightningcss-linux-x64-gnu",
+    "current": null,
+    "wanted": "1.33.0",
+    "latest": "1.33.0",
+    "dependent": "lightningcss",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "lightningcss-linux-x64-musl",
+    "current": null,
+    "wanted": "1.33.0",
+    "latest": "1.33.0",
+    "dependent": "lightningcss",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "lightningcss-win32-arm64-msvc",
+    "current": null,
+    "wanted": "1.33.0",
+    "latest": "1.33.0",
+    "dependent": "lightningcss",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "lightningcss-win32-x64-msvc",
+    "current": null,
+    "wanted": "1.33.0",
+    "latest": "1.33.0",
+    "dependent": "lightningcss",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "magic-string",
+    "current": "0.30.21",
+    "wanted": "0.30.21",
+    "latest": "1.4.5",
+    "dependent": "@vitest/mocker",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "magic-string",
+    "current": "0.30.21",
+    "wanted": "0.30.21",
+    "latest": "1.4.5",
+    "dependent": "@vitest/snapshot",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "magic-string",
+    "current": "0.30.21",
+    "wanted": "0.30.21",
+    "latest": "1.4.5",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "media-typer",
+    "current": "0.3.0",
+    "wanted": "0.3.0",
+    "latest": "2.0.0",
+    "dependent": "type-is",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "merge-descriptors",
+    "current": "1.0.3",
+    "wanted": "1.0.3",
+    "latest": "2.0.0",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "mime",
+    "current": "1.6.0",
+    "wanted": "1.6.0",
+    "latest": "4.1.2",
+    "dependent": "send",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "mime-db",
+    "current": "1.52.0",
+    "wanted": "1.52.0",
+    "latest": "1.54.0",
+    "dependent": "mime-types",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "mime-types",
+    "current": "2.1.35",
+    "wanted": "2.1.35",
+    "latest": "3.0.2",
+    "dependent": "accepts",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "mime-types",
+    "current": "2.1.35",
+    "wanted": "2.1.35",
+    "latest": "3.0.2",
+    "dependent": "type-is",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "ms",
+    "current": "2.0.0",
+    "wanted": "2.0.0",
+    "latest": "2.1.3",
+    "dependent": "debug",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "msw",
+    "current": null,
+    "wanted": "2.15.0",
+    "latest": "3.0.4",
+    "dependent": "@vitest/mocker",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "nanoid",
+    "current": "3.3.20",
+    "wanted": "3.3.20",
+    "latest": "6.0.2",
+    "dependent": "postcss",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "negotiator",
+    "current": "0.6.3",
+    "wanted": "0.6.3",
+    "latest": "1.1.0",
+    "dependent": "accepts",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "obug",
+    "current": "2.1.4",
+    "wanted": "2.2.1",
+    "latest": "3.0.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "on-finished",
+    "current": "2.4.1",
+    "wanted": "2.4.2",
+    "latest": "2.4.2",
+    "dependent": "body-parser",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "on-finished",
+    "current": "2.4.1",
+    "wanted": "2.4.2",
+    "latest": "2.4.2",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "on-finished",
+    "current": "2.4.1",
+    "wanted": "2.4.2",
+    "latest": "2.4.2",
+    "dependent": "finalhandler",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "on-finished",
+    "current": "2.4.1",
+    "wanted": "2.4.2",
+    "latest": "2.4.2",
+    "dependent": "send",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "path-to-regexp",
+    "current": "0.1.13",
+    "wanted": "0.1.13",
+    "latest": "9.0.0",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "postcss",
+    "current": "8.5.31",
+    "wanted": "8.5.32",
+    "latest": "8.5.32",
+    "dependent": "vite",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "qs",
+    "current": "6.16.1",
+    "wanted": "6.16.2",
+    "latest": "6.17.1",
+    "dependent": "body-parser",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "qs",
+    "current": "6.16.1",
+    "wanted": "6.16.2",
+    "latest": "6.17.1",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "range-parser",
+    "current": "1.2.1",
+    "wanted": "1.2.1",
+    "latest": "1.3.0",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "range-parser",
+    "current": "1.2.1",
+    "wanted": "1.2.1",
+    "latest": "1.3.0",
+    "dependent": "send",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "raw-body",
+    "current": "2.5.3",
+    "wanted": "2.5.3",
+    "latest": "4.0.0",
+    "dependent": "body-parser",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "rolldown",
+    "current": "1.2.15",
+    "wanted": "1.2.16",
+    "latest": "1.3.0",
+    "dependent": "vite",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "sass",
+    "current": null,
+    "wanted": "1.108.1",
+    "latest": "1.108.1",
+    "dependent": "vite",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "sass-embedded",
+    "current": null,
+    "wanted": "1.108.1",
+    "latest": "1.108.1",
+    "dependent": "vite",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "send",
+    "current": "0.19.2",
+    "wanted": "0.19.2",
+    "latest": "1.2.1",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "send",
+    "current": "0.19.2",
+    "wanted": "0.19.2",
+    "latest": "1.2.1",
+    "dependent": "serve-static",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "serve-static",
+    "current": "1.16.3",
+    "wanted": "1.16.3",
+    "latest": "2.2.1",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "std-env",
+    "current": "4.2.0",
+    "wanted": "4.3.0",
+    "latest": "4.3.0",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "stylus",
+    "current": null,
+    "wanted": "0.64.0",
+    "latest": "0.64.0",
+    "dependent": "vite",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "sugarss",
+    "current": null,
+    "wanted": "5.0.2",
+    "latest": "5.0.2",
+    "dependent": "vite",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "terser",
+    "current": null,
+    "wanted": "5.51.2",
+    "latest": "5.51.2",
+    "dependent": "vite",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "tinybench",
+    "current": "2.9.0",
+    "wanted": "2.9.0",
+    "latest": "6.2.3",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "tinyexec",
+    "current": "1.3.0",
+    "wanted": "1.3.1",
+    "latest": "1.3.1",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "tsx",
+    "current": null,
+    "wanted": "4.23.15",
+    "latest": "4.23.15",
+    "dependent": "vite",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "type-is",
+    "current": "1.6.18",
+    "wanted": "1.6.18",
+    "latest": "3.0.0",
+    "dependent": "body-parser",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "type-is",
+    "current": "1.6.18",
+    "wanted": "1.6.18",
+    "latest": "3.0.0",
+    "dependent": "express",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "typescript",
+    "current": "5.9.3",
+    "wanted": "5.9.3",
+    "latest": "7.0.2",
+    "dependent": "order-api",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "typescript",
+    "current": "5.9.3",
+    "wanted": "7.0.2",
+    "latest": "7.0.2",
+    "dependent": "ts-node",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "undici-types",
+    "current": "7.18.2",
+    "wanted": "7.18.2",
+    "latest": "8.12.4",
+    "dependent": "@types/node",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "vite",
+    "current": "8.3.5",
+    "wanted": "8.3.6",
+    "latest": "8.3.6",
+    "dependent": "@vitest/mocker",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "vite",
+    "current": "8.3.5",
+    "wanted": "8.3.6",
+    "latest": "8.3.6",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Available in-range refresh without a reported npm advisory; retain tested locked graph rather than broaden this security fix."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "vitest",
+    "current": "4.1.12",
+    "wanted": "4.1.12",
+    "latest": "5.1.0",
+    "dependent": "order-api",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "why-is-node-running",
+    "current": "2.3.0",
+    "wanted": "2.3.0",
+    "latest": "3.2.3",
+    "dependent": "vitest",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "yaml",
+    "current": null,
+    "wanted": "2.9.1",
+    "latest": "2.9.1",
+    "dependent": "vite",
+    "decision": "KEEP",
+    "reason": "Absent optional/platform peer; do not install as a review-only refresh."
+  },
+  {
+    "ecosystem": "npm",
+    "name": "yn",
+    "current": "3.1.1",
+    "wanted": "3.1.1",
+    "latest": "5.1.0",
+    "dependent": "ts-node",
+    "decision": "KEEP",
+    "reason": "Retain current parent-compatible locked version; wanted equals current."
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "annotated-types",
+    "current": "0.8.0",
+    "latest": "0.8.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "appnope",
+    "current": "1.0.0",
+    "latest": "1.0.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "asttokens",
+    "current": "3.0.2",
+    "latest": "3.0.2",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "attrs",
+    "current": "26.1.0",
+    "latest": "26.1.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "cffi",
+    "current": "2.1.1",
+    "latest": "2.1.1",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "colorama",
+    "current": "0.4.6",
+    "latest": "0.4.6",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "comm",
+    "current": "0.2.3",
+    "latest": "0.2.3",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "debugpy",
+    "current": "1.8.22",
+    "latest": "1.8.22",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "executing",
+    "current": "2.2.1",
+    "latest": "2.3.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "fastjsonschema",
+    "current": "2.22.2",
+    "latest": "2.22.3",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "ipykernel",
+    "current": "7.3.0",
+    "latest": "7.4.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "ipython",
+    "current": "9.17.1",
+    "latest": "9.18.1",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "ipython-pygments-lexers",
+    "current": "1.1.1",
+    "latest": "1.1.1",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "jedi",
+    "current": "0.20.0",
+    "latest": "0.20.1",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "jsonschema",
+    "current": "4.26.0",
+    "latest": "4.26.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "jsonschema-specifications",
+    "current": "2025.9.1",
+    "latest": "2025.9.1",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "jupyter-client",
+    "current": "8.10.0",
+    "latest": "8.10.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "jupyter-core",
+    "current": "5.9.1",
+    "latest": "5.9.1",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "jupytext",
+    "current": "1.19.5",
+    "latest": "1.19.6",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "markdown-it-py",
+    "current": "4.2.0",
+    "latest": "4.2.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "matplotlib-inline",
+    "current": "0.2.2",
+    "latest": "0.2.2",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "mdit-py-plugins",
+    "current": "0.6.1",
+    "latest": "0.6.1",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "mdurl",
+    "current": "0.1.2",
+    "latest": "0.1.2",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "nbclient",
+    "current": "0.11.0",
+    "latest": "0.11.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "nbformat",
+    "current": "5.11.1",
+    "latest": "5.11.1",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "nest-asyncio2",
+    "current": "1.7.3",
+    "latest": "1.7.4",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "packaging",
+    "current": "26.3",
+    "latest": "26.3",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "parso",
+    "current": "0.8.7",
+    "latest": "0.8.7",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "pexpect",
+    "current": "4.9.0",
+    "latest": "4.9.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "platformdirs",
+    "current": "4.12.1",
+    "latest": "4.14.5",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "prompt-toolkit",
+    "current": "3.0.53",
+    "latest": "3.0.53",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "psutil",
+    "current": "7.2.2",
+    "latest": "7.2.2",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "ptyprocess",
+    "current": "0.7.0",
+    "latest": "0.7.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "pure-eval",
+    "current": "0.2.4",
+    "latest": "0.2.4",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "pycparser",
+    "current": "3.0",
+    "latest": "3.12",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "pydantic",
+    "current": "2.13.5",
+    "latest": "2.14.3",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "pydantic-core",
+    "current": "2.46.5",
+    "latest": "2.50.4",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "pygments",
+    "current": "2.21.0",
+    "latest": "2.21.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "python-dateutil",
+    "current": "2.9.0.post0",
+    "latest": "4.0.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "pyyaml",
+    "current": "6.0.3",
+    "latest": "6.0.3",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "pyzmq",
+    "current": "27.2.0",
+    "latest": "27.3.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "referencing",
+    "current": "0.37.0",
+    "latest": "0.37.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "rpds-py",
+    "current": "2026.6.3",
+    "latest": "2026.9.1",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "six",
+    "current": "1.17.0",
+    "latest": "1.17.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "stack-data",
+    "current": "0.6.3",
+    "latest": "0.6.3",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "tornado",
+    "current": "6.5.10",
+    "latest": "6.6",
+    "decision": "PATCH_TO_6.6",
+    "reason": "Three current advisories on6.5.10, upstream fixed6.6, existing dependency range accepts6.6; validate targeted lock and runtime tests.",
+    "advisories": [
+      "GHSA-pcg2-g6cj-q92c",
+      "GHSA-r4j5-9xpp-3985",
+      "GHSA-pw9p-v7r6-gx4p"
+    ]
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "traitlets",
+    "current": "5.16.1",
+    "latest": "5.16.1",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "typing-extensions",
+    "current": "4.16.0",
+    "latest": "4.16.0",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "typing-inspection",
+    "current": "0.4.4",
+    "latest": "0.4.5",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  },
+  {
+    "ecosystem": "pypi",
+    "name": "wcwidth",
+    "current": "0.9.1",
+    "latest": "0.9.4",
+    "decision": "KEEP",
+    "reason": "No reported advisory/yanked locked release; retain reproducible parent/pinned notebook tool graph. New-release availability alone does not establish a defect.",
+    "advisories": []
+  }
+]

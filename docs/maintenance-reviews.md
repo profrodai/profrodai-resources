@@ -31,3 +31,17 @@ The overdue review was performed under the explicit amendment of profrod-SOW-338
 
 The review was due 2026-10-25 and was performed by the maintainer seat under the Architect's approval `ans_0e1e3fffeb2fe928` (sow: profrod-ops-SOW-01).
 [Commands, raw-output hashes, the one change and limits](maintenance-evidence/2026-10-27.md) record the actual review. **One package changed:** `qs` 6.16.0 to 6.16.1 in `courses/agentic-coding-with-cursor/order-api/package-lock.json` only, for GHSA-6pq8-jhm2-2vcw (published 2026-10-27, first patched 6.16.1), inside Express's declared `qs ~6.16.0` range; `package.json` and `uv.lock` are unchanged and 6.17.0 was not taken. After the change `npm audit` reports zero vulnerabilities, all five API tests and TypeScript pass, and `uv lock --check` passes using CPython 3.12.13; the exact-version PyPI metadata check reports no vulnerability and no yanked locked release. No other bump is proposed. Only this maintainer-owned review date is renewed to 2026-10-27, due 2026-11-03; this is not a claim that all dependencies are latest or that all notebooks have been executed.
+
+
+## 2026-11-08: locked-dependencies and catalog-provenance evidence
+
+sow: public. This maintenance review was assigned by the maintainer’s operator.
+
+**Locked dependencies (maintainer decision):** [Review, targeted Tornado patch, tests and all dependency decisions](maintenance-evidence/2026-11-08.md). Tornado 6.5.10 has three reported advisories fixed in 6.6; only that package changes in uv.lock. All 5 npm tests, TypeScript, patched course gate/21 learner checkpoints and 66 Tornado header tests pass; exact patched metadata reports no advisories/yank. npm lock and dependency declarations are unchanged. Maintainer review November 8; next due November 15.
+
+**Catalog provenance (operator acceptance pending):** [Actual current-main comparison and recommendation](maintenance-evidence/2026-11-08-catalog-provenance.md). The pinned catalog validates, but22 sources changed and 2 were removed against site main 2acd8964. The October 3 repin/remove/companion-framing follow-up remains uncompleted in reviewed main/open PRs. Operator dates stay unchanged until the operator answers. Full make verify stops at that existing overdue record; no waiver or complete gate pass is claimed.
+
+
+## 2026-11-09: operator acceptance of the November 8 catalog review
+
+sow: public. The operator accepted the [November 8 provenance review](maintenance-evidence/2026-11-08-catalog-provenance.md). [Acceptance and required separate correction](maintenance-evidence/2026-11-09-catalog-acceptance.md) record the boundary: review date November 8, next due December 9; repin the source index, remove the two retired sources and review the 22 changed pages in a separate pull request during the same week. The earlier pending entry and failed gate evidence remain historical records, not a claim that acceptance or the correction happened earlier.

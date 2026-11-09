@@ -25,9 +25,9 @@ class ArticlePracticeTests(unittest.TestCase):
     def specs(self) -> list[Path]:
         return sorted((ROOT / "articles").glob("*/practice.json"))
 
-    def test_all_thirteen_article_specs_have_positive_and_failure_proof(self) -> None:
+    def test_all_twelve_article_specs_have_positive_and_failure_proof(self) -> None:
         specs = self.specs()
-        self.assertEqual(13, len(specs))
+        self.assertEqual(12, len(specs))
         for path in specs:
             with self.subTest(path=path):
                 result = PRACTICE.verify_spec(path)

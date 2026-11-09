@@ -1,4 +1,4 @@
-# Voice Agents, Not Chatbots
+# Voice Agents, Not Chatbots: Latency, Barge-In, and Evaluation
 
 **Status:** scaffolded
 
@@ -29,3 +29,9 @@ Run `make run`, prove the guard with `make verify`, reset with `git restore .`.
 ## Practice companion
 
 The [`turn-guard` guided practice](labs/01-turn-guard/PRACTICE.md) adds a transferred-state project, evidence, rubric, and non-audio accessibility path.
+
+## Current source scope
+
+The course now budgets and measures latency, barge-in and task success. This text-only completed-call guard practices one deterministic boundary; it provides no audio pipeline, latency measurement or voice-quality evaluation.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

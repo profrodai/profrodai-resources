@@ -1,4 +1,4 @@
-# Your Claude Code Permissions Are Your Org Chart — practice companion
+# Test What a Claude Code Permission Rule Actually Allows, in a Sandbox — practice companion
 
 **Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
@@ -28,3 +28,9 @@ The synthetic policy never changes Claude Code, repository, or host permissions.
 
 ## Provenance boundary
 Identity source: `profrod-site/content/articles/claude-code-permissions-are-your-org-chart.md`. No working agent configuration is copied.
+
+## Current source scope
+
+The current article tests permission matching and sandbox behavior with adversarial probes. This abstract grant comparison is a prerequisite exercise only; it does not emulate command-pattern matching or qualify an actual Claude Code sandbox.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

@@ -23,3 +23,7 @@ The workload is synthetic and offline. No NVIDIA service, GPU, credential, netwo
 
 ## Verify
 From the course directory run `make verify`.
+
+## Current source scope
+
+The course covers prefill, decode, batching and cost per token. This deterministic retrieval batch planner covers planning arithmetic only; it does not benchmark NVIDIA NIM or implement the full inference-economics course.

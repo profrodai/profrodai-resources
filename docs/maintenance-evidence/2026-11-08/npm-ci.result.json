@@ -1,0 +1,41 @@
+{
+  "label": "npm-ci",
+  "command": [
+    "npm",
+    "ci",
+    "--ignore-scripts",
+    "--no-fund"
+  ],
+  "cwd": "courses/agentic-coding-with-cursor/order-api",
+  "started": "2026-11-08T23:29:00.158074+00:00",
+  "finished": "2026-11-08T23:29:01.682897+00:00",
+  "exit": 0,
+  "output": {
+    "stdout": {
+      "publicFile": "npm-ci.stdout.redacted.txt.gz",
+      "publicRawBytes": 77,
+      "publicSHA256": "50e95ba805a01e9320eb6642b69592dc531fd0246af5e1916e4c829faaac3bd8",
+      "publicGzipSHA256": "37b92122e115478ce770fdb6456ac8147355c9221fa9fdb6f6ce376bfaad1eed",
+      "privateRawLog": {
+        "artifact": "npm-ci.stdout.gz",
+        "uncompressedBytes": 77,
+        "uncompressedSHA256": "50e95ba805a01e9320eb6642b69592dc531fd0246af5e1916e4c829faaac3bd8",
+        "gzipSHA256": "37b92122e115478ce770fdb6456ac8147355c9221fa9fdb6f6ce376bfaad1eed"
+      },
+      "redaction": "Machine-specific paths replaced by <local-path>; private original retained; no test rerun or edited-original claim"
+    },
+    "stderr": {
+      "publicFile": "npm-ci.stderr.redacted.txt.gz",
+      "publicRawBytes": 0,
+      "publicSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publicGzipSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "privateRawLog": {
+        "artifact": "npm-ci.stderr.gz",
+        "uncompressedBytes": 0,
+        "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "gzipSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+      },
+      "redaction": "Machine-specific paths replaced by <local-path>; private original retained; no test rerun or edited-original claim"
+    }
+  }
+}

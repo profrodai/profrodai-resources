@@ -1,4 +1,4 @@
-# Claude Code for Business
+# Claude Code for AI Research
 
 **Status:** practical track · **Runtime:** Python 3.10+ · **Cost:** free and offline
 
@@ -13,7 +13,7 @@ Source: [`profrod-site/content/courses/claude-code-for-business/_course.md`](htt
 small deterministic teaching slice, not copied course content or a live Claude Code integration.
 
 The pinned Claude Code 101 course is a legacy-modernization source, and the fictional Xolo
-template is a separately mapped future template import. Their provenance, licence boundary, and
+template is a separately mapped future template import. Their provenance, license boundary, and
 next gates are in [SOURCE.md](SOURCE.md), [MIGRATION.md](MIGRATION.md), and
 [`template/xolo-consulting/`](template/xolo-consulting/).
 
@@ -28,7 +28,7 @@ and standard-library Python; no account, network call, or real business data is 
 | Right-size the task | [Practice 02](https://profrod.ai/courses/claude-code-for-business/lesson/06-practice-02-right-size-the-task) | [02 scope boundary](labs/02-scope-boundary/PRACTICE.md) | A request names allowed files, forbidden actions, and acceptance. |
 | Demand evidence | [Practice 03](https://profrod.ai/courses/claude-code-for-business/lesson/07-practice-03-demand-evidence-not-assurances) | [03 evidence reconciliation](labs/03-evidence-reconciliation/PRACTICE.md) | A claimed total is held unless separate records recompute it. |
 | Reusable workflows | [Practice 04](https://profrod.ai/courses/claude-code-for-business/lesson/08-practice-04-durable-instructions-reusable-workflows) | [04 reusable instructions](labs/04-reusable-instructions/PRACTICE.md) | An instruction is usable only with trigger, steps, output, and verification. |
-| Drafted, not sent | [Practice 05](https://profrod.ai/courses/claude-code-for-business/lesson/09-practice-05-drafted-not-sent) | [05 draft release](labs/05-draft-release/PRACTICE.md) | An external draft remains held without explicit human approval. |
+| Drafted, not sent | Standalone legacy practice (no matching current lesson) | [05 draft release](labs/05-draft-release/PRACTICE.md) | An external draft remains held without explicit human approval. |
 
 ## Prerequisites, runtime, safety, and cost
 
@@ -43,3 +43,9 @@ gate runs every baseline and acceptance check.
 
 Complete the five linked practices in order. Each has a baseline, guided variation, transfer task,
 independent acceptance, rubric, accessibility route, safety boundary, debrief, and troubleshooting.
+
+## Current source scope
+
+The current course uses reproducible research experiments and evaluation guards. These older synthetic business exercises practice delegation boundaries only; they do not implement the Chapter 16 experiment, statistical intervals or seeded-bug review.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-08T23:34:30.537712+00:00",
+  "hashes": {
+    "courses/agentic-coding-with-cursor/order-api/package-lock.json": "0b9da654ca399300099b2b0c8887cd147ad6cd67ecd202bb1ada8054eee50562",
+    "courses/sovereign-agent-book/uv.lock": "a3e11c7f32377a117b4dc9ea332215c48792e17fab22f3e8e04784421c224f55"
+  },
+  "changedLockedPackages": [
+    "tornado6.5.10 to6.6"
+  ],
+  "manifestChanges": false
+}

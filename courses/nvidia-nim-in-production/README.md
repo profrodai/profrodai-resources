@@ -1,4 +1,4 @@
-# NVIDIA NIM in Production: From Hosted API to Self-Hosted Inference
+# Inference Economics on NVIDIA NIM: Latency, Throughput and Cost per Token
 
 **Status:** scaffolded
 
@@ -29,3 +29,9 @@ Use `make run`, `make verify`, then `git restore .` to discard exploration.
 ## Practice companion
 
 The [`retrieval-plan` guided practice](labs/01-retrieval-plan/PRACTICE.md) covers rounding, zero input, concurrency constraints, evidence, and review without making hardware claims.
+
+## Current source scope
+
+The course covers prefill, decode, batching and cost per token. This deterministic retrieval batch planner covers planning arithmetic only; it does not benchmark NVIDIA NIM or implement the full inference-economics course.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

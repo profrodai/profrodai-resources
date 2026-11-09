@@ -23,3 +23,7 @@ Use synthetic, in-memory records. Do not add personal data, embeddings, external
 
 ## Verify
 From the course directory run `make verify`.
+
+## Current source scope
+
+The current course derives and measures context, tool, planning and retrieval behavior. This in-memory evidence store demonstrates source IDs and duplicate denial only; it does not measure model memory or multi-agent performance.

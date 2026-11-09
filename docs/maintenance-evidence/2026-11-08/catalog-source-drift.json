@@ -1,0 +1,176 @@
+{
+  "resourcesBase": "8132ed0c597fd7abd7618003457a4861d61991b9",
+  "pinnedSource": "db4dc3afb65aa402069d04533d4ce9766d7444e4",
+  "siteMain": "2acd8964de49b8ed49c09564d375864214591ec5",
+  "advertisedSiteMain": "2acd8964de49b8ed49c09564d375864214591ec5",
+  "rows": [
+    {
+      "path": "content/courses/agentic-coding-with-cursor/_course.md",
+      "pinnedTitle": "Agentic Coding with Cursor",
+      "state": "CHANGED",
+      "pinSHA256": "ed955b8200d452fde9f869257da9e9ff8a9b7ffa0b529a1417b1023cadd44b90",
+      "currentSHA256": "354a7c49445f99c7c0ade2e623c9799cb5d46ae67e6d1bde54a3766c7e936c08"
+    },
+    {
+      "path": "content/courses/claude-code-for-business/_course.md",
+      "pinnedTitle": "Claude Code for Business",
+      "state": "CHANGED",
+      "pinSHA256": "8fbf06b7a43568a2efb63331ebc30efca0cc145f6ec2ac7740afd7d75c676139",
+      "currentSHA256": "64feed2f4809efc5ea9eb8b777bff13a1e7f537870f6fa80b23e035afecd274e"
+    },
+    {
+      "path": "content/courses/langgraph-agent-orchestration/_course.md",
+      "pinnedTitle": "LangGraph Agent Orchestration",
+      "state": "CHANGED",
+      "pinSHA256": "b1c0abc1d233cbdf9825fff3bb29e2e00a4b227316ddb87b40ee898d3dfc4fbf",
+      "currentSHA256": "86495e148b21435cb0e54eee02c1b81efde79a07f9ade8df33766b34943d0262"
+    },
+    {
+      "path": "content/courses/nebius-token-factory-in-production/_course.md",
+      "pinnedTitle": "Nebius Token Factory in Production: Running Open Models Honestly",
+      "state": "CHANGED",
+      "pinSHA256": "90ca3e7b3438d4e543071628bc3ce2d5d3943d2ec0e99a4afcba2d47892b3b6e",
+      "currentSHA256": "39e8b855ea2513251c96865c32fbc1969180c06ca0a7d1ebd622dea344d4d44d"
+    },
+    {
+      "path": "content/courses/nvidia-nim-in-production/_course.md",
+      "pinnedTitle": "NVIDIA NIM in Production: From Hosted API to Self-Hosted Inference",
+      "state": "CHANGED",
+      "pinSHA256": "ab3a6feb346d789ad7307d12692aedca361bad184283d950a055b5d7462eb543",
+      "currentSHA256": "d90e66c83a18c85afc74c66f24e04c00f46d83255dfff81cb155ce818bc38c5a"
+    },
+    {
+      "path": "content/courses/tools-memory-and-multi-agent-systems/_course.md",
+      "pinnedTitle": "Tools, Memory, and Multi-Agent Systems",
+      "state": "CHANGED",
+      "pinSHA256": "1f6bf5459161c234dd7125bfa6e3291c1f936893e4046beea9b01839bfcffb35",
+      "currentSHA256": "641c87a744339ee3137ca54767deefedcc666e75a148867f46582a969da41d1c"
+    },
+    {
+      "path": "content/courses/transformation-tracker-with-claude-code/_course.md",
+      "pinnedTitle": "The 12-Week Transformation Tracker, Run on Claude Code",
+      "state": "REMOVED",
+      "pinSHA256": "7bbf8508ebe9be9f2e5c12f5ce0e0d473ab60346852e929da233124924b1cdd3",
+      "currentSHA256": null
+    },
+    {
+      "path": "content/courses/two-architectures/_course.md",
+      "pinnedTitle": "Two Architectures: The 2x2 for Agent Design",
+      "state": "CHANGED",
+      "pinSHA256": "5b844666b7041900e75a68a8afa9661fb42682cafcb1416859976d1c349f9a76",
+      "currentSHA256": "efaf9dacae1b696d7dd73f613ac927c670fde81179768b2a4c82aff904e50b78"
+    },
+    {
+      "path": "content/courses/voice-agents-not-chatbots/_course.md",
+      "pinnedTitle": "Voice Agents, Not Chatbots",
+      "state": "CHANGED",
+      "pinSHA256": "573d68bc21ed62102d12f4c1e84ef5ec4154cb76fb4017c087889740154004d1",
+      "currentSHA256": "a5de61b2ddc8ba916032f0588c1a783037f69860d54366760cb8391f1a4df2ea"
+    },
+    {
+      "path": "content/courses/why-agents-fail/_course.md",
+      "pinnedTitle": "Why Agents Fail: Harness Engineering for AI Projects",
+      "state": "CHANGED",
+      "pinSHA256": "68ce31e92311cb892be777e6c7d9dd9ef9ec12ac57984657025b7da22102a55a",
+      "currentSHA256": "ea54be22ef2a69621f15ac39eb65b31ecd75fa8d75ee27b028eb68faac21ad0e"
+    },
+    {
+      "path": "content/courses/zeo-itam-autumn-2026/_course.md",
+      "pinnedTitle": "ZEO ITAM \u00b7 Autumn 2026",
+      "state": "CHANGED",
+      "pinSHA256": "bca4c92f5c2ec86e68806865356fdb00c7246f8b05441e1844719ee3aa1159cd",
+      "currentSHA256": "5676b89aac62e632bd3675f1d729db28072758a61ea79e3cfc189493c55f6a92"
+    },
+    {
+      "path": "content/articles/build-a-working-agent-with-sovereign-agent.md",
+      "pinnedTitle": "Build a Working Agent with sovereign-agent",
+      "state": "CHANGED",
+      "pinSHA256": "0c44b5c0b0fab852a9cc2dcaaf3d91f99295c65c13b5d2a057e02313c33dc331",
+      "currentSHA256": "0290e640b152673a63aee27c54ba8822590f4fd8a0722d7377dd701522d07480"
+    },
+    {
+      "path": "content/articles/build-your-first-zeocore-tool.md",
+      "pinnedTitle": "Build Your First ZeoCore Tool, Then Watch It Fail Twice",
+      "state": "CHANGED",
+      "pinSHA256": "4100068b8ba1aebbef3350b807fc8a90ee10175e326a049a6a4d17fe21717bc8",
+      "currentSHA256": "77af899aeb2ca74ec73973af8b732a1d0a8f0156e84a83ab83d1db456f92d45b"
+    },
+    {
+      "path": "content/articles/claude-code-permissions-are-your-org-chart.md",
+      "pinnedTitle": "Your Claude Code Permissions Are Your Org Chart",
+      "state": "CHANGED",
+      "pinSHA256": "2f16cf432e62cf89b8c36d2a1491752457d99c845f3ef211ac4f7ca5a2d4d6ee",
+      "currentSHA256": "6cd751dfd1370f0e8441dbbb5f535b885f1901bf67bd17be6c6e0d9caffcda6a"
+    },
+    {
+      "path": "content/articles/clean-a-messy-customer-list-with-claude-code.md",
+      "pinnedTitle": "Clean a Messy Customer List With Claude Code \u2014 and Prove Nothing Was Lost",
+      "state": "CHANGED",
+      "pinSHA256": "2c1f6d70a8d3ee8f799fb0937e35ed60598a43b6926e47a6acad12fa2ff32c13",
+      "currentSHA256": "a77abd2d44260446098f2f8d3440b113279879381c8dd4b9d43405563ccfc47f"
+    },
+    {
+      "path": "content/articles/govern-a-multi-agent-project-with-zero-employee.md",
+      "pinnedTitle": "Govern a Multi-Agent Project With Zero-Employee",
+      "state": "CHANGED",
+      "pinSHA256": "0c44ed27ded2ec5d2d8786a12ced1d01fc14617afd4796c18a77440f57ca8ddf",
+      "currentSHA256": "bad1c30f72fb8abd07841a3c6984eb995536ed7da2deccca9be993dd206b33b2"
+    },
+    {
+      "path": "content/articles/the-content-kit.md",
+      "pinnedTitle": "The Content Kit: Every Block, and When to Use It",
+      "state": "REMOVED",
+      "pinSHA256": "bc3895fa79944aea26c92445f5ee349956882e4a9c8f98948433b0a43de7d00f",
+      "currentSHA256": null
+    },
+    {
+      "path": "content/articles/unverified-output-has-a-negative-margin.md",
+      "pinnedTitle": "Unverified Output Has a Negative Margin",
+      "state": "CHANGED",
+      "pinSHA256": "903e43e549fa14e19ad6ab8d99b292355e95aecbbe5355a5f8f6aa750c9f9973",
+      "currentSHA256": "50da2149360d83089138a5d382561300304c200386b414198f1d8727777c9ff6"
+    },
+    {
+      "path": "content/articles/what-claude-code-actually-costs.md",
+      "pinnedTitle": "What Claude Code Actually Costs \u2014 and Which Dials Move It",
+      "state": "CHANGED",
+      "pinSHA256": "1a94dd538ab69675d7d41b3b51e406d0313530145cfa69c23004fc58c2f1168c",
+      "currentSHA256": "12566459b594b3f70a6295740a71784d5246ef862f5628c3e50ad771482cff62"
+    },
+    {
+      "path": "content/articles/what-claude-code-changes.md",
+      "pinnedTitle": "What Claude Code Actually Changes \u2014 and What It Doesn't",
+      "state": "CHANGED",
+      "pinSHA256": "aa68f30b5980a3bdf15d5919f24cecc034d152ccff795c65c92949b31f02ee13",
+      "currentSHA256": "eefa977d0673610d458bb8e7c694112403a9f9ed2c1342817a0d347eb701d521"
+    },
+    {
+      "path": "content/articles/what-is-a-zero-employee-organization.md",
+      "pinnedTitle": "What Is a Zero-Employee Organization?",
+      "state": "CHANGED",
+      "pinSHA256": "6d19d06bb93754eb69fbb124702a215e74cfefbb16261eab11c8a27257a29493",
+      "currentSHA256": "0966ca12165c3c85344a58f616909fcd99bd37211483166aa0fcb8cdee75bc59"
+    },
+    {
+      "path": "content/articles/when-to-let-an-agent-run-unsupervised.md",
+      "pinnedTitle": "When Can You Actually Walk Away?",
+      "state": "CHANGED",
+      "pinSHA256": "0e27b82967765c478d0ab360c9a3817de41c7bbdd8e2baadb9f85f0870bbdff3",
+      "currentSHA256": "4ce570014f231c011e69a322210dfd21963193119ae387afcd018ca38e404bef"
+    },
+    {
+      "path": "content/articles/why-ai-agents-dont-dissolve-the-firm.md",
+      "pinnedTitle": "Why AI Agents Don't Dissolve the Firm",
+      "state": "CHANGED",
+      "pinSHA256": "0abd6f54a3792749f752fcdd6d51ecde08b7bf1e845d541dc6f2b69d34ceaad0",
+      "currentSHA256": "fbbfb96d5377a86c0aab9c5618eabc496a504672f51cab86a26bf7e67d72ac0f"
+    },
+    {
+      "path": "content/articles/your-chat-history-is-not-a-system-of-record.md",
+      "pinnedTitle": "Your Chat History Is Not a System of Record",
+      "state": "CHANGED",
+      "pinSHA256": "1ba4daf6af3d1dd09327815d79d98321f808ae3c3b5d97ac63e95ff1c73e2afb",
+      "currentSHA256": "c9395adef13207968121579c8e4161b2e8030ed2716bbdb7de8720ac543c7d13"
+    }
+  ]
+}

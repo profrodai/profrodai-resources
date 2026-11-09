@@ -1,4 +1,4 @@
-# ZEO ITAM · Autumn 2026 — practical track
+# ZEO ITAM · Autumn 2026
 
 Status: flagship companion track · **Runtime:** Python 3.10+ · **Cost:** free and offline
 
@@ -56,3 +56,9 @@ Run all four baseline demonstrations with `make run`; run every acceptance check
 Every result is text/JSON, untimed, and reproducible. A learner may explain a result in prose or a
 table. The invented Xolo scenarios are exercises in reasoning, not permission to automate a real
 workflow, inspect real ledgers, or expose personal data.
+
+## Current source scope
+
+The live semester has expanded beyond Class 1. This companion retains the manual-minutes baseline and before/after experiment; it does not claim to implement every published class or the complete semester.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

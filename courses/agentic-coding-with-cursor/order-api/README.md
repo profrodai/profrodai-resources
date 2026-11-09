@@ -4,8 +4,7 @@
 
 The companion repo for [Agentic Coding with
 Cursor](https://profrod.ai/courses/agentic-coding-with-cursor), a course at
-[profrod.ai](https://profrod.ai). This is the small service every lesson from lesson 4 onward
-runs against.
+[profrod.ai](https://profrod.ai). This is a legacy TypeScript practice service. The current course uses a Python evaluation harness; this service does not implement that harness.
 
 A tiny Node/Express-style TypeScript service for looking up orders. Small enough to hold in your
 head; real enough that Cursor has actual code to react to.

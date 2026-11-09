@@ -1,0 +1,44 @@
+{
+  "label": "patched-tornado-http-tests",
+  "command": [
+    "uv",
+    "run",
+    "--locked",
+    "python",
+    "-m",
+    "unittest",
+    "tornado.test.httputil_test"
+  ],
+  "cwd": "courses/sovereign-agent-book",
+  "started": "2026-11-08T23:32:23.437971+00:00",
+  "finished": "2026-11-08T23:32:24.405619+00:00",
+  "exit": 0,
+  "output": {
+    "stdout": {
+      "publicFile": "patched-tornado-http-tests.stdout.redacted.txt.gz",
+      "publicRawBytes": 0,
+      "publicSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publicGzipSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "privateRawLog": {
+        "artifact": "patched-tornado-http-tests.stdout.gz",
+        "uncompressedBytes": 0,
+        "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "gzipSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+      },
+      "redaction": "Machine-specific paths replaced by <local-path>; private original retained; no test rerun or edited-original claim"
+    },
+    "stderr": {
+      "publicFile": "patched-tornado-http-tests.stderr.redacted.txt.gz",
+      "publicRawBytes": 165,
+      "publicSHA256": "1bfe5f4e690c46da2ba857e58e0b70bfe6c899a465ed2d0379cd68cd7edb893c",
+      "publicGzipSHA256": "a23bc89360a512d2b540f311c66375501289cce70d9488d219ae1cccdf10b9a9",
+      "privateRawLog": {
+        "artifact": "patched-tornado-http-tests.stderr.gz",
+        "uncompressedBytes": 165,
+        "uncompressedSHA256": "1bfe5f4e690c46da2ba857e58e0b70bfe6c899a465ed2d0379cd68cd7edb893c",
+        "gzipSHA256": "a23bc89360a512d2b540f311c66375501289cce70d9488d219ae1cccdf10b9a9"
+      },
+      "redaction": "Machine-specific paths replaced by <local-path>; private original retained; no test rerun or edited-original claim"
+    }
+  }
+}

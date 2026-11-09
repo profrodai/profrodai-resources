@@ -1,4 +1,4 @@
-# Nebius Token Factory in Production: Running Open Models Honestly
+# Hosted Inference Economics on Nebius Token Factory: Latency and Cost per Task
 
 **Status:** scaffolded
 
@@ -29,3 +29,9 @@ Run `make run`, verify with `make verify`, and reset with `git restore .`.
 ## Practice companion
 
 The [`model-selection` guided practice](labs/01-model-selection/PRACTICE.md) adds constraints, a no-match project, evidence, rubric, and accessibility using invented fixtures only.
+
+## Current source scope
+
+The course derives hosted inference cost and a latency measurement protocol. This invented model-selection fixture practices a budget decision; it supplies no current vendor prices, endpoint latency or measured inference result.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

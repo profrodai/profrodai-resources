@@ -1,4 +1,4 @@
-# Two Architectures: The 2x2 for Agent Design
+# The 2x2 for Agent Design: Workflows, Agents, and Per-Layer Evals
 
 **Status:** scaffolded
 
@@ -16,7 +16,7 @@ classification exercise, not an implementation of either named architecture from
 
 | Course module | Lab | Expected output |
 |---|---|---|
-| The 2x2 and handoff | `labs/01-boundary-classifier` | A named boundary and required review level. |
+| Legacy risk boundary and handoff | `labs/01-boundary-classifier` | A named boundary and required review level. |
 
 ## Prerequisites, runtime, safety, and cost
 
@@ -28,4 +28,10 @@ Python 3.10 or newer, standard library only; offline and credential-free.
 
 ## Practice companion
 
-The [`boundary-classifier` guided practice](labs/01-boundary-classifier/PRACTICE.md) turns the 2x2 into a text table and makes high-side-effect review a hard gate.
+The [`boundary-classifier` guided practice](labs/01-boundary-classifier/PRACTICE.md) turns the legacy risk boundary into a text table and makes high-side-effect review a hard gate.
+
+## Current source scope
+
+The current 2x2 crosses who waits with who decides, then evaluates each layer. This legacy classifier uses uncertainty and side effects; those are different axes. Treat it as a separate risk-boundary exercise, not an implementation of the current course diagram.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

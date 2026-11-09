@@ -33,3 +33,7 @@ All claims and IDs are synthetic. No live model, private source, credential, or 
 
 ## Verify
 From the course directory run `make verify`.
+
+## Current source scope
+
+The course combines failure analysis, reliability arithmetic, evaluation and evidence gates. This fixture practices only the evidence-gate part; a passing local verdict does not measure a real agent success rate or grader calibration.

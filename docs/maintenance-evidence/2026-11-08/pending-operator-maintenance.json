@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-08T23:37:17.081114+00:00",
+  "exit": 1,
+  "stdout": "",
+  "stderr": "curriculum maintenance validation failed: maintenance overdue: catalog-provenance owner=operator due=2026-11-03\n",
+  "overdueAreas": [
+    "catalog-provenance"
+  ],
+  "notAPass": true
+}

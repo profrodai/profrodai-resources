@@ -1,4 +1,4 @@
-"""Keep every business practice tied to its exact Site lesson."""
+"""Keep current lesson mappings exact and retired mappings explicitly standalone."""
 from __future__ import annotations
 from pathlib import Path
 import unittest
@@ -10,7 +10,6 @@ PRACTICES = {
     "labs/02-scope-boundary/PRACTICE.md": "06-practice-02-right-size-the-task",
     "labs/03-evidence-reconciliation/PRACTICE.md": "07-practice-03-demand-evidence-not-assurances",
     "labs/04-reusable-instructions/PRACTICE.md": "08-practice-04-durable-instructions-reusable-workflows",
-    "labs/05-draft-release/PRACTICE.md": "09-practice-05-drafted-not-sent",
 }
 
 
@@ -22,6 +21,17 @@ class PracticalMapTest(unittest.TestCase):
             url = f"{COURSE_URL}/lesson/{lesson}"
             self.assertIn(url, readme)
             self.assertIn(url, (ROOT / path).read_text())
+
+
+    def test_retired_draft_release_is_explicitly_standalone(self):
+        readme = (ROOT / "README.md").read_text()
+        guide = (ROOT / "labs/05-draft-release/PRACTICE.md").read_text()
+        retired_url = f"{COURSE_URL}/lesson/09-practice-05-drafted-not-sent"
+        self.assertNotIn(retired_url, readme)
+        self.assertNotIn(retired_url, guide)
+        self.assertIn("Standalone legacy practice", readme)
+        self.assertIn("standalone legacy practice", guide)
+
 
 
 if __name__ == "__main__":

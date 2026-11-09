@@ -8,3 +8,7 @@ Current target: `labs/01-baseline-delta` is a credential-free successor scaffold
 the companion. Next gate: compare the selected MIT source files to the pin, decide the learner
 data/privacy contract, import only reviewed files, and add a deterministic verification target.
 The public companion remains the learner destination until that replacement has landed.
+
+## Retirement: November 9, 2026
+
+The site removed this course. Its runnable companion has been removed from this catalog. Statements above describe the historical mapping only; there is no active successor import or learner destination promised here. The source pin and license record are retained for provenance.

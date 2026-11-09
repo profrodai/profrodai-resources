@@ -47,8 +47,8 @@ def main() -> None:
 
     for required in ("verify-pr:", "catalog-structure:", "curriculum-pr:", "--structure-only --course-makefiles", "ci-trust-check:"):
         require(makefile, required, "Makefile")
-    if len(catalog.get("courses", [])) != 11:
-        fail("catalog must enumerate exactly 11 course gates")
+    if len(catalog.get("courses", [])) != 10:
+        fail("catalog must enumerate exactly 10 course gates")
     if len(catalog.get("adoptedCourses", [])) != 2:
         fail("catalog must enumerate exactly two mapped adopted courses")
     if len(consolidation.get("sources", [])) != 8:

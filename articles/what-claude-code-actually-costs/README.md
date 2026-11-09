@@ -1,4 +1,4 @@
-# What Claude Code Actually Costs — and Which Dials Move It — practice companion
+# What an Agent Loop Costs: Quadratic Resend, Cache Reads and Cost per Solved Task — practice companion
 
 **Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
@@ -28,3 +28,9 @@ Rates are synthetic examples, not live pricing or financial advice. No provider 
 
 ## Provenance boundary
 Identity source: `profrod-site/content/articles/what-claude-code-actually-costs.md`. No article body or price feed is copied.
+
+## Current source scope
+
+The current article derives quadratic context resend, cache reads and cost per solved task. This linear token-volume fixture is a unit-cost prerequisite only; it does not model cache expiry, repeated context or solve-rate uncertainty.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

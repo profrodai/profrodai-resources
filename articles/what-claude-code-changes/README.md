@@ -1,4 +1,4 @@
-# What Claude Code Actually Changes — and What It Doesn't — practice companion
+# Using a Coding Agent on Research Code: Ask Where the Expected Values Came From — practice companion
 
 **Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
@@ -28,3 +28,9 @@ The fixture describes changes but performs none. No repository mutation, provide
 
 ## Provenance boundary
 Identity source: `profrod-site/content/articles/what-claude-code-changes.md`. No article body or real diff is copied.
+
+## Current source scope
+
+The current article centers on independently derived expected values in research-code review. This change-risk classifier practices scope inspection only; it does not establish independent test expectations or test metric correctness.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

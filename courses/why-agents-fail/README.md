@@ -1,4 +1,4 @@
-# Why Agents Fail: Harness Engineering for AI Projects
+# Why Agent Systems Fail, and How a Lab Would Find Out
 
 **Status:** scaffolded
 
@@ -29,3 +29,9 @@ Use `make run`, then `make verify`; discard local experiments with `git restore 
 ## Practice companion
 
 The [`evidence-gate` guided practice](labs/01-evidence-gate/PRACTICE.md) exercises missing and duplicate evidence while keeping claims and sources synthetic.
+
+## Current source scope
+
+The course combines failure analysis, reliability arithmetic, evaluation and evidence gates. This fixture practices only the evidence-gate part; a passing local verdict does not measure a real agent success rate or grader calibration.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

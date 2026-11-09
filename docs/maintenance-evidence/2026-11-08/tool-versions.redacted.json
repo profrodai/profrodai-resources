@@ -1,0 +1,18 @@
+{
+  "node": {
+    "version": "v24.19.0"
+  },
+  "npm": {
+    "version": "11.17.0"
+  },
+  "uv": {
+    "version": "uv 0.12.2 (Homebrew 2026-08-05 aarch64-apple-darwin)"
+  },
+  "python": {
+    "version": "Python 3.12.13"
+  },
+  "privateOriginal": {
+    "artifact": "tool-versions.json",
+    "sha256": "4b0c224be4138828d329af80dba261e61de891ce814e7d80162b15033e052ac3"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-08T23:29:00.142219+00:00",
+  "base": "8132ed0c597fd7abd7618003457a4861d61991b9",
+  "lockHashes": {
+    "courses/agentic-coding-with-cursor/order-api/package-lock.json": "0b9da654ca399300099b2b0c8887cd147ad6cd67ecd202bb1ada8054eee50562",
+    "courses/sovereign-agent-book/uv.lock": "2477c56eaf221b354f26fe38dc002df6bf2047ac34c528fe2e69c70f2817d386"
+  },
+  "scope": "sow: public; actual maintenance review; no operator date change"
+}

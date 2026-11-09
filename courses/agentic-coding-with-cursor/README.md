@@ -1,12 +1,11 @@
-# Agentic Coding with Cursor
+# Agentic Coding with Cursor for Research Engineers
 
 **Status:** practical track · **Runtime:** Node 20+ · **Cost:** free and offline
 
 ## Learner promise
 
 Use a small order service to practice reviewing an agent edit as you would a teammate's pull
-request. The course site supplies the teaching sequence; this repository supplies original,
-synthetic exercises that make the review habits observable.
+request. The current course uses research code; this repository retains original, synthetic order-service exercises that make a subset of review habits observable.
 
 ## Audience
 
@@ -76,3 +75,9 @@ your own exploration with `git restore .` and remove ignored dependencies with `
 Start with the [`order-api` practice overview](order-api/PRACTICE.md), then complete the four
 linked practicals in order. They reinforce the course through runnable bytes and do not reproduce
 lesson prose.
+
+## Current source scope
+
+The current course reviews Python evaluation code, split leakage, seeds and metrics. This companion remains a TypeScript order-service exercise in bounded edits and behavioral review; it does not supply evalkit or reproduce the research experiments.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

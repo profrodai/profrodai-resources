@@ -1,4 +1,4 @@
-# Your Chat History Is Not a System of Record — practice companion
+# Your Chat History Is Not a Lab Notebook: Make Agent Work Resumable — practice companion
 
 **Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
@@ -28,3 +28,9 @@ The events are fictional and contain no real chat, instructions, personal data, 
 
 ## Provenance boundary
 Identity source: `profrod-site/content/articles/your-chat-history-is-not-a-system-of-record.md`. No article body or conversation is copied.
+
+## Current source scope
+
+The article now asks whether a fresh session can recover a research task from a lab notebook. This ordered-event replay demonstrates missing-sequence detection; it does not validate experiment provenance, intervals or a complete research handoff.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

@@ -1,4 +1,4 @@
-# Build Your First ZeoCore Tool, Then Watch It Fail Twice — practice companion
+# Build One Station of a Dark Factory: A Typed Tool With a Receipt — practice companion
 
 **Teaching maturity:** mapped · **Companion contract:** complete · **Human review:** pending
 
@@ -28,3 +28,9 @@ No filesystem mutation, credential, network, internal tool byte, or provider cos
 
 ## Provenance boundary
 Identity source: `profrod-site/content/articles/build-your-first-zeocore-tool.md`. No article body or internal ZeoCore implementation is present.
+
+## Current source scope
+
+The current article constructs typed tools and reproducible receipts. This string-based containment exercise practices traversal and overwrite denial only; it does not instantiate the typed tool library or verify its runtime behavior.
+
+Source identity was reviewed against the pinned snapshot on November 9, 2026. This mapping review does not grant human pedagogical or accessibility approval.

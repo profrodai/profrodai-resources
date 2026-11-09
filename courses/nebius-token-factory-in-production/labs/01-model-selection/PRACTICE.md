@@ -23,3 +23,7 @@ All model names and values are invented. No Nebius API, key, network, or billed 
 
 ## Verify
 From the course directory run `make verify`.
+
+## Current source scope
+
+The course derives hosted inference cost and a latency measurement protocol. This invented model-selection fixture practices a budget decision; it supplies no current vendor prices, endpoint latency or measured inference result.

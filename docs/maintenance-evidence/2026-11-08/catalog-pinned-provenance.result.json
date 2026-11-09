@@ -1,0 +1,39 @@
+{
+  "label": "catalog-pinned-provenance",
+  "command": [
+    "make",
+    "catalog"
+  ],
+  "cwd": ".",
+  "started": "2026-11-08T23:32:24.405880+00:00",
+  "finished": "2026-11-08T23:32:24.719489+00:00",
+  "exit": 0,
+  "output": {
+    "stdout": {
+      "publicFile": "catalog-pinned-provenance.stdout.redacted.txt.gz",
+      "publicRawBytes": 121,
+      "publicSHA256": "6cff1b13d434e21170bafa8c837c16e60b4783dc7dfeb9710201d7ecb1b86bdf",
+      "publicGzipSHA256": "2be092ef5ad10a97732f392d48a3ec1f3726c882a9231a433c37441a2cfd190c",
+      "privateRawLog": {
+        "artifact": "catalog-pinned-provenance.stdout.gz",
+        "uncompressedBytes": 161,
+        "uncompressedSHA256": "f116a5c1d5732ae785be5f72b4c19eb7a8dd20d982d8a3cd60150364168bcf9e",
+        "gzipSHA256": "02cb464594f39dba338e57a246e55d26764b063901345c0183abc188585ce5d6"
+      },
+      "redaction": "Machine-specific paths replaced by <local-path>; private original retained; no test rerun or edited-original claim"
+    },
+    "stderr": {
+      "publicFile": "catalog-pinned-provenance.stderr.redacted.txt.gz",
+      "publicRawBytes": 0,
+      "publicSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publicGzipSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "privateRawLog": {
+        "artifact": "catalog-pinned-provenance.stderr.gz",
+        "uncompressedBytes": 0,
+        "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "gzipSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+      },
+      "redaction": "Machine-specific paths replaced by <local-path>; private original retained; no test rerun or edited-original claim"
+    }
+  }
+}

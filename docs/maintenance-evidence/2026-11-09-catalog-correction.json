@@ -1,0 +1,188 @@
+{
+  "schema": 1,
+  "sourceCommit": "2acd8964de49b8ed49c09564d375864214591ec5",
+  "reviewedOn": "2026-11-09",
+  "removed": [
+    "content/courses/transformation-tracker-with-claude-code/_course.md",
+    "content/articles/the-content-kit.md"
+  ],
+  "reviewScope": "22 source framing/outcome mappings against existing companion README contracts; not full lesson verification or human pedagogical acceptance",
+  "records": [
+    {
+      "source": "content/courses/agentic-coding-with-cursor/_course.md",
+      "sourceSHA256": "354a7c49445f99c7c0ade2e623c9799cb5d46ae67e6d1bde54a3766c7e936c08",
+      "companion": "courses/agentic-coding-with-cursor/README.md",
+      "mappingFinding": "The current course reviews Python evaluation code, split leakage, seeds and metrics. This companion remains a TypeScript order-service exercise in bounded edits and behavioral review; it does not supply evalkit or reproduce the research experiments.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "3721bff966dc9af38b752d2b2f87451aec4b9cba3233e1cdb14243f3800f3d7d"
+    },
+    {
+      "source": "content/courses/claude-code-for-business/_course.md",
+      "sourceSHA256": "64feed2f4809efc5ea9eb8b777bff13a1e7f537870f6fa80b23e035afecd274e",
+      "companion": "courses/claude-code-for-business/README.md",
+      "mappingFinding": "The current course uses reproducible research experiments and evaluation guards. These older synthetic business exercises practice delegation boundaries only; they do not implement the Chapter 16 experiment, statistical intervals or seeded-bug review.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "824c1f6f99e5b8dcf4942bbcecacf2a8e882b8892dcfc27338f9e2422e061722"
+    },
+    {
+      "source": "content/courses/langgraph-agent-orchestration/_course.md",
+      "sourceSHA256": "86495e148b21435cb0e54eee02c1b81efde79a07f9ade8df33766b34943d0262",
+      "companion": "courses/langgraph-agent-orchestration/README.md",
+      "mappingFinding": "The course now builds measured research pipelines with durable state and human review. This standard-library threshold router practices one decision; it does not execute LangGraph, checkpoint a run or establish judge calibration.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "c2ec78c0d2211a00aad7d54b43048a0609e4c1d7e8ed96ad6a84d719b87209b7"
+    },
+    {
+      "source": "content/courses/nebius-token-factory-in-production/_course.md",
+      "sourceSHA256": "39e8b855ea2513251c96865c32fbc1969180c06ca0a7d1ebd622dea344d4d44d",
+      "companion": "courses/nebius-token-factory-in-production/README.md",
+      "mappingFinding": "The course derives hosted inference cost and a latency measurement protocol. This invented model-selection fixture practices a budget decision; it supplies no current vendor prices, endpoint latency or measured inference result.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "ef46e6233759b0b1f5340c04e68ac8cd6c10c3d76b357f3fedaed2b94333a568"
+    },
+    {
+      "source": "content/courses/nvidia-nim-in-production/_course.md",
+      "sourceSHA256": "d90e66c83a18c85afc74c66f24e04c00f46d83255dfff81cb155ce818bc38c5a",
+      "companion": "courses/nvidia-nim-in-production/README.md",
+      "mappingFinding": "The course covers prefill, decode, batching and cost per token. This deterministic retrieval batch planner covers planning arithmetic only; it does not benchmark NVIDIA NIM or implement the full inference-economics course.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "00cb19ddf3595bf37d8b0cb63bc06407deb4c9a3840faf9abda32a8b48fdf4d1"
+    },
+    {
+      "source": "content/courses/tools-memory-and-multi-agent-systems/_course.md",
+      "sourceSHA256": "641c87a744339ee3137ca54767deefedcc666e75a148867f46582a969da41d1c",
+      "companion": "courses/tools-memory-and-multi-agent-systems/README.md",
+      "mappingFinding": "The current course derives and measures context, tool, planning and retrieval behavior. This in-memory evidence store demonstrates source IDs and duplicate denial only; it does not measure model memory or multi-agent performance.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "9f4fb0310d86ab0843c698239e3926939604dcf950e1ca8c8e776261a39aed9f"
+    },
+    {
+      "source": "content/courses/two-architectures/_course.md",
+      "sourceSHA256": "efaf9dacae1b696d7dd73f613ac927c670fde81179768b2a4c82aff904e50b78",
+      "companion": "courses/two-architectures/README.md",
+      "mappingFinding": "The current 2x2 crosses who waits with who decides, then evaluates each layer. This legacy classifier uses uncertainty and side effects; those are different axes. Treat it as a separate risk-boundary exercise, not an implementation of the current course diagram.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "9943a1e4c98a0ca5e493fcb7a2a447f1dedf19e4fbc9865bee22cd9dc0dcb41a"
+    },
+    {
+      "source": "content/courses/voice-agents-not-chatbots/_course.md",
+      "sourceSHA256": "a5de61b2ddc8ba916032f0588c1a783037f69860d54366760cb8391f1a4df2ea",
+      "companion": "courses/voice-agents-not-chatbots/README.md",
+      "mappingFinding": "The course now budgets and measures latency, barge-in and task success. This text-only completed-call guard practices one deterministic boundary; it provides no audio pipeline, latency measurement or voice-quality evaluation.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "408ec53e507bbd5a9bfe6dacdef74e62d604f9b9702a122146fa07a3f7bd7167"
+    },
+    {
+      "source": "content/courses/why-agents-fail/_course.md",
+      "sourceSHA256": "ea54be22ef2a69621f15ac39eb65b31ecd75fa8d75ee27b028eb68faac21ad0e",
+      "companion": "courses/why-agents-fail/README.md",
+      "mappingFinding": "The course combines failure analysis, reliability arithmetic, evaluation and evidence gates. This fixture practices only the evidence-gate part; a passing local verdict does not measure a real agent success rate or grader calibration.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "e70a77ad779065df6e1e4bf3e463127d8f70e02c9d35ab3d90cdc004e9cffab6"
+    },
+    {
+      "source": "content/courses/zeo-itam-autumn-2026/_course.md",
+      "sourceSHA256": "5676b89aac62e632bd3675f1d729db28072758a61ea79e3cfc189493c55f6a92",
+      "companion": "courses/zeo-itam-autumn-2026/README.md",
+      "mappingFinding": "The live semester has expanded beyond Class 1. This companion retains the manual-minutes baseline and before/after experiment; it does not claim to implement every published class or the complete semester.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "261fc64de8a60165e347c115ea518c40e288ab93d72a157c80e9c4053b7c77bd"
+    },
+    {
+      "source": "content/articles/build-a-working-agent-with-sovereign-agent.md",
+      "sourceSHA256": "0290e640b152673a63aee27c54ba8822590f4fd8a0722d7377dd701522d07480",
+      "companion": "articles/build-a-working-agent-with-sovereign-agent/README.md",
+      "mappingFinding": "The current article audits cited paper IDs against search results and measures fabrication with uncertainty. This generic evidence-chain fixture practices missing-evidence denial; it neither runs sovereign-agent nor measures citation grounding.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "526da5eb9215f5c14dab854e700fb704255f493c4b57e01c10f38320fa0c05ae"
+    },
+    {
+      "source": "content/articles/build-your-first-zeocore-tool.md",
+      "sourceSHA256": "77af899aeb2ca74ec73973af8b732a1d0a8f0156e84a83ab83d1db456f92d45b",
+      "companion": "articles/build-your-first-zeocore-tool/README.md",
+      "mappingFinding": "The current article constructs typed tools and reproducible receipts. This string-based containment exercise practices traversal and overwrite denial only; it does not instantiate the typed tool library or verify its runtime behavior.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "f8dff2942975ed1d568298e676047a39d78531da02aa8670bf27c13348ec0b5e"
+    },
+    {
+      "source": "content/articles/claude-code-permissions-are-your-org-chart.md",
+      "sourceSHA256": "6cd751dfd1370f0e8441dbbb5f535b885f1901bf67bd17be6c6e0d9caffcda6a",
+      "companion": "articles/claude-code-permissions-are-your-org-chart/README.md",
+      "mappingFinding": "The current article tests permission matching and sandbox behavior with adversarial probes. This abstract grant comparison is a prerequisite exercise only; it does not emulate command-pattern matching or qualify an actual Claude Code sandbox.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "9195eb0803186caeed994e2fac8616b8ae91080eb93634fea321b50a7bfbd200"
+    },
+    {
+      "source": "content/articles/clean-a-messy-customer-list-with-claude-code.md",
+      "sourceSHA256": "a77abd2d44260446098f2f8d3440b113279879381c8dd4b9d43405563ccfc47f",
+      "companion": "articles/clean-a-messy-customer-list-with-claude-code/README.md",
+      "mappingFinding": "The current article protects evaluation data against dropped rows. This synthetic customer-list exercise practices row accounting, but it does not validate an evaluation set, its reference answers or a measured score change.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "b94db777c89f2d2c3ae2b16ae8da474cb793e5adcc3d9f43bc5d1e224714dec2"
+    },
+    {
+      "source": "content/articles/govern-a-multi-agent-project-with-zero-employee.md",
+      "sourceSHA256": "bad1c30f72fb8abd07841a3c6984eb995536ed7da2deccca9be993dd206b33b2",
+      "companion": "articles/govern-a-multi-agent-project-with-zero-employee/README.md",
+      "mappingFinding": "The current article distinguishes a present completion condition from one that actually runs. This handoff fixture checks owner, state and evidence fields only; it does not execute a completion condition or prove an external task finished.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "5bc650b9492da02a337132b87642b372f0afbdb9d7038f39546b29bc39b88af6"
+    },
+    {
+      "source": "content/articles/unverified-output-has-a-negative-margin.md",
+      "sourceSHA256": "50da2149360d83089138a5d382561300304c200386b414198f1d8727777c9ff6",
+      "companion": "articles/unverified-output-has-a-negative-margin/README.md",
+      "mappingFinding": "The current article prices accepted output including review cost and uncertainty in acceptance rate. This expected-loss exercise uses a different simplified model; it does not implement the article's accepted-output cost estimator or its error bars.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "c8a6d088cafd541856033ee500573c3ff623267a046ddf8e8d48fbd58856397c"
+    },
+    {
+      "source": "content/articles/what-claude-code-actually-costs.md",
+      "sourceSHA256": "12566459b594b3f70a6295740a71784d5246ef862f5628c3e50ad771482cff62",
+      "companion": "articles/what-claude-code-actually-costs/README.md",
+      "mappingFinding": "The current article derives quadratic context resend, cache reads and cost per solved task. This linear token-volume fixture is a unit-cost prerequisite only; it does not model cache expiry, repeated context or solve-rate uncertainty.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "4b70e7f927933836f91d7d8704fa5730e9fbb20c6d60d31d867e10170e377c0a"
+    },
+    {
+      "source": "content/articles/what-claude-code-changes.md",
+      "sourceSHA256": "eefa977d0673610d458bb8e7c694112403a9f9ed2c1342817a0d347eb701d521",
+      "companion": "articles/what-claude-code-changes/README.md",
+      "mappingFinding": "The current article centers on independently derived expected values in research-code review. This change-risk classifier practices scope inspection only; it does not establish independent test expectations or test metric correctness.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "238820dc4284dd392447c6921ab2e1194cbf7dbe6ea74b851c9e63db148e7c9d"
+    },
+    {
+      "source": "content/articles/what-is-a-zero-employee-organization.md",
+      "sourceSHA256": "0966ca12165c3c85344a58f616909fcd99bd37211483166aa0fcb8cdee75bc59",
+      "companion": "articles/what-is-a-zero-employee-organization/README.md",
+      "mappingFinding": "The current article studies review capacity, sampling and control layers in dark factories. This fictional authority-routing exercise covers separation of duties only; it does not compute review throughput or escaped-error estimates.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "fe624b6916c5ffa0fef98f95cfdb05692a577ecc500c532ac0317952d6e76e32"
+    },
+    {
+      "source": "content/articles/when-to-let-an-agent-run-unsupervised.md",
+      "sourceSHA256": "4ce570014f231c011e69a322210dfd21963193119ae387afcd018ca38e404bef",
+      "companion": "articles/when-to-let-an-agent-run-unsupervised/README.md",
+      "mappingFinding": "The article now grounds autonomy choices in public evidence and operating modes. This hard-control checklist remains a bounded preflight exercise; it does not reproduce the cited studies or qualify unattended execution.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "2478be0547dd16e76380b0e1f320fa51434ec91351ea1ce1d1e2dc25baf1e508"
+    },
+    {
+      "source": "content/articles/why-ai-agents-dont-dissolve-the-firm.md",
+      "sourceSHA256": "fbbfb96d5377a86c0aab9c5618eabc496a504672f51cab86a26bf7e67d72ac0f",
+      "companion": "articles/why-ai-agents-dont-dissolve-the-firm/README.md",
+      "mappingFinding": "The current article distinguishes asset specificity, incomplete specifications and decision authority. This synthetic transaction-cost comparison demonstrates conditional arithmetic only; it does not establish the empirical make-or-buy result.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "57279209463d86dd2113973fbd949cfb4b4a1088e695d76fca6abfff4e8f9c76"
+    },
+    {
+      "source": "content/articles/your-chat-history-is-not-a-system-of-record.md",
+      "sourceSHA256": "c9395adef13207968121579c8e4161b2e8030ed2716bbdb7de8720ac543c7d13",
+      "companion": "articles/your-chat-history-is-not-a-system-of-record/README.md",
+      "mappingFinding": "The article now asks whether a fresh session can recover a research task from a lab notebook. This ordered-event replay demonstrates missing-sequence detection; it does not validate experiment provenance, intervals or a complete research handoff.",
+      "scope": "source framing, outcomes and companion coverage; not a full technical re-audit of the source article or every course lesson",
+      "companionSHA256": "c1484ee780723dadc155b1b0e51dd7bf577476d2cfbe37480f371d0f5491cbe2"
+    }
+  ]
+}

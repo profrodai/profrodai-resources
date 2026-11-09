@@ -53,3 +53,7 @@ Use invented aggregate minutes only. Do not include employer data, personal prod
 ## Verify
 
 From the course directory run `make verify`.
+
+## Current source scope
+
+The live semester has expanded beyond Class 1. This companion retains the manual-minutes baseline and before/after experiment; it does not claim to implement every published class or the complete semester.

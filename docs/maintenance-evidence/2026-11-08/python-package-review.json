@@ -1,0 +1,989 @@
+[
+  {
+    "name": "annotated-types",
+    "locked": "0.8.0",
+    "checked_at": "2026-11-08T23:29:00.168960+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/annotated-types/0.8.0/json",
+      "raw_bytes": 17411,
+      "raw_sha256": "a6e8e5b10c8fd2f596bba53e015cd37f6279fb5cec26ce0c5e9968625be4fefa"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/annotated-types/json",
+      "raw_bytes": 31556,
+      "raw_sha256": "bbe701554fc03915c80b90d54d2af7b15fa716679967376e86f222ea7fc80181"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "0.8.0",
+    "outdated": false
+  },
+  {
+    "name": "appnope",
+    "locked": "1.0.0",
+    "checked_at": "2026-11-08T23:29:00.169321+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/appnope/1.0.0/json",
+      "raw_bytes": 3164,
+      "raw_sha256": "2932ccce1a11aaa2cb2ee0a45f540265b1171f638e1f86fecbf54755e7ebf672"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/appnope/json",
+      "raw_bytes": 23659,
+      "raw_sha256": "5ef76002dc1c322601a33613b9f74a19d42422159b527bbeb69368eeba0f97da"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "1.0.0",
+    "outdated": false
+  },
+  {
+    "name": "asttokens",
+    "locked": "3.0.2",
+    "checked_at": "2026-11-08T23:29:00.169433+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/asttokens/3.0.2/json",
+      "raw_bytes": 7849,
+      "raw_sha256": "32d65aea2c95500c4c389d5725dba00c2627166cd40ac332a3cbe4a8a39c0010"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/asttokens/json",
+      "raw_bytes": 63592,
+      "raw_sha256": "b28de1f388b8cbcbf0293419f95f1dc92efa17e4eadd2de1295806f4176bb28d"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "3.0.2",
+    "outdated": false
+  },
+  {
+    "name": "attrs",
+    "locked": "26.1.0",
+    "checked_at": "2026-11-08T23:29:00.169499+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/attrs/26.1.0/json",
+      "raw_bytes": 11038,
+      "raw_sha256": "a882bf941fb4a0bb748d0194df544121cc130f5fb15a710ab6b804c17d2899b7"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/attrs/json",
+      "raw_bytes": 67163,
+      "raw_sha256": "2e33bd22386702899e76471b04f3211f7e108ee96b288699e58fd4bc2f01c1d6"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "26.1.0",
+    "outdated": false
+  },
+  {
+    "name": "cffi",
+    "locked": "2.1.1",
+    "checked_at": "2026-11-08T23:29:00.169577+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/cffi/2.1.1/json",
+      "raw_bytes": 89333,
+      "raw_sha256": "2255e530e3f80593a354e3d84a29966924d0e10309d1e3a6d50f845ab7d8df66"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/cffi/json",
+      "raw_bytes": 1870503,
+      "raw_sha256": "ea59a663b5779e4e6bca654cfa65fcbae449a08ecd5ed576b6cbbed0c77d90fc"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "2.1.1",
+    "outdated": false
+  },
+  {
+    "name": "colorama",
+    "locked": "0.4.6",
+    "checked_at": "2026-11-08T23:29:00.169655+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/colorama/0.4.6/json",
+      "raw_bytes": 19759,
+      "raw_sha256": "43fb351344384a44c2b7d7fff1c63496b89ac830aea714301525c1f3718addd1"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/colorama/json",
+      "raw_bytes": 87746,
+      "raw_sha256": "91d65e313ddffe647e53485367394d6b784d5631b77a6e68836367ec14ff8cf7"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "0.4.6",
+    "outdated": false
+  },
+  {
+    "name": "comm",
+    "locked": "0.2.3",
+    "checked_at": "2026-11-08T23:29:00.668049+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/comm/0.2.3/json",
+      "raw_bytes": 5930,
+      "raw_sha256": "600f366e8636452c8fbac214036cfcdea2d9827738e202282a92fc8f94e50e07"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/comm/json",
+      "raw_bytes": 21135,
+      "raw_sha256": "87a8a60fd4245574e7ea3b32f3513e09adabbf47337974e3ad39492f11820175"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "0.2.3",
+    "outdated": false
+  },
+  {
+    "name": "debugpy",
+    "locked": "1.8.22",
+    "checked_at": "2026-11-08T23:29:00.733932+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/debugpy/1.8.22/json",
+      "raw_bytes": 26849,
+      "raw_sha256": "ee464399de47f4642a54c90b65eeb52541a3c2e0e4229b778d82b26b4cb5a874"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/debugpy/json",
+      "raw_bytes": 1456591,
+      "raw_sha256": "994276cecf5939a97f83dd38551ec3b158d06e7b673243457411b9d069e6fdfb"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "1.8.22",
+    "outdated": false
+  },
+  {
+    "name": "executing",
+    "locked": "2.2.1",
+    "checked_at": "2026-11-08T23:29:00.755537+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/executing/2.2.1/json",
+      "raw_bytes": 11164,
+      "raw_sha256": "a7779be7b318c5cdac50708a54f180e3295c4846c5d644ed9bb5473a7c10b865"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/executing/json",
+      "raw_bytes": 55912,
+      "raw_sha256": "2095d5c2ac672598fbcd15cd806e218b566bed53e42210dc7439ccd22c188bd8"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "2.3.0",
+    "outdated": true
+  },
+  {
+    "name": "fastjsonschema",
+    "locked": "2.22.2",
+    "checked_at": "2026-11-08T23:29:00.755974+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/fastjsonschema/2.22.2/json",
+      "raw_bytes": 4123,
+      "raw_sha256": "a4f24b125c4121a476e9a136c73e3f583cba77f5efca14fa079352cb507ee2ff"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/fastjsonschema/json",
+      "raw_bytes": 59907,
+      "raw_sha256": "8239b9384a0e50733b564172e4ee4ff336f6dd3dc6a63f373de641647703b065"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "2.22.3",
+    "outdated": true
+  },
+  {
+    "name": "ipykernel",
+    "locked": "7.3.0",
+    "checked_at": "2026-11-08T23:29:00.786904+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/ipykernel/7.3.0/json",
+      "raw_bytes": 6484,
+      "raw_sha256": "6a9280b0f96c1348350893af81c906890d831b708b0261a2c1f1f6b027d1e069"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/ipykernel/json",
+      "raw_bytes": 245472,
+      "raw_sha256": "8d9aa749a76345a8c612040c62b27cd7e8a3abc0d19deb20cbe198a64415030a"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "7.4.0",
+    "outdated": true
+  },
+  {
+    "name": "ipython",
+    "locked": "9.17.1",
+    "checked_at": "2026-11-08T23:29:01.345586+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/ipython/9.17.1/json",
+      "raw_bytes": 6344,
+      "raw_sha256": "03473e190523575fb1bb72ea3e1d8e3c9dca1025016de0fe0199571049461ac1"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/ipython/json",
+      "raw_bytes": 384350,
+      "raw_sha256": "6918b8f39d4a6ff97bc0033824b32f5ba6207433cd622f912bbfb6edb9aeac44"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "9.18.1",
+    "outdated": true
+  },
+  {
+    "name": "ipython-pygments-lexers",
+    "locked": "1.1.1",
+    "checked_at": "2026-11-08T23:29:01.507421+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/ipython-pygments-lexers/1.1.1/json",
+      "raw_bytes": 3478,
+      "raw_sha256": "e70f8c8b43eaa50a85c76375516387f8147ebc4c5494d7e1c6018dffb5369f89"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/ipython-pygments-lexers/json",
+      "raw_bytes": 8272,
+      "raw_sha256": "49c2c4cfd421a30135f38bc06be2ca2968dece8e538f7f63f017fae1f56fecb5"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "1.1.1",
+    "outdated": false
+  },
+  {
+    "name": "jedi",
+    "locked": "0.20.0",
+    "checked_at": "2026-11-08T23:29:01.650319+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/jedi/0.20.0/json",
+      "raw_bytes": 25537,
+      "raw_sha256": "7553d5aa5d588570d686396f56e71b98cbeaab2ab685dbc46a391b7a82e03b9a"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/jedi/json",
+      "raw_bytes": 77331,
+      "raw_sha256": "50d10d090e40282c8b449e7fa1a51bf4101b608248e8763431d97127979b820b"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "0.20.1",
+    "outdated": true
+  },
+  {
+    "name": "jsonschema",
+    "locked": "4.26.0",
+    "checked_at": "2026-11-08T23:29:01.678428+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/jsonschema/4.26.0/json",
+      "raw_bytes": 9468,
+      "raw_sha256": "d0c9ccdfa30c3cdc57b048c2be21123dfb0c2f4d6bef2e8324dcb4eac985cfcf"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/jsonschema/json",
+      "raw_bytes": 178092,
+      "raw_sha256": "697a0d4384e479461a5c84357a5d0d495dd1aeec1f42ad13ae7209112faaaec9"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "4.26.0",
+    "outdated": false
+  },
+  {
+    "name": "jsonschema-specifications",
+    "locked": "2025.9.1",
+    "checked_at": "2026-11-08T23:29:01.743160+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/jsonschema-specifications/2025.9.1/json",
+      "raw_bytes": 5037,
+      "raw_sha256": "91810d8f79384375ad0c0cf631e06903e2790b030d3fad2f1ad657b20ddd839e"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/jsonschema-specifications/json",
+      "raw_bytes": 45472,
+      "raw_sha256": "325493907e2e79ab6279d22ea3526ff2dd615d6f35e1ac4040619d7d89e35019"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "2025.9.1",
+    "outdated": false
+  },
+  {
+    "name": "jupyter-client",
+    "locked": "8.10.0",
+    "checked_at": "2026-11-08T23:29:02.408575+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/jupyter-client/8.10.0/json",
+      "raw_bytes": 10820,
+      "raw_sha256": "09571d0326819e52d2d8f1df5daa50826acef355461e79ee14784b86392efe3f"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/jupyter-client/json",
+      "raw_bytes": 170755,
+      "raw_sha256": "ed622ccf57077f471acc23b486f739e5bb4064e6b93ff4693f00affc9b4a8d59"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "8.10.0",
+    "outdated": false
+  },
+  {
+    "name": "jupyter-core",
+    "locked": "5.9.1",
+    "checked_at": "2026-11-08T23:29:02.601122+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/jupyter-core/5.9.1/json",
+      "raw_bytes": 3918,
+      "raw_sha256": "35f31cc6bd2425a46af51d9f3a995998d485c51321fd60ac9d00ed43db9b1c77"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/jupyter-core/json",
+      "raw_bytes": 107304,
+      "raw_sha256": "210367694b5ec2d34044808dc82d68d6cf17fd930d83cb5a4ce54f188064492b"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "5.9.1",
+    "outdated": false
+  },
+  {
+    "name": "jupytext",
+    "locked": "1.19.5",
+    "checked_at": "2026-11-08T23:29:02.663459+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/jupytext/1.19.5/json",
+      "raw_bytes": 16605,
+      "raw_sha256": "d914d757452d5d0fd262d421f2389f72b3d0ccc27193a638e5ab81a3cb3588fd"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/jupytext/json",
+      "raw_bytes": 182953,
+      "raw_sha256": "87868046d4cd090b678752f67084a686f273e2c7a97be1d8831f82819935720f"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "1.19.6",
+    "outdated": true
+  },
+  {
+    "name": "markdown-it-py",
+    "locked": "4.2.0",
+    "checked_at": "2026-11-08T23:29:02.705904+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/markdown-it-py/4.2.0/json",
+      "raw_bytes": 9233,
+      "raw_sha256": "62affba459c80b1279b5759735f7da3e9c7d24966086ff81ec0303c94512b966"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/markdown-it-py/json",
+      "raw_bytes": 79518,
+      "raw_sha256": "093d54bb83e6c89afa23d4a62bc054a390b94888729f1589c0c0d2e1950db1b8"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "4.2.0",
+    "outdated": false
+  },
+  {
+    "name": "matplotlib-inline",
+    "locked": "0.2.2",
+    "checked_at": "2026-11-08T23:29:02.772466+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/matplotlib-inline/0.2.2/json",
+      "raw_bytes": 4530,
+      "raw_sha256": "820bd765c47195ab362a0577189bc976636e638c9b977720240391564e1f68d4"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/matplotlib-inline/json",
+      "raw_bytes": 20337,
+      "raw_sha256": "730be9aa61790498bcb706633eece53ff10ecfb36df4c5271c7ec331d8eb47bd"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "0.2.2",
+    "outdated": false
+  },
+  {
+    "name": "mdit-py-plugins",
+    "locked": "0.6.1",
+    "checked_at": "2026-11-08T23:29:02.925174+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/mdit-py-plugins/0.6.1/json",
+      "raw_bytes": 4850,
+      "raw_sha256": "bf1153ba20342c126a212c3df62a74dd1e07e807e979cbdd4b7d8dd2772d29a0"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/mdit-py-plugins/json",
+      "raw_bytes": 39299,
+      "raw_sha256": "d0e103f20eda2f976fed5361c7815d5f78abe3628502d14627ad2746ef193cd8"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "0.6.1",
+    "outdated": false
+  },
+  {
+    "name": "mdurl",
+    "locked": "0.1.2",
+    "checked_at": "2026-11-08T23:29:03.453734+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/mdurl/0.1.2/json",
+      "raw_bytes": 3705,
+      "raw_sha256": "c7baac0b363d92cf55f1f3a313f4bb0564bff27343e6a0a4e9d7ff03afc8a6c7"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/mdurl/json",
+      "raw_bytes": 9804,
+      "raw_sha256": "94e52e3e2762e1f295ad5fca55265aa255c1f6b859f6efb67dbab77cb438f57d"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "0.1.2",
+    "outdated": false
+  },
+  {
+    "name": "nbclient",
+    "locked": "0.11.0",
+    "checked_at": "2026-11-08T23:29:03.454722+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/nbclient/0.11.0/json",
+      "raw_bytes": 9215,
+      "raw_sha256": "04ff5a4e5bb9dbf00f8fc0d4f5bea38ed492639855d60420c855503b7b7da474"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/nbclient/json",
+      "raw_bytes": 80338,
+      "raw_sha256": "ac6f8ba21fbd9860022a4ea3c3727e35c814e0e81dbf4c5efbe35f78424cbbd7"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "0.11.0",
+    "outdated": false
+  },
+  {
+    "name": "nbformat",
+    "locked": "5.11.1",
+    "checked_at": "2026-11-08T23:29:03.694324+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/nbformat/5.11.1/json",
+      "raw_bytes": 6020,
+      "raw_sha256": "25c5c85814cb58ec8f45a333dc6c2cdf550320bddcf7cb5693f1762d3d29cd25"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/nbformat/json",
+      "raw_bytes": 70831,
+      "raw_sha256": "afc29ef1894f98f473bd0864a16984b0a36e3453a03e5cd4326892e15d2d02e2"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "5.11.1",
+    "outdated": false
+  },
+  {
+    "name": "nest-asyncio2",
+    "locked": "1.7.3",
+    "checked_at": "2026-11-08T23:29:03.809577+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/nest-asyncio2/1.7.3/json",
+      "raw_bytes": 9119,
+      "raw_sha256": "7c93f1f96caee02913c1449d26315a5077379e4710addd73fa8ddcf250c99aec"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/nest-asyncio2/json",
+      "raw_bytes": 21934,
+      "raw_sha256": "f27415abbf077d9429ffc160fce86d1f4a145b76f88a321e436b5aea09c599d6"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "1.7.4",
+    "outdated": true
+  },
+  {
+    "name": "packaging",
+    "locked": "26.3",
+    "checked_at": "2026-11-08T23:29:03.846700+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/packaging/26.3/json",
+      "raw_bytes": 5748,
+      "raw_sha256": "4f190d2f0b312b3086058cee64ab4333bf3ce67fb78b4c2bdb43899049b29f4d"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/packaging/json",
+      "raw_bytes": 90241,
+      "raw_sha256": "9d7a2885e9e79296598f8c943e0a94c2468e21c800abd26ed13c633465a78835"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "26.3",
+    "outdated": false
+  },
+  {
+    "name": "parso",
+    "locked": "0.8.7",
+    "checked_at": "2026-11-08T23:29:04.430763+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/parso/0.8.7/json",
+      "raw_bytes": 10343,
+      "raw_sha256": "d307f3b8667c32bb1122b571c6b70a412fcd5c5a726f280c0ec8900d4bbab3b8"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/parso/json",
+      "raw_bytes": 56713,
+      "raw_sha256": "07d222197e5ca2e9b299ab5b26be964642186454424309b5bd9b5a31ee320c12"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "0.8.7",
+    "outdated": false
+  },
+  {
+    "name": "pexpect",
+    "locked": "4.9.0",
+    "checked_at": "2026-11-08T23:29:04.595086+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/pexpect/4.9.0/json",
+      "raw_bytes": 4579,
+      "raw_sha256": "d6e320041db827fce8fe20dd62c807170fd83bd7f2566613c30824e156e16fc8"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/pexpect/json",
+      "raw_bytes": 26530,
+      "raw_sha256": "c495561b1914d46707dc783199d4f062ff5e0a79492054d061cabff70ba5b8ff"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "4.9.0",
+    "outdated": false
+  },
+  {
+    "name": "platformdirs",
+    "locked": "4.12.1",
+    "checked_at": "2026-11-08T23:29:04.911630+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/platformdirs/4.12.1/json",
+      "raw_bytes": 7723,
+      "raw_sha256": "2f57ee89572779eeea7509d0c0d265d8f38944446ec5bce4ec8078b068150627"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/platformdirs/json",
+      "raw_bytes": 160997,
+      "raw_sha256": "667f16a7bdf8e94775ed6dbb35edbc76adb8de782e642958e0ace54984ce08a1"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "4.14.5",
+    "outdated": true
+  },
+  {
+    "name": "prompt-toolkit",
+    "locked": "3.0.53",
+    "checked_at": "2026-11-08T23:29:05.075692+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/prompt-toolkit/3.0.53/json",
+      "raw_bytes": 8697,
+      "raw_sha256": "6ca170e9088be13eab820444feb4a9cbc8432293efcba8695b8528f5b37c0119"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/prompt-toolkit/json",
+      "raw_bytes": 246012,
+      "raw_sha256": "9cc98111c78a1e0637e35302293afc8ad8a7f301b549d0a5d6a171645a570d52"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "3.0.53",
+    "outdated": false
+  },
+  {
+    "name": "psutil",
+    "locked": "7.2.2",
+    "checked_at": "2026-11-08T23:29:05.182176+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/psutil/7.2.2/json",
+      "raw_bytes": 40819,
+      "raw_sha256": "84f9d2597c3c15fe19d1ce069bfdbf25951dc423dc51d67c3979468c029b6415"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/psutil/json",
+      "raw_bytes": 1211023,
+      "raw_sha256": "3afe72fc20f2a965118da21efa973e1ff79fedcb46c6709557d2ee858b7aa015"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "7.2.2",
+    "outdated": false
+  },
+  {
+    "name": "ptyprocess",
+    "locked": "0.7.0",
+    "checked_at": "2026-11-08T23:29:05.214442+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/ptyprocess/0.7.0/json",
+      "raw_bytes": 3561,
+      "raw_sha256": "0c0fc6ffeabfe060db4b7657d629baba51763670b3733671c7472188c9341dd8"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/ptyprocess/json",
+      "raw_bytes": 14096,
+      "raw_sha256": "6220f68c7a07ca2ddaf1b5f54916e92f040f28dd7e1d1255802fadb9065bf9bc"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "0.7.0",
+    "outdated": false
+  },
+  {
+    "name": "pure-eval",
+    "locked": "0.2.4",
+    "checked_at": "2026-11-08T23:29:05.644851+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/pure-eval/0.2.4/json",
+      "raw_bytes": 8740,
+      "raw_sha256": "c6a2451497d997129716c8ca9592c0e96157cd26bcbcfb9d33e97fb23c4b6ca7"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/pure-eval/json",
+      "raw_bytes": 19513,
+      "raw_sha256": "b909745c3adbd611117ca33f9f6d0e5d007d2d2a60ce5cd9554def18b608385c"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "0.2.4",
+    "outdated": false
+  },
+  {
+    "name": "pycparser",
+    "locked": "3.0",
+    "checked_at": "2026-11-08T23:29:05.737644+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/pycparser/3.0/json",
+      "raw_bytes": 10557,
+      "raw_sha256": "13939b01403db93c94e8f9c5b0e3441c9cdccb4304e43ec6820031f7da71a793"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/pycparser/json",
+      "raw_bytes": 38199,
+      "raw_sha256": "670e730ae15d0c0fcebbf1606120abcaaf9d436e3e3604dcf3e563e5ae745871"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "3.12",
+    "outdated": true
+  },
+  {
+    "name": "pydantic",
+    "locked": "2.13.5",
+    "checked_at": "2026-11-08T23:29:05.895036+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/pydantic/2.13.5/json",
+      "raw_bytes": 113380,
+      "raw_sha256": "db2f4886d43f7142eeb296f1332aab18152f7a7d330f3d661900e88ef8a435ef"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/pydantic/json",
+      "raw_bytes": 1895774,
+      "raw_sha256": "a90227bd380ce3e88bf894774cc6ea8e2d81abc092a0ad9209f5e192c08e9c14"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "2.14.3",
+    "outdated": true
+  },
+  {
+    "name": "pydantic-core",
+    "locked": "2.46.5",
+    "checked_at": "2026-11-08T23:29:06.312568+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/pydantic-core/2.46.5/json",
+      "raw_bytes": 113156,
+      "raw_sha256": "885ed4163b1513b78f80096868903fafaf54b6bfaeb1c35d4c6f42e12d779afb"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/pydantic-core/json",
+      "raw_bytes": 13226482,
+      "raw_sha256": "fd2f953c1652771fca6b4ee4d6185b0a9f1f71f2a96795ab717e16dfd79aaee7"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "2.50.4",
+    "outdated": true
+  },
+  {
+    "name": "pygments",
+    "locked": "2.21.0",
+    "checked_at": "2026-11-08T23:29:06.336042+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/pygments/2.21.0/json",
+      "raw_bytes": 4500,
+      "raw_sha256": "330104a10adc8a587e3f98f4e207557125ca0c1d489e129334da5acb2b813a03"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/pygments/json",
+      "raw_bytes": 144965,
+      "raw_sha256": "d48c0f74c08c450aeabfd5e90fc93b01ec127074c0f3e22cfe74a968c4299771"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "2.21.0",
+    "outdated": false
+  },
+  {
+    "name": "python-dateutil",
+    "locked": "2.9.0.post0",
+    "checked_at": "2026-11-08T23:29:06.353839+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/python-dateutil/2.9.0.post0/json",
+      "raw_bytes": 10760,
+      "raw_sha256": "7938916002e8d70c9d32cbaf43c467d163af3aadd8c3b358bda5babd1f7836ee"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/python-dateutil/json",
+      "raw_bytes": 55380,
+      "raw_sha256": "e43cdabdd268ffa17384b8cddf16e687fa2cbcccaaeaf0766e40a0b6f2e3f864"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "4.0.0",
+    "outdated": true
+  },
+  {
+    "name": "pyyaml",
+    "locked": "6.0.3",
+    "checked_at": "2026-11-08T23:29:06.483462+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/pyyaml/6.0.3/json",
+      "raw_bytes": 66402,
+      "raw_sha256": "c3f35597bc2f08cc990c2a5fe57bef6687b3a3d7c61d8b0ba4cc067777eb1def"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/pyyaml/json",
+      "raw_bytes": 558621,
+      "raw_sha256": "d0c463a86ed24144dd112fd1fe43b7c208e52c7d3903c2f51c84acfb5b10c749"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "6.0.3",
+    "outdated": false
+  },
+  {
+    "name": "pyzmq",
+    "locked": "27.2.0",
+    "checked_at": "2026-11-08T23:29:08.032219+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/pyzmq/27.2.0/json",
+      "raw_bytes": 78427,
+      "raw_sha256": "34e530681f0c080c076553176728a6cf91ebe3289f21a513c6111add0257a5ee"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/pyzmq/json",
+      "raw_bytes": 4050835,
+      "raw_sha256": "b156f27c944ddf218a1309d4f052491ab4149cdee673c496136e7a1804d2d132"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "27.3.0",
+    "outdated": true
+  },
+  {
+    "name": "referencing",
+    "locked": "0.37.0",
+    "checked_at": "2026-11-08T23:29:08.297007+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/referencing/0.37.0/json",
+      "raw_bytes": 4842,
+      "raw_sha256": "a67968d8e03aa45e650fc2ff0d07796676db1a7841ce8e810bf2dba5af689464"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/referencing/json",
+      "raw_bytes": 172466,
+      "raw_sha256": "8cade92a4e786c196bbfad784526a6344d77f0d4ff54970e8ed448085c4556d6"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "0.37.0",
+    "outdated": false
+  },
+  {
+    "name": "rpds-py",
+    "locked": "2026.6.3",
+    "checked_at": "2026-11-08T23:29:08.304587+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/rpds-py/2026.6.3/json",
+      "raw_bytes": 106094,
+      "raw_sha256": "c791bb0eaf9f18668ca978bd500d8dd8e25cdf692cf5bc92229d1c2854e8d852"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/rpds-py/json",
+      "raw_bytes": 5016883,
+      "raw_sha256": "eb5234052812c626b47a935b584c51e3d8c95823fa5e71b2e908a8ede97633ec"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "2026.9.1",
+    "outdated": true
+  },
+  {
+    "name": "six",
+    "locked": "1.17.0",
+    "checked_at": "2026-11-08T23:29:10.555426+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/six/1.17.0/json",
+      "raw_bytes": 3904,
+      "raw_sha256": "d8de39dd52b73048d81a8fd78022ee2bc72f8b568bcf0d88e5d5069c302b1208"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/six/json",
+      "raw_bytes": 40256,
+      "raw_sha256": "5d33fd0c1128bc0266f96f36ced03c47abefa31a29ed185d24b490e108bd04e8"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "1.17.0",
+    "outdated": false
+  },
+  {
+    "name": "stack-data",
+    "locked": "0.6.3",
+    "checked_at": "2026-11-08T23:29:10.723876+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/stack-data/0.6.3/json",
+      "raw_bytes": 20962,
+      "raw_sha256": "661ff6aa33a0a0ab2ef7070273aaace251db44ee30225198443474f213396b9a"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/stack-data/json",
+      "raw_bytes": 45518,
+      "raw_sha256": "8c7d1e85c32f34e216a0b40d8cd1e6a7db6813230183fe3581b574c431153d7d"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "0.6.3",
+    "outdated": false
+  },
+  {
+    "name": "tornado",
+    "locked": "6.5.10",
+    "checked_at": "2026-11-08T23:29:12.038408+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/tornado/6.5.10/json",
+      "raw_bytes": 18418,
+      "raw_sha256": "65ed19670c710973e82d59b0791e386b968e8846e118b479aa550d3e122cfaa9"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/tornado/json",
+      "raw_bytes": 650064,
+      "raw_sha256": "8d7b71a4221444ef99d8d7bb1f2b5ad9c40748b184b9f244a96fbbb28cc72728"
+    },
+    "vulnerabilities": [
+      {
+        "id": "GHSA-pcg2-g6cj-q92c",
+        "aliases": [
+          "CVE-2026-116577"
+        ],
+        "fixed_in": [
+          "6.6"
+        ],
+        "link": "https://osv.dev/vulnerability/GHSA-pcg2-g6cj-q92c",
+        "source": "osv",
+        "withdrawn": null
+      },
+      {
+        "id": "GHSA-r4j5-9xpp-3985",
+        "aliases": [
+          "CVE-2026-115927"
+        ],
+        "fixed_in": [
+          "6.6"
+        ],
+        "link": "https://osv.dev/vulnerability/GHSA-r4j5-9xpp-3985",
+        "source": "osv",
+        "withdrawn": null
+      },
+      {
+        "id": "GHSA-pw9p-v7r6-gx4p",
+        "aliases": [
+          "CVE-2026-116578"
+        ],
+        "fixed_in": [
+          "6.6"
+        ],
+        "link": "https://osv.dev/vulnerability/GHSA-pw9p-v7r6-gx4p",
+        "source": "osv",
+        "withdrawn": null
+      }
+    ],
+    "yanked": false,
+    "latest": "6.6",
+    "outdated": true
+  },
+  {
+    "name": "traitlets",
+    "locked": "5.16.1",
+    "checked_at": "2026-11-08T23:29:12.516919+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/traitlets/5.16.1/json",
+      "raw_bytes": 13450,
+      "raw_sha256": "6a0e4dbcca0a80d132f0d534e7d5446e184e88d152a72d4731386d7b1a6facc3"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/traitlets/json",
+      "raw_bytes": 102748,
+      "raw_sha256": "d1dfc88c8779d3ab4121e4f5bbfd38c85807d05865f32b6df83907efb8cb0647"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "5.16.1",
+    "outdated": false
+  },
+  {
+    "name": "typing-extensions",
+    "locked": "4.16.0",
+    "checked_at": "2026-11-08T23:29:12.629469+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/typing-extensions/4.16.0/json",
+      "raw_bytes": 5631,
+      "raw_sha256": "2140da00d62dde967f52d0be0ae28444f1d6a3fe603f52c83c23988c32122d5a"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/typing-extensions/json",
+      "raw_bytes": 97612,
+      "raw_sha256": "2e567d7ca1b1c70a8e8f23b7204a8bd51b0bacd39e2fe53b33b153cff255ac68"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "4.16.0",
+    "outdated": false
+  },
+  {
+    "name": "typing-inspection",
+    "locked": "0.4.4",
+    "checked_at": "2026-11-08T23:29:14.378302+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/typing-inspection/0.4.4/json",
+      "raw_bytes": 4629,
+      "raw_sha256": "b37c398e1a0a3a97af35dcfb754e0e1f725f56d5f391d029ab90d3969d0e9583"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/typing-inspection/json",
+      "raw_bytes": 21970,
+      "raw_sha256": "2f0ccd72debc44bcf425de1ae36426eb9cf1c2f36f83de99fb68f713b7da3192"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "0.4.5",
+    "outdated": true
+  },
+  {
+    "name": "wcwidth",
+    "locked": "0.9.1",
+    "checked_at": "2026-11-08T23:29:14.852221+00:00",
+    "locked_response": {
+      "url": "https://pypi.org/pypi/wcwidth/0.9.1/json",
+      "raw_bytes": 42753,
+      "raw_sha256": "b439314429d87a1b00f6fa2c4fd62e4c0ff0846e768e3d449871c08ed0ea742b"
+    },
+    "latest_response": {
+      "url": "https://pypi.org/pypi/wcwidth/json",
+      "raw_bytes": 223986,
+      "raw_sha256": "3c1ef662294fcc365a4f50901b08560af2dfb68576189ea0437439393d83e0c8"
+    },
+    "vulnerabilities": [],
+    "yanked": false,
+    "latest": "0.9.4",
+    "outdated": true
+  }
+]
