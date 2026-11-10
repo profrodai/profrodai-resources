@@ -1,0 +1,5 @@
+# Lucy’s shop Codespace
+
+The configuration uses Python 3.12 and the committed `uv.lock`. Creation runs a locked installation; it does not make a model call.
+
+**What the SSH feature changes.** This configuration adds the dev container `sshd` feature (pinned to version 1.1.0) so that maintainers and instructors can check a Codespace with `gh codespace ssh`. It installs the OpenSSH server and client and `lsof`, creates an SSH group, edits the PAM configuration, sets `PermitRootLogin yes` in the SSH server configuration, and starts the server on port 2222 from an entrypoint script. This configuration forwards no port for it and sets no password by default, and the intended way to reach it is `gh codespace ssh` with your own GitHub sign-in through GitHub’s tunnel. The feature does not make that client the only route, and it has not been verified who or what can reach port 2222 from inside or outside the Codespace. This is the published feature’s documented behavior, not something this configuration tests. It affects only the Codespace, never your laptop.
