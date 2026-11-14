@@ -1,4 +1,8 @@
-"""Bind shop tool calls to the current channel turn, before the MCP transport.
+"""Historical nine-tool WhatsApp prototype, retained for its original tests.
+
+The active seven-tool Mantle wrapper uses core_binding.py instead. This module
+must not be wired to the current commerce server: its old prompt/quote fields,
+context shape and maintenance tools are a different contract.
 
 This is a mockable policy component. The admitted transport must additionally
 validate the complete producer schemas and MCP structured/text agreement. The

@@ -1,4 +1,51 @@
-# Lucy's shop over WhatsApp
+# Shop core with a custody-backed channel
+
+The current caller targets the seven commerce tools in the frozen contract.
+It is source preparation, not a runnable or qualified Mantle agent.
+
+Run the offline policy checks from this folder:
+
+```sh
+python3 -B -m unittest discover -s tests -v
+```
+
+These checks use synthetic requests, a fake authentication bridge, and an
+already-validated fake port. They do not import ERP, Rasa, MCP, or a provider.
+The selected native wrapper bodies are checked with fake decorator and result
+objects; that check does not import Mantle.
+
+`mantle_tools.py` exposes exactly seven tools. Catalog and order-list calls
+send empty arguments. `core_binding.py` reads the trusted turn outside model
+arguments. Its injected bridge must independently authenticate the request and
+verify the exact draft approval. A header or nonempty selector is correlation,
+not authentication. The real bridge is not implemented here.
+
+A committed order whose projection is pending remains pending. Its original
+request, operation, and record stay held; later writes cannot replace it with a
+new request. A scoped status read can resolve a known pending projection only
+when the same order, version, and operation are confirmed. A lost operation ID
+requires the ERP owner's read-only recovery path. That path remains open;
+there is no extra recovery tool or automatic mutation replay.
+
+`mcp_port.py` makes one tool call and requires matching structured and JSON text
+results. `commerce_schema.py` pins the complete input and output schemas and
+checks the initialized server's advertised schemas. Its JSON Schema dependency
+comes from the selected MCP runtime. This checkout has not executed that
+validator or installed its dependency. Native cross-version client/server tests
+and the context-bound session factory remain unfinished.
+
+The next integration must run the actual ERP server with its in-memory fake.
+Telegram through the Broker fake follows that core test. WhatsApp is a separate
+adapter. Provider tokens stay in Broker custody. No live authentication, model
+call, channel exchange, listening service, or host deployment is qualified by
+these files.
+
+The code below describes the preserved earlier prototype. `erp_binding.py`
+and its tests belong to that older contract; the current Mantle tool wrapper
+does not import it. The old polling shell has not been connected to the new
+core turn scope.
+
+# Historical WhatsApp prototype
 
 This lab is being built for November 16. The first exercise covers one failure:
 a message arrives twice, or the process stops after a send but before saving
