@@ -1,0 +1,1768 @@
+{
+  "contract": "zeoerp.commerce.mcp/v1",
+  "core": "0.53.5",
+  "mcp": "2.3.0",
+  "transport": "StreamableHTTP, JSON, stateless",
+  "context": "Injected authenticated context factory, never tool args; synthetic fixture uses preissued Python bindings and X-ZeoERP-Request-ID selector only",
+  "wrapper": "Core success/data wrapper; inspect inner data.ok/state/projection. Business refusals are not transport errors.",
+  "tools": {
+    "list_products": {
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "title": "Empty",
+        "type": "object"
+      },
+      "outputSchema": {
+        "$defs": {
+          "BusinessResult_list_CatalogProduct__": {
+            "additionalProperties": false,
+            "properties": {
+              "ok": {
+                "const": true,
+                "default": true,
+                "title": "Ok",
+                "type": "boolean"
+              },
+              "state": {
+                "enum": [
+                  "completed",
+                  "pending"
+                ],
+                "title": "State",
+                "type": "string"
+              },
+              "data": {
+                "items": {
+                  "$ref": "#/$defs/CatalogProduct"
+                },
+                "title": "Data",
+                "type": "array"
+              },
+              "projection": {
+                "enum": [
+                  "confirmed",
+                  "pending",
+                  "not_requested"
+                ],
+                "title": "Projection",
+                "type": "string"
+              },
+              "operation_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Operation Id"
+              }
+            },
+            "required": [
+              "state",
+              "data",
+              "projection"
+            ],
+            "title": "BusinessResult[list[CatalogProduct]]",
+            "type": "object"
+          },
+          "CatalogProduct": {
+            "additionalProperties": false,
+            "properties": {
+              "product_id": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+                "title": "Product Id",
+                "type": "string"
+              },
+              "name": {
+                "title": "Name",
+                "type": "string"
+              },
+              "currency": {
+                "title": "Currency",
+                "type": "string"
+              },
+              "price_minor": {
+                "title": "Price Minor",
+                "type": "integer"
+              },
+              "scale": {
+                "title": "Scale",
+                "type": "integer"
+              },
+              "stock_total": {
+                "title": "Stock Total",
+                "type": "integer"
+              },
+              "capacity_total": {
+                "title": "Capacity Total",
+                "type": "integer"
+              },
+              "reserved": {
+                "title": "Reserved",
+                "type": "integer"
+              },
+              "fulfilled": {
+                "title": "Fulfilled",
+                "type": "integer"
+              },
+              "available": {
+                "title": "Available",
+                "type": "integer"
+              },
+              "exception": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Exception"
+              }
+            },
+            "required": [
+              "product_id",
+              "name",
+              "currency",
+              "price_minor",
+              "scale",
+              "stock_total",
+              "capacity_total",
+              "reserved",
+              "fulfilled",
+              "available",
+              "exception"
+            ],
+            "title": "CatalogProduct",
+            "type": "object"
+          },
+          "Error": {
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "title": "Code",
+                "type": "string"
+              },
+              "message": {
+                "const": "Operation refused",
+                "default": "Operation refused",
+                "title": "Message",
+                "type": "string"
+              }
+            },
+            "required": [
+              "code"
+            ],
+            "title": "Error",
+            "type": "object"
+          },
+          "Refusal": {
+            "additionalProperties": false,
+            "properties": {
+              "ok": {
+                "const": false,
+                "default": false,
+                "title": "Ok",
+                "type": "boolean"
+              },
+              "state": {
+                "const": "refused",
+                "default": "refused",
+                "title": "State",
+                "type": "string"
+              },
+              "error": {
+                "$ref": "#/$defs/Error"
+              }
+            },
+            "required": [
+              "error"
+            ],
+            "title": "Refusal",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "success": {
+            "const": true,
+            "default": true,
+            "title": "Success",
+            "type": "boolean"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/BusinessResult_list_CatalogProduct__"
+              },
+              {
+                "$ref": "#/$defs/Refusal"
+              }
+            ],
+            "title": "Data"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "list_products_Output",
+        "type": "object"
+      }
+    },
+    "check_stock": {
+      "inputSchema": {
+        "$defs": {
+          "Line": {
+            "additionalProperties": false,
+            "properties": {
+              "product_id": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+                "title": "Product Id",
+                "type": "string"
+              },
+              "quantity": {
+                "maximum": 1000,
+                "minimum": 1,
+                "title": "Quantity",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "product_id",
+              "quantity"
+            ],
+            "title": "Line",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "lines": {
+            "items": {
+              "$ref": "#/$defs/Line"
+            },
+            "maxItems": 25,
+            "minItems": 1,
+            "title": "Lines",
+            "type": "array"
+          }
+        },
+        "required": [
+          "lines"
+        ],
+        "title": "Lines",
+        "type": "object"
+      },
+      "outputSchema": {
+        "$defs": {
+          "BusinessResult_list_Stock__": {
+            "additionalProperties": false,
+            "properties": {
+              "ok": {
+                "const": true,
+                "default": true,
+                "title": "Ok",
+                "type": "boolean"
+              },
+              "state": {
+                "enum": [
+                  "completed",
+                  "pending"
+                ],
+                "title": "State",
+                "type": "string"
+              },
+              "data": {
+                "items": {
+                  "$ref": "#/$defs/Stock"
+                },
+                "title": "Data",
+                "type": "array"
+              },
+              "projection": {
+                "enum": [
+                  "confirmed",
+                  "pending",
+                  "not_requested"
+                ],
+                "title": "Projection",
+                "type": "string"
+              },
+              "operation_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Operation Id"
+              }
+            },
+            "required": [
+              "state",
+              "data",
+              "projection"
+            ],
+            "title": "BusinessResult[list[Stock]]",
+            "type": "object"
+          },
+          "Error": {
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "title": "Code",
+                "type": "string"
+              },
+              "message": {
+                "const": "Operation refused",
+                "default": "Operation refused",
+                "title": "Message",
+                "type": "string"
+              }
+            },
+            "required": [
+              "code"
+            ],
+            "title": "Error",
+            "type": "object"
+          },
+          "Refusal": {
+            "additionalProperties": false,
+            "properties": {
+              "ok": {
+                "const": false,
+                "default": false,
+                "title": "Ok",
+                "type": "boolean"
+              },
+              "state": {
+                "const": "refused",
+                "default": "refused",
+                "title": "State",
+                "type": "string"
+              },
+              "error": {
+                "$ref": "#/$defs/Error"
+              }
+            },
+            "required": [
+              "error"
+            ],
+            "title": "Refusal",
+            "type": "object"
+          },
+          "Stock": {
+            "additionalProperties": false,
+            "properties": {
+              "product_id": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+                "title": "Product Id",
+                "type": "string"
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "integer"
+              },
+              "available": {
+                "title": "Available",
+                "type": "integer"
+              },
+              "sufficient": {
+                "title": "Sufficient",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "product_id",
+              "quantity",
+              "available",
+              "sufficient"
+            ],
+            "title": "Stock",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "success": {
+            "const": true,
+            "default": true,
+            "title": "Success",
+            "type": "boolean"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/BusinessResult_list_Stock__"
+              },
+              {
+                "$ref": "#/$defs/Refusal"
+              }
+            ],
+            "title": "Data"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "check_stock_Output",
+        "type": "object"
+      }
+    },
+    "create_draft_order": {
+      "inputSchema": {
+        "$defs": {
+          "Line": {
+            "additionalProperties": false,
+            "properties": {
+              "product_id": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+                "title": "Product Id",
+                "type": "string"
+              },
+              "quantity": {
+                "maximum": 1000,
+                "minimum": 1,
+                "title": "Quantity",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "product_id",
+              "quantity"
+            ],
+            "title": "Line",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "lines": {
+            "items": {
+              "$ref": "#/$defs/Line"
+            },
+            "maxItems": 25,
+            "minItems": 1,
+            "title": "Lines",
+            "type": "array"
+          }
+        },
+        "required": [
+          "lines"
+        ],
+        "title": "Lines",
+        "type": "object"
+      },
+      "outputSchema": {
+        "$defs": {
+          "BusinessResult_Order_": {
+            "additionalProperties": false,
+            "properties": {
+              "ok": {
+                "const": true,
+                "default": true,
+                "title": "Ok",
+                "type": "boolean"
+              },
+              "state": {
+                "enum": [
+                  "completed",
+                  "pending"
+                ],
+                "title": "State",
+                "type": "string"
+              },
+              "data": {
+                "$ref": "#/$defs/Order"
+              },
+              "projection": {
+                "enum": [
+                  "confirmed",
+                  "pending",
+                  "not_requested"
+                ],
+                "title": "Projection",
+                "type": "string"
+              },
+              "operation_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Operation Id"
+              }
+            },
+            "required": [
+              "state",
+              "data",
+              "projection"
+            ],
+            "title": "BusinessResult[Order]",
+            "type": "object"
+          },
+          "Error": {
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "title": "Code",
+                "type": "string"
+              },
+              "message": {
+                "const": "Operation refused",
+                "default": "Operation refused",
+                "title": "Message",
+                "type": "string"
+              }
+            },
+            "required": [
+              "code"
+            ],
+            "title": "Error",
+            "type": "object"
+          },
+          "Order": {
+            "additionalProperties": false,
+            "properties": {
+              "order_id": {
+                "pattern": "^ord_[0-9a-f]{24}$",
+                "title": "Order Id",
+                "type": "string"
+              },
+              "customer_id": {
+                "pattern": "^cus_[0-9a-f]{24}$",
+                "title": "Customer Id",
+                "type": "string"
+              },
+              "state": {
+                "enum": [
+                  "draft",
+                  "confirmed",
+                  "fulfilled",
+                  "cancelled"
+                ],
+                "title": "State",
+                "type": "string"
+              },
+              "version": {
+                "maximum": 2147483647,
+                "minimum": 1,
+                "title": "Version",
+                "type": "integer"
+              },
+              "lines": {
+                "items": {
+                  "$ref": "#/$defs/PricedLine"
+                },
+                "title": "Lines",
+                "type": "array"
+              },
+              "currency": {
+                "title": "Currency",
+                "type": "string"
+              },
+              "scale": {
+                "title": "Scale",
+                "type": "integer"
+              },
+              "total_minor": {
+                "minimum": 0,
+                "title": "Total Minor",
+                "type": "integer"
+              },
+              "expires_at_epoch": {
+                "title": "Expires At Epoch",
+                "type": "number"
+              },
+              "operation_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Operation Id"
+              }
+            },
+            "required": [
+              "order_id",
+              "customer_id",
+              "state",
+              "version",
+              "lines",
+              "currency",
+              "scale",
+              "total_minor",
+              "expires_at_epoch"
+            ],
+            "title": "Order",
+            "type": "object"
+          },
+          "PricedLine": {
+            "additionalProperties": false,
+            "properties": {
+              "product_id": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+                "title": "Product Id",
+                "type": "string"
+              },
+              "quantity": {
+                "maximum": 1000,
+                "minimum": 1,
+                "title": "Quantity",
+                "type": "integer"
+              },
+              "unit_price_minor": {
+                "minimum": 0,
+                "title": "Unit Price Minor",
+                "type": "integer"
+              },
+              "currency": {
+                "pattern": "^[A-Z]{3}$",
+                "title": "Currency",
+                "type": "string"
+              },
+              "scale": {
+                "maximum": 4,
+                "minimum": 0,
+                "title": "Scale",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "product_id",
+              "quantity",
+              "unit_price_minor",
+              "currency",
+              "scale"
+            ],
+            "title": "PricedLine",
+            "type": "object"
+          },
+          "Refusal": {
+            "additionalProperties": false,
+            "properties": {
+              "ok": {
+                "const": false,
+                "default": false,
+                "title": "Ok",
+                "type": "boolean"
+              },
+              "state": {
+                "const": "refused",
+                "default": "refused",
+                "title": "State",
+                "type": "string"
+              },
+              "error": {
+                "$ref": "#/$defs/Error"
+              }
+            },
+            "required": [
+              "error"
+            ],
+            "title": "Refusal",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "success": {
+            "const": true,
+            "default": true,
+            "title": "Success",
+            "type": "boolean"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/BusinessResult_Order_"
+              },
+              {
+                "$ref": "#/$defs/Refusal"
+              }
+            ],
+            "title": "Data"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "create_draft_order_Output",
+        "type": "object"
+      }
+    },
+    "confirm_order": {
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "order_id": {
+            "pattern": "^ord_[0-9a-f]{24}$",
+            "title": "Order Id",
+            "type": "string"
+          },
+          "draft_version": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "title": "Draft Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "order_id",
+          "draft_version"
+        ],
+        "title": "Confirm",
+        "type": "object"
+      },
+      "outputSchema": {
+        "$defs": {
+          "BusinessResult_Order_": {
+            "additionalProperties": false,
+            "properties": {
+              "ok": {
+                "const": true,
+                "default": true,
+                "title": "Ok",
+                "type": "boolean"
+              },
+              "state": {
+                "enum": [
+                  "completed",
+                  "pending"
+                ],
+                "title": "State",
+                "type": "string"
+              },
+              "data": {
+                "$ref": "#/$defs/Order"
+              },
+              "projection": {
+                "enum": [
+                  "confirmed",
+                  "pending",
+                  "not_requested"
+                ],
+                "title": "Projection",
+                "type": "string"
+              },
+              "operation_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Operation Id"
+              }
+            },
+            "required": [
+              "state",
+              "data",
+              "projection"
+            ],
+            "title": "BusinessResult[Order]",
+            "type": "object"
+          },
+          "Error": {
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "title": "Code",
+                "type": "string"
+              },
+              "message": {
+                "const": "Operation refused",
+                "default": "Operation refused",
+                "title": "Message",
+                "type": "string"
+              }
+            },
+            "required": [
+              "code"
+            ],
+            "title": "Error",
+            "type": "object"
+          },
+          "Order": {
+            "additionalProperties": false,
+            "properties": {
+              "order_id": {
+                "pattern": "^ord_[0-9a-f]{24}$",
+                "title": "Order Id",
+                "type": "string"
+              },
+              "customer_id": {
+                "pattern": "^cus_[0-9a-f]{24}$",
+                "title": "Customer Id",
+                "type": "string"
+              },
+              "state": {
+                "enum": [
+                  "draft",
+                  "confirmed",
+                  "fulfilled",
+                  "cancelled"
+                ],
+                "title": "State",
+                "type": "string"
+              },
+              "version": {
+                "maximum": 2147483647,
+                "minimum": 1,
+                "title": "Version",
+                "type": "integer"
+              },
+              "lines": {
+                "items": {
+                  "$ref": "#/$defs/PricedLine"
+                },
+                "title": "Lines",
+                "type": "array"
+              },
+              "currency": {
+                "title": "Currency",
+                "type": "string"
+              },
+              "scale": {
+                "title": "Scale",
+                "type": "integer"
+              },
+              "total_minor": {
+                "minimum": 0,
+                "title": "Total Minor",
+                "type": "integer"
+              },
+              "expires_at_epoch": {
+                "title": "Expires At Epoch",
+                "type": "number"
+              },
+              "operation_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Operation Id"
+              }
+            },
+            "required": [
+              "order_id",
+              "customer_id",
+              "state",
+              "version",
+              "lines",
+              "currency",
+              "scale",
+              "total_minor",
+              "expires_at_epoch"
+            ],
+            "title": "Order",
+            "type": "object"
+          },
+          "PricedLine": {
+            "additionalProperties": false,
+            "properties": {
+              "product_id": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+                "title": "Product Id",
+                "type": "string"
+              },
+              "quantity": {
+                "maximum": 1000,
+                "minimum": 1,
+                "title": "Quantity",
+                "type": "integer"
+              },
+              "unit_price_minor": {
+                "minimum": 0,
+                "title": "Unit Price Minor",
+                "type": "integer"
+              },
+              "currency": {
+                "pattern": "^[A-Z]{3}$",
+                "title": "Currency",
+                "type": "string"
+              },
+              "scale": {
+                "maximum": 4,
+                "minimum": 0,
+                "title": "Scale",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "product_id",
+              "quantity",
+              "unit_price_minor",
+              "currency",
+              "scale"
+            ],
+            "title": "PricedLine",
+            "type": "object"
+          },
+          "Refusal": {
+            "additionalProperties": false,
+            "properties": {
+              "ok": {
+                "const": false,
+                "default": false,
+                "title": "Ok",
+                "type": "boolean"
+              },
+              "state": {
+                "const": "refused",
+                "default": "refused",
+                "title": "State",
+                "type": "string"
+              },
+              "error": {
+                "$ref": "#/$defs/Error"
+              }
+            },
+            "required": [
+              "error"
+            ],
+            "title": "Refusal",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "success": {
+            "const": true,
+            "default": true,
+            "title": "Success",
+            "type": "boolean"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/BusinessResult_Order_"
+              },
+              {
+                "$ref": "#/$defs/Refusal"
+              }
+            ],
+            "title": "Data"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "confirm_order_Output",
+        "type": "object"
+      }
+    },
+    "order_status": {
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "order_id": {
+            "pattern": "^ord_[0-9a-f]{24}$",
+            "title": "Order Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "order_id"
+        ],
+        "title": "OrderID",
+        "type": "object"
+      },
+      "outputSchema": {
+        "$defs": {
+          "BusinessResult_Order_": {
+            "additionalProperties": false,
+            "properties": {
+              "ok": {
+                "const": true,
+                "default": true,
+                "title": "Ok",
+                "type": "boolean"
+              },
+              "state": {
+                "enum": [
+                  "completed",
+                  "pending"
+                ],
+                "title": "State",
+                "type": "string"
+              },
+              "data": {
+                "$ref": "#/$defs/Order"
+              },
+              "projection": {
+                "enum": [
+                  "confirmed",
+                  "pending",
+                  "not_requested"
+                ],
+                "title": "Projection",
+                "type": "string"
+              },
+              "operation_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Operation Id"
+              }
+            },
+            "required": [
+              "state",
+              "data",
+              "projection"
+            ],
+            "title": "BusinessResult[Order]",
+            "type": "object"
+          },
+          "Error": {
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "title": "Code",
+                "type": "string"
+              },
+              "message": {
+                "const": "Operation refused",
+                "default": "Operation refused",
+                "title": "Message",
+                "type": "string"
+              }
+            },
+            "required": [
+              "code"
+            ],
+            "title": "Error",
+            "type": "object"
+          },
+          "Order": {
+            "additionalProperties": false,
+            "properties": {
+              "order_id": {
+                "pattern": "^ord_[0-9a-f]{24}$",
+                "title": "Order Id",
+                "type": "string"
+              },
+              "customer_id": {
+                "pattern": "^cus_[0-9a-f]{24}$",
+                "title": "Customer Id",
+                "type": "string"
+              },
+              "state": {
+                "enum": [
+                  "draft",
+                  "confirmed",
+                  "fulfilled",
+                  "cancelled"
+                ],
+                "title": "State",
+                "type": "string"
+              },
+              "version": {
+                "maximum": 2147483647,
+                "minimum": 1,
+                "title": "Version",
+                "type": "integer"
+              },
+              "lines": {
+                "items": {
+                  "$ref": "#/$defs/PricedLine"
+                },
+                "title": "Lines",
+                "type": "array"
+              },
+              "currency": {
+                "title": "Currency",
+                "type": "string"
+              },
+              "scale": {
+                "title": "Scale",
+                "type": "integer"
+              },
+              "total_minor": {
+                "minimum": 0,
+                "title": "Total Minor",
+                "type": "integer"
+              },
+              "expires_at_epoch": {
+                "title": "Expires At Epoch",
+                "type": "number"
+              },
+              "operation_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Operation Id"
+              }
+            },
+            "required": [
+              "order_id",
+              "customer_id",
+              "state",
+              "version",
+              "lines",
+              "currency",
+              "scale",
+              "total_minor",
+              "expires_at_epoch"
+            ],
+            "title": "Order",
+            "type": "object"
+          },
+          "PricedLine": {
+            "additionalProperties": false,
+            "properties": {
+              "product_id": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+                "title": "Product Id",
+                "type": "string"
+              },
+              "quantity": {
+                "maximum": 1000,
+                "minimum": 1,
+                "title": "Quantity",
+                "type": "integer"
+              },
+              "unit_price_minor": {
+                "minimum": 0,
+                "title": "Unit Price Minor",
+                "type": "integer"
+              },
+              "currency": {
+                "pattern": "^[A-Z]{3}$",
+                "title": "Currency",
+                "type": "string"
+              },
+              "scale": {
+                "maximum": 4,
+                "minimum": 0,
+                "title": "Scale",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "product_id",
+              "quantity",
+              "unit_price_minor",
+              "currency",
+              "scale"
+            ],
+            "title": "PricedLine",
+            "type": "object"
+          },
+          "Refusal": {
+            "additionalProperties": false,
+            "properties": {
+              "ok": {
+                "const": false,
+                "default": false,
+                "title": "Ok",
+                "type": "boolean"
+              },
+              "state": {
+                "const": "refused",
+                "default": "refused",
+                "title": "State",
+                "type": "string"
+              },
+              "error": {
+                "$ref": "#/$defs/Error"
+              }
+            },
+            "required": [
+              "error"
+            ],
+            "title": "Refusal",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "success": {
+            "const": true,
+            "default": true,
+            "title": "Success",
+            "type": "boolean"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/BusinessResult_Order_"
+              },
+              {
+                "$ref": "#/$defs/Refusal"
+              }
+            ],
+            "title": "Data"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "order_status_Output",
+        "type": "object"
+      }
+    },
+    "cancel_order": {
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "order_id": {
+            "pattern": "^ord_[0-9a-f]{24}$",
+            "title": "Order Id",
+            "type": "string"
+          },
+          "expected_version": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "title": "Expected Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "order_id",
+          "expected_version"
+        ],
+        "title": "Cancel",
+        "type": "object"
+      },
+      "outputSchema": {
+        "$defs": {
+          "BusinessResult_Order_": {
+            "additionalProperties": false,
+            "properties": {
+              "ok": {
+                "const": true,
+                "default": true,
+                "title": "Ok",
+                "type": "boolean"
+              },
+              "state": {
+                "enum": [
+                  "completed",
+                  "pending"
+                ],
+                "title": "State",
+                "type": "string"
+              },
+              "data": {
+                "$ref": "#/$defs/Order"
+              },
+              "projection": {
+                "enum": [
+                  "confirmed",
+                  "pending",
+                  "not_requested"
+                ],
+                "title": "Projection",
+                "type": "string"
+              },
+              "operation_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Operation Id"
+              }
+            },
+            "required": [
+              "state",
+              "data",
+              "projection"
+            ],
+            "title": "BusinessResult[Order]",
+            "type": "object"
+          },
+          "Error": {
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "title": "Code",
+                "type": "string"
+              },
+              "message": {
+                "const": "Operation refused",
+                "default": "Operation refused",
+                "title": "Message",
+                "type": "string"
+              }
+            },
+            "required": [
+              "code"
+            ],
+            "title": "Error",
+            "type": "object"
+          },
+          "Order": {
+            "additionalProperties": false,
+            "properties": {
+              "order_id": {
+                "pattern": "^ord_[0-9a-f]{24}$",
+                "title": "Order Id",
+                "type": "string"
+              },
+              "customer_id": {
+                "pattern": "^cus_[0-9a-f]{24}$",
+                "title": "Customer Id",
+                "type": "string"
+              },
+              "state": {
+                "enum": [
+                  "draft",
+                  "confirmed",
+                  "fulfilled",
+                  "cancelled"
+                ],
+                "title": "State",
+                "type": "string"
+              },
+              "version": {
+                "maximum": 2147483647,
+                "minimum": 1,
+                "title": "Version",
+                "type": "integer"
+              },
+              "lines": {
+                "items": {
+                  "$ref": "#/$defs/PricedLine"
+                },
+                "title": "Lines",
+                "type": "array"
+              },
+              "currency": {
+                "title": "Currency",
+                "type": "string"
+              },
+              "scale": {
+                "title": "Scale",
+                "type": "integer"
+              },
+              "total_minor": {
+                "minimum": 0,
+                "title": "Total Minor",
+                "type": "integer"
+              },
+              "expires_at_epoch": {
+                "title": "Expires At Epoch",
+                "type": "number"
+              },
+              "operation_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Operation Id"
+              }
+            },
+            "required": [
+              "order_id",
+              "customer_id",
+              "state",
+              "version",
+              "lines",
+              "currency",
+              "scale",
+              "total_minor",
+              "expires_at_epoch"
+            ],
+            "title": "Order",
+            "type": "object"
+          },
+          "PricedLine": {
+            "additionalProperties": false,
+            "properties": {
+              "product_id": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+                "title": "Product Id",
+                "type": "string"
+              },
+              "quantity": {
+                "maximum": 1000,
+                "minimum": 1,
+                "title": "Quantity",
+                "type": "integer"
+              },
+              "unit_price_minor": {
+                "minimum": 0,
+                "title": "Unit Price Minor",
+                "type": "integer"
+              },
+              "currency": {
+                "pattern": "^[A-Z]{3}$",
+                "title": "Currency",
+                "type": "string"
+              },
+              "scale": {
+                "maximum": 4,
+                "minimum": 0,
+                "title": "Scale",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "product_id",
+              "quantity",
+              "unit_price_minor",
+              "currency",
+              "scale"
+            ],
+            "title": "PricedLine",
+            "type": "object"
+          },
+          "Refusal": {
+            "additionalProperties": false,
+            "properties": {
+              "ok": {
+                "const": false,
+                "default": false,
+                "title": "Ok",
+                "type": "boolean"
+              },
+              "state": {
+                "const": "refused",
+                "default": "refused",
+                "title": "State",
+                "type": "string"
+              },
+              "error": {
+                "$ref": "#/$defs/Error"
+              }
+            },
+            "required": [
+              "error"
+            ],
+            "title": "Refusal",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "success": {
+            "const": true,
+            "default": true,
+            "title": "Success",
+            "type": "boolean"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/BusinessResult_Order_"
+              },
+              {
+                "$ref": "#/$defs/Refusal"
+              }
+            ],
+            "title": "Data"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "cancel_order_Output",
+        "type": "object"
+      }
+    },
+    "my_orders": {
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "title": "Empty",
+        "type": "object"
+      },
+      "outputSchema": {
+        "$defs": {
+          "BusinessResult_list_Order__": {
+            "additionalProperties": false,
+            "properties": {
+              "ok": {
+                "const": true,
+                "default": true,
+                "title": "Ok",
+                "type": "boolean"
+              },
+              "state": {
+                "enum": [
+                  "completed",
+                  "pending"
+                ],
+                "title": "State",
+                "type": "string"
+              },
+              "data": {
+                "items": {
+                  "$ref": "#/$defs/Order"
+                },
+                "title": "Data",
+                "type": "array"
+              },
+              "projection": {
+                "enum": [
+                  "confirmed",
+                  "pending",
+                  "not_requested"
+                ],
+                "title": "Projection",
+                "type": "string"
+              },
+              "operation_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Operation Id"
+              }
+            },
+            "required": [
+              "state",
+              "data",
+              "projection"
+            ],
+            "title": "BusinessResult[list[Order]]",
+            "type": "object"
+          },
+          "Error": {
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "title": "Code",
+                "type": "string"
+              },
+              "message": {
+                "const": "Operation refused",
+                "default": "Operation refused",
+                "title": "Message",
+                "type": "string"
+              }
+            },
+            "required": [
+              "code"
+            ],
+            "title": "Error",
+            "type": "object"
+          },
+          "Order": {
+            "additionalProperties": false,
+            "properties": {
+              "order_id": {
+                "pattern": "^ord_[0-9a-f]{24}$",
+                "title": "Order Id",
+                "type": "string"
+              },
+              "customer_id": {
+                "pattern": "^cus_[0-9a-f]{24}$",
+                "title": "Customer Id",
+                "type": "string"
+              },
+              "state": {
+                "enum": [
+                  "draft",
+                  "confirmed",
+                  "fulfilled",
+                  "cancelled"
+                ],
+                "title": "State",
+                "type": "string"
+              },
+              "version": {
+                "maximum": 2147483647,
+                "minimum": 1,
+                "title": "Version",
+                "type": "integer"
+              },
+              "lines": {
+                "items": {
+                  "$ref": "#/$defs/PricedLine"
+                },
+                "title": "Lines",
+                "type": "array"
+              },
+              "currency": {
+                "title": "Currency",
+                "type": "string"
+              },
+              "scale": {
+                "title": "Scale",
+                "type": "integer"
+              },
+              "total_minor": {
+                "minimum": 0,
+                "title": "Total Minor",
+                "type": "integer"
+              },
+              "expires_at_epoch": {
+                "title": "Expires At Epoch",
+                "type": "number"
+              },
+              "operation_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Operation Id"
+              }
+            },
+            "required": [
+              "order_id",
+              "customer_id",
+              "state",
+              "version",
+              "lines",
+              "currency",
+              "scale",
+              "total_minor",
+              "expires_at_epoch"
+            ],
+            "title": "Order",
+            "type": "object"
+          },
+          "PricedLine": {
+            "additionalProperties": false,
+            "properties": {
+              "product_id": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+                "title": "Product Id",
+                "type": "string"
+              },
+              "quantity": {
+                "maximum": 1000,
+                "minimum": 1,
+                "title": "Quantity",
+                "type": "integer"
+              },
+              "unit_price_minor": {
+                "minimum": 0,
+                "title": "Unit Price Minor",
+                "type": "integer"
+              },
+              "currency": {
+                "pattern": "^[A-Z]{3}$",
+                "title": "Currency",
+                "type": "string"
+              },
+              "scale": {
+                "maximum": 4,
+                "minimum": 0,
+                "title": "Scale",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "product_id",
+              "quantity",
+              "unit_price_minor",
+              "currency",
+              "scale"
+            ],
+            "title": "PricedLine",
+            "type": "object"
+          },
+          "Refusal": {
+            "additionalProperties": false,
+            "properties": {
+              "ok": {
+                "const": false,
+                "default": false,
+                "title": "Ok",
+                "type": "boolean"
+              },
+              "state": {
+                "const": "refused",
+                "default": "refused",
+                "title": "State",
+                "type": "string"
+              },
+              "error": {
+                "$ref": "#/$defs/Error"
+              }
+            },
+            "required": [
+              "error"
+            ],
+            "title": "Refusal",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "success": {
+            "const": true,
+            "default": true,
+            "title": "Success",
+            "type": "boolean"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/BusinessResult_list_Order__"
+              },
+              {
+                "$ref": "#/$defs/Refusal"
+              }
+            ],
+            "title": "Data"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "my_orders_Output",
+        "type": "object"
+      }
+    }
+  }
+}
