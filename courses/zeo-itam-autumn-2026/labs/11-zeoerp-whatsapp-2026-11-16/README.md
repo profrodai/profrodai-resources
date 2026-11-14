@@ -23,7 +23,8 @@ not authentication. The real bridge is not implemented here.
 A committed order whose projection is pending remains pending. Its original
 request, operation, and record stay held; later writes cannot replace it with a
 new request. A scoped status read can resolve a known pending projection only
-when the same order, version, and operation are confirmed. A lost operation ID
+when its exact order and version are projected. The original operation reference
+is retained even when the status response omits it. A lost operation ID
 requires the ERP owner's read-only recovery path. That path remains open;
 there is no extra recovery tool or automatic mutation replay.
 

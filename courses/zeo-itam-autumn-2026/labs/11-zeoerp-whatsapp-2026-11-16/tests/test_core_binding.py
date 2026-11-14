@@ -125,6 +125,24 @@ class CoreBindingTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(self.journal.db.execute("SELECT count(*) FROM commerce_holds").fetchone()[0], 0)
         self.assertEqual(self.journal.db.execute("SELECT phase FROM attempts").fetchone()[0], "DONE")
 
+    async def test_current_status_without_operation_id_uses_known_original_binding(self):
+        self.port.response = envelope(projection="pending")
+        await self.call()
+        self.port.response = envelope()
+        self.port.response["data"]["operation_id"] = None
+        self.port.response["data"]["data"]["operation_id"] = None
+        await self.call("order_status", {"order_id": ORDER}, request_id="read-exact")
+        self.assertEqual(self.journal.db.execute("SELECT count(*) FROM commerce_holds").fetchone()[0], 0)
+        self.assertEqual(self.journal.db.execute("SELECT result_ref FROM attempts").fetchone()[0], OPERATION)
+
+    async def test_status_with_different_operation_cannot_resolve_original(self):
+        self.port.response = envelope(projection="pending")
+        await self.call()
+        self.port.response = envelope()
+        self.port.response["data"]["data"]["operation_id"] = "op_" + "3" * 24
+        await self.call("order_status", {"order_id": ORDER}, request_id="read-foreign-operation")
+        self.assertEqual(self.journal.db.execute("SELECT count(*) FROM commerce_holds").fetchone()[0], 1)
+
     async def test_unknown_without_id_survives_restart_without_invented_lookup(self):
         self.port.response = TimeoutError("Synthetic lost original response")
         with self.assertRaises(TimeoutError):

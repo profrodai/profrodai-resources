@@ -221,9 +221,16 @@ class CoreBinding:
                     self.journal.db.execute("DELETE FROM commerce_holds WHERE customer=?", (customer,))
             if tool == "order_status" and result["state"] == "completed" and result["projection"] == "confirmed":
                 record = result["data"]
-                held = self.journal.db.execute("SELECT scope,operation,ticket,operation_id FROM commerce_holds "
+                held = self.journal.db.execute("SELECT scope,operation,ticket,operation_id,original FROM commerce_holds "
                     "WHERE customer=? AND order_id=? AND version=?", (customer, record["order_id"], record["version"])).fetchone()
-                if held and held[3] == record.get("operation_id") and held[2]:
+                expected = ({"create_draft_order": "draft", "confirm_order": "confirmed", "cancel_order": "cancelled"}
+                            .get(json.loads(held[4])["tool"])) if held else None
+                # Current order_status may omit operation_id. The known original
+                # ID is already bound to this exact order/version in the hold;
+                # do not invent an ID or resolve an unknown-ID hold by guessing.
+                if (held and held[3] and held[2] and record.get("operation_id") in (None, held[3])
+                        and result.get("operation_id") in (None, held[3])
+                        and record["state"] == expected):
                     self.journal.complete(held[0], held[1], held[2], held[3])
                     self.journal.db.execute("DELETE FROM commerce_holds WHERE customer=?", (customer,))
             current_request(self.clock())

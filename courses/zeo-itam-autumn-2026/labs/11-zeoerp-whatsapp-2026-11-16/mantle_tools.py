@@ -1,7 +1,7 @@
 """Native Mantle tool functions; installed only by the paired worker launcher.
 
 The module is an adapter source, not an installed skill or runnable launcher.
-Business inputs are checked again by ERPBinding before transport dispatch.
+Business inputs are checked against the frozen contract before dispatch.
 """
 
 from rasa.mantle.tools.decorator import tool
