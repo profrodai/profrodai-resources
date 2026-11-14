@@ -56,6 +56,6 @@ async def cancel_order(order_id: str, expected_version: int) -> ToolResult:
     return await _call("cancel_order", {"order_id": order_id, "expected_version": expected_version})
 
 
-@tool(description="Read this customer's orders, following only their returned cursor.")
+@tool(description="Read this customer's orders without accepting caller identity as an argument.")
 async def my_orders() -> ToolResult:
     return await _call("my_orders", {})

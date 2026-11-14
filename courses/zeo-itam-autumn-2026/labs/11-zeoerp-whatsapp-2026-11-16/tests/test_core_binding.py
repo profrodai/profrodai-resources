@@ -9,6 +9,7 @@ from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 import hashlib
 import json
+import sqlite3
 from pathlib import Path
 import tempfile
 from types import SimpleNamespace
@@ -17,7 +18,7 @@ import unittest
 from channel_journal import BindingConflict, ChannelJournal
 from channel_runtime import HeldOutcome
 from commerce_schema import CONTRACT_SHA256
-from core_binding import (ApprovalEvidence, BoundRequest, CoreBinding, CoreRequest,
+from core_binding import (ApprovalEvidence, BoundRequest, CompletedAfterDeadline, CoreBinding, CoreRequest,
                           business_result, core_turn)
 from mcp_port import CORE_TOOLS
 
@@ -218,9 +219,51 @@ class CoreBindingTests(unittest.IsolatedAsyncioTestCase):
 
     async def test_known_completion_is_recorded_before_late_turn_refusal(self):
         self.port.after = lambda: setattr(self, "now", self.now + timedelta(minutes=1))
-        with self.assertRaises(PermissionError):
+        with self.assertRaises(CompletedAfterDeadline) as raised:
             await self.call()
+        self.assertEqual(raised.exception.result["state"], "completed")
+        self.assertEqual(raised.exception.result["operation_id"], OPERATION)
+        self.assertEqual(raised.exception.result["data"]["order_id"], ORDER)
         self.assertEqual(self.journal.db.execute("SELECT phase FROM attempts").fetchone()[0], "DONE")
+
+    async def test_concurrent_preclaim_hold_race_fails_closed_before_second_dispatch(self):
+        both_bound, release_bind = asyncio.Event(), asyncio.Event()
+        in_port, release_port = asyncio.Event(), asyncio.Event()
+        count = 0
+        original_bind = self.bridge.bind
+
+        async def bind(request, **kwargs):
+            nonlocal count
+            count += 1
+            if count == 2:
+                both_bound.set()
+            await release_bind.wait()
+            return await original_bind(request, **kwargs)
+
+        async def slow_call(tool, arguments, **kwargs):
+            self.port.calls.append((tool, arguments, kwargs))
+            in_port.set()
+            await release_port.wait()
+            return envelope()
+
+        self.bridge.bind, self.port.call = bind, slow_call
+        first = asyncio.create_task(self.call(request_id="concurrent-1"))
+        second = asyncio.create_task(self.call(request_id="concurrent-2"))
+        try:
+            await asyncio.wait_for(both_bound.wait(), 1)
+            release_bind.set()
+            await asyncio.wait_for(in_port.wait(), 1)
+            done, _pending = await asyncio.wait((first, second), timeout=1,
+                                               return_when=asyncio.FIRST_COMPLETED)
+            self.assertEqual(len(done), 1)
+            self.assertIsInstance(next(iter(done)).exception(), sqlite3.IntegrityError)
+            self.assertEqual(len(self.port.calls), 1)
+            self.assertEqual(self.journal.db.execute("SELECT count(*) FROM commerce_holds").fetchone()[0], 1)
+        finally:
+            release_bind.set()
+            release_port.set()
+            outcomes = await asyncio.gather(first, second, return_exceptions=True)
+        self.assertEqual(sum(isinstance(value, sqlite3.IntegrityError) for value in outcomes), 1)
 
     async def test_mutation_wrong_order_or_version_is_held_not_completed(self):
         self.approve()

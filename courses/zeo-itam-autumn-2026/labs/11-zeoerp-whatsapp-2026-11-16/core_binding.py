@@ -24,6 +24,17 @@ from mcp_port import CORE_TOOLS, canonical
 MUTATIONS = frozenset({"create_draft_order", "confirm_order", "cancel_order"})
 
 
+class CompletedAfterDeadline(HeldOutcome):
+    """Known completion retained for the trusted launcher, not an unknown retry.
+
+    The launcher must preserve this result for the original request without
+    sending a late reply or treating a fresh mutation as recovery.
+    """
+    def __init__(self, result: dict):
+        super().__init__("The original mutation completed after its reply deadline")
+        self.result = json.loads(canonical(result))
+
+
 @dataclass(frozen=True)
 class CoreRequest:
     company_id: str
@@ -135,6 +146,12 @@ def business_result(tool: str, payload: dict) -> dict:
 
 
 class CoreBinding:
+    """A private customer hold precedes the separately atomic attempt claim.
+
+    A race on that hold fails closed with sqlite3.IntegrityError before the
+    second dispatch. A crash between hold and claim requires an owner audit;
+    neither case authorizes automatic retry or removal of an uncertain hold.
+    """
     def __init__(self, port, journal: ChannelJournal, bridge: RequestBridge, *,
                  clock=lambda: datetime.now(timezone.utc)):
         if not callable(getattr(port, "validate_schema", None)):
@@ -233,7 +250,12 @@ class CoreBinding:
                         and record["state"] == expected):
                     self.journal.complete(held[0], held[1], held[2], held[3])
                     self.journal.db.execute("DELETE FROM commerce_holds WHERE customer=?", (customer,))
-            current_request(self.clock())
+            try:
+                current_request(self.clock())
+            except PermissionError:
+                if attempt is not None and result["state"] == "completed":
+                    raise CompletedAfterDeadline(result) from None
+                raise
             return result
         except BaseException:
             if attempt is not None:
