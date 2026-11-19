@@ -2,7 +2,7 @@
   "schema_version": 1,
   "areas": [
     {"id": "catalog-provenance", "owner": "operator", "cadence_days": 31, "last_reviewed": "2026-11-08", "next_due": "2026-12-09", "review_evidence": "docs/maintenance-evidence/2026-11-09-catalog-acceptance.md"},
-    {"id": "locked-dependencies", "owner": "maintainer", "cadence_days": 10, "last_reviewed": "2026-11-08", "next_due": "2026-11-18", "review_evidence": "docs/maintenance-evidence/2026-11-17-deadline.md"},
+    {"id": "locked-dependencies", "owner": "maintainer", "cadence_days": 12, "last_reviewed": "2026-11-08", "next_due": "2026-11-20", "review_evidence": "docs/maintenance-evidence/2026-11-19-deadline.md"},
     {"id": "companion-accuracy", "owner": "operator", "cadence_days": 92, "last_reviewed": "2026-08-27", "next_due": "2026-11-27"},
     {"id": "readme-links", "owner": "maintainer", "cadence_days": 92, "last_reviewed": "2026-08-27", "next_due": "2026-11-27"},
     {"id": "safety-cost-accessibility", "owner": "operator", "cadence_days": 92, "last_reviewed": "2026-08-27", "next_due": "2026-11-27"}
