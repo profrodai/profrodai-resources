@@ -36,6 +36,8 @@ def main() -> None:
 
     require(pr, "pull_request:", "PR-safe workflow")
     require(pr, "make verify-pr", "PR-safe workflow")
+    require(pr, "make observability-notebooks", "PR-safe workflow")
+    require(makefile, "tools/run_observability_notebooks.py", "Makefile")
     for forbidden in ("PROFROD_SITE_READ_TOKEN", "secrets.", "x-access-token", "make verify\n"):
         if forbidden in pr:
             fail(f"PR-safe workflow contains forbidden trusted-source reference {forbidden!r}")

@@ -1,4 +1,4 @@
-.PHONY: verify verify-pr install format-check lint test typecheck audit catalog catalog-structure consolidation curriculum curriculum-pr curriculum-contract curriculum-maintenance ci-trust-check imported-courses colab
+.PHONY: observability-notebooks verify verify-pr install format-check lint test typecheck audit catalog catalog-structure consolidation curriculum curriculum-pr curriculum-contract curriculum-maintenance ci-trust-check imported-courses colab
 
 ORDER_API_DIR := courses/agentic-coding-with-cursor/order-api
 
@@ -78,6 +78,11 @@ imported-courses:
 curriculum-contract:
 	python3 tools/validate_curriculum_manifest.py
 	python3 -m unittest discover -s tests -p 'test_*.py'
+
+# Both observability notebooks run top to bottom on the labelled test double; any cell error fails.
+# Needs Python 3.12 (the notebooks' pinned pydantic); the PR workflow runs it after verify-pr (the trusted push workflow runs 3.14, so it is not in `verify`).
+observability-notebooks:
+	python3 tools/run_observability_notebooks.py
 
 curriculum-maintenance:
 	python3 tools/validate_curriculum_maintenance.py

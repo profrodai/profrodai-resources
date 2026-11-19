@@ -14,7 +14,7 @@ jobs:
   verify:
     name: smoke
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -28,3 +28,8 @@ jobs:
         with:
           python-version: '3.14'
       - run: make verify-pr
+      # The notebooks pin pydantic for Colab's Python 3.12; 3.14 has no wheel for it.
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - run: make observability-notebooks
